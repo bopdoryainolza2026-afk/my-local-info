@@ -227,9 +227,9 @@ function Tag({ label }: { label: string }) {
 }
 
 function EventCard({
-  emoji, tag, name, dateStr, location, target, summary, link,
+  emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link,
 }: {
-  emoji: string; tag: string; name: string; dateStr: string;
+  emoji?: string; tag?: string; name: string; dateStr: string;
   location: string; target: string; summary: string; link: string;
 }) {
   return (
@@ -263,9 +263,9 @@ function EventCard({
 }
 
 function BenefitCard({
-  emoji, tag, name, target, amount, summary, deadline, link,
+  emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link,
 }: {
-  emoji: string; tag: string; name: string; target: string;
+  emoji?: string; tag?: string; name: string; target: string;
   amount: string; summary: string; deadline: string; link: string;
 }) {
   return (
