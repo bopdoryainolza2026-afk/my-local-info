@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-01",
+  "lastUpdated": "2026-04-02",
   "source": "공공데이터포털 (data.go.kr)",
   "events": [
     {
@@ -135,6 +135,19 @@
       "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000007",
       "emoji": "⚖️",
       "tag": "복지"
+    },
+    {
+      "id": 119200000008,
+      "name": "옵서버 승선경비 지원",
+      "category": "혜택",
+      "startDate": "2026-04-02",
+      "endDate": "상시",
+      "location": "한국수산자원공단",
+      "target": "국제옵서버를 승선시킨 원양선사",
+      "summary": "국제옵서버를 승선시킨 원양선사에 승선경비 및 활동 등을 지원",
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/119200000008",
+      "emoji": "⚓",
+      "tag": "어업"
     }
   ]
 }
