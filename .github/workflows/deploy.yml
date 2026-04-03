@@ -28,26 +28,26 @@ jobs:
         run: npm ci
 
       - name: Run data fetch script
-        if: github.event_name != 'push'
+     
         run: node scripts/fetch-public-data.js
         env:
           PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
-      - name: Generate blog post
-        if: github.event_name != 'push'
+     
         run: node scripts/generate-blog-post.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Commit and push changes
-        if: github.event_name != 'push'
+     
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           if ! git diff --cached --quiet; then
             git commit -m "자동 업데이트: 공공데이터 수집 및 블로그 글 생성"
+            git pull --rebase origin main && 
             git push
           else
             echo "No changes to commit"
