@@ -28,36 +28,46 @@ jobs:
         run: npm ci
 
       - name: Run data fetch script
-     
-        run: node scripts/fetch-public-data.js
+        if: github.event_name != 'push'
+        run: |
+          echo "🔍 공공데이터 수집을 시작합니다..."
+          node scripts/fetch-public-data.js
         env:
           PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
-     
-        run: node scripts/generate-blog-post.js
+      - name: Generate blog post
+        if: github.event_name != 'push'
+        run: |
+          echo "📝 블로그 포스팅 생성을 시작합니다..."
+          node scripts/generate-blog-post.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Commit and push changes
-     
+        if: github.event_name != 'push'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           if ! git diff --cached --quiet; then
+            echo "📤 변경된 데이터를 반영합니다..."
             git commit -m "자동 업데이트: 공공데이터 수집 및 블로그 글 생성"
-            git pull --rebase origin main && 
+            git pull --rebase origin main &&
             git push
           else
-            echo "No changes to commit"
+            echo "✅ 새로 추가된 데이터가 없습니다."
           fi
 
       - name: Build
-        run: npm run build
+        run: |
+          echo "🏗️ 프로젝트 빌드 중..."
+          npm run build
 
       - name: Deploy
-        run: npx wrangler pages deploy out --project-name=my-local-info
+        run: |
+          echo "🚀 Cloudflare Pages에 배포합니다..."
+          npx wrangler pages deploy out --project-name=my-local-info
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

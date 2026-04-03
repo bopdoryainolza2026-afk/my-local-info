@@ -12,58 +12,65 @@ async function generateBlogPost() {
   }
 
   try {
-    // [1단계] 최신 데이터 확인
+    // [1단계] 데이터 로드 및 미작성 항목 추출
     const rawData = fs.readFileSync(jsonPath, 'utf8');
     const db = JSON.parse(rawData);
-    
-    // 이벤드와 혜택 중 마지막 인덱스를 합쳐서 가장 마지막인 항목을 가져옴
     const combinedItems = [...db.events, ...db.benefits];
-    const latestItem = combinedItems[combinedItems.length - 1];
 
-    if (!latestItem) {
-      console.log("데이터가 없습니다.");
-      return;
-    }
+    // 기존 포스트 목록 가져오기
+    const postFiles = fs.readdirSync(postsDirPath).filter(f => f.endsWith('.md'));
+    const allPostContents = postFiles.map(f => fs.readFileSync(path.join(postsDirPath, f), 'utf8'));
 
-    // 기존 포스트와 중복 검사 (내용 중에 이름이 포함되어 있는지 확인)
-    const existingFileNames = fs.readdirSync(postsDirPath);
-    let isAlreadyWritten = false;
-    for (const fileName of existingFileNames) {
-      if (fileName.endsWith('.md')) {
-        const fileContent = fs.readFileSync(path.join(postsDirPath, fileName), 'utf8');
-        if (fileContent.includes(latestItem.name)) {
-          isAlreadyWritten = true;
-          break;
-        }
+    // 아직 블로그로 작성되지 않은 항목들을 최신순(역순)으로 찾기
+    let latestItem = null;
+    for (let i = combinedItems.length - 1; i >= 0; i--) {
+      const item = combinedItems[i];
+      const isAlreadyWritten = allPostContents.some(content => content.includes(item.name));
+      if (!isAlreadyWritten) {
+        latestItem = item;
+        break;
       }
     }
 
-    if (isAlreadyWritten) {
-      console.log("이미 작성된 글입니다");
+    if (!latestItem) {
+      console.log("새로 작성할 블로그 대상 데이터가 없습니다.");
       return;
     }
 
+    console.log("블로그 생성 대상 항목:", latestItem.name);
+
     // [2단계] Gemini AI로 블로그 글 생성
     const today = new Date().toISOString().split('T')[0];
-    const prompt = `아래 공공서비스 정보를 바탕으로 블로그 글을 작성해줘.
+    const prompt = `성남시/경기도 생활 정보 블로그 운영자로서 아래 정보를 바탕으로 친근하고 유익한 블로그 포스팅을 작성해줘.
 
 정보: ${JSON.stringify(latestItem, null, 2)}
 
-아래 형식으로 출력해줘. 반드시 이 형식만 출력하고 다른 텍스트는 없이:
+형식 규칙:
+1. 상단에 아래 양식의 Front-matter를 포함해줘:
 ---
-title: (친근하고 흥미로운 제목)
+title: (이웃에게 말하듯 친근하고 클릭하고 싶은 제목)
 date: ${today}
-summary: (한 줄 요약)
+summary: (전체 내용을 정중하게 요약한 한 문장)
 category: 정보
-tags: [태그1, 태그2, 태그3]
+tags: [${latestItem.tag || '생활'}, 성남시, 경기도]
 ---
 
-(본문: 800자 이상, 친근한 블로그 톤, 추천 이유 3가지 포함, 신청 방법 안내)
+2. 본문 구성:
+   - 도입부: 이웃 주민들에게 건네는 따뜻한 인사와 정보 소개
+   - 상세 내용: ${latestItem.name}의 주요 혜택/행사 내용 요약
+   - 추천 이유: 이 정보가 왜 유용한지 3가지 포인트로 정리
+   - 신청/참여 방법: 어떻게 이용하면 되는지 구체적으로 안내
+   - 맺음말: 도움이 되길 바란다는 따뜻한 마무리
 
-마지막 줄에 FILENAME: ${today}-keyword 형식으로 파일명도 출력해줘. 키워드는 영문으로.`;
+3. 말투: "~해요", "~입니다"와 같은 친근한 구어체 사용
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+4. 마지막 줄에는 반드시 'FILENAME: YYYY-MM-DD-영어키워드' 형식으로 저장할 파일명을 제안해줘.
+
+반드시 위 형식만 출력하고 다른 설명 텍스트는 포함하지 마.`;
+
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
     
+    console.log("Gemini AI를 통해 블로그 본문 생성 중...");
     const geminiResponse = await fetch(geminiUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -73,6 +80,10 @@ tags: [태그1, 태그2, 태그3]
     });
 
     const geminiResult = await geminiResponse.json();
+    if (!geminiResult.candidates || !geminiResult.candidates[0]?.content?.parts?.[0]?.text) {
+      throw new Error("AI 응답을 받지 못했습니다. API 키나 쿼터 제한을 확인하세요.");
+    }
+
     let fullResponse = geminiResult.candidates[0].content.parts[0].text;
     
     // 마크다운 블록 제거 및 정리
@@ -80,22 +91,25 @@ tags: [태그1, 태그2, 태그3]
 
     // [3단계] 파일 저장용 정규표현식 파싱
     const filenameMatch = fullResponse.match(/FILENAME:\s*([^\s\n]+)/i);
-    if (!filenameMatch) {
-      throw new Error("Gemini 응답에서 파일명(FILENAME) 정보를 찾을 수 없습니다.");
+    let finalFileName;
+    
+    if (filenameMatch) {
+      finalFileName = filenameMatch[1].trim();
+    } else {
+      const safeName = latestItem.name.replace(/[^a-zA-Z0-9가-힣]/g, '').substring(0, 10);
+      finalFileName = `${today}-${safeName}`;
     }
 
-    const finalFileName = filenameMatch[1].trim();
     // FILENAME 부분을 본문에서 제거
     const finalContent = fullResponse.replace(/FILENAME:.*$/im, '').trim();
 
     const finalFilePath = path.join(postsDirPath, `${finalFileName}.md`);
     fs.writeFileSync(finalFilePath, finalContent, 'utf8');
 
-    console.log("생성 완료:", finalFileName);
+    console.log("✅ 블로그 포스팅 생성 완료:", finalFileName);
 
   } catch (error) {
-    console.error("블로그 글 생성 중 오류 발생:", error);
-    // 에러 발생 시 기존 파일 유지됨
+    console.error("❌ 블로그 글 생성 중 오류 발생:", error.message);
     process.exit(1);
   }
 }
