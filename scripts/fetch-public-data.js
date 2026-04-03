@@ -8,12 +8,13 @@ async function fetchPublicData() {
 
   if (!PUBLIC_DATA_API_KEY || !GEMINI_API_KEY) {
     console.error("환경변수(PUBLIC_DATA_API_KEY 또는 GEMINI_API_KEY)가 설정되지 않았습니다.");
-    return;
+    process.exit(1);
   }
 
   try {
     // [1단계] 공공데이터포털 API에서 데이터 가져오기
-    const url = `https://api.odcloud.kr/api/gov24/v3/serviceList?page=1&perPage=20&returnType=JSON&serviceKey=${PUBLIC_DATA_API_KEY}`;
+    // URL에 특수문자가 포함된 경우를 대비해 API 키를 인코딩 처리합니다.
+    const url = `https://api.odcloud.kr/api/gov24/v3/serviceList?page=1&perPage=20&returnType=JSON&serviceKey=${encodeURIComponent(PUBLIC_DATA_API_KEY)}`;
     const response = await fetch(url);
     const result = await response.json();
     const items = result.data || [];
@@ -41,7 +42,8 @@ async function fetchPublicData() {
     }
 
     if (filtered.length === 0) {
-      filtered = items;
+      console.log("성남 또는 경기 관련 새로운 데이터가 없습니다.");
+      return;
     }
 
     // [2단계] 기존 데이터와 비교
@@ -66,7 +68,7 @@ startDate가 없으면 오늘 날짜(${today}), endDate가 없으면 '상시'로
 
 데이터: ${JSON.stringify(newItemSource)}`;
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
     const geminiResponse = await fetch(geminiUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -96,7 +98,8 @@ startDate가 없으면 오늘 날짜(${today}), endDate가 없으면 '상시'로
 
   } catch (error) {
     console.error("데이터 처리 중 오류 발생:", error);
-    // 에러 발생 시 기존 파일 유지됨 (fs.writeFileSync를 호출하지 않으므로)
+    // GitHub Actions에서 에러를 감지하고 실패(Fail) 처리하도록 강제 종료합니다.
+    process.exit(1);
   }
 }
 

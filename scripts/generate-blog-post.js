@@ -8,7 +8,7 @@ async function generateBlogPost() {
 
   if (!GEMINI_API_KEY) {
     console.error("환경변수(GEMINI_API_KEY)가 설정되지 않았습니다.");
-    return;
+    process.exit(1);
   }
 
   try {
@@ -62,7 +62,7 @@ tags: [태그1, 태그2, 태그3]
 
 마지막 줄에 FILENAME: ${today}-keyword 형식으로 파일명도 출력해줘. 키워드는 영문으로.`;
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
     
     const geminiResponse = await fetch(geminiUrl, {
       method: "POST",
@@ -96,6 +96,7 @@ tags: [태그1, 태그2, 태그3]
   } catch (error) {
     console.error("블로그 글 생성 중 오류 발생:", error);
     // 에러 발생 시 기존 파일 유지됨
+    process.exit(1);
   }
 }
 
