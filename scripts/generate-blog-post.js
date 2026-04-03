@@ -48,7 +48,7 @@ async function generateBlogPost() {
 형식 규칙:
 1. 상단에 아래 양식의 Front-matter를 포함해줘:
 ---
-title: (이웃에게 말하듯 친근하고 클릭하고 싶은 제목)
+title: "(이웃에게 말하듯 친근하고 클릭하고 싶은 제목)"
 date: ${today}
 summary: (전체 내용을 정중하게 요약한 한 문장)
 category: 정보
