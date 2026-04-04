@@ -67,7 +67,7 @@ jobs:
       - name: Deploy
         run: |
           echo "🚀 Cloudflare Pages에 배포합니다..."
-          npx wrangler pages deploy out --project-name=my-local-info --branch production
+          npx wrangler pages deploy out --project-name=my-local-info --branch main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

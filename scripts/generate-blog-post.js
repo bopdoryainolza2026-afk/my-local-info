@@ -41,7 +41,7 @@ async function generateBlogPost() {
 
     // [2단계] Gemini AI로 블로그 글 생성
     const today = new Date().toISOString().split('T')[0];
-    const prompt = `성남시/경기도 생활 정보 블로그 운영자로서 아래 정보를 바탕으로 친근하고 유익한 블로그 포스팅을 작성해줘.
+    const prompt = `용인시/경기도 생활 정보 블로그 운영자로서 아래 정보를 바탕으로 친근하고 유익한 블로그 포스팅을 작성해줘.
 
 정보: ${JSON.stringify(latestItem, null, 2)}
 
@@ -52,7 +52,7 @@ title: "(이웃에게 말하듯 친근하고 클릭하고 싶은 제목)"
 date: ${today}
 summary: (전체 내용을 정중하게 요약한 한 문장)
 category: 정보
-tags: [${latestItem.tag || '생활'}, 성남시, 경기도]
+tags: [${latestItem.tag || '생활'}, 용인시, 경기도]
 ---
 
 2. 본문 구성:

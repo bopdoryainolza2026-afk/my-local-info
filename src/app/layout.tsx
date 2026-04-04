@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "성남시 생활 정보",
-  description: "성남시 행사, 축제, 지원금 정보를 AI가 매일 자동으로 모아드립니다.",
+  title: "용인시 생활 정보",
+  description: "용인시 행사, 축제, 지원금 정보를 AI가 매일 자동으로 모아드립니다.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

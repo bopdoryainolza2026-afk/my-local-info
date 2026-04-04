@@ -35,16 +35,16 @@ async function fetchPublicData() {
     let filtered = items.filter(item => {
       const targetText = (item.서비스명 || '') + (item.서비스목적요약 || '') + (item.지원대상 || '') + (item.소관기관명 || '');
       
-      // '성남'이 포함되어 있는지 확인
-      const isSeongnam = targetText.includes('성남');
+      // '용인'이 포함되어 있는지 확인
+      const isYongin = targetText.includes('용인');
       // '경기'가 포함되어 있는지 확인 (단, 타 지역명이 포함된 경우는 제외)
-      const isGyeonggi = targetText.includes('경기') && !excludeRegions.some(region => targetText.includes(region) && !targetText.includes('성남'));
+      const isGyeonggi = targetText.includes('경기') && !excludeRegions.some(region => targetText.includes(region) && !targetText.includes('용인'));
       
-      return isSeongnam || isGyeonggi;
+      return isYongin || isGyeonggi;
     });
 
     if (filtered.length === 0) {
-      console.log("성남 또는 경기 관련 새로운 데이터가 없습니다.");
+      console.log("용인 또는 경기 관련 새로운 데이터가 없습니다.");
       return;
     }
 
@@ -76,7 +76,7 @@ async function fetchPublicData() {
 {id: 숫자, name: 서비스명, category: '행사' 또는 '혜택', startDate: 'YYYY-MM-DD', endDate: 'YYYY-MM-DD', location: 장소 또는 기관명, target: 지원대상, summary: 한줄요약, link: 상세URL, emoji: 관련 이모지 1개, tag: 핵심태그 1개(예: 청년, 교육, 복지 등)}
 category는 내용을 보고 행사/축제면 '행사', 지원금/서비스면 '혜택'으로 판단해.
 startDate가 없으면 오늘 날짜(${today}), endDate가 없으면 '상시'로 넣어.
-성남시 또는 경기도 정보인지 다시 한 번 확인하고 가공해줘.
+용인시 또는 경기도 정보인지 다시 한 번 확인하고 가공해줘.
 반드시 JSON 객체만 출력해. 다른 텍스트 없이.
 
 데이터: ${JSON.stringify(newItemSource)}`;

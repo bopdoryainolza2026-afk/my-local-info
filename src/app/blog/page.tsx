@@ -25,7 +25,7 @@ export default function BlogPage() {
         }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
             <span style={{ fontSize: 24, fontWeight: 900, color: "white", letterSpacing: "-0.5px" }}>
-              🏘️ 성남시 생활 정보
+              🏘️ 용인시 생활 정보
             </span>
           </Link>
           <Link href="/blog" style={{
@@ -46,7 +46,7 @@ export default function BlogPage() {
           📝 생활 정보 블로그
         </h1>
         <p style={{ fontSize: 16, color: "#64748b", marginBottom: 40 }}>
-          AI가 정리해드리는 성남시의 유용한 생활 팁과 소식입니다.
+          AI가 정리해드리는 용인시의 유용한 생활 팁과 소식입니다.
         </p>
 
         {/* 블로그 목록 */}
@@ -103,7 +103,7 @@ export default function BlogPage() {
         textAlign: "center",
         fontSize: 13,
       }}>
-        <p>© 2026 성남시 생활 정보</p>
+        <p>© 2026 용인시 생활 정보</p>
       </footer>
     </div>
   );

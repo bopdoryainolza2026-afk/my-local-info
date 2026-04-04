@@ -44,7 +44,7 @@ export default async function PostPage({ params }: Props) {
         }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
             <span style={{ fontSize: 24, fontWeight: 900, color: "white", letterSpacing: "-0.5px" }}>
-              🏘️ 성남시 생활 정보
+              🏘️ 용인시 생활 정보
             </span>
           </Link>
           <Link href="/blog" style={{
@@ -104,7 +104,7 @@ export default async function PostPage({ params }: Props) {
         textAlign: "center",
         fontSize: 13,
       }}>
-        <p>© 2026 성남시 생활 정보</p>
+        <p>© 2026 용인시 생활 정보</p>
       </footer>
     </div>
   );

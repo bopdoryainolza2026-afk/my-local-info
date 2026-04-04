@@ -46,7 +46,7 @@ export default function Home() {
         }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
             <span style={{ fontSize: 24, fontWeight: 900, color: "white", letterSpacing: "-0.5px" }}>
-              🏘️ 성남시 생활 정보
+              🏘️ 용인시 생활 정보
             </span>
           </Link>
           <Link href="/blog" style={{
@@ -73,7 +73,7 @@ export default function Home() {
           우리 동네 행사·지원금<br />한 곳에서 확인하세요!
         </h1>
         <p style={{ fontSize: 15, opacity: 0.9, marginBottom: 24 }}>
-          성남시 행사, 축제, 지원금 정보를 매일 자동으로 모아드립니다.
+          용인시 행사, 축제, 지원금 정보를 매일 자동으로 모아드립니다.
         </p>
         <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
           <a href="#events" style={{
