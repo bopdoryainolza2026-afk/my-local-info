@@ -129,9 +129,9 @@ export default async function PostPage({ params }: Props) {
                 "@context": "https://schema.org",
                 "@type": "BreadcrumbList",
                 "itemListElement": [
-                  { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://my-local-info-bb0.pages.dev" },
-                  { "@type": "ListItem", "position": 2, "name": "블로그", "item": "https://my-local-info-bb0.pages.dev/blog" },
-                  { "@type": "ListItem", "position": 3, "name": postData.title, "item": `https://my-local-info-bb0.pages.dev/blog/${slug}` }
+                  { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://yongin-love-info.com" },
+                  { "@type": "ListItem", "position": 2, "name": "블로그", "item": "https://yongin-love-info.com/blog" },
+                  { "@type": "ListItem", "position": 3, "name": postData.title, "item": `https://yongin-love-info.com/blog/${slug}` }
                 ]
               })
             }}

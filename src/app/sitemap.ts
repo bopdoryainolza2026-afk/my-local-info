@@ -4,7 +4,7 @@ import { getSortedPostsData } from '@/lib/posts';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://my-local-info-bb0.pages.dev';
+  const baseUrl = 'https://yongin-love-info.com';
   
   const posts = getSortedPostsData();
   

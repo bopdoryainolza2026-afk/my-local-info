@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://my-local-info-bb0.pages.dev/sitemap.xml',
+    sitemap: 'https://yongin-love-info.com/sitemap.xml',
   };
 }
