@@ -63,6 +63,8 @@ jobs:
         run: |
           echo "🏗️ 프로젝트 빌드 중..."
           npm run build
+        env:
+          NEXT_PUBLIC_ADSENSE_ID: "ca-pub-2764192052550924"
 
       - name: Deploy
         run: |
