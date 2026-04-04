@@ -5,15 +5,15 @@ export default function BlogPage() {
   const allPostsData = getSortedPostsData();
 
   return (
-    <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#fffbf5", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
       {/* ===== 헤더 ===== */}
       <header style={{
-        background: "linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%)",
+        background: "linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #7dd3fc 100%)",
         padding: "0 20px",
         position: "sticky",
         top: 0,
         zIndex: 50,
-        boxShadow: "0 2px 16px rgba(249,115,22,0.3)",
+        boxShadow: "0 2px 16px rgba(2,132,199,0.3)",
       }}>
         <div style={{
           maxWidth: 800,
@@ -78,7 +78,7 @@ export default function BlogPage() {
                 }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: "#f97316", background: "#fff7ed", padding: "4px 10px", borderRadius: 12 }}>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: "#0284c7", background: "#e0f2fe", padding: "4px 10px", borderRadius: 12 }}>
                     {post.category}
                   </span>
                   <span style={{ fontSize: 13, color: "#94a3b8" }}>{post.date}</span>

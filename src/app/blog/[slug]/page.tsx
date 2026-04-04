@@ -51,15 +51,15 @@ export default async function PostPage({ params }: Props) {
   const sourceLink = matchedItem?.link || "https://data.go.kr/";
 
   return (
-    <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#fffbf5", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
       {/* ===== 헤더 ===== */}
       <header style={{
-        background: "linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%)",
+        background: "linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #7dd3fc 100%)",
         padding: "0 20px",
         position: "sticky",
         top: 0,
         zIndex: 50,
-        boxShadow: "0 2px 16px rgba(249,115,22,0.3)",
+        boxShadow: "0 2px 16px rgba(2,132,199,0.3)",
       }}>
         <div style={{
           maxWidth: 800,
@@ -98,7 +98,7 @@ export default async function PostPage({ params }: Props) {
       {/* ===== 블로그 본문 ===== */}
       <article style={{ maxWidth: 800, margin: "0 auto", padding: "40px 20px 80px" }}>
         <Link href="/blog" style={{
-          display: "inline-block", color: "#f97316", fontWeight: 700, fontSize: 14,
+          display: "inline-block", color: "#0284c7", fontWeight: 700, fontSize: 14,
           marginBottom: 24, textDecoration: "none"
         }}>
           ← 목록으로 돌아가기
@@ -106,7 +106,7 @@ export default async function PostPage({ params }: Props) {
         
         <header style={{ marginBottom: 40 }}>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: "#f97316", background: "#fff7ed", padding: "4px 10px", borderRadius: 12 }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "#0284c7", background: "#e0f2fe", padding: "4px 10px", borderRadius: 12 }}>
               {postData.category}
             </span>
           </div>
@@ -117,7 +117,7 @@ export default async function PostPage({ params }: Props) {
         </header>
 
         {/* 마크다운 렌더링 구역 */}
-        <div className="prose prose-orange max-w-none" style={{ background: "white", padding: "32px", borderRadius: 20, border: "1px solid #e2e8f0" }}>
+        <div className="prose prose-sky max-w-none" style={{ background: "white", padding: "32px", borderRadius: 20, border: "1px solid #e2e8f0" }}>
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {postData.content}
           </ReactMarkdown>
@@ -155,12 +155,12 @@ export default async function PostPage({ params }: Props) {
           <div style={{ background: "#f8fafc", padding: "20px", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
             <h3 style={{ fontSize: "15px", fontWeight: "bold", color: "#334155", marginBottom: "8px", marginTop: 0 }}>ℹ️ 정보 안내</h3>
             <p style={{ fontSize: "13px", color: "#64748b", margin: 0, lineHeight: 1.6 }}>
-              이 글은 공공데이터포털(<a href="http://data.go.kr/" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>data.go.kr</a>)의 정보를 바탕으로 AI가 작성하였습니다. 정확한 내용은 원문 링크를 통해 확인해주세요.
+              이 글은 공공데이터포털(<a href="http://data.go.kr/" target="_blank" rel="noopener noreferrer" style={{ color: "#0ea5e9", textDecoration: "none" }}>data.go.kr</a>)의 정보를 바탕으로 AI가 작성하였습니다. 정확한 내용은 원문 링크를 통해 확인해주세요.
             </p>
             <div style={{ marginTop: "12px" }}>
               <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{ 
                 display: "inline-block", fontSize: "13px", fontWeight: "bold", 
-                color: "white", background: "#f97316", padding: "8px 16px", 
+                color: "white", background: "#0ea5e9", padding: "8px 16px", 
                 borderRadius: "20px", textDecoration: "none" 
               }}>
                 🔗 원문 출처 바로가기
