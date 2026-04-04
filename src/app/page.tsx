@@ -25,6 +25,20 @@ function dateRange(start: string, end: string) {
 export default function Home() {
   const { events, benefits, lastUpdated, source } = localData;
 
+  // 용인시 포함 여부 검사 함수
+  const isYongin = (item: any) => 
+    (item.name && item.name.includes("용인")) || 
+    (item.target && item.target.includes("용인")) || 
+    (item.location && item.location.includes("용인"));
+
+  // 용인시 전용 데이터
+  const yonginEvents = events.filter(isYongin);
+  const yonginBenefits = benefits.filter(isYongin);
+
+  // 용인시 제외 기타(경기도/전국) 데이터
+  const gyeonggiEvents = events.filter((e) => !isYongin(e));
+  const gyeonggiBenefits = benefits.filter((b) => !isYongin(b));
+
   return (
     <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
 
@@ -122,7 +136,7 @@ export default function Home() {
             <SectionTitle emoji="🎪" title="이번 달 행사/축제" />
 
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              {events.map((ev) => (
+              {yonginEvents.map((ev) => (
                 <EventCard
                   key={ev.id}
                   emoji={ev.emoji}
@@ -145,7 +159,7 @@ export default function Home() {
             <SectionTitle emoji="💰" title="지원금/혜택" />
 
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              {benefits.map((ben) => (
+              {yonginBenefits.map((ben) => (
                 <BenefitCard
                   key={ben.id}
                   emoji={ben.emoji}
@@ -163,6 +177,44 @@ export default function Home() {
         </div>
 
         <AdBanner />
+
+        {/* ---- 경기도 기타 정보 섹션 ---- */}
+        {(gyeonggiEvents.length > 0 || gyeonggiBenefits.length > 0) && (
+          <section id="gyeonggi-info" style={{ marginBottom: 40, marginTop: 40 }}>
+            <SectionTitle emoji="📢" title="경기도 / 전국 모아보기" />
+            
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 14 }}>
+              {gyeonggiEvents.map((ev) => (
+                <EventCard
+                  key={ev.id}
+                  emoji={ev.emoji}
+                  tag={ev.tag}
+                  name={ev.name}
+                  dateStr={dateRange(ev.startDate, ev.endDate)}
+                  rawStartDate={ev.startDate}
+                  rawEndDate={ev.endDate}
+                  location={ev.location}
+                  target={ev.target}
+                  summary={ev.summary}
+                  link="/blog"
+                />
+              ))}
+              {gyeonggiBenefits.map((ben) => (
+                <BenefitCard
+                  key={ben.id}
+                  emoji={ben.emoji}
+                  tag={ben.tag}
+                  name={ben.name}
+                  target={ben.target}
+                  amount={"amount" in ben ? (ben as typeof ben & { amount: string }).amount : ""}
+                  summary={ben.summary}
+                  deadline={ben.endDate}
+                  link="/blog"
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ---- 블로그 배너 ---- */}
         <div style={{
