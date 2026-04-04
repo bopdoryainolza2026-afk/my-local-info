@@ -183,35 +183,54 @@ export default function Home() {
           <section id="gyeonggi-info" style={{ marginBottom: 40, marginTop: 40 }}>
             <SectionTitle emoji="📢" title="경기도 / 전국 모아보기" />
             
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 14 }}>
-              {gyeonggiEvents.map((ev) => (
-                <EventCard
-                  key={ev.id}
-                  emoji={ev.emoji}
-                  tag={ev.tag}
-                  name={ev.name}
-                  dateStr={dateRange(ev.startDate, ev.endDate)}
-                  rawStartDate={ev.startDate}
-                  rawEndDate={ev.endDate}
-                  location={ev.location}
-                  target={ev.target}
-                  summary={ev.summary}
-                  link="/blog"
-                />
-              ))}
-              {gyeonggiBenefits.map((ben) => (
-                <BenefitCard
-                  key={ben.id}
-                  emoji={ben.emoji}
-                  tag={ben.tag}
-                  name={ben.name}
-                  target={ben.target}
-                  amount={"amount" in ben ? (ben as typeof ben & { amount: string }).amount : ""}
-                  summary={ben.summary}
-                  deadline={ben.endDate}
-                  link="/blog"
-                />
-              ))}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24, alignItems: "start" }}>
+              
+              {/* 경기도 행사/축제 */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                <h3 style={{ fontSize: 15, fontWeight: 800, color: "#0284c7", paddingLeft: 4 }}>🎪 행사/축제</h3>
+                {gyeonggiEvents.length > 0 ? (
+                  gyeonggiEvents.map((ev) => (
+                    <EventCard
+                      key={ev.id}
+                      emoji={ev.emoji}
+                      tag={ev.tag}
+                      name={ev.name}
+                      dateStr={dateRange(ev.startDate, ev.endDate)}
+                      rawStartDate={ev.startDate}
+                      rawEndDate={ev.endDate}
+                      location={ev.location}
+                      target={ev.target}
+                      summary={ev.summary}
+                      link="/blog"
+                    />
+                  ))
+                ) : (
+                  <p style={{ fontSize: 13, color: "#94a3b8", padding: "10px 4px" }}>현재 진행 중인 행사가 없습니다.</p>
+                )}
+              </div>
+
+              {/* 경기도 지원금/혜택 */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                <h3 style={{ fontSize: 15, fontWeight: 800, color: "#0284c7", paddingLeft: 4 }}>💰 지원금/혜택</h3>
+                {gyeonggiBenefits.length > 0 ? (
+                  gyeonggiBenefits.map((ben) => (
+                    <BenefitCard
+                      key={ben.id}
+                      emoji={ben.emoji}
+                      tag={ben.tag}
+                      name={ben.name}
+                      target={ben.target}
+                      amount={"amount" in ben ? (ben as typeof ben & { amount: string }).amount : ""}
+                      summary={ben.summary}
+                      deadline={ben.endDate}
+                      link="/blog"
+                    />
+                  ))
+                ) : (
+                  <p style={{ fontSize: 13, color: "#94a3b8", padding: "10px 4px" }}>현재 제공되는 지원금이 없습니다.</p>
+                )}
+              </div>
+
             </div>
           </section>
         )}
