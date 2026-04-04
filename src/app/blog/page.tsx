@@ -28,15 +28,25 @@ export default function BlogPage() {
               🏘️ 용인시 생활 정보
             </span>
           </Link>
-          <Link href="/blog" style={{
-            fontSize: 13, fontWeight: 600, color: "white",
-            padding: "6px 14px", borderRadius: 20,
-            background: "rgba(255,255,255,0.2)",
-            border: "1.5px solid rgba(255,255,255,0.6)",
-            textDecoration: "none"
-          }}>
-            📝 블로그
-          </Link>
+          <div style={{ display: "flex", gap: 10 }}>
+            <Link href="/about" style={{
+              fontSize: 13, fontWeight: 600, color: "white",
+              padding: "6px 14px", borderRadius: 20,
+              border: "1.5px solid rgba(255,255,255,0.6)",
+              textDecoration: "none"
+            }}>
+              🏢 소개
+            </Link>
+            <Link href="/blog" style={{
+              fontSize: 13, fontWeight: 600, color: "white",
+              padding: "6px 14px", borderRadius: 20,
+              background: "rgba(255,255,255,0.2)",
+              border: "1.5px solid rgba(255,255,255,0.6)",
+              textDecoration: "none"
+            }}>
+              📝 블로그
+            </Link>
+          </div>
         </div>
       </header>
 

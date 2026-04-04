@@ -1,8 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getPostData, getSortedPostsData } from "@/lib/posts";
+import localData from "../../../../public/data/local-info.json";
+import AdBanner from "@/components/AdBanner";
+import CoupangBanner from "@/components/CoupangBanner";
 
 interface Props {
   params: { slug: string };
@@ -15,6 +19,25 @@ export function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const postData = getPostData(slug);
+  
+  if (!postData) {
+    return { title: "포스트를 찾을 수 없습니다." };
+  }
+
+  return {
+    title: postData.title,
+    description: postData.summary,
+    openGraph: {
+      title: postData.title,
+      description: postData.summary,
+      type: "article",
+    },
+  };
+}
+
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
   const postData = getPostData(slug);
@@ -22,6 +45,10 @@ export default async function PostPage({ params }: Props) {
   if (!postData) {
     return notFound();
   }
+
+  const allItems = [...localData.events, ...localData.benefits];
+  const matchedItem = allItems.find(item => postData.title.includes(item.name) || postData.content.includes(item.name));
+  const sourceLink = matchedItem?.link || "https://data.go.kr/";
 
   return (
     <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#fffbf5", minHeight: "100vh" }}>
@@ -47,14 +74,24 @@ export default async function PostPage({ params }: Props) {
               🏘️ 용인시 생활 정보
             </span>
           </Link>
-          <Link href="/blog" style={{
-            fontSize: 13, fontWeight: 600, color: "white",
-            padding: "6px 14px", borderRadius: 20,
-            border: "1.5px solid rgba(255,255,255,0.6)",
-            textDecoration: "none"
-          }}>
-            📝 블로그
-          </Link>
+          <div style={{ display: "flex", gap: 10 }}>
+            <Link href="/about" style={{
+              fontSize: 13, fontWeight: 600, color: "white",
+              padding: "6px 14px", borderRadius: 20,
+              border: "1.5px solid rgba(255,255,255,0.6)",
+              textDecoration: "none"
+            }}>
+              🏢 소개
+            </Link>
+            <Link href="/blog" style={{
+              fontSize: 13, fontWeight: 600, color: "white",
+              padding: "6px 14px", borderRadius: 20,
+              border: "1.5px solid rgba(255,255,255,0.6)",
+              textDecoration: "none"
+            }}>
+              📝 블로그
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -76,7 +113,7 @@ export default async function PostPage({ params }: Props) {
           <h1 style={{ fontSize: 32, fontWeight: 900, color: "#1e293b", marginBottom: 12, lineHeight: 1.3 }}>
             {postData.title}
           </h1>
-          <p style={{ fontSize: 14, color: "#94a3b8" }}>{postData.date}</p>
+          <p style={{ fontSize: 14, color: "#94a3b8" }}>최종 업데이트: {postData.date}</p>
         </header>
 
         {/* 마크다운 렌더링 구역 */}
@@ -84,6 +121,55 @@ export default async function PostPage({ params }: Props) {
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {postData.content}
           </ReactMarkdown>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://my-local-info-bb0.pages.dev" },
+                  { "@type": "ListItem", "position": 2, "name": "블로그", "item": "https://my-local-info-bb0.pages.dev/blog" },
+                  { "@type": "ListItem", "position": 3, "name": postData.title, "item": `https://my-local-info-bb0.pages.dev/blog/${slug}` }
+                ]
+              })
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": postData.title,
+                "datePublished": postData.date,
+                "description": postData.summary,
+                "author": { "@type": "Organization", "name": "용인시 생활 정보" },
+                "publisher": { "@type": "Organization", "name": "용인시 생활 정보" }
+              })
+            }}
+          />
+
+          <hr style={{ margin: "40px 0 20px", borderColor: "#e2e8f0" }} />
+          <div style={{ background: "#f8fafc", padding: "20px", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
+            <h3 style={{ fontSize: "15px", fontWeight: "bold", color: "#334155", marginBottom: "8px", marginTop: 0 }}>ℹ️ 정보 안내</h3>
+            <p style={{ fontSize: "13px", color: "#64748b", margin: 0, lineHeight: 1.6 }}>
+              이 글은 공공데이터포털(<a href="http://data.go.kr/" target="_blank" rel="noopener noreferrer" style={{ color: "#f97316", textDecoration: "none" }}>data.go.kr</a>)의 정보를 바탕으로 AI가 작성하였습니다. 정확한 내용은 원문 링크를 통해 확인해주세요.
+            </p>
+            <div style={{ marginTop: "12px" }}>
+              <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{ 
+                display: "inline-block", fontSize: "13px", fontWeight: "bold", 
+                color: "white", background: "#f97316", padding: "8px 16px", 
+                borderRadius: "20px", textDecoration: "none" 
+              }}>
+                🔗 원문 출처 바로가기
+              </a>
+            </div>
+          </div>
+
+          <AdBanner />
+          <CoupangBanner />
         </div>
 
         {/* 하단 태그 */}

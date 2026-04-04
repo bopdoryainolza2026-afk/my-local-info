@@ -1,5 +1,6 @@
 import Link from "next/link";
 import localData from "../../public/data/local-info.json";
+import AdBanner from "@/components/AdBanner";
 
 // 태그 색상 매핑
 const tagStyle: Record<string, { bg: string; color: string }> = {
@@ -49,13 +50,24 @@ export default function Home() {
               🏘️ 용인시 생활 정보
             </span>
           </Link>
-          <Link href="/blog" style={{
-            fontSize: 13, fontWeight: 600, color: "white",
-            padding: "6px 14px", borderRadius: 20,
-            border: "1.5px solid rgba(255,255,255,0.6)",
-          }}>
-            📝 블로그
-          </Link>
+          <div style={{ display: "flex", gap: 10 }}>
+            <Link href="/about" style={{
+              fontSize: 13, fontWeight: 600, color: "white",
+              padding: "6px 14px", borderRadius: 20,
+              border: "1.5px solid rgba(255,255,255,0.6)",
+              textDecoration: "none"
+            }}>
+              🏢 소개
+            </Link>
+            <Link href="/blog" style={{
+              fontSize: 13, fontWeight: 600, color: "white",
+              padding: "6px 14px", borderRadius: 20,
+              border: "1.5px solid rgba(255,255,255,0.6)",
+              textDecoration: "none"
+            }}>
+              📝 블로그
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -110,6 +122,8 @@ export default function Home() {
                 tag={ev.tag}
                 name={ev.name}
                 dateStr={dateRange(ev.startDate, ev.endDate)}
+                rawStartDate={ev.startDate}
+                rawEndDate={ev.endDate}
                 location={ev.location}
                 target={ev.target}
                 summary={ev.summary}
@@ -118,6 +132,8 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        <AdBanner />
 
         {/* ---- 지원금/혜택 섹션 ---- */}
         <section id="benefits" style={{ marginBottom: 40, scrollMarginTop: 80 }}>
@@ -227,10 +243,11 @@ function Tag({ label }: { label: string }) {
 }
 
 function EventCard({
-  emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link,
+  emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, rawStartDate, rawEndDate,
 }: {
   emoji?: string; tag?: string; name: string; dateStr: string;
   location: string; target: string; summary: string; link: string;
+  rawStartDate?: string; rawEndDate?: string;
 }) {
   return (
     <Link href={link} style={{
@@ -258,6 +275,20 @@ function EventCard({
       <div style={{ marginTop: 14, textAlign: "right", fontSize: 13, fontWeight: 700, color: "#f97316" }}>
         자세히 보기 →
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": name,
+            "startDate": rawStartDate || dateStr,
+            "endDate": rawEndDate || dateStr,
+            "location": { "@type": "Place", "name": location },
+            "description": summary
+          })
+        }}
+      />
     </Link>
   );
 }
@@ -297,6 +328,18 @@ function BenefitCard({
         <div style={{ marginTop: 14, textAlign: "right", fontSize: 13, fontWeight: 700, color: "#f59e0b" }}>
           자세히 보기 →
         </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "GovernmentService",
+              "name": name,
+              "description": summary,
+              "provider": { "@type": "GovernmentOrganization", "name": "공공기관" }
+            })
+          }}
+        />
       </div>
     </Link>
   );
