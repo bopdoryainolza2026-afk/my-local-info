@@ -110,5 +110,37 @@
       "emoji": "🏠",
       "tag": "주거"
     }
+  ],
+  "restaurants": [
+    {
+      "id": "res-001",
+      "name": "고기리막국수",
+      "menu": "들기름막국수, 수육",
+      "location": "용인시 수지구 고기로 454",
+      "summary": "웨이팅 사악하지만 맛은 천국인 들기름 막국수 명소입니다.",
+      "link": "https://search.naver.com/search.naver?query=고기리막국수",
+      "emoji": "🍜",
+      "tag": "수지구"
+    },
+    {
+      "id": "res-002",
+      "name": "백암순대 중앙식당",
+      "menu": "순대국밥, 모듬순대",
+      "location": "용인시 처인구 백암면 백암로 201번길 11",
+      "summary": "전통 방식 그대로 만들어 담백하고 푸짐한 백암순대의 근본입니다.",
+      "link": "https://search.naver.com/search.naver?query=백암순대+중앙식당",
+      "emoji": "🍲",
+      "tag": "처인구"
+    },
+    {
+      "id": "res-003",
+      "name": "산모퉁이",
+      "menu": "삼겹살, 목살",
+      "location": "용인시 기흥구 구갈로 60번길 15",
+      "summary": "기흥구에서 평점 높기로 소문난 고기 맛집! 가족 외식 장소로 추천합니다.",
+      "link": "https://search.naver.com/search.naver?query=산모퉁이+용인",
+      "emoji": "🥩",
+      "tag": "기흥구"
+    }
   ]
-}
+}

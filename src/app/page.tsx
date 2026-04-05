@@ -1,6 +1,7 @@
 import Link from "next/link";
 import localData from "../../public/data/local-info.json";
 import AdBanner from "@/components/AdBanner";
+import RightSidebar from "@/components/RightSidebar";
 
 // 태그 색상 매핑
 const tagStyle: Record<string, { bg: string; color: string }> = {
@@ -23,7 +24,7 @@ function dateRange(start: string, end: string) {
 }
 
 export default function Home() {
-  const { events, benefits, lastUpdated, source } = localData;
+  const { events, benefits, restaurants, lastUpdated, source } = localData;
 
   // 용인시 포함 여부 검사 함수
   const isYongin = (item: any) => 
@@ -84,6 +85,9 @@ export default function Home() {
           </div>
         </div>
       </header>
+      
+      {/* ===== 실시간 정보 바 (날씨/교통) ===== */}
+      <LiveInfoBar />
 
       {/* ===== 히어로 배너 ===== */}
       <section style={{
@@ -121,16 +125,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== 본문 ===== */}
-      <main style={{ maxWidth: 1000, margin: "-20px auto 0", padding: "0 16px 60px" }}>
+      {/* ===== 본문 영역 (본문 + 사이드바) ===== */}
+      <main style={{ 
+        maxWidth: 1300, 
+        margin: "-20px auto 0", 
+        padding: "0 16px 60px",
+        display: "flex",
+        gap: "32px",
+        flexWrap: "wrap", // 화면 좁으면 사이드바가 밑으로 내려감
+        justifyContent: "center",
+        alignItems: "flex-start"
+      }}>
 
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", 
-          gap: 24,
-          marginBottom: 40,
-          alignItems: "start"
-        }}>
+        {/* 1. 왼쪽 본문 영역 */}
+        <div style={{ flex: "1 1 700px", maxWidth: "1000px" }}>
+          
+          <div style={{ 
+            display: "grid", 
+            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", 
+            gap: 24,
+            marginBottom: 40,
+            alignItems: "start"
+          }}>
           {/* ---- 행사/축제 섹션 ---- */}
           <section id="events" style={{ scrollMarginTop: 80 }}>
             <SectionTitle emoji="🎪" title="이번 달 행사/축제" />
@@ -262,6 +278,35 @@ export default function Home() {
             블로그 보기 →
           </Link>
         </div>
+
+        {/* ---- 우리동네 맛집 섹션 ---- */}
+        <section id="restaurants" style={{ marginTop: 40, marginBottom: 40 }}>
+          <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
+          <div style={{ 
+            display: "grid", 
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
+            gap: 20 
+          }}>
+            {restaurants && restaurants.map((res: any) => (
+              <RestaurantCard 
+                key={res.id}
+                emoji={res.emoji}
+                name={res.name}
+                menu={res.menu}
+                location={res.location}
+                summary={res.summary}
+                link={res.link}
+                tag={res.tag}
+              />
+            ))}
+          </div>
+        </section>
+
+        </div> {/* 1. 왼쪽 본문 영역 끝 */}
+
+        {/* 2. 오른쪽 사이드바 영역 */}
+        <RightSidebar />
+
       </main>
 
       {/* ===== 푸터 ===== */}
@@ -421,5 +466,69 @@ function BenefitCard({
         />
       </div>
     </Link>
+  );
+}
+
+function RestaurantCard({ emoji, name, menu, location, summary, link, tag }: any) {
+  return (
+    <a href={link} target="_blank" rel="noopener noreferrer" style={{
+      background: "white",
+      borderRadius: 16,
+      padding: "20px",
+      border: "1px solid #fed7aa",
+      boxShadow: "0 2px 8px rgba(234,179,8,0.1)",
+      textDecoration: "none",
+      color: "inherit",
+      display: "flex",
+      flexDirection: "column",
+      gap: 10
+    }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: 32 }}>{emoji}</span>
+        <span style={{ 
+          fontSize: 11, fontWeight: 700, 
+          padding: "3px 10px", borderRadius: 20, 
+          background: "#ffedd5", color: "#9a3412" 
+        }}>{tag}</span>
+      </div>
+      <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b" }}>{name}</h3>
+      <p style={{ fontSize: 13, color: "#ea580c", fontWeight: 700 }}>🍴 {menu}</p>
+      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5 }}>{summary}</p>
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 4 }}>
+        📍 {location}
+      </div>
+    </a>
+  );
+}
+
+function LiveInfoBar() {
+  return (
+    <div style={{
+      background: "#f8fafc",
+      borderBottom: "1px solid #e2e8f0",
+      padding: "8px 20px"
+    }}>
+      <div style={{
+        maxWidth: 1300,
+        margin: "0 auto",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        fontSize: 13,
+        color: "#475569"
+      }}>
+        <div style={{ display: "flex", gap: 20 }}>
+          <span>☀️ <b>용인시 날씨:</b> 맑음 (18°C)</span>
+          <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            🚗 <b>교통 상황:</b> <span style={{ color: "#22c55e", fontWeight: 700 }}>원활</span>
+          </span>
+        </div>
+        <div style={{ display: "flex", gap: 12 }}>
+          <a href="https://www.its.go.kr/" target="_blank" rel="noopener noreferrer" style={{ color: "#0ea5e9", textDecoration: "none", fontSize: 12, fontWeight: 600 }}>
+            실시간 CCTV 보기 →
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }

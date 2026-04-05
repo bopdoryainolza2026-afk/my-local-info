@@ -2,6 +2,22 @@ const fs = require('fs');
 const path = require('path');
 
 async function fetchPublicData() {
+  // [로컬 실행 환경 지원] .env.local 파일에서 환경변수 읽기
+  try {
+    const envPath = path.join(__dirname, '../.env.local');
+    if (fs.existsSync(envPath)) {
+      const envContent = fs.readFileSync(envPath, 'utf8');
+      envContent.split('\n').forEach(line => {
+        const [key, ...valueParts] = line.split('=');
+        if (key && valueParts.length > 0) {
+          process.env[key.trim()] = valueParts.join('=').trim();
+        }
+      });
+    }
+  } catch (err) {
+    console.warn(".env.local 읽기 실패 (무시됨):", err.message);
+  }
+
   const PUBLIC_DATA_API_KEY = process.env.PUBLIC_DATA_API_KEY;
   const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
   const jsonPath = path.join(__dirname, '../public/data/local-info.json');
