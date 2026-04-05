@@ -70,18 +70,14 @@ export default function Home() {
         {/* 1. 왼쪽 본문 영역 */}
         <div style={{ flex: "1 1 700px", maxWidth: "1000px" }}>
           
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", 
-            gap: 24,
-            marginBottom: 40,
-            alignItems: "start"
-          }}>
-          {/* ---- 행사/축제 섹션 ---- */}
-          <section id="events" style={{ scrollMarginTop: 80 }}>
+          {/* ---- 이번 달 행사/축제 섹션 (3열 그리드 전면 개편) ---- */}
+          <section id="events" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
             <SectionTitle emoji="🎪" title="이번 달 행사/축제" />
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ 
+              display: "grid", 
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+              gap: 24 
+            }}>
               {yonginEvents.map((ev) => (
                 <EventCard
                   key={ev.id}
@@ -100,11 +96,14 @@ export default function Home() {
             </div>
           </section>
 
-          {/* ---- 지원금/혜택 섹션 ---- */}
-          <section id="benefits" style={{ scrollMarginTop: 80 }}>
+          {/* ---- 지원금/혜택 섹션 (3열 그리드 전면 개편) ---- */}
+          <section id="benefits" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
             <SectionTitle emoji="💰" title="지원금/혜택" />
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ 
+              display: "grid", 
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+              gap: 24 
+            }}>
               {yonginBenefits.map((ben) => (
                 <BenefitCard
                   key={ben.id}
@@ -120,63 +119,68 @@ export default function Home() {
               ))}
             </div>
           </section>
-        </div>
 
         <AdBanner />
 
-        {/* ---- 경기도 기타 정보 섹션 ---- */}
+        {/* ---- 경기도 모아보기 섹션 (3열 그리드 전면 개편) ---- */}
         {(gyeonggiEvents.length > 0 || gyeonggiBenefits.length > 0) && (
-          <section id="gyeonggi-info" style={{ marginBottom: 40, marginTop: 40 }}>
+          <section id="gyeonggi-info" style={{ marginBottom: 50, marginTop: 40 }}>
             <SectionTitle emoji="📢" title="경기도 모아보기" />
             
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24, alignItems: "start" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+              {/* 경기도 행사/축제 (3열 그리드) */}
+              {gyeonggiEvents.length > 0 && (
+                <div>
+                  <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>🎪 행사/축제</h3>
+                  <div style={{ 
+                    display: "grid", 
+                    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+                    gap: 24 
+                  }}>
+                    {gyeonggiEvents.map((ev) => (
+                      <EventCard
+                        key={ev.id}
+                        emoji={ev.emoji}
+                        tag={ev.tag}
+                        name={ev.name}
+                        dateStr={dateRange(ev.startDate, ev.endDate)}
+                        rawStartDate={ev.startDate}
+                        rawEndDate={ev.endDate}
+                        location={ev.location}
+                        target={ev.target}
+                        summary={ev.summary}
+                        link="/blog"
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
               
-              {/* 경기도 행사/축제 */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                <h3 style={{ fontSize: 15, fontWeight: 800, color: "#0284c7", paddingLeft: 4 }}>🎪 행사/축제</h3>
-                {gyeonggiEvents.length > 0 ? (
-                  gyeonggiEvents.map((ev) => (
-                    <EventCard
-                      key={ev.id}
-                      emoji={ev.emoji}
-                      tag={ev.tag}
-                      name={ev.name}
-                      dateStr={dateRange(ev.startDate, ev.endDate)}
-                      rawStartDate={ev.startDate}
-                      rawEndDate={ev.endDate}
-                      location={ev.location}
-                      target={ev.target}
-                      summary={ev.summary}
-                      link="/blog"
-                    />
-                  ))
-                ) : (
-                  <p style={{ fontSize: 13, color: "#94a3b8", padding: "10px 4px" }}>현재 진행 중인 행사가 없습니다.</p>
-                )}
-              </div>
-
-              {/* 경기도 지원금/혜택 */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                <h3 style={{ fontSize: 15, fontWeight: 800, color: "#0284c7", paddingLeft: 4 }}>💰 지원금/혜택</h3>
-                {gyeonggiBenefits.length > 0 ? (
-                  gyeonggiBenefits.map((ben) => (
-                    <BenefitCard
-                      key={ben.id}
-                      emoji={ben.emoji}
-                      tag={ben.tag}
-                      name={ben.name}
-                      target={ben.target}
-                      amount={"amount" in ben ? (ben as typeof ben & { amount: string }).amount : ""}
-                      summary={ben.summary}
-                      deadline={ben.endDate}
-                      link="/blog"
-                    />
-                  ))
-                ) : (
-                  <p style={{ fontSize: 13, color: "#94a3b8", padding: "10px 4px" }}>현재 제공되는 지원금이 없습니다.</p>
-                )}
-              </div>
-
+              {/* 경기도 지원금/혜택 (3열 그리드) */}
+              {gyeonggiBenefits.length > 0 && (
+                <div>
+                  <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>💰 지원금/혜택</h3>
+                  <div style={{ 
+                    display: "grid", 
+                    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+                    gap: 24 
+                  }}>
+                    {gyeonggiBenefits.map((ben) => (
+                      <BenefitCard
+                        key={ben.id}
+                        emoji={ben.emoji}
+                        tag={ben.tag}
+                        name={ben.name}
+                        target={ben.target}
+                        amount={"amount" in ben ? (ben as typeof ben & { amount: string }).amount : ""}
+                        summary={ben.summary}
+                        deadline={ben.endDate}
+                        link="/blog"
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </section>
         )}
@@ -313,39 +317,28 @@ function EventCard({
       padding: "20px",
       border: "1px solid #bae6fd",
       boxShadow: "0 2px 8px rgba(14,165,233,0.06)",
-      display: "block",
       textDecoration: "none",
       color: "inherit",
+      display: "flex",
+      flexDirection: "column",
+      gap: 12,
       cursor: "pointer",
     }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <span style={{ fontSize: 32 }}>{emoji}</span>
-        <Tag label={tag} />
+        <span style={{ 
+          fontSize: 11, fontWeight: 700, 
+          padding: "3px 10px", borderRadius: 20, 
+          background: "#bae6fd", color: "#0369a1" 
+        }}>{tag}</span>
       </div>
-      <h3 style={{ fontSize: 16, fontWeight: 800, marginBottom: 6, color: "#1e293b" }}>{name}</h3>
-      <p style={{ fontSize: 13, color: "#64748b", marginBottom: 10, lineHeight: 1.6 }}>{summary}</p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 16px", fontSize: 13, color: "#0284c7", fontWeight: 600 }}>
-        <span>📅 {dateStr}</span>
+      <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b" }}>{name}</h3>
+      <p style={{ fontSize: 13, color: "#0ea5e9", fontWeight: 700 }}>📅 {dateStr}</p>
+      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1 }}>{summary}</p>
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
         <span>📍 {location}</span>
         <span>👤 {target}</span>
       </div>
-      <div style={{ marginTop: 14, textAlign: "right", fontSize: 13, fontWeight: 700, color: "#0284c7" }}>
-        자세히 보기 →
-      </div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Event",
-            "name": name,
-            "startDate": rawStartDate || dateStr,
-            "endDate": rawEndDate || dateStr,
-            "location": { "@type": "Place", "name": location },
-            "description": summary
-          })
-        }}
-      />
     </Link>
   );
 }
@@ -363,40 +356,27 @@ function BenefitCard({
       padding: "20px",
       border: "1px solid #e0f2fe",
       boxShadow: "0 2px 8px rgba(125,211,252,0.08)",
-      display: "flex",
-      gap: 16,
       textDecoration: "none",
       color: "inherit",
-      alignItems: "flex-start",
+      display: "flex",
+      flexDirection: "column",
+      gap: 12,
       cursor: "pointer",
     }}>
-      <span style={{ fontSize: 36, flexShrink: 0 }}>{emoji}</span>
-      <div style={{ flex: 1 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 6, marginBottom: 6 }}>
-          <h3 style={{ fontSize: 16, fontWeight: 800, color: "#1e293b" }}>{name}</h3>
-          <Tag label={tag} />
-        </div>
-        <p style={{ fontSize: 13, color: "#64748b", marginBottom: 8, lineHeight: 1.6 }}>{summary}</p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 16px", fontSize: 13 }}>
-          <span style={{ color: "#0284c7", fontWeight: 700 }}>💵 {amount}</span>
-          <span style={{ color: "#64748b" }}>👤 {target}</span>
-          <span style={{ color: "#64748b" }}>📅 {formatDate(deadline)}까지</span>
-        </div>
-        <div style={{ marginTop: 14, textAlign: "right", fontSize: 13, fontWeight: 700, color: "#0284c7" }}>
-          자세히 보기 →
-        </div>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "GovernmentService",
-              "name": name,
-              "description": summary,
-              "provider": { "@type": "GovernmentOrganization", "name": "공공기관" }
-            })
-          }}
-        />
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: 32 }}>{emoji}</span>
+        <span style={{ 
+          fontSize: 11, fontWeight: 700, 
+          padding: "3px 10px", borderRadius: 20, 
+          background: "#fce7f3", color: "#9d174d" 
+        }}>{tag}</span>
+      </div>
+      <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b" }}>{name}</h3>
+      <p style={{ fontSize: 13, color: "#db2777", fontWeight: 700 }}>💰 {amount}</p>
+      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1 }}>{summary}</p>
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+        <span>👤 {target}</span>
+        <span>📅 {formatDate(deadline)}까지</span>
       </div>
     </Link>
   );
