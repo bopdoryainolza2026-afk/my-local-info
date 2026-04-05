@@ -10,10 +10,10 @@ export default function RightSidebar() {
   return (
     <aside style={{
       width: "100%",
-      maxWidth: "320px",
+      maxWidth: "272px", // 320px에서 15% 축소
       display: "flex",
       flexDirection: "column",
-      gap: "24px",
+      gap: "20px",
       padding: "0 8px",
     }}>
       
@@ -21,7 +21,7 @@ export default function RightSidebar() {
       <div style={{
         background: "linear-gradient(135deg, #1e293b 0%, #334155 100%)",
         borderRadius: "20px",
-        padding: "24px",
+        padding: "20px", // 24px에서 축소
         color: "white",
         boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
         textAlign: "center",
@@ -54,7 +54,7 @@ export default function RightSidebar() {
           📜
         </div>
 
-        <h4 style={{ fontSize: "18px", fontWeight: 800, marginBottom: "8px" }}>
+        <h4 style={{ fontSize: "16px", fontWeight: 800, marginBottom: "8px" }}>
           우리학전 철학관
         </h4>
         <p style={{ fontSize: "13px", color: "#94a3b8", marginBottom: "20px", lineHeight: 1.5 }}>
@@ -106,13 +106,13 @@ export default function RightSidebar() {
         <div style={{ marginBottom: "8px" }}>
           <span style={{ 
             color: "#ef4444", 
-            fontSize: "18px", 
+            fontSize: "16px", 
             fontWeight: 800, 
             marginRight: "6px" 
           }}>
             15%
           </span>
-          <span style={{ fontSize: "18px", fontWeight: 800 }}>
+          <span style={{ fontSize: "16px", fontWeight: 800 }}>
             245,000원
           </span>
         </div>
