@@ -127,7 +127,7 @@ export default function Home() {
         {/* ---- 경기도 기타 정보 섹션 ---- */}
         {(gyeonggiEvents.length > 0 || gyeonggiBenefits.length > 0) && (
           <section id="gyeonggi-info" style={{ marginBottom: 40, marginTop: 40 }}>
-            <SectionTitle emoji="📢" title="경기도 / 전국 모아보기" />
+            <SectionTitle emoji="📢" title="경기도 모아보기" />
             
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24, alignItems: "start" }}>
               
