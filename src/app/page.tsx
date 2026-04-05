@@ -469,7 +469,7 @@ function LiveInfoBar() {
 function TopAdBanner() {
   return (
     <div style={{
-      height: "110px", // 약 3cm 
+      height: "72px", // 약 2cm (기존 대비 1cm 축소)
       background: "#f3f4f6",
       borderBottom: "1px solid #e5e7eb",
       display: "flex",
@@ -481,13 +481,13 @@ function TopAdBanner() {
       <div style={{
         display: "flex",
         alignItems: "center",
-        gap: "20px",
+        gap: "14px",
         color: "#4b5563",
-        fontSize: "15px",
+        fontSize: "14px",
         fontWeight: 600
       }}>
-        <span style={{ fontSize: "24px" }}>🎁</span>
-        <span>여기에 화려한 **배너 광고**가 들어올 자리입니다. (높이 110px)</span>
+        <span style={{ fontSize: "20px" }}>🎁</span>
+        <span>여기에 화려한 **배너 광고**가 들어올 자리입니다. (높이 72px)</span>
       </div>
       <button style={{
         position: "absolute",
@@ -555,23 +555,8 @@ function MainNavbar() {
           ))}
         </div>
 
-        {/* 우측 시작하기 버튼 */}
-        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-          <Link href="/blog" style={{
-            fontSize: "14px", fontWeight: 600, color: "#64748b", textDecoration: "none",
-            padding: "8px 16px"
-          }}>
-            로그인
-          </Link>
-          <Link href="/about" style={{
-            fontSize: "14px", fontWeight: 700, color: "white",
-            background: "#1e293b",
-            padding: "10px 20px", borderRadius: "10px",
-            textDecoration: "none"
-          }}>
-            무료로 시작하기
-          </Link>
-        </div>
+        {/* 우측 빈 공간 (메뉴 중앙 유지를 위해 필요 시 활용) */}
+        <div style={{ width: "100px", display: "none" }}></div>
       </div>
     </nav>
   );
