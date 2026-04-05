@@ -43,95 +43,22 @@ export default function Home() {
   return (
     <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
 
-      {/* ===== 헤더 ===== */}
-      <header style={{
-        background: "linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #7dd3fc 100%)",
-        padding: "0 20px",
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        boxShadow: "0 2px 16px rgba(2,132,199,0.3)",
-      }}>
-        <div style={{
-          maxWidth: 1000,
-          margin: "0 auto",
-          height: 60,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}>
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-            <span style={{ fontSize: 24, fontWeight: 900, color: "white", letterSpacing: "-0.5px" }}>
-              🏘️ 용인시 생활 정보
-            </span>
-          </Link>
-          <div style={{ display: "flex", gap: 10 }}>
-            <Link href="/about" style={{
-              fontSize: 13, fontWeight: 600, color: "white",
-              padding: "6px 14px", borderRadius: 20,
-              border: "1.5px solid rgba(255,255,255,0.6)",
-              textDecoration: "none"
-            }}>
-              🏢 소개
-            </Link>
-            <Link href="/blog" style={{
-              fontSize: 13, fontWeight: 600, color: "white",
-              padding: "6px 14px", borderRadius: 20,
-              border: "1.5px solid rgba(255,255,255,0.6)",
-              textDecoration: "none"
-            }}>
-              📝 블로그
-            </Link>
-          </div>
-        </div>
-      </header>
+      {/* ===== 1단: 최상단 광고 배너 (3cm/110px 높이) ===== */}
+      <TopAdBanner />
+
+      {/* ===== 2단: 화이트 네비게이션 바 (상단 고정) ===== */}
+      <MainNavbar />
       
       {/* ===== 실시간 정보 바 (날씨/교통) ===== */}
       <LiveInfoBar />
 
-      {/* ===== 히어로 배너 ===== */}
-      <section style={{
-        background: "linear-gradient(135deg, #0284c7 0%, #38bdf8 60%, #7dd3fc 100%)",
-        padding: "40px 20px 56px",
-        textAlign: "center",
-        color: "white",
-      }}>
-        <p style={{ fontSize: 13, opacity: 0.85, marginBottom: 8 }}>
-          📡 공공데이터 자동 수집 · AI 매일 업데이트
-        </p>
-        <h1 style={{ fontSize: 30, fontWeight: 900, lineHeight: 1.4, marginBottom: 10 }}>
-          우리 동네 행사·지원금<br />한 곳에서 확인하세요!
-        </h1>
-        <p style={{ fontSize: 15, opacity: 0.9, marginBottom: 24 }}>
-          용인시 행사, 축제, 지원금 정보를 매일 자동으로 모아드립니다.
-        </p>
-        <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-          <a href="#events" style={{
-            background: "white", color: "#0ea5e9",
-            padding: "10px 20px", borderRadius: 30,
-            fontWeight: 700, fontSize: 14, textDecoration: "none",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-          }}>
-            🎪 행사 보기
-          </a>
-          <a href="#benefits" style={{
-            background: "rgba(255,255,255,0.2)", color: "white",
-            padding: "10px 20px", borderRadius: 30,
-            fontWeight: 700, fontSize: 14, textDecoration: "none",
-            border: "1px solid rgba(255,255,255,0.4)",
-          }}>
-            💰 지원금 보기
-          </a>
-        </div>
-      </section>
-      
-      {/* ===== 상단 퀵 메뉴 (바로가기) ===== */}
-      <QuickMenu />
+      {/* ===== 히어로 섹션 (깔끔한 화이트/블루 테마) ===== */}
+      <CleanHero />
 
       {/* ===== 본문 영역 (본문 + 사이드바) ===== */}
       <main style={{ 
         maxWidth: 1300, 
-        margin: "-20px auto 0", 
+        margin: "40px auto 0", // 여백 조정
         padding: "0 16px 60px",
         display: "flex",
         gap: "32px",
@@ -539,52 +466,156 @@ function LiveInfoBar() {
   );
 }
 
-function QuickMenu() {
+function TopAdBanner() {
+  return (
+    <div style={{
+      height: "110px", // 약 3cm 
+      background: "#f3f4f6",
+      borderBottom: "1px solid #e5e7eb",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      position: "relative",
+      overflow: "hidden"
+    }}>
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "20px",
+        color: "#4b5563",
+        fontSize: "15px",
+        fontWeight: 600
+      }}>
+        <span style={{ fontSize: "24px" }}>🎁</span>
+        <span>여기에 화려한 **배너 광고**가 들어올 자리입니다. (높이 110px)</span>
+      </div>
+      <button style={{
+        position: "absolute",
+        right: "20px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        background: "none",
+        border: "none",
+        fontSize: "20px",
+        cursor: "pointer",
+        color: "#9ca3af"
+      }}>×</button>
+    </div>
+  );
+}
+
+function MainNavbar() {
   const menus = [
-    { emoji: "🎪", title: "행사/축제", id: "#events" },
-    { emoji: "💰", title: "지원금/혜택", id: "#benefits" },
-    { emoji: "🍱", title: "지역맛집", id: "#restaurants" },
-    { emoji: "📝", title: "생활블로그", id: "#blog" },
+    { name: "🎪 행사/축제", id: "#events" },
+    { name: "💰 지원금/혜택", id: "#benefits" },
+    { name: "🍱 지역맛집", id: "#restaurants" },
+    { name: "📝 Blog", id: "#blog" },
   ];
 
   return (
-    <div style={{
+    <nav style={{
       background: "white",
-      borderBottom: "1px solid #e2e8f0",
+      height: "70px",
+      display: "flex",
+      alignItems: "center",
       position: "sticky",
-      top: 60, // 헤더 높이만큼 띄움
-      zIndex: 40,
-      padding: "12px 0",
-      boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)"
+      top: 0,
+      zIndex: 100,
+      boxShadow: "0 1px 10px rgba(0,0,0,0.05)",
+      padding: "0 24px"
     }}>
       <div style={{
-        maxWidth: 1000,
+        maxWidth: "1200px",
+        width: "100%",
         margin: "0 auto",
         display: "flex",
-        justifyContent: "center",
-        gap: "12px",
-        flexWrap: "wrap",
-        padding: "0 16px"
+        alignItems: "center",
+        justifyContent: "space-between"
       }}>
-        {menus.map((m) => (
-          <a key={m.id} href={m.id} style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            background: "#f1f5f9",
-            padding: "8px 16px",
-            borderRadius: "30px",
-            fontSize: "14px",
-            fontWeight: 700,
-            color: "#475569",
-            textDecoration: "none",
-            border: "1px solid #e2e8f0",
-            transition: "all 0.2s"
+        {/* 로고 */}
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
+          <span style={{ fontSize: "20px", fontWeight: 900, color: "#1e293b", letterSpacing: "-1px" }}>
+            🏘️ 용인시 <span style={{ color: "#0ea5e9" }}>생활정보</span>
+          </span>
+        </Link>
+
+        {/* 중앙 메뉴 버튼들 (imweb 스타일) */}
+        <div style={{ display: "flex", gap: "28px" }}>
+          {menus.map((m) => (
+            <a key={m.id} href={m.id} style={{
+              fontSize: "15px",
+              fontWeight: 700,
+              color: "#475569",
+              textDecoration: "none",
+              transition: "color 0.2s",
+              ":hover": { color: "#0ea5e9" }
+            } as any}>
+              {m.name}
+            </a>
+          ))}
+        </div>
+
+        {/* 우측 시작하기 버튼 */}
+        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+          <Link href="/blog" style={{
+            fontSize: "14px", fontWeight: 600, color: "#64748b", textDecoration: "none",
+            padding: "8px 16px"
           }}>
-            <span>{m.emoji}</span> {m.title}
-          </a>
-        ))}
+            로그인
+          </Link>
+          <Link href="/about" style={{
+            fontSize: "14px", fontWeight: 700, color: "white",
+            background: "#1e293b",
+            padding: "10px 20px", borderRadius: "10px",
+            textDecoration: "none"
+          }}>
+            무료로 시작하기
+          </Link>
+        </div>
       </div>
-    </div>
+    </nav>
+  );
+}
+
+function CleanHero() {
+  return (
+    <section style={{
+      background: "white",
+      padding: "60px 20px 80px",
+      textAlign: "center",
+      borderBottom: "1px solid #f1f5f9"
+    }}>
+      <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+        <p style={{ fontSize: "14px", fontWeight: 700, color: "#0ea5e9", marginBottom: "12px", letterSpacing: "1px" }}>
+          YONGIN LOCAL GUIDE
+        </p>
+        <h1 style={{ fontSize: "38px", fontWeight: 900, color: "#0f172a", marginBottom: "20px", lineHeight: 1.3 }}>
+          똑똑한 용인 생활의 시작,<br />
+          <span style={{ color: "#0ea5e9" }}>모든 정보</span>를 한눈에 확인하세요.
+        </h1>
+        <p style={{ fontSize: "17px", color: "#64748b", marginBottom: "32px", lineHeight: 1.6 }}>
+          용인시의 실시간 축제부터 정부 지원금, 현지인 추천 맛집까지<br />
+          매일 아침 AI가 정성껏 모아 전달해 드립니다.
+        </p>
+        <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
+          <a href="#events" style={{
+            background: "#1e293b", color: "white",
+            padding: "14px 28px", borderRadius: "12px",
+            fontWeight: 700, fontSize: "15px", textDecoration: "none",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
+          }}>
+            오늘의 행사 확인하기
+          </a>
+          <a href="#benefits" style={{
+            background: "#f1f5f9", color: "#475569",
+            padding: "14px 28px", borderRadius: "12px",
+            fontWeight: 700, fontSize: "15px", textDecoration: "none",
+            border: "1px solid #e2e8f0"
+          }}>
+            맞춤 혜택 찾기
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
