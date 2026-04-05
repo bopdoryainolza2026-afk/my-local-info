@@ -10,10 +10,10 @@ export default function RightSidebar() {
   return (
     <aside style={{
       width: "100%",
-      maxWidth: "272px", // 320px에서 15% 축소
+      maxWidth: "245px", // 272px에서 약 10% 더 축소
       display: "flex",
       flexDirection: "column",
-      gap: "20px",
+      gap: "16px",
       padding: "0 8px",
     }}>
       

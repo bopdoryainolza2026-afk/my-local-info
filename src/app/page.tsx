@@ -124,6 +124,9 @@ export default function Home() {
           </a>
         </div>
       </section>
+      
+      {/* ===== 상단 퀵 메뉴 (바로가기) ===== */}
+      <QuickMenu />
 
       {/* ===== 본문 영역 (본문 + 사이드바) ===== */}
       <main style={{ 
@@ -251,33 +254,6 @@ export default function Home() {
           </section>
         )}
 
-        {/* ---- 블로그 배너 ---- */}
-        <div style={{
-          background: "linear-gradient(135deg, #1e293b 0%, #334155 100%)",
-          borderRadius: 16,
-          padding: "28px 24px",
-          color: "white",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 16,
-          flexWrap: "wrap",
-        }}>
-          <div>
-            <p style={{ fontSize: 12, color: "#94a3b8", marginBottom: 4 }}>✨ Gemini AI 자동 작성</p>
-            <p style={{ fontSize: 18, fontWeight: 800, marginBottom: 4 }}>생활 정보 블로그 읽기</p>
-            <p style={{ fontSize: 13, color: "#94a3b8" }}>AI가 매일 아침 유용한 정보를 글로 정리해 드려요.</p>
-          </div>
-          <Link href="/blog" style={{
-            background: "#0ea5e9", color: "white",
-            padding: "10px 22px", borderRadius: 30,
-            fontWeight: 700, fontSize: 14, flexShrink: 0,
-            boxShadow: "0 4px 12px rgba(14,165,233,0.5)",
-            textDecoration: "none",
-          }}>
-            블로그 보기 →
-          </Link>
-        </div>
 
         {/* ---- 우리동네 맛집 섹션 ---- */}
         <section id="restaurants" style={{ marginTop: 40, marginBottom: 40 }}>
@@ -301,6 +277,36 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* ---- 블로그 배너 (맨 하단 이동) ---- */}
+        <div id="blog" style={{
+          background: "linear-gradient(135deg, #1e293b 0%, #334155 100%)",
+          borderRadius: 16,
+          padding: "28px 24px",
+          color: "white",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
+          flexWrap: "wrap",
+          marginTop: 40,
+          scrollMarginTop: 80,
+        }}>
+          <div>
+            <p style={{ fontSize: 12, color: "#94a3b8", marginBottom: 4 }}>✨ Gemini AI 자동 작성</p>
+            <p style={{ fontSize: 18, fontWeight: 800, marginBottom: 4 }}>생활 정보 블로그 읽기</p>
+            <p style={{ fontSize: 13, color: "#94a3b8" }}>AI가 매일 아침 유용한 정보를 글로 정리해 드려요.</p>
+          </div>
+          <Link href="/blog" style={{
+            background: "#0ea5e9", color: "white",
+            padding: "10px 22px", borderRadius: 30,
+            fontWeight: 700, fontSize: 14, flexShrink: 0,
+            boxShadow: "0 4px 12px rgba(14,165,233,0.5)",
+            textDecoration: "none",
+          }}>
+            블로그 보기 →
+          </Link>
+        </div>
 
         </div> {/* 1. 왼쪽 본문 영역 끝 */}
 
@@ -528,6 +534,56 @@ function LiveInfoBar() {
             실시간 CCTV 보기 →
           </a>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function QuickMenu() {
+  const menus = [
+    { emoji: "🎪", title: "행사/축제", id: "#events" },
+    { emoji: "💰", title: "지원금/혜택", id: "#benefits" },
+    { emoji: "🍱", title: "지역맛집", id: "#restaurants" },
+    { emoji: "📝", title: "생활블로그", id: "#blog" },
+  ];
+
+  return (
+    <div style={{
+      background: "white",
+      borderBottom: "1px solid #e2e8f0",
+      position: "sticky",
+      top: 60, // 헤더 높이만큼 띄움
+      zIndex: 40,
+      padding: "12px 0",
+      boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)"
+    }}>
+      <div style={{
+        maxWidth: 1000,
+        margin: "0 auto",
+        display: "flex",
+        justifyContent: "center",
+        gap: "12px",
+        flexWrap: "wrap",
+        padding: "0 16px"
+      }}>
+        {menus.map((m) => (
+          <a key={m.id} href={m.id} style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            background: "#f1f5f9",
+            padding: "8px 16px",
+            borderRadius: "30px",
+            fontSize: "14px",
+            fontWeight: 700,
+            color: "#475569",
+            textDecoration: "none",
+            border: "1px solid #e2e8f0",
+            transition: "all 0.2s"
+          }}>
+            <span>{m.emoji}</span> {m.title}
+          </a>
+        ))}
       </div>
     </div>
   );
