@@ -58,11 +58,11 @@ export default function Home() {
       {/* ===== 본문 영역 (본문 + 사이드바) ===== */}
       <main style={{ 
         maxWidth: 1300, 
-        margin: "40px auto 0", // 여백 조정
+        margin: "40px auto 0", 
         padding: "0 16px 60px",
         display: "flex",
         gap: "32px",
-        flexWrap: "wrap", // 화면 좁으면 사이드바가 밑으로 내려감
+        flexWrap: "wrap", 
         justifyContent: "center",
         alignItems: "flex-start"
       }}>
@@ -75,7 +75,7 @@ export default function Home() {
             <SectionTitle emoji="🎪" title="이번 달 행사/축제" />
             <div style={{ 
               display: "grid", 
-              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", 
               gap: 24 
             }}>
               {yonginEvents.map((ev) => (
@@ -101,7 +101,7 @@ export default function Home() {
             <SectionTitle emoji="💰" title="지원금/혜택" />
             <div style={{ 
               display: "grid", 
-              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", 
               gap: 24 
             }}>
               {yonginBenefits.map((ben) => (
@@ -134,7 +134,7 @@ export default function Home() {
                   <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>🎪 행사/축제</h3>
                   <div style={{ 
                     display: "grid", 
-                    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+                    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", 
                     gap: 24 
                   }}>
                     {gyeonggiEvents.map((ev) => (
@@ -162,7 +162,7 @@ export default function Home() {
                   <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>💰 지원금/혜택</h3>
                   <div style={{ 
                     display: "grid", 
-                    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+                    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", 
                     gap: 24 
                   }}>
                     {gyeonggiBenefits.map((ben) => (
@@ -191,7 +191,7 @@ export default function Home() {
           <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
           <div style={{ 
             display: "grid", 
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", 
             gap: 20 
           }}>
             {restaurants && restaurants.map((res: any) => (
@@ -268,7 +268,7 @@ export default function Home() {
 
 /* ========================
    하위 컴포넌트들
-======================== */
+ ======================== */
 
 function SectionTitle({ emoji, title }: { emoji: string; title: string }) {
   return (
@@ -449,7 +449,7 @@ function LiveInfoBar() {
 function TopAdBanner() {
   return (
     <div style={{
-      height: "72px", // 약 2cm (기존 대비 1cm 축소)
+      height: "72px", 
       background: "#f3f4f6",
       borderBottom: "1px solid #e5e7eb",
       display: "flex",
