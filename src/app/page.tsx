@@ -2,6 +2,7 @@ import Link from "next/link";
 import localData from "../../public/data/local-info.json";
 import { getSortedPostsData } from "@/lib/posts";
 import RightSidebar from "@/components/RightSidebar";
+import { PagedEventSection, PagedBenefitSection, PagedRestaurantSection } from "@/components/PagedSections";
 
 // 태그 색상 매핑
 const tagStyle: Record<string, { bg: string; color: string }> = {
@@ -90,144 +91,44 @@ export default function Home() {
         {/* 1. 왼쪽 본문 영역 */}
         <div style={{ flex: "1 1 700px", maxWidth: "800px" }}>
           
-          {/* ---- 이번 달 행사/축제 섹션 (3열 그리드 전면 개편) ---- */}
           <section id="events" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
             <SectionTitle emoji="🎪" title="이번 달 행사/축제" />
-            <div style={{ 
-              display: "grid", 
-              gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", 
-              gap: 24 
-            }}>
-              {yonginEvents.map((ev) => (
-                <EventCard
-                  key={ev.id}
-                  emoji={ev.emoji}
-                  tag={ev.tag}
-                  name={ev.name}
-                  dateStr={dateRange(ev.startDate, ev.endDate)}
-                  rawStartDate={ev.startDate}
-                  rawEndDate={ev.endDate}
-                  location={ev.location}
-                  target={ev.target}
-                  summary={ev.summary}
-                  link={getItemLink(ev)}
-                />
-              ))}
-            </div>
+            <PagedEventSection items={yonginEvents} allPosts={allPosts} />
           </section>
 
-          {/* ---- 지원금/혜택 섹션 (3열 그리드 전면 개편) ---- */}
-          <section id="benefits" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
+          {/* ---- 지원금/혜택 섹션 ---- */}
+          <section id="benefits" style={{ scrollMarginTop: 80, marginBottom: 24 }}>
             <SectionTitle emoji="💰" title="지원금/혜택" />
-            <div style={{ 
-              display: "grid", 
-              gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", 
-              gap: 24 
-            }}>
-              {yonginBenefits.map((ben) => (
-                <BenefitCard
-                  key={ben.id}
-                  emoji={ben.emoji}
-                  tag={ben.tag}
-                  name={ben.name}
-                  target={ben.target}
-                  amount={"amount" in ben ? (ben as typeof ben & { amount: string }).amount : ""}
-                  summary={ben.summary}
-                  deadline={ben.endDate}
-                  link={getItemLink(ben)}
-                />
-              ))}
-            </div>
+            <PagedBenefitSection items={yonginBenefits} allPosts={allPosts} />
           </section>
 
+          {/* ---- 경기도 모아보기 섹션 ---- */}
+          {(gyeonggiEvents.length > 0 || gyeonggiBenefits.length > 0) && (
+            <section id="gyeonggi-info" style={{ marginBottom: 30, marginTop: 10 }}>
+              <SectionTitle emoji="📢" title="경기도 모아보기" />
+              <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+                {gyeonggiEvents.length > 0 && (
+                  <div>
+                    <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>🎪 행사/축제</h3>
+                    <PagedEventSection items={gyeonggiEvents} allPosts={allPosts} />
+                  </div>
+                )}
+                {gyeonggiBenefits.length > 0 && (
+                  <div>
+                    <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>💰 지원금/혜택</h3>
+                    <PagedBenefitSection items={gyeonggiBenefits} allPosts={allPosts} />
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
 
 
-        {/* ---- 경기도 모아보기 섹션 (3열 그리드 전면 개편) ---- */}
-        {(gyeonggiEvents.length > 0 || gyeonggiBenefits.length > 0) && (
-          <section id="gyeonggi-info" style={{ marginBottom: 50, marginTop: 40 }}>
-            <SectionTitle emoji="📢" title="경기도 모아보기" />
-            
-            <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-              {/* 경기도 행사/축제 (3열 그리드) */}
-              {gyeonggiEvents.length > 0 && (
-                <div>
-                  <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>🎪 행사/축제</h3>
-                  <div style={{ 
-                    display: "grid", 
-                    gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", 
-                    gap: 24 
-                  }}>
-                    {gyeonggiEvents.map((ev) => (
-                      <EventCard
-                        key={ev.id}
-                        emoji={ev.emoji}
-                        tag={ev.tag}
-                        name={ev.name}
-                        dateStr={dateRange(ev.startDate, ev.endDate)}
-                        rawStartDate={ev.startDate}
-                        rawEndDate={ev.endDate}
-                        location={ev.location}
-                        target={ev.target}
-                        summary={ev.summary}
-                        link={getItemLink(ev)}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-              
-              {/* 경기도 지원금/혜택 (3열 그리드) */}
-              {gyeonggiBenefits.length > 0 && (
-                <div>
-                  <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>💰 지원금/혜택</h3>
-                  <div style={{ 
-                    display: "grid", 
-                    gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", 
-                    gap: 24 
-                  }}>
-                    {gyeonggiBenefits.map((ben) => (
-                      <BenefitCard
-                        key={ben.id}
-                        emoji={ben.emoji}
-                        tag={ben.tag}
-                        name={ben.name}
-                        target={ben.target}
-                        amount={"amount" in ben ? (ben as typeof ben & { amount: string }).amount : ""}
-                        summary={ben.summary}
-                        deadline={ben.endDate}
-                        link={getItemLink(ben)}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+          {/* ---- 우리동네 맛집 섹션 ---- */}
+          <section id="restaurants" style={{ marginTop: 30, marginBottom: 40 }}>
+            <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
+            <PagedRestaurantSection items={restaurants as any[]} />
           </section>
-        )}
-
-
-        {/* ---- 우리동네 맛집 섹션 ---- */}
-        <section id="restaurants" style={{ marginTop: 40, marginBottom: 40 }}>
-          <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", 
-            gap: 20 
-          }}>
-            {restaurants && restaurants.map((res: any) => (
-              <RestaurantCard 
-                key={res.id}
-                emoji={res.emoji}
-                name={res.name}
-                menu={res.menu}
-                location={res.location}
-                summary={res.summary}
-                link={res.link}
-                tag={res.tag}
-              />
-            ))}
-          </div>
-        </section>
 
         {/* ---- 블로그 배너 (맨 하단 이동) ---- */}
         <div id="blog" style={{
