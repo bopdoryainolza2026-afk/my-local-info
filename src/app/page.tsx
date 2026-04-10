@@ -1,6 +1,6 @@
 import Link from "next/link";
 import localData from "../../public/data/local-info.json";
-
+import { getSortedPostsData } from "@/lib/posts";
 import RightSidebar from "@/components/RightSidebar";
 
 // 태그 색상 매핑
@@ -36,9 +36,33 @@ export default function Home() {
   const yonginEvents = events.filter(isYongin);
   const yonginBenefits = benefits.filter(isYongin);
 
-  // 용인시 제외 기타(경기도/전국) 데이터
   const gyeonggiEvents = events.filter((e) => !isYongin(e));
   const gyeonggiBenefits = benefits.filter((b) => !isYongin(b));
+
+  // 모든 블로그 포스트 가져오기
+  const allPosts = getSortedPostsData();
+
+  // 각 데이터 항목에 맞는 최적의 링크(블로그 주소 또는 외부 링크)를 찾아주는 함수
+  const getItemLink = (item: any) => {
+    // 1. 블로그 글 중에서 제목 혹은 본문에 이름이 포함된 글 찾기
+    const matchedPost = allPosts.find(post => 
+      post.title.includes(item.name) || 
+      item.name.includes(post.title) ||
+      post.content.includes(item.name)
+    );
+    
+    if (matchedPost) {
+      return `/blog/${matchedPost.slug}`;
+    }
+
+    // 2. 블로그 글이 없으면 공공데이터 원문 링크 사용
+    if (item.link && item.link !== "#") {
+      return item.link;
+    }
+
+    // 3. 둘 다 없으면 기본 블로그 목록으로 이동
+    return "/blog";
+  };
 
   return (
     <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
@@ -86,7 +110,7 @@ export default function Home() {
                   location={ev.location}
                   target={ev.target}
                   summary={ev.summary}
-                  link="/blog"
+                  link={getItemLink(ev)}
                 />
               ))}
             </div>
@@ -110,7 +134,7 @@ export default function Home() {
                   amount={"amount" in ben ? (ben as typeof ben & { amount: string }).amount : ""}
                   summary={ben.summary}
                   deadline={ben.endDate}
-                  link="/blog"
+                  link={getItemLink(ben)}
                 />
               ))}
             </div>
@@ -145,7 +169,7 @@ export default function Home() {
                         location={ev.location}
                         target={ev.target}
                         summary={ev.summary}
-                        link="/blog"
+                        link={getItemLink(ev)}
                       />
                     ))}
                   </div>
@@ -171,7 +195,7 @@ export default function Home() {
                         amount={"amount" in ben ? (ben as typeof ben & { amount: string }).amount : ""}
                         summary={ben.summary}
                         deadline={ben.endDate}
-                        link="/blog"
+                        link={getItemLink(ben)}
                       />
                     ))}
                   </div>
