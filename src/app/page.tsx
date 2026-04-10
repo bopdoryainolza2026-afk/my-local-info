@@ -1,6 +1,6 @@
 import Link from "next/link";
 import localData from "../../public/data/local-info.json";
-import AdBanner from "@/components/AdBanner";
+
 import RightSidebar from "@/components/RightSidebar";
 
 // 태그 색상 매핑
@@ -42,10 +42,6 @@ export default function Home() {
 
   return (
     <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
-
-      {/* ===== 1단: 최상단 광고 배너 (3cm/110px 높이) ===== */}
-      <TopAdBanner />
-
       {/* ===== 2단: 화이트 네비게이션 바 (상단 고정) ===== */}
       <MainNavbar />
       
@@ -57,7 +53,7 @@ export default function Home() {
 
       {/* ===== 본문 영역 (본문 + 사이드바) ===== */}
       <main style={{ 
-        maxWidth: 1100, // 1300에서 1100으로 줄임
+        maxWidth: 1100, 
         margin: "40px auto 0", 
         padding: "0 16px 60px",
         display: "flex",
@@ -68,14 +64,14 @@ export default function Home() {
       }}>
 
         {/* 1. 왼쪽 본문 영역 */}
-        <div style={{ flex: "1 1 700px", maxWidth: "800px" }}> {/* 1000에서 800으로 줄임 */}
+        <div style={{ flex: "1 1 700px", maxWidth: "800px" }}>
           
           {/* ---- 이번 달 행사/축제 섹션 (3열 그리드 전면 개편) ---- */}
           <section id="events" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
             <SectionTitle emoji="🎪" title="이번 달 행사/축제" />
             <div style={{ 
               display: "grid", 
-              gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", // 250에서 230으로 조절 (800px에서도 3열 유지)
+              gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", 
               gap: 24 
             }}>
               {yonginEvents.map((ev) => (
@@ -101,7 +97,7 @@ export default function Home() {
             <SectionTitle emoji="💰" title="지원금/혜택" />
             <div style={{ 
               display: "grid", 
-              gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", 
+              gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", 
               gap: 24 
             }}>
               {yonginBenefits.map((ben) => (
@@ -120,7 +116,7 @@ export default function Home() {
             </div>
           </section>
 
-        <AdBanner />
+
 
         {/* ---- 경기도 모아보기 섹션 (3열 그리드 전면 개편) ---- */}
         {(gyeonggiEvents.length > 0 || gyeonggiBenefits.length > 0) && (
@@ -134,7 +130,7 @@ export default function Home() {
                   <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>🎪 행사/축제</h3>
                   <div style={{ 
                     display: "grid", 
-                    gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", 
+                    gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", 
                     gap: 24 
                   }}>
                     {gyeonggiEvents.map((ev) => (
@@ -162,7 +158,7 @@ export default function Home() {
                   <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>💰 지원금/혜택</h3>
                   <div style={{ 
                     display: "grid", 
-                    gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", 
+                    gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", 
                     gap: 24 
                   }}>
                     {gyeonggiBenefits.map((ben) => (
@@ -191,7 +187,7 @@ export default function Home() {
           <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
           <div style={{ 
             display: "grid", 
-            gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", // 맛집은 박스가 더 촘촘하도록 조절
+            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", 
             gap: 20 
           }}>
             {restaurants && restaurants.map((res: any) => (
@@ -250,11 +246,33 @@ export default function Home() {
       <footer style={{
         background: "#1e293b",
         color: "#94a3b8",
-        padding: "24px 20px",
+        padding: "32px 20px",
         textAlign: "center",
         fontSize: 13,
         lineHeight: 1.8,
       }}>
+        {/* 방문자 카운터 버튼 */}
+        <div style={{ marginBottom: "24px", display: "flex", justifyContent: "center" }}>
+          <div style={{ 
+            background: "rgba(255, 255, 255, 0.05)", 
+            padding: "8px 16px", 
+            borderRadius: "12px",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "12px"
+          }}>
+            <span style={{ color: "#e2e8f0", fontWeight: 700, fontSize: "12px" }}>📊 방문자 현황</span>
+            <a href="https://hits.seeyoufarm.com" target="_blank" rel="noopener noreferrer">
+              <img 
+                src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fyongin-love-info.com&count_bg=%230ea5e9&title_bg=%23334155&icon=&icon_color=%23E7E7E7&title=TOP&edge_flat=false" 
+                alt="Hits"
+                style={{ verticalAlign: "middle" }}
+              />
+            </a>
+          </div>
+        </div>
+
         <p>🏛️ 데이터 출처: <span style={{ color: "#cbd5e1" }}>{source}</span></p>
         <p>🕐 마지막 업데이트: <span style={{ color: "#cbd5e1" }}>{lastUpdated}</span></p>
         <p style={{ marginTop: 8, fontSize: 11, color: "#64748b" }}>
@@ -322,6 +340,7 @@ function EventCard({
       display: "flex",
       flexDirection: "column",
       gap: 12,
+      minHeight: "300px", // 높이 고정
       cursor: "pointer",
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -332,10 +351,27 @@ function EventCard({
           background: "#bae6fd", color: "#0369a1" 
         }}>{tag}</span>
       </div>
-      <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b" }}>{name}</h3>
+      <h3 style={{ 
+        fontSize: 17, 
+        fontWeight: 800, 
+        color: "#1e293b",
+        display: "-webkit-box",
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden"
+      }}>{name}</h3>
       <p style={{ fontSize: 13, color: "#0ea5e9", fontWeight: 700 }}>📅 {dateStr}</p>
-      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1 }}>{summary}</p>
-      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+      <p style={{ 
+        fontSize: 13, 
+        color: "#64748b", 
+        lineHeight: 1.5, 
+        flex: 1,
+        display: "-webkit-box",
+        WebkitLineClamp: 3,
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden" 
+      }}>{summary}</p>
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: "auto" }}>
         <span>📍 {location}</span>
         <span>👤 {target}</span>
       </div>
@@ -361,6 +397,7 @@ function BenefitCard({
       display: "flex",
       flexDirection: "column",
       gap: 12,
+      minHeight: "300px", // 높이 고정
       cursor: "pointer",
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -371,10 +408,27 @@ function BenefitCard({
           background: "#fce7f3", color: "#9d174d" 
         }}>{tag}</span>
       </div>
-      <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b" }}>{name}</h3>
+      <h3 style={{ 
+        fontSize: 17, 
+        fontWeight: 800, 
+        color: "#1e293b",
+        display: "-webkit-box",
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden"
+      }}>{name}</h3>
       <p style={{ fontSize: 13, color: "#db2777", fontWeight: 700 }}>💰 {amount}</p>
-      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1 }}>{summary}</p>
-      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+      <p style={{ 
+        fontSize: 13, 
+        color: "#64748b", 
+        lineHeight: 1.5, 
+        flex: 1,
+        display: "-webkit-box",
+        WebkitLineClamp: 3,
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden" 
+      }}>{summary}</p>
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: "auto" }}>
         <span>👤 {target}</span>
         <span>📅 {formatDate(deadline)}까지</span>
       </div>
@@ -394,7 +448,8 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag }: any
       color: "inherit",
       display: "flex",
       flexDirection: "column",
-      gap: 10
+      gap: 10,
+      minHeight: "300px", // 높이 고정
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <span style={{ fontSize: 32 }}>{emoji}</span>
@@ -404,10 +459,27 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag }: any
           background: "#ffedd5", color: "#9a3412" 
         }}>{tag}</span>
       </div>
-      <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b" }}>{name}</h3>
+      <h3 style={{ 
+        fontSize: 17, 
+        fontWeight: 800, 
+        color: "#1e293b",
+        display: "-webkit-box",
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden"
+      }}>{name}</h3>
       <p style={{ fontSize: 13, color: "#ea580c", fontWeight: 700 }}>🍴 {menu}</p>
-      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5 }}>{summary}</p>
-      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 4 }}>
+      <p style={{ 
+        fontSize: 13, 
+        color: "#64748b", 
+        lineHeight: 1.5, 
+        flex: 1,
+        display: "-webkit-box",
+        WebkitLineClamp: 3,
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden" 
+      }}>{summary}</p>
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 4, marginTop: "auto" }}>
         📍 {location}
       </div>
     </a>
@@ -446,43 +518,6 @@ function LiveInfoBar() {
   );
 }
 
-function TopAdBanner() {
-  return (
-    <div style={{
-      height: "72px", 
-      background: "#f3f4f6",
-      borderBottom: "1px solid #e5e7eb",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      position: "relative",
-      overflow: "hidden"
-    }}>
-      <div style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "14px",
-        color: "#4b5563",
-        fontSize: "14px",
-        fontWeight: 600
-      }}>
-        <span style={{ fontSize: "20px" }}>🎁</span>
-        <span>여기에 화려한 **배너 광고**가 들어올 자리입니다. (높이 72px)</span>
-      </div>
-      <button style={{
-        position: "absolute",
-        right: "20px",
-        top: "50%",
-        transform: "translateY(-50%)",
-        background: "none",
-        border: "none",
-        fontSize: "20px",
-        cursor: "pointer",
-        color: "#9ca3af"
-      }}>×</button>
-    </div>
-  );
-}
 
 function MainNavbar() {
   const menus = [

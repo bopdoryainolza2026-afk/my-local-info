@@ -15,9 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
-  const showAds = adsenseId && adsenseId !== "나중에_입력";
-
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
   const showGa = gaId && gaId !== "나중에_입력";
 
@@ -38,13 +35,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               }}
             />
           </>
-        )}
-        {showAds && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
-            crossOrigin="anonymous"
-          ></script>
         )}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

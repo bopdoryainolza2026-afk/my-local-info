@@ -5,8 +5,6 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getPostData, getSortedPostsData } from "@/lib/posts";
 import localData from "../../../../public/data/local-info.json";
-import AdBanner from "@/components/AdBanner";
-import CoupangBanner from "@/components/CoupangBanner";
 
 interface Props {
   params: { slug: string };
@@ -167,9 +165,6 @@ export default async function PostPage({ params }: Props) {
               </a>
             </div>
           </div>
-
-          <AdBanner />
-          <CoupangBanner />
         </div>
 
         {/* 하단 태그 */}
