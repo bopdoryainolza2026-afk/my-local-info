@@ -59,22 +59,25 @@ async function fetchPublicData() {
       return isYongin || isGyeonggi;
     });
 
+    // [2단계] 최종 업데이트 날짜 갱신 (데이터 유무와 관계없이 '시스템 확인 완료'를 위해 매일 갱신)
+    const today = new Date().toISOString().split('T')[0];
+    const rawData = fs.readFileSync(jsonPath, 'utf8');
+    const db = JSON.parse(rawData);
+    db.lastUpdated = today;
+    fs.writeFileSync(jsonPath, JSON.stringify(db, null, 2), 'utf8');
+
     if (filtered.length === 0) {
-      console.log("용인 또는 경기 관련 새로운 데이터가 없습니다.");
+      console.log("용인 또는 경기 관련 새로운 데이터가 없습니다. (확인 날짜만 갱신됨)");
       return;
     }
 
     console.log(`필터링된 데이터 수: ${filtered.length}건`);
 
-    // [2단계] 기존 데이터와 비교
-    const rawData = fs.readFileSync(jsonPath, 'utf8');
-    const db = JSON.parse(rawData);
-    
+    // [3단계] 기존 데이터와 비교 (최신 데이터 하나만 추가)
     // 기존 아이템의 이름과 ID 목록 생성
     const existingNames = [...db.events, ...db.benefits].map(item => item.name);
     const existingIds = [...db.events, ...db.benefits].map(item => String(item.id));
 
-    // 아직 저장되지 않은 항목 하나만 선택
     const newItemSource = filtered.find(item => 
       !existingNames.includes(item.서비스명) && !existingIds.includes(String(item.서비스ID))
     );
@@ -86,8 +89,7 @@ async function fetchPublicData() {
 
     console.log("새로운 항목 발견:", newItemSource.서비스명);
 
-    // [3단계] Gemini AI로 새 항목 1개만 가공
-    const today = new Date().toISOString().split('T')[0];
+    // [4단계] Gemini AI로 새 항목 1개만 가공
     const prompt = `아래 공공데이터 1건을 분석해서 JSON 객체로 변환해줘. 형식:
 {id: 숫자, name: 서비스명, category: '행사' 또는 '혜택', startDate: 'YYYY-MM-DD', endDate: 'YYYY-MM-DD', location: 장소 또는 기관명, target: 지원대상, summary: 한줄요약, link: 상세URL, emoji: 관련 이모지 1개, tag: 핵심태그 1개(예: 청년, 교육, 복지 등)}
 category는 내용을 보고 행사/축제면 '행사', 지원금/서비스면 '혜택'으로 판단해.
