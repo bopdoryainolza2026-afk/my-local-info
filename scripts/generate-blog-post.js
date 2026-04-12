@@ -48,7 +48,10 @@ async function generateBlogPost() {
       if (createdCount >= MAX_POSTS_PER_RUN) break;
 
       const item = combinedItems[i];
-      const isAlreadyWritten = allPostContents.some(content => content.includes(item.name));
+      // 이름뿐만 아니라 파일 내용 속의 ID 주석도 확인하여 중복 방지
+      const isAlreadyWritten = allPostContents.some(content => 
+        content.includes(item.name) || content.includes(`[ITEM_ID: ${item.id}]`)
+      );
       
       if (isAlreadyWritten) continue;
 
@@ -80,6 +83,9 @@ tags: [${item.tag || '생활'}, 용인시, 경기도]
 3. 말투: "~해요", "~입니다"와 같은 친근한 구어체 사용
 
 4. 마지막 줄에는 반드시 'FILENAME: YYYY-MM-DD-영어키워드' 형식으로 저장할 파일명을 제안해줘.
+
+5. 본문 맨 하단에 보이지 않게 아래 형식의 마크다운 주석으로 데이터 ID를 포함해줘 (중복 방지용):
+<!-- [ITEM_ID: ${item.id}] -->
 
 반드시 위 형식만 출력하고 다른 설명 텍스트는 포함하지 마.`;
 

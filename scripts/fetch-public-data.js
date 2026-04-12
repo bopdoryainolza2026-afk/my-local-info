@@ -45,19 +45,25 @@ async function fetchPublicData() {
       return;
     }
 
-    // 타 지역(예: 부산) 데이터가 섞이지 않도록 제외 규칙을 포함한 필터링
+    // 타 지역(예: 부산) 데이터가 섞이지 않도록 제외 규칙을 포함한 필터링 함수
     const excludeRegions = ['부산', '대구', '인천', '광주', '대전', '울산', '세종', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'];
-    
-    let filtered = items.filter(item => {
+    const filterYonginGyeonggi = (item) => {
       const targetText = (item.서비스명 || '') + (item.서비스목적요약 || '') + (item.지원대상 || '') + (item.소관기관명 || '');
       
-      // '용인'이 포함되어 있는지 확인
-      const isYongin = targetText.includes('용인');
-      // '경기'가 포함되어 있는지 확인 (단, 타 지역명이 포함된 경우는 제외)
-      const isGyeonggi = targetText.includes('경기') && !excludeRegions.some(region => targetText.includes(region) && !targetText.includes('용인'));
+      // '용인' 키워드와 함께 구체적인 구 명칭(수지, 기흥, 처인) 및 시청 확인
+      const hasYonginBase = targetText.includes('용인');
+      const hasYonginDistricts = targetText.includes('수지구') || targetText.includes('기흥구') || targetText.includes('처인구');
+      const hasCityHall = targetText.includes('용인시청');
+      
+      const isYongin = hasYonginBase || hasYonginDistricts || hasCityHall;
+      
+      // '경기'가 포함되어 있는지 확인 (단, 타 지역명이 포함된 경우는 제외하되 용인이 언급되면 우선순위)
+      const isGyeonggi = targetText.includes('경기') && !excludeRegions.some(region => targetText.includes(region) && !isYongin);
       
       return isYongin || isGyeonggi;
-    });
+    };
+
+    let filtered = items.filter(filterYonginGyeonggi);
 
     // [2단계] 최종 업데이트 날짜 갱신 (데이터 유무와 관계없이 '시스템 확인 완료'를 위해 매일 갱신)
     const today = new Date().toISOString().split('T')[0];
@@ -85,12 +91,7 @@ async function fetchPublicData() {
       if (response2.ok) {
         const result2 = await response2.json();
         const items2 = result2.data || [];
-        const filtered2 = items2.filter(item => {
-          const targetText = (item.서비스명 || '') + (item.서비스목적요약 || '') + (item.지원대상 || '') + (item.소관기관명 || '');
-          const isYongin = targetText.includes('용인');
-          const isGyeonggi = targetText.includes('경기') && !excludeRegions.some(region => targetText.includes(region) && !targetText.includes('용인'));
-          return isYongin || isGyeonggi;
-        });
+        const filtered2 = items2.filter(filterYonginGyeonggi);
         filtered = [...filtered, ...filtered2];
       }
     }
