@@ -188,13 +188,11 @@ export default function Home() {
             gap: "12px"
           }}>
             <span style={{ color: "#e2e8f0", fontWeight: 700, fontSize: "12px" }}>📊 방문자 현황</span>
-            <a href="https://hits.seeyoufarm.com" target="_blank" rel="noopener noreferrer">
-              <img 
-                src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fyongin-love-info.com&count_bg=%230ea5e9&title_bg=%23334155&icon=&icon_color=%23E7E7E7&title=TOP&edge_flat=false" 
-                alt="Hits"
-                style={{ verticalAlign: "middle" }}
-              />
-            </a>
+            <img 
+              src="https://visitor-badge.laobi.icu/badge?page_id=yongin-love-info.com&color=0ea5e9" 
+              alt="Hits"
+              style={{ verticalAlign: "middle" }}
+            />
           </div>
         </div>
 
@@ -434,13 +432,11 @@ function LiveInfoBar() {
           </span>
           <span style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: 10 }}>
             📊 <b>방문자:</b> 
-            <a href="https://hits.seeyoufarm.com" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center" }}>
-              <img 
-                src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fyongin-love-info.com&count_bg=%230ea5e9&title_bg=%23475569&icon=&icon_color=%23E7E7E7&title=오늘&edge_flat=true" 
-                alt="Hits"
-                style={{ height: "20px" }}
-              />
-            </a>
+            <img 
+              src="https://visitor-badge.laobi.icu/badge?page_id=yongin-love-info.com&color=0ea5e9" 
+              alt="Hits"
+              style={{ height: "20px" }}
+            />
           </span>
         </div>
         <div style={{ display: "flex", gap: 12 }}>
