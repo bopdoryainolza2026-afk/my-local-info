@@ -73,24 +73,49 @@ async function fetchPublicData() {
 
     console.log(`필터링된 데이터 수: ${filtered.length}건`);
 
-    // [3단계] 기존 데이터와 비교 (최신 데이터 하나만 추가)
-    // 기존 아이템의 이름과 ID 목록 생성
+    // [3단계] 기존 데이터와 비교 (여러 개 추가 가능하도록 변경)
     const existingNames = [...db.events, ...db.benefits].map(item => item.name);
     const existingIds = [...db.events, ...db.benefits].map(item => String(item.id));
 
-    const newItemSource = filtered.find(item => 
+    // 혹시 첫 페이지에 새로운 게 없다면 2페이지도 한 번 더 시도 (더 넓은 수집을 위해)
+    if (filtered.filter(item => !existingNames.includes(item.서비스명) && !existingIds.includes(String(item.서비스ID))).length === 0) {
+      console.log("1페이지에 새로운 데이터가 없어 2페이지를 추가로 확인합니다...");
+      const url2 = `https://api.odcloud.kr/api/gov24/v3/serviceList?page=2&perPage=50&returnType=JSON&serviceKey=${encodeURIComponent(PUBLIC_DATA_API_KEY)}`;
+      const response2 = await fetch(url2);
+      if (response2.ok) {
+        const result2 = await response2.json();
+        const items2 = result2.data || [];
+        const filtered2 = items2.filter(item => {
+          const targetText = (item.서비스명 || '') + (item.서비스목적요약 || '') + (item.지원대상 || '') + (item.소관기관명 || '');
+          const isYongin = targetText.includes('용인');
+          const isGyeonggi = targetText.includes('경기') && !excludeRegions.some(region => targetText.includes(region) && !targetText.includes('용인'));
+          return isYongin || isGyeonggi;
+        });
+        filtered = [...filtered, ...filtered2];
+      }
+    }
+
+    // 새로운 항목들 추출
+    const newItemsFound = filtered.filter(item => 
       !existingNames.includes(item.서비스명) && !existingIds.includes(String(item.서비스ID))
     );
 
-    if (!newItemSource) {
+    if (newItemsFound.length === 0) {
       console.log("이미 모든 데이터가 최신 상태입니다.");
       return;
     }
 
-    console.log("새로운 항목 발견:", newItemSource.서비스명);
+    // 한 번에 최대 몇 개까지 추가할지 설정 (기본 3개)
+    const MAX_NEW_ITEMS = 3;
+    const processItems = newItemsFound.slice(0, MAX_NEW_ITEMS);
 
-    // [4단계] Gemini AI로 새 항목 1개만 가공
-    const prompt = `아래 공공데이터 1건을 분석해서 JSON 객체로 변환해줘. 형식:
+    console.log(`${processItems.length}개의 새로운 항목을 가공합니다.`);
+
+    for (const newItemSource of processItems) {
+      console.log("새로운 항목 발견 및 AI 가공 중:", newItemSource.서비스명);
+
+      // [4단계] Gemini AI로 새 항목 가공
+      const prompt = `아래 공공데이터 1건을 분석해서 JSON 객체로 변환해줘. 형식:
 {id: 숫자, name: 서비스명, category: '행사' 또는 '혜택', startDate: 'YYYY-MM-DD', endDate: 'YYYY-MM-DD', location: 장소 또는 기관명, target: 지원대상, summary: 한줄요약, link: 상세URL, emoji: 관련 이모지 1개, tag: 핵심태그 1개(예: 청년, 교육, 복지 등)}
 category는 내용을 보고 행사/축제면 '행사', 지원금/서비스면 '혜택'으로 판단해.
 startDate가 없으면 오늘 날짜(${today}), endDate가 없으면 '상시'로 넣어.
@@ -99,47 +124,43 @@ startDate가 없으면 오늘 날짜(${today}), endDate가 없으면 '상시'로
 
 데이터: ${JSON.stringify(newItemSource)}`;
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
-    const geminiResponse = await fetch(geminiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
-      })
-    });
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+      const geminiResponse = await fetch(geminiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }]
+        })
+      });
 
-    const geminiResult = await geminiResponse.json();
-    
-    if (!geminiResult.candidates || !geminiResult.candidates[0]?.content?.parts?.[0]?.text) {
-      throw new Error("Gemini AI로부터 올바른 응답을 받지 못했습니다. API 키나 쿼터 제한을 확인하세요.");
-    }
+      const geminiResult = await geminiResponse.json();
+      
+      if (!geminiResult.candidates || !geminiResult.candidates[0]?.content?.parts?.[0]?.text) {
+        console.error(`Gemini AI 응답 실패: ${newItemSource.서비스명}`);
+        continue;
+      }
 
-    let aiText = geminiResult.candidates[0].content.parts[0].text;
-    
-    // 마크다운 코드 블록 제거 및 JSON 파싱
-    aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
-    
-    let processedItem;
-    try {
-      processedItem = JSON.parse(aiText);
-      // 만약 AI가 ID를 문자열로 주거나 하면 숫자로 변환 (필요시)
-      if (processedItem.id === undefined) processedItem.id = Date.now();
-    } catch (e) {
-      console.error("AI 응답 JSON 파싱 실패:", aiText);
-      throw new Error("AI가 생성한 데이터 형식이 올바르지 않습니다.");
-    }
-
-    // [4단계] 기존 데이터에 추가
-    if (processedItem.category === '행사') {
-      db.events.push(processedItem);
-    } else {
-      db.benefits.push(processedItem);
+      let aiText = geminiResult.candidates[0].content.parts[0].text;
+      aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
+      
+      try {
+        const processedItem = JSON.parse(aiText);
+        if (processedItem.id === undefined) processedItem.id = Date.now() + Math.floor(Math.random() * 1000);
+        
+        if (processedItem.category === '행사') {
+          db.events.push(processedItem);
+        } else {
+          db.benefits.push(processedItem);
+        }
+        console.log("✅ 데이터 추가 성공:", processedItem.name);
+      } catch (e) {
+        console.error("AI 응답 JSON 파싱 실패:", aiText);
+      }
     }
 
     db.lastUpdated = today;
     fs.writeFileSync(jsonPath, JSON.stringify(db, null, 2), 'utf8');
-
-    console.log("✅ 새로운 데이터 추가 완료:", processedItem.name);
+    console.log("✅ 전체 데이터 파일 업데이트 완료");
 
   } catch (error) {
     console.error("❌ 데이터 처리 중 오류 발생:", error.message);
