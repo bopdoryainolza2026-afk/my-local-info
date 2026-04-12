@@ -427,10 +427,20 @@ function LiveInfoBar() {
         fontSize: 13,
         color: "#475569"
       }}>
-        <div style={{ display: "flex", gap: 20 }}>
+        <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
           <span>☀️ <b>용인시 날씨:</b> 맑음 (18°C)</span>
           <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
             🚗 <b>교통 상황:</b> <span style={{ color: "#22c55e", fontWeight: 700 }}>원활</span>
+          </span>
+          <span style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: 10 }}>
+            📊 <b>방문자:</b> 
+            <a href="https://hits.seeyoufarm.com" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center" }}>
+              <img 
+                src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fyongin-love-info.com&count_bg=%230ea5e9&title_bg=%23475569&icon=&icon_color=%23E7E7E7&title=오늘&edge_flat=true" 
+                alt="Hits"
+                style={{ height: "20px" }}
+              />
+            </a>
           </span>
         </div>
         <div style={{ display: "flex", gap: 12 }}>
