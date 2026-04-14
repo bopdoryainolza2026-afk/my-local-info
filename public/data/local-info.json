@@ -313,7 +313,8 @@
       "summary": "보호자가 없어도 걱정 마세요! 전문 교육을 받은 매니저가 집에서 병원까지 동행하고 접수와 수납까지 도와드립니다.",
       "link": "https://www.yongin.go.kr",
       "emoji": "👵",
-      "tag": "복지"
+      "tag": "복지",
+      "imageUrl": "/images/benefits/senior-escort.png"
     },
     {
       "id": "ben-2026-017",
@@ -507,7 +508,8 @@
       "summary": "웨이팅 사악하지만 맛은 천국인 들기름 막국수 명소입니다. 고소하고 깔끔한 면이 특징으로 전국에서 손님이 찾아옵니다.",
       "link": "https://search.naver.com/search.naver?query=고기리막국수",
       "emoji": "🍜",
-      "tag": "수지구"
+      "tag": "수지구",
+      "imageUrl": "/images/restaurants/makguksu.png"
     },
     {
       "id": "res-002",
@@ -517,7 +519,8 @@
       "summary": "전통 방식 그대로 만들어 담백하고 푸짐한 백암순대의 근본입니다. 50년 전통의 손맛이 살아있습니다.",
       "link": "https://search.naver.com/search.naver?query=백암순대+중앙식당",
       "emoji": "🍲",
-      "tag": "처인구"
+      "tag": "처인구",
+      "imageUrl": "/images/restaurants/sundae.png"
     },
     {
       "id": "res-003",

@@ -141,10 +141,11 @@ function Pagination({
 
 /** 혜택 카드 */
 function BenefitCard({
-  emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link,
+  emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link, imageUrl,
 }: {
   emoji?: string; tag?: string; name: string; target: string;
   amount: string; summary: string; deadline: string; link: string;
+  imageUrl?: string;
 }) {
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
@@ -164,12 +165,36 @@ function BenefitCard({
 
   const content = (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontSize: 32 }}>{emoji}</span>
-        <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#fce7f3", color: "#9d174d" }}>
-          {tag}
-        </span>
-      </div>
+      {imageUrl ? (
+        <div style={{ 
+          width: "100%", 
+          height: "160px", 
+          borderRadius: "12px", 
+          overflow: "hidden",
+          marginBottom: "12px",
+          position: "relative"
+        }}>
+          <img 
+            src={imageUrl} 
+            alt={name} 
+            style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+          />
+          <span style={{ 
+            position: "absolute", top: "10px", right: "10px",
+            fontSize: 11, fontWeight: 700, padding: "3px 10px", 
+            borderRadius: 20, background: "rgba(252, 231, 243, 0.9)", color: "#9d174d" 
+          }}>
+            {tag}
+          </span>
+        </div>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{ fontSize: 32 }}>{emoji}</span>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#fce7f3", color: "#9d174d" }}>
+            {tag}
+          </span>
+        </div>
+      )}
       <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
         {name}
       </h3>
@@ -192,7 +217,7 @@ function BenefitCard({
 }
 
 /** 맛집 카드 */
-function RestaurantCard({ emoji, name, menu, location, summary, link, tag }: any) {
+function RestaurantCard({ emoji, name, menu, location, summary, link, tag, imageUrl }: any) {
   return (
     <a href={link} target="_blank" rel="noopener noreferrer" style={{
       background: "white", borderRadius: 16, padding: "20px",
@@ -200,12 +225,37 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag }: any
       textDecoration: "none", color: "inherit", display: "flex",
       flexDirection: "column", gap: 10, minHeight: "300px",
     }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontSize: 32 }}>{emoji}</span>
-        <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#ffedd5", color: "#9a3412" }}>
-          {tag}
-        </span>
-      </div>
+    <>
+      {imageUrl ? (
+        <div style={{ 
+          width: "100%", 
+          height: "160px", 
+          borderRadius: "12px", 
+          overflow: "hidden",
+          marginBottom: "12px",
+          position: "relative"
+        }}>
+          <img 
+            src={imageUrl} 
+            alt={name} 
+            style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+          />
+          <span style={{ 
+            position: "absolute", top: "10px", right: "10px",
+            fontSize: 11, fontWeight: 700, padding: "3px 10px", 
+            borderRadius: 20, background: "rgba(255, 237, 213, 0.9)", color: "#9a3412" 
+          }}>
+            {tag}
+          </span>
+        </div>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{ fontSize: 32 }}>{emoji}</span>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#ffedd5", color: "#9a3412" }}>
+            {tag}
+          </span>
+        </div>
+      )}
       <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
         {name}
       </h3>
@@ -216,6 +266,7 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag }: any
       <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 4, marginTop: "auto" }}>
         📍 {location}
       </div>
+    </>
     </a>
   );
 }
@@ -295,6 +346,7 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
             summary={ben.summary}
             deadline={ben.endDate}
             link={getLink(ben)}
+            imageUrl={ben.imageUrl}
           />
         ))}
       </div>
@@ -328,6 +380,7 @@ export function PagedRestaurantSection({ items }: { items: any[] }) {
             summary={res.summary}
             link={res.link}
             tag={res.tag}
+            imageUrl={res.imageUrl}
           />
         ))}
       </div>
