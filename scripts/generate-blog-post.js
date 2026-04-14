@@ -33,11 +33,11 @@ async function generateBlogPost() {
     const db = JSON.parse(rawData);
     const combinedItems = [...db.events, ...db.benefits];
 
-    // 한 번에 생성할 최대 블로그 수 (기본 3개)
-    const MAX_POSTS_PER_RUN = 3;
+    // 한 번에 생성할 모든 미작성 항목 처리 (제한을 크게 늘림)
+    const MAX_POSTS_PER_RUN = 100;
     let createdCount = 0;
 
-    console.log(`블로그 작성을 시작합니다. (최대 ${MAX_POSTS_PER_RUN}개)`);
+    console.log(`블로그 작성을 시작합니다. (모든 미작성 항목 대상)`);
 
     // 기존 포스트 목록 가져오기 (반복문 밖에서 한 번만 로드하고 루프 안에서 업데이트)
     let postFiles = fs.readdirSync(postsDirPath).filter(f => f.endsWith('.md'));

@@ -43,25 +43,20 @@ export default function Home() {
   // 모든 블로그 포스트 가져오기
   const allPosts = getSortedPostsData();
 
-  // 각 데이터 항목에 맞는 최적의 링크(블로그 주소 또는 외부 링크)를 찾아주는 함수
+  // 각 데이터 항목에 맞는 블로그 글 주소를 찾아주는 함수
   const getItemLink = (item: any) => {
-    // 1. 블로그 글 중에서 제목 혹은 본문에 이름이 포함된 글 찾기
+    // 1. 블로그 글 중에서 아이템 ID 혹은 제목이 포함된 글 찾기
     const matchedPost = allPosts.find(post => 
+      post.content.includes(`[ITEM_ID: ${item.id}]`) ||
       post.title.includes(item.name) || 
-      item.name.includes(post.title) ||
-      post.content.includes(item.name)
+      item.name.includes(post.title)
     );
     
     if (matchedPost) {
       return `/blog/${matchedPost.slug}`;
     }
 
-    // 2. 블로그 글이 없으면 공공데이터 원문 링크 사용
-    if (item.link && item.link !== "#") {
-      return item.link;
-    }
-
-    // 3. 둘 다 없으면 기본 블로그 목록으로 이동
+    // 2. 블로그 글이 없으면 블로그 목록 페이지로 이동 (원문 링크로 바로 가지 않음)
     return "/blog";
   };
 

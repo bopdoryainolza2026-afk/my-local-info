@@ -45,7 +45,11 @@ export default async function PostPage({ params }: Props) {
   }
 
   const allItems = [...localData.events, ...localData.benefits];
-  const matchedItem = allItems.find(item => postData.title.includes(item.name) || postData.content.includes(item.name));
+  const matchedItem = allItems.find(item => 
+    postData.content.includes(`[ITEM_ID: ${item.id}]`) ||
+    postData.title.includes(item.name) || 
+    postData.content.includes(item.name)
+  );
   const sourceLink = matchedItem?.link || "https://data.go.kr/";
 
   return (
