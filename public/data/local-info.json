@@ -13,7 +13,8 @@
       "summary": "화창한 봄날 에버랜드와 호암미술관 주변에 만개한 왕벚꽃을 즐길 수 있는 용인의 대표 꽃 축제. 다채로운 야간 조명 전시가 준비되어 있습니다.",
       "link": "https://www.everland.com",
       "emoji": "🌸",
-      "tag": "관람"
+      "tag": "관람",
+      "imageUrl": "/images/events/everland-cherry.png"
     },
     {
       "id": "evt-2026-013",
@@ -26,7 +27,8 @@
       "summary": "100만 송이의 튤립이 펼쳐지는 화려한 봄의 향연. 올해는 특별한 캐릭터 콜라보레이션과 야간 멀티미디어 쇼가 함께 진행됩니다.",
       "link": "https://www.everland.com",
       "emoji": "🌷",
-      "tag": "관람"
+      "tag": "관람",
+      "imageUrl": "/images/events/everland-tulip.png"
     },
     {
       "id": "evt-2026-002",
@@ -65,7 +67,8 @@
       "summary": "2026년 어린이날을 맞아 펼쳐지는 테마파크형 야외 축제. 마술 쇼, 로봇 체험존, 다양한 에어바운스 놀이기구가 무료로 운영됩니다.",
       "link": "https://www.yongin.go.kr",
       "emoji": "🧸",
-      "tag": "가족"
+      "tag": "가족",
+      "imageUrl": "/images/events/children-day.png"
     },
     {
       "id": "evt-2026-015",
@@ -78,7 +81,8 @@
       "summary": "품격 있는 클래식 선율이 박물관을 찾아갑니다. 전시 관람과 함께 즐기는 시립예술단의 아름다운 하모니를 무료로 감상하세요.",
       "link": "https://www.yicf.or.kr",
       "emoji": "🎻",
-      "tag": "공연"
+      "tag": "공연",
+      "imageUrl": "/images/events/museum-concert.png"
     },
     {
       "id": "evt-2026-016",
@@ -91,7 +95,8 @@
       "summary": "조선 시대 캐릭터들이 살아 움직이는 리얼리티 축제. 다양한 민속 체험과 타임슬립 드라마 같은 현장 공연이 매일 펼쳐집니다.",
       "link": "https://www.koreanfolk.co.kr",
       "emoji": "🏯",
-      "tag": "문화"
+      "tag": "문화",
+      "imageUrl": "/images/events/folk-village.png"
     },
     {
       "id": "evt-2026-017",
@@ -104,7 +109,8 @@
       "summary": "철쭉과 튤립이 만개한 농촌테마파크에서 즐기는 힐링 시간. 시골 정취와 함께 화려한 봄꽃 정원을 산책하며 휴식을 취해보세요.",
       "link": "https://www.yongin.go.kr/resort",
       "emoji": "🌼",
-      "tag": "관람"
+      "tag": "관람",
+      "imageUrl": "/images/events/rural-park.png"
     },
     {
       "id": "evt-2026-004",

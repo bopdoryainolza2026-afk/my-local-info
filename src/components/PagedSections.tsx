@@ -64,11 +64,11 @@ function Pagination({
 }
 
 /** 행사 카드 */
-function EventCard({
-  emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link,
+  emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, imageUrl,
 }: {
   emoji?: string; tag?: string; name: string; dateStr: string;
   location: string; target: string; summary: string; link: string;
+  imageUrl?: string;
 }) {
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
@@ -88,12 +88,36 @@ function EventCard({
 
   const content = (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontSize: 32 }}>{emoji}</span>
-        <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#bae6fd", color: "#0369a1" }}>
-          {tag}
-        </span>
-      </div>
+      {imageUrl ? (
+        <div style={{ 
+          width: "100%", 
+          height: "160px", 
+          borderRadius: "12px", 
+          overflow: "hidden",
+          marginBottom: "12px",
+          position: "relative"
+        }}>
+          <img 
+            src={imageUrl} 
+            alt={name} 
+            style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+          />
+          <span style={{ 
+            position: "absolute", top: "10px", right: "10px",
+            fontSize: 11, fontWeight: 700, padding: "3px 10px", 
+            borderRadius: 20, background: "rgba(186, 230, 253, 0.9)", color: "#0369a1" 
+          }}>
+            {tag}
+          </span>
+        </div>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{ fontSize: 32 }}>{emoji}</span>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#bae6fd", color: "#0369a1" }}>
+            {tag}
+          </span>
+        </div>
+      )}
       <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
         {name}
       </h3>
@@ -229,6 +253,7 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
             target={ev.target}
             summary={ev.summary}
             link={getLink(ev)}
+            imageUrl={ev.imageUrl}
           />
         ))}
       </div>
