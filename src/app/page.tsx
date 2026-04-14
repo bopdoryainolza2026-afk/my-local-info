@@ -103,6 +103,55 @@ export default function Home() {
             <PagedRestaurantSection items={restaurants as any[]} />
           </section>
 
+          {/* ---- 커뮤니티 및 소통 섹션 (신설) ---- */}
+          <section id="community" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80 }}>
+            <SectionTitle emoji="💬" title="커뮤니티 및 소통" />
+            <div style={{
+              background: "white",
+              borderRadius: 20,
+              padding: "32px 24px",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+              border: "1px solid #e2e8f0",
+              textAlign: "center"
+            }}>
+              <p style={{ fontSize: "16px", color: "#475569", marginBottom: "24px", fontWeight: 600 }}>
+                우리 동네 소식, 구청 게시판에서 이웃들과 함께 나누어 보세요!
+              </p>
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                gap: "16px"
+              }}>
+                <a href="https://www.cheoingu.go.kr/home/index.do" target="_blank" rel="noopener noreferrer" style={{
+                  background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
+                  color: "white", padding: "18px", borderRadius: "16px",
+                  fontWeight: 800, fontSize: "16px", textDecoration: "none",
+                  boxShadow: "0 4px 12px rgba(14,165,233,0.3)",
+                  transition: "transform 0.2s"
+                }}>
+                  🌳 처인구 소통마당 →
+                </a>
+                <a href="https://www.giheunggu.go.kr/_lmth/03_board/board_0101.asp" target="_blank" rel="noopener noreferrer" style={{
+                  background: "linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)",
+                  color: "white", padding: "18px", borderRadius: "16px",
+                  fontWeight: 800, fontSize: "16px", textDecoration: "none",
+                  boxShadow: "0 4px 12px rgba(244,63,94,0.3)",
+                  transition: "transform 0.2s"
+                }}>
+                  🌆 기흥구 소통마당 →
+                </a>
+                <a href="https://www.sujigu.go.kr/_lmth/03com01.asp" target="_blank" rel="noopener noreferrer" style={{
+                  background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                  color: "white", padding: "18px", borderRadius: "16px",
+                  fontWeight: 800, fontSize: "16px", textDecoration: "none",
+                  boxShadow: "0 4px 12px rgba(16,185,129,0.3)",
+                  transition: "transform 0.2s"
+                }}>
+                  🏔️ 수지구 소통마당 →
+                </a>
+              </div>
+            </div>
+          </section>
 
         {/* ---- 블로그 배너 ---- */}
         <div id="blog" style={{
@@ -446,6 +495,7 @@ function MainNavbar() {
     { name: "🎪 행사/축제", id: "#events" },
     { name: "💰 지원금/혜택", id: "#benefits" },
     { name: "🍱 지역맛집", id: "#restaurants" },
+    { name: "💬 커뮤니티", id: "#community" },
     { name: "📝 Blog", id: "#blog" },
   ];
 
