@@ -64,6 +64,7 @@ function Pagination({
 }
 
 /** 행사 카드 */
+function EventCard({
   emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, imageUrl,
 }: {
   emoji?: string; tag?: string; name: string; dateStr: string;
