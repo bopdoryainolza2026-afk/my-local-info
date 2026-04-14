@@ -97,35 +97,49 @@ export default function Home() {
             <PagedBenefitSection items={yonginBenefits} allPosts={allPosts} />
           </section>
 
-          {/* ---- 경기도 모아보기 섹션 ---- */}
+          {/* ---- 우리동네 맛집 섹션 (상단 이동) ---- */}
+          <section id="restaurants" style={{ marginTop: 20, marginBottom: 50 }}>
+            <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
+            <PagedRestaurantSection items={restaurants as any[]} />
+          </section>
+
+          {/* ---- 경기도 모아보기 섹션 (하단 이동 및 축소) ---- */}
           {(gyeonggiEvents.length > 0 || gyeonggiBenefits.length > 0) && (
-            <section id="gyeonggi-info" style={{ marginBottom: 30, marginTop: 10 }}>
-              <SectionTitle emoji="📢" title="경기도 모아보기" />
-              <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+            <section id="gyeonggi-info" style={{ 
+              marginBottom: 40, 
+              marginTop: 40, 
+              padding: "24px", 
+              background: "rgba(255, 255, 255, 0.5)", 
+              borderRadius: "20px",
+              border: "1px dashed #cbd5e1"
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
+                <span style={{ fontSize: "16px" }}>📢</span>
+                <h2 style={{ fontSize: "15px", fontWeight: 800, color: "#64748b" }}>경기도 정보 모아보기 (기타 지역)</h2>
+              </div>
+              
+              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
                 {gyeonggiEvents.length > 0 && (
                   <div>
-                    <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>🎪 행사/축제</h3>
-                    <PagedEventSection items={gyeonggiEvents} allPosts={allPosts} />
+                    <h3 style={{ fontSize: "13px", fontWeight: 700, color: "#94a3b8", marginBottom: "10px", paddingLeft: "4px" }}>🎪 타 지역 행사</h3>
+                    <div style={{ transform: "scale(0.98)", transformOrigin: "top left" }}>
+                      <PagedEventSection items={gyeonggiEvents} allPosts={allPosts} />
+                    </div>
                   </div>
                 )}
                 {gyeonggiBenefits.length > 0 && (
                   <div>
-                    <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0284c7", marginBottom: 16, paddingLeft: 4 }}>💰 지원금/혜택</h3>
-                    <PagedBenefitSection items={gyeonggiBenefits} allPosts={allPosts} />
+                    <h3 style={{ fontSize: "13px", fontWeight: 700, color: "#94a3b8", marginBottom: "10px", paddingLeft: "4px" }}>💰 타 지역 혜택</h3>
+                    <div style={{ transform: "scale(0.98)", transformOrigin: "top left" }}>
+                      <PagedBenefitSection items={gyeonggiBenefits} allPosts={allPosts} />
+                    </div>
                   </div>
                 )}
               </div>
             </section>
           )}
 
-
-          {/* ---- 우리동네 맛집 섹션 ---- */}
-          <section id="restaurants" style={{ marginTop: 30, marginBottom: 40 }}>
-            <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
-            <PagedRestaurantSection items={restaurants as any[]} />
-          </section>
-
-        {/* ---- 블로그 배너 (맨 하단 이동) ---- */}
+        {/* ---- 블로그 배너 ---- */}
         <div id="blog" style={{
           background: "linear-gradient(135deg, #1e293b 0%, #334155 100%)",
           borderRadius: 16,
@@ -136,7 +150,7 @@ export default function Home() {
           justifyContent: "space-between",
           gap: 16,
           flexWrap: "wrap",
-          marginTop: 40,
+          marginTop: 20,
           scrollMarginTop: 80,
         }}>
           <div>
@@ -467,6 +481,7 @@ function MainNavbar() {
     { name: "🎪 행사/축제", id: "#events" },
     { name: "💰 지원금/혜택", id: "#benefits" },
     { name: "🍱 지역맛집", id: "#restaurants" },
+    { name: "📢 경기도 정보", id: "#gyeonggi-info" },
     { name: "📝 Blog", id: "#blog" },
   ];
 
