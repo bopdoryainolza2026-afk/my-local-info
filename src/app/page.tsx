@@ -185,14 +185,24 @@ export default function Home() {
             border: "1px solid rgba(255, 255, 255, 0.1)",
             display: "inline-flex",
             alignItems: "center",
-            gap: "12px"
+            gap: "12px",
+            flexWrap: "wrap"
           }}>
             <span style={{ color: "#e2e8f0", fontWeight: 700, fontSize: "12px" }}>📊 방문자 현황</span>
-            <img 
-              src="https://visitor-badge.laobi.icu/badge?page_id=yongin-love-info.com&color=0ea5e9" 
-              alt="Hits"
-              style={{ verticalAlign: "middle" }}
-            />
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <span style={{ fontSize: "11px", color: "#94a3b8" }}>오늘</span>
+              <img 
+                src={`https://visitor-badge.laobi.icu/badge?page_id=yongin-love-info.com.${new Date().toISOString().split('T')[0]}&color=0ea5e9`}
+                alt="Today Hits"
+                style={{ verticalAlign: "middle" }}
+              />
+              <span style={{ fontSize: "11px", color: "#94a3b8", marginLeft: "4px" }}>누계</span>
+              <img 
+                src="https://visitor-badge.laobi.icu/badge?page_id=yongin-love-info.com&color=1e293b" 
+                alt="Total Hits"
+                style={{ verticalAlign: "middle" }}
+              />
+            </div>
           </div>
         </div>
 
@@ -430,12 +440,19 @@ function LiveInfoBar() {
           <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
             🚗 <b>교통 상황:</b> <span style={{ color: "#22c55e", fontWeight: 700 }}>원활</span>
           </span>
-          <span style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: 10 }}>
-            📊 <b>방문자:</b> 
+          <span style={{ display: "flex", alignItems: "center", gap: 10, marginLeft: 10 }}>
+            📊 <b>방문자</b> 
+            <span style={{ fontSize: "11px", color: "#64748b" }}>오늘</span>
             <img 
-              src="https://visitor-badge.laobi.icu/badge?page_id=yongin-love-info.com&color=0ea5e9" 
-              alt="Hits"
-              style={{ height: "20px" }}
+              src={`https://visitor-badge.laobi.icu/badge?page_id=yongin-love-info.com.${new Date().toISOString().split('T')[0]}&color=0ea5e9`}
+              alt="Today"
+              style={{ height: "18px" }}
+            />
+            <span style={{ fontSize: "11px", color: "#64748b" }}>누계</span>
+            <img 
+              src="https://visitor-badge.laobi.icu/badge?page_id=yongin-love-info.com&color=475569" 
+              alt="Total"
+              style={{ height: "18px" }}
             />
           </span>
         </div>
