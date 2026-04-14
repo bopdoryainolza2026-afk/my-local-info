@@ -103,41 +103,6 @@ export default function Home() {
             <PagedRestaurantSection items={restaurants as any[]} />
           </section>
 
-          {/* ---- 경기도 모아보기 섹션 (하단 이동 및 축소) ---- */}
-          {(gyeonggiEvents.length > 0 || gyeonggiBenefits.length > 0) && (
-            <section id="gyeonggi-info" style={{ 
-              marginBottom: 40, 
-              marginTop: 40, 
-              padding: "24px", 
-              background: "rgba(255, 255, 255, 0.5)", 
-              borderRadius: "20px",
-              border: "1px dashed #cbd5e1"
-            }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
-                <span style={{ fontSize: "16px" }}>📢</span>
-                <h2 style={{ fontSize: "15px", fontWeight: 800, color: "#64748b" }}>경기도 정보 모아보기 (기타 지역)</h2>
-              </div>
-              
-              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-                {gyeonggiEvents.length > 0 && (
-                  <div>
-                    <h3 style={{ fontSize: "13px", fontWeight: 700, color: "#94a3b8", marginBottom: "10px", paddingLeft: "4px" }}>🎪 타 지역 행사</h3>
-                    <div style={{ transform: "scale(0.98)", transformOrigin: "top left" }}>
-                      <PagedEventSection items={gyeonggiEvents} allPosts={allPosts} />
-                    </div>
-                  </div>
-                )}
-                {gyeonggiBenefits.length > 0 && (
-                  <div>
-                    <h3 style={{ fontSize: "13px", fontWeight: 700, color: "#94a3b8", marginBottom: "10px", paddingLeft: "4px" }}>💰 타 지역 혜택</h3>
-                    <div style={{ transform: "scale(0.98)", transformOrigin: "top left" }}>
-                      <PagedBenefitSection items={gyeonggiBenefits} allPosts={allPosts} />
-                    </div>
-                  </div>
-                )}
-              </div>
-            </section>
-          )}
 
         {/* ---- 블로그 배너 ---- */}
         <div id="blog" style={{
@@ -481,7 +446,6 @@ function MainNavbar() {
     { name: "🎪 행사/축제", id: "#events" },
     { name: "💰 지원금/혜택", id: "#benefits" },
     { name: "🍱 지역맛집", id: "#restaurants" },
-    { name: "📢 경기도 정보", id: "#gyeonggi-info" },
     { name: "📝 Blog", id: "#blog" },
   ];
 
