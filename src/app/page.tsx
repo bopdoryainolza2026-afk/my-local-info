@@ -197,12 +197,7 @@ export default function Home() {
                             {news.title}
                           </span>
                         </div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8, paddingLeft: 2 }}>
-                          {news.source && (
-                            <span style={{ fontSize: "11px", color: "#0ea5e9", fontWeight: 600 }}>
-                              📰 {news.source}
-                            </span>
-                          )}
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, paddingLeft: 2, marginTop: 2 }}>
                           <span style={{ fontSize: "11px", color: "#94a3b8" }}>
                             {news.date}
                           </span>
