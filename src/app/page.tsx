@@ -199,6 +199,11 @@ export default function Home() {
         fontSize: 13,
         lineHeight: 1.8,
       }}>
+        <div style={{ marginBottom: 24, display: "flex", justifyContent: "center", gap: 20 }}>
+          <Link href="/privacy" style={{ color: "#cbd5e1", textDecoration: "none", fontWeight: 600 }}>개인정보 처리방침</Link>
+          <Link href="/about" style={{ color: "#cbd5e1", textDecoration: "none", fontWeight: 600 }}>사이트 소개</Link>
+        </div>
+
         {/* 방문자 카운터 버튼 */}
         <div style={{ marginBottom: "24px", display: "flex", justifyContent: "center" }}>
           <div style={{ 

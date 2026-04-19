@@ -71,9 +71,9 @@ export default function AboutPage() {
         </section>
 
         <section style={{ marginBottom: 30, background: "white", padding: 24, borderRadius: 16, border: "1px solid #e2e8f0" }}>
-          <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 16, color: "#1e293b" }}>🤖 콘텐츠 생성 방식 (AI 활용)</h2>
+          <h2 style={{ fontSize: 20, fontWeight: 800, marginBottom: 16, color: "#1e293b" }}>💎 콘텐츠 큐레이션 (AI 기술 활용)</h2>
           <p style={{ color: "#475569", lineHeight: 1.6 }}>
-            수집된 공공데이터들은 인공지능(AI)을 통해 주민분들이 이해하기 쉽도록 친근한 문구로 자동 요약 및 정리되어 블로그 형태로 작성됩니다. 정보의 정확성을 위해 원본 출처 확인을 항상 권장합니다.
+            수집된 다양한 지역 정보들은 인공지능(AI) 기술을 활용하여 주민분들이 읽기 편하도록 핵심 내용을 요약하고 정리합니다. 저희 '용인시 생활 정보'는 단순한 자동 생성을 넘어, 주민들에게 실질적인 가치를 효율적으로 전달하기 위해 노력하고 있습니다.
           </p>
         </section>
       </main>
@@ -82,10 +82,14 @@ export default function AboutPage() {
       <footer style={{
         background: "#1e293b",
         color: "#94a3b8",
-        padding: "24px 20px",
+        padding: "32px 20px",
         textAlign: "center",
         fontSize: 13,
       }}>
+        <div style={{ marginBottom: 16, display: "flex", justifyContent: "center", gap: 20 }}>
+          <Link href="/privacy" style={{ color: "#cbd5e1", textDecoration: "none" }}>개인정보 처리방침</Link>
+          <Link href="/about" style={{ color: "#cbd5e1", textDecoration: "none" }}>사이트 소개</Link>
+        </div>
         <p>© 2026 용인시 생활 정보</p>
       </footer>
     </div>
