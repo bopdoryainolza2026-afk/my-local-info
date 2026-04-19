@@ -36,6 +36,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             />
           </>
         )}
+        {/* 구글 애드센스 확인 코드 */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2764192052550924"
+          crossOrigin="anonymous"
+        ></script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
