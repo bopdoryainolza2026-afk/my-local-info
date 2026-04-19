@@ -97,6 +97,78 @@ export default function Home() {
             <PagedBenefitSection items={yonginBenefits} allPosts={allPosts} />
           </section>
 
+          {/* ---- 2027 대입진학정보 섹션 (신설) ---- */}
+          <section id="education" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80 }}>
+            <SectionTitle emoji="🎓" title="2027 대입진학정보" />
+            <div style={{
+              background: "white",
+              borderRadius: 20,
+              padding: "24px",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+              border: "1px solid #e2e8f0",
+            }}>
+              {/* 주요 일정표 */}
+              <div style={{ marginBottom: 32 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 800, color: "#1e293b", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
+                  📅 2027학년도 대입 주요 일정 (예정)
+                </h3>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 12 }}>
+                  {[
+                    { date: "06.04(목)", title: "6월 모의평가", bg: "#f0f9ff", color: "#0369a1" },
+                    { date: "09.02(수)", title: "9월 모의평가", bg: "#f0f9ff", color: "#0369a1" },
+                    { date: "09.09~13", title: "수시 원서접수", bg: "#fef2f2", color: "#dc2626" },
+                    { date: "11.19(목)", title: "2027학년도 수능", bg: "#fffbeb", color: "#d97706" },
+                    { date: "12.29~31", title: "정시 원서접수", bg: "#f0fdf4", color: "#16a34a" },
+                  ].map((item, idx) => (
+                    <div key={idx} style={{ background: item.bg, padding: "14px", borderRadius: 12, textAlign: "center" }}>
+                      <p style={{ fontSize: 12, color: item.color, fontWeight: 800, marginBottom: 4 }}>{item.date}</p>
+                      <p style={{ fontSize: 13, fontWeight: 700, color: "#1e293b" }}>{item.title}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 주요 정보 사이트 버튼 */}
+              <div>
+                <h3 style={{ fontSize: 16, fontWeight: 800, color: "#1e293b", marginBottom: 16 }}>
+                  🔗 바로가기 서비스
+                </h3>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                  <a href="https://www.adiga.kr" target="_blank" rel="noopener noreferrer" style={{
+                    flex: "1 1 200px", background: "#f8fafc", padding: "16px", borderRadius: 12, border: "1px solid #e2e8f0",
+                    textDecoration: "none", display: "flex", alignItems: "center", gap: 12, transition: "transform 0.2s"
+                  }}>
+                    <span style={{ fontSize: 24 }}>🏛️</span>
+                    <div>
+                      <p style={{ margin: 0, fontSize: 14, fontWeight: 800, color: "#1e293b" }}>대입정보포탈 '어디가'</p>
+                      <p style={{ margin: 0, fontSize: 11, color: "#64748b" }}>전국 대학별 진학 정보 총망라</p>
+                    </div>
+                  </a>
+                  <a href="https://www.jinhak.or.kr" target="_blank" rel="noopener noreferrer" style={{
+                    flex: "1 1 200px", background: "#f8fafc", padding: "16px", borderRadius: 12, border: "1px solid #e2e8f0",
+                    textDecoration: "none", display: "flex", alignItems: "center", gap: 12
+                  }}>
+                    <span style={{ fontSize: 24 }}>🏙️</span>
+                    <div>
+                      <p style={{ margin: 0, fontSize: 14, fontWeight: 800, color: "#1e293b" }}>서울 진로진학정보센터</p>
+                      <p style={{ margin: 0, fontSize: 11, color: "#64748b" }}>서울권 대학 및 진로 맞춤 상담</p>
+                    </div>
+                  </a>
+                  <a href="https://jinhak.goe.go.kr" target="_blank" rel="noopener noreferrer" style={{
+                    flex: "1 1 200px", background: "#f8fafc", padding: "16px", borderRadius: 12, border: "1px solid #e2e8f0",
+                    textDecoration: "none", display: "flex", alignItems: "center", gap: 12
+                  }}>
+                    <span style={{ fontSize: 24 }}>🏔️</span>
+                    <div>
+                      <p style={{ margin: 0, fontSize: 14, fontWeight: 800, color: "#1e293b" }}>경기 진학정보센터</p>
+                      <p style={{ margin: 0, fontSize: 11, color: "#64748b" }}>경기도 교육청 공식 진학 가이드</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* ---- 우리동네 맛집 섹션 (상단 이동) ---- */}
           <section id="restaurants" style={{ marginTop: 20, marginBottom: 50 }}>
             <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
