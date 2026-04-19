@@ -180,11 +180,11 @@ export default function Home() {
                     };
                     const c = catColor[news.category] || { bg: "#f1f5f9", color: "#475569" };
                     return (
-                      <a key={news.id} href={news.link} target="_blank" rel="noopener noreferrer" style={{
+                      <div key={news.id} style={{
                         display: "flex", flexDirection: "column", gap: 6,
                         padding: "14px 16px", borderRadius: 12,
                         background: "white", border: "1px solid #e2e8f0",
-                        textDecoration: "none", boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+                        boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
                       }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                           <span style={{
@@ -197,15 +197,10 @@ export default function Home() {
                             {news.title}
                           </span>
                         </div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8, paddingLeft: 2, marginTop: 2 }}>
-                          <span style={{ fontSize: "11px", color: "#94a3b8" }}>
-                            {news.date}
-                          </span>
-                          <span style={{ fontSize: "11px", color: "#0ea5e9", marginLeft: "auto", fontWeight: 600 }}>
-                            기사 보기 →
-                          </span>
-                        </div>
-                      </a>
+                        <span style={{ fontSize: "11px", color: "#94a3b8", paddingLeft: 2 }}>
+                          {news.date}
+                        </span>
+                      </div>
                     );
                   })}
                   {educationNews.length === 0 && (
