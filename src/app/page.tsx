@@ -128,30 +128,55 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* 실시간 입시 뉴스 피드 (신설) */}
+              {/* 실시간 입시 뉴스 피드 */}
               <div style={{ marginBottom: 32 }}>
                 <h3 style={{ fontSize: 16, fontWeight: 800, color: "#1e293b", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
-                  🔔 최신 입시 뉴스 및 설명회
+                  🗞️ 최신 입시 뉴스 및 설명회
                 </h3>
-                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                  {localData.educationNews && localData.educationNews.map((news: any) => (
-                    <a key={news.id} href={news.link} target="_blank" rel="noopener noreferrer" style={{
-                      display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderRadius: 12,
-                      background: "#f8fafc", border: "1px solid #e2e8f0", textDecoration: "none", transition: "transform 0.1s"
-                    }}>
-                      <span style={{
-                        fontSize: "11px", fontWeight: "800", padding: "3px 8px", borderRadius: "6px",
-                        background: news.category === "설명회" ? "#e0f2fe" : "#f1f5f9",
-                        color: news.category === "설명회" ? "#0369a1" : "#475569"
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  {localData.educationNews && localData.educationNews.map((news: any) => {
+                    const catColor: Record<string, {bg: string; color: string}> = {
+                      "설명회": { bg: "#e0f2fe", color: "#0369a1" },
+                      "뉴스":   { bg: "#fef2f2", color: "#dc2626" },
+                      "분석":   { bg: "#f0fdf4", color: "#16a34a" },
+                      "박람회": { bg: "#fffbeb", color: "#d97706" },
+                      "상담":   { bg: "#f5f3ff", color: "#7c3aed" },
+                    };
+                    const c = catColor[news.category] || { bg: "#f1f5f9", color: "#475569" };
+                    return (
+                      <a key={news.id} href={news.link} target="_blank" rel="noopener noreferrer" style={{
+                        display: "flex", flexDirection: "column", gap: 6,
+                        padding: "14px 16px", borderRadius: 12,
+                        background: "white", border: "1px solid #e2e8f0",
+                        textDecoration: "none", boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
                       }}>
-                        {news.category}
-                      </span>
-                      <span style={{ flex: 1, fontSize: "14px", fontWeight: "600", color: "#334155", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                        {news.title}
-                      </span>
-                      <span style={{ fontSize: "12px", color: "#94a3b8" }}>{news.date.split('-').slice(1).join('.')}</span>
-                    </a>
-                  ))}
+                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <span style={{
+                            fontSize: "10px", fontWeight: "800", padding: "2px 8px",
+                            borderRadius: "6px", background: c.bg, color: c.color, flexShrink: 0
+                          }}>
+                            {news.category}
+                          </span>
+                          <span style={{ fontSize: "13px", fontWeight: "700", color: "#1e293b", lineHeight: "1.4" }}>
+                            {news.title}
+                          </span>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8, paddingLeft: 2 }}>
+                          {news.source && (
+                            <span style={{ fontSize: "11px", color: "#0ea5e9", fontWeight: 600 }}>
+                              📰 {news.source}
+                            </span>
+                          )}
+                          <span style={{ fontSize: "11px", color: "#94a3b8" }}>
+                            {news.date}
+                          </span>
+                          <span style={{ fontSize: "11px", color: "#0ea5e9", marginLeft: "auto", fontWeight: 600 }}>
+                            기사 보기 →
+                          </span>
+                        </div>
+                      </a>
+                    );
+                  })}
                   {(!localData.educationNews || localData.educationNews.length === 0) && (
                     <p style={{ textAlign: "center", padding: "20px", color: "#94a3b8", fontSize: "14px" }}>
                       현재 업데이트된 새로운 소식이 없습니다.
