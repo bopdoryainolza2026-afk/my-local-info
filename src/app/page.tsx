@@ -154,7 +154,7 @@ export default function Home() {
                       <p style={{ margin: 0, fontSize: 11, color: "#64748b" }}>서울권 대학 및 진로 맞춤 상담</p>
                     </div>
                   </a>
-                  <a href="https://jinhak.goe.go.kr" target="_blank" rel="noopener noreferrer" style={{
+                  <a href="https://more.goe.go.kr/jinhak/index.do" target="_blank" rel="noopener noreferrer" style={{
                     flex: "1 1 200px", background: "#f8fafc", padding: "16px", borderRadius: 12, border: "1px solid #e2e8f0",
                     textDecoration: "none", display: "flex", alignItems: "center", gap: 12
                   }}>
