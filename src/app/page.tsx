@@ -27,41 +27,6 @@ function dateRange(start: string, end: string) {
 export default function Home() {
   const { events, benefits, restaurants, lastUpdated, source } = localData;
 
-  // ★ 최신 입시 뉴스 - 여기서 직접 수정하세요 (매주 업데이트) ★
-  const educationNews = [
-    {
-      id: "edu-news-001",
-      category: "설명회",
-      title: "2027 수도권 대학 입학설명회 일정 및 신청 방법 총정리",
-      date: "2026-04-19",
-      source: "네이버 뉴스 검색",
-      link: "https://search.naver.com/search.naver?where=news&query=2027+대입+입학설명회&sm=tab_jum",
-    },
-    {
-      id: "edu-news-002",
-      category: "뉴스",
-      title: "2027학년도 수시 80.3% 역대 최고…N수생 증가로 경쟁 치열 전망",
-      date: "2026-04-18",
-      source: "네이버 뉴스 검색",
-      link: "https://search.naver.com/search.naver?where=news&query=2027+대입+수시+경쟁&sm=tab_jum",
-    },
-    {
-      id: "edu-news-003",
-      category: "분석",
-      title: "2028 대입 개편 앞둔 마지막 현행 체제…2027 입시 핵심 전략은?",
-      date: "2026-04-15",
-      source: "네이버 뉴스 검색",
-      link: "https://search.naver.com/search.naver?where=news&query=2027+입시+전략+분석&sm=tab_jum",
-    },
-    {
-      id: "edu-news-004",
-      category: "박람회",
-      title: "2027학년도 수시 대학입학정보박람회 7월 23~25일 코엑스 개최",
-      date: "2026-04-12",
-      source: "네이버 뉴스 검색",
-      link: "https://search.naver.com/search.naver?where=news&query=2027+대학입학정보박람회&sm=tab_jum",
-    },
-  ];
 
   // 용인시 포함 여부 검사 함수
   const isYongin = (item: any) => 
@@ -133,129 +98,6 @@ export default function Home() {
             <PagedBenefitSection items={yonginBenefits} allPosts={allPosts} />
           </section>
 
-          {/* ---- 2027 대입진학정보 섹션 (신설) ---- */}
-          <section id="education" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80 }}>
-            <SectionTitle emoji="🎓" title="2027 대입진학정보" />
-            <div style={{
-              background: "white",
-              borderRadius: 20,
-              padding: "24px",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
-              border: "1px solid #e2e8f0",
-            }}>
-              {/* 주요 일정표 */}
-              <div style={{ marginBottom: 32 }}>
-                <h3 style={{ fontSize: 16, fontWeight: 800, color: "#1e293b", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
-                  📅 2027학년도 대입 주요 일정 (예정)
-                </h3>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 12 }}>
-                  {[
-                    { date: "06.04(목)", title: "6월 모의평가", bg: "#f0f9ff", color: "#0369a1" },
-                    { date: "09.02(수)", title: "9월 모의평가", bg: "#f0f9ff", color: "#0369a1" },
-                    { date: "09.09~13", title: "수시 원서접수", bg: "#fef2f2", color: "#dc2626" },
-                    { date: "11.19(목)", title: "2027학년도 수능", bg: "#fffbeb", color: "#d97706" },
-                    { date: "12.29~31", title: "정시 원서접수", bg: "#f0fdf4", color: "#16a34a" },
-                  ].map((item, idx) => (
-                    <div key={idx} style={{ background: item.bg, padding: "14px", borderRadius: 12, textAlign: "center" }}>
-                      <p style={{ fontSize: 12, color: item.color, fontWeight: 800, marginBottom: 4 }}>{item.date}</p>
-                      <p style={{ fontSize: 13, fontWeight: 700, color: "#1e293b" }}>{item.title}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 실시간 입시 뉴스 피드 */}
-              <div style={{ marginBottom: 32 }}>
-                <h3 style={{ fontSize: 16, fontWeight: 800, color: "#1e293b", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
-                  🗞️ 최신 입시 뉴스 및 설명회
-                </h3>
-                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  {educationNews.map((news: any) => {
-                    const catColor: Record<string, {bg: string; color: string}> = {
-                      "설명회": { bg: "#e0f2fe", color: "#0369a1" },
-                      "뉴스":   { bg: "#fef2f2", color: "#dc2626" },
-                      "분석":   { bg: "#f0fdf4", color: "#16a34a" },
-                      "박람회": { bg: "#fffbeb", color: "#d97706" },
-                      "상담":   { bg: "#f5f3ff", color: "#7c3aed" },
-                    };
-                    const c = catColor[news.category] || { bg: "#f1f5f9", color: "#475569" };
-                    return (
-                      <a key={news.id} href={news.link} target="_blank" rel="noopener noreferrer" style={{
-                        display: "flex", flexDirection: "column", gap: 6,
-                        padding: "14px 16px", borderRadius: 12,
-                        background: "white", border: "1px solid #e2e8f0",
-                        textDecoration: "none", boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
-                      }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                          <span style={{
-                            fontSize: "10px", fontWeight: "800", padding: "2px 8px",
-                            borderRadius: "6px", background: c.bg, color: c.color, flexShrink: 0
-                          }}>
-                            {news.category}
-                          </span>
-                          <span style={{ fontSize: "13px", fontWeight: "700", color: "#1e293b", lineHeight: "1.4" }}>
-                            {news.title}
-                          </span>
-                        </div>
-                        <div style={{ display: "flex", alignItems: "center", paddingLeft: 2, marginTop: 2 }}>
-                          <span style={{ fontSize: "11px", color: "#94a3b8" }}>
-                            {news.date}
-                          </span>
-                          <span style={{ fontSize: "11px", color: "#0ea5e9", marginLeft: "auto", fontWeight: 600 }}>
-                            기사 보기 →
-                          </span>
-                        </div>
-                      </a>
-                    );
-                  })}
-                  {educationNews.length === 0 && (
-                    <p style={{ textAlign: "center", padding: "20px", color: "#94a3b8", fontSize: "14px" }}>
-                      현재 업데이트된 새로운 소식이 없습니다.
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {/* 주요 정보 사이트 버튼 */}
-              <div>
-                <h3 style={{ fontSize: 16, fontWeight: 800, color: "#1e293b", marginBottom: 16 }}>
-                  🔗 바로가기 서비스
-                </h3>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-                  <a href="https://www.adiga.kr" target="_blank" rel="noopener noreferrer" style={{
-                    flex: "1 1 200px", background: "#f8fafc", padding: "16px", borderRadius: 12, border: "1px solid #e2e8f0",
-                    textDecoration: "none", display: "flex", alignItems: "center", gap: 12, transition: "transform 0.2s"
-                  }}>
-                    <span style={{ fontSize: 24 }}>🏛️</span>
-                    <div>
-                      <p style={{ margin: 0, fontSize: 14, fontWeight: 800, color: "#1e293b" }}>대입정보포탈 '어디가'</p>
-                      <p style={{ margin: 0, fontSize: 11, color: "#64748b" }}>전국 대학별 진학 정보 총망라</p>
-                    </div>
-                  </a>
-                  <a href="https://www.jinhak.or.kr" target="_blank" rel="noopener noreferrer" style={{
-                    flex: "1 1 200px", background: "#f8fafc", padding: "16px", borderRadius: 12, border: "1px solid #e2e8f0",
-                    textDecoration: "none", display: "flex", alignItems: "center", gap: 12
-                  }}>
-                    <span style={{ fontSize: 24 }}>🏙️</span>
-                    <div>
-                      <p style={{ margin: 0, fontSize: 14, fontWeight: 800, color: "#1e293b" }}>서울 진로진학정보센터</p>
-                      <p style={{ margin: 0, fontSize: 11, color: "#64748b" }}>서울권 대학 및 진로 맞춤 상담</p>
-                    </div>
-                  </a>
-                  <a href="https://more.goe.go.kr/jinhak/index.do" target="_blank" rel="noopener noreferrer" style={{
-                    flex: "1 1 200px", background: "#f8fafc", padding: "16px", borderRadius: 12, border: "1px solid #e2e8f0",
-                    textDecoration: "none", display: "flex", alignItems: "center", gap: 12
-                  }}>
-                    <span style={{ fontSize: 24 }}>🏔️</span>
-                    <div>
-                      <p style={{ margin: 0, fontSize: 14, fontWeight: 800, color: "#1e293b" }}>경기 진학정보센터</p>
-                      <p style={{ margin: 0, fontSize: 11, color: "#64748b" }}>경기도 교육청 공식 진학 가이드</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
 
           {/* ---- 우리동네 맛집 섹션 (상단 이동) ---- */}
           <section id="restaurants" style={{ marginTop: 20, marginBottom: 50 }}>
@@ -659,7 +501,7 @@ function MainNavbar() {
   const menus = [
     { name: "🎪 행사/축제", id: "#events" },
     { name: "💰 지원금/혜택", id: "#benefits" },
-    { name: "🎓 진학정보", id: "#education" },
+
     { name: "🍱 지역맛집", id: "#restaurants" },
     { name: "💬 커뮤니티", id: "#community" },
     { name: "📝 Blog", id: "#blog" },
