@@ -571,6 +571,7 @@ function MainNavbar() {
   const menus = [
     { name: "🎪 행사/축제", id: "#events" },
     { name: "💰 지원금/혜택", id: "#benefits" },
+    { name: "🎓 진학정보", id: "#education" },
     { name: "🍱 지역맛집", id: "#restaurants" },
     { name: "💬 커뮤니티", id: "#community" },
     { name: "📝 Blog", id: "#blog" },
