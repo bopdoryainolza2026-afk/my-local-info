@@ -26,7 +26,42 @@ function dateRange(start: string, end: string) {
 
 export default function Home() {
   const { events, benefits, restaurants, lastUpdated, source } = localData;
-  const educationNews: any[] = (localData as any).educationNews || [];
+
+  // ★ 최신 입시 뉴스 - 여기서 직접 수정하세요 (매주 업데이트) ★
+  const educationNews = [
+    {
+      id: "edu-news-001",
+      category: "설명회",
+      title: "성균관대·숭실대 등 2027 대입 전국 순회 입학설명회 본격 시작",
+      date: "2026-04-19",
+      source: "뉴시스",
+      link: "https://www.newsis.com/view/NISX20260419_0003416085",
+    },
+    {
+      id: "edu-news-002",
+      category: "뉴스",
+      title: "중앙대 '수능케어' 추진 논란…교육부 '고등교육법 위반' 제동",
+      date: "2026-04-18",
+      source: "연합뉴스",
+      link: "https://www.yna.co.kr/view/AKR20260418064900004",
+    },
+    {
+      id: "edu-news-003",
+      category: "분석",
+      title: "2027 대입 수시 80.3% 역대 최고…학교폭력 전형 반영 의무화",
+      date: "2026-04-15",
+      source: "베리타스알파",
+      link: "https://www.veritas-a.com/news/articleView.html?idxno=530000",
+    },
+    {
+      id: "edu-news-004",
+      category: "박람회",
+      title: "2027학년도 수시 대학입학정보박람회 7월 23~25일 코엑스 개최 확정",
+      date: "2026-04-12",
+      source: "대학입학정보박람회",
+      link: "https://univexpo.kr",
+    },
+  ];
 
   // 용인시 포함 여부 검사 함수
   const isYongin = (item: any) => 
