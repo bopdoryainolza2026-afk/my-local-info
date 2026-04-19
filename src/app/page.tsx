@@ -26,6 +26,7 @@ function dateRange(start: string, end: string) {
 
 export default function Home() {
   const { events, benefits, restaurants, lastUpdated, source } = localData;
+  const educationNews: any[] = (localData as any).educationNews || [];
 
   // 용인시 포함 여부 검사 함수
   const isYongin = (item: any) => 
@@ -134,7 +135,7 @@ export default function Home() {
                   🗞️ 최신 입시 뉴스 및 설명회
                 </h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  {localData.educationNews && localData.educationNews.map((news: any) => {
+                  {educationNews.map((news: any) => {
                     const catColor: Record<string, {bg: string; color: string}> = {
                       "설명회": { bg: "#e0f2fe", color: "#0369a1" },
                       "뉴스":   { bg: "#fef2f2", color: "#dc2626" },
@@ -177,7 +178,7 @@ export default function Home() {
                       </a>
                     );
                   })}
-                  {(!localData.educationNews || localData.educationNews.length === 0) && (
+                  {educationNews.length === 0 && (
                     <p style={{ textAlign: "center", padding: "20px", color: "#94a3b8", fontSize: "14px" }}>
                       현재 업데이트된 새로운 소식이 없습니다.
                     </p>
