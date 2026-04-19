@@ -42,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2764192052550924"
           crossOrigin="anonymous"
         ></script>
+        <meta name="google-adsense-account" content="ca-pub-2764192052550924" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
