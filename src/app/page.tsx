@@ -128,6 +128,38 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* 실시간 입시 뉴스 피드 (신설) */}
+              <div style={{ marginBottom: 32 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 800, color: "#1e293b", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
+                  🔔 최신 입시 뉴스 및 설명회
+                </h3>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  {localData.educationNews && localData.educationNews.map((news: any) => (
+                    <a key={news.id} href={news.link} target="_blank" rel="noopener noreferrer" style={{
+                      display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderRadius: 12,
+                      background: "#f8fafc", border: "1px solid #e2e8f0", textDecoration: "none", transition: "transform 0.1s"
+                    }}>
+                      <span style={{
+                        fontSize: "11px", fontWeight: "800", padding: "3px 8px", borderRadius: "6px",
+                        background: news.category === "설명회" ? "#e0f2fe" : "#f1f5f9",
+                        color: news.category === "설명회" ? "#0369a1" : "#475569"
+                      }}>
+                        {news.category}
+                      </span>
+                      <span style={{ flex: 1, fontSize: "14px", fontWeight: "600", color: "#334155", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {news.title}
+                      </span>
+                      <span style={{ fontSize: "12px", color: "#94a3b8" }}>{news.date.split('-').slice(1).join('.')}</span>
+                    </a>
+                  ))}
+                  {(!localData.educationNews || localData.educationNews.length === 0) && (
+                    <p style={{ textAlign: "center", padding: "20px", color: "#94a3b8", fontSize: "14px" }}>
+                      현재 업데이트된 새로운 소식이 없습니다.
+                    </p>
+                  )}
+                </div>
+              </div>
+
               {/* 주요 정보 사이트 버튼 */}
               <div>
                 <h3 style={{ fontSize: 16, fontWeight: 800, color: "#1e293b", marginBottom: 16 }}>
