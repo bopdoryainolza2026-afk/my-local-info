@@ -220,55 +220,60 @@ function BenefitCard({
 /** 맛집 카드 */
 function RestaurantCard({ emoji, name, menu, location, summary, link, tag, imageUrl }: any) {
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer" style={{
+      </div>
+    </>
+    </a>
+  );
+}
+
+/** 동네 이야기 카드 */
+function StoryCard({
+  emoji = "🏡", tag = "우리동네", name, author, summary, date, imageUrl,
+}: {
+  emoji?: string; tag?: string; name: string; author: string;
+  summary: string; date: string; imageUrl?: string;
+}) {
+  return (
+    <div style={{
       background: "white", borderRadius: 16, padding: "20px",
-      border: "1px solid #fed7aa", boxShadow: "0 2px 8px rgba(234,179,8,0.1)",
-      textDecoration: "none", color: "inherit", display: "flex",
-      flexDirection: "column", gap: 10, minHeight: "300px",
+      border: "1px solid #f9a8d4", boxShadow: "0 4px 12px rgba(244,114,182,0.08)",
+      display: "flex", flexDirection: "column", gap: 12, minHeight: "340px",
+      position: "relative", overflow: "hidden"
     }}>
-    <>
       {imageUrl ? (
-        <div style={{ 
-          width: "100%", 
-          height: "160px", 
-          borderRadius: "12px", 
-          overflow: "hidden",
-          marginBottom: "12px",
-          position: "relative"
-        }}>
-          <img 
-            src={imageUrl} 
-            alt={name} 
-            style={{ width: "100%", height: "100%", objectFit: "cover" }} 
-          />
-          <span style={{ 
-            position: "absolute", top: "10px", right: "10px",
-            fontSize: 11, fontWeight: 700, padding: "3px 10px", 
-            borderRadius: 20, background: "rgba(255, 237, 213, 0.9)", color: "#9a3412" 
+        <div style={{ width: "100%", height: "180px", borderRadius: "12px", overflow: "hidden", position: "relative" }}>
+          <img src={imageUrl} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0,
+            background: "linear-gradient(transparent, rgba(0,0,0,0.6))",
+            padding: "20px 12px 8px", color: "white", fontSize: "12px", fontWeight: 700
           }}>
-            {tag}
-          </span>
+            by {author}
+          </div>
         </div>
       ) : (
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{ fontSize: 32 }}>{emoji}</span>
-          <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#ffedd5", color: "#9a3412" }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#fdf2f8", color: "#db2777" }}>
             {tag}
           </span>
         </div>
       )}
-      <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
-        {name}
-      </h3>
-      <p style={{ fontSize: 13, color: "#ea580c", fontWeight: 700 }}>🍴 {menu}</p>
-      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
-        {summary}
-      </p>
-      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 4, marginTop: "auto" }}>
-        📍 {location}
+      
+      <h3 style={{ fontSize: 18, fontWeight: 800, color: "#1e293b", marginTop: imageUrl ? 4 : 0 }}>{name}</h3>
+      <p style={{ 
+        fontSize: 14, color: "#475569", lineHeight: 1.6, flex: 1,
+        display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" 
+      }}>{summary}</p>
+      
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: 12, borderTop: "1px solid #f1f5f9" }}>
+        <span style={{ fontSize: 12, color: "#94a3b8" }}>{date}</span>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}>❤️ 12</button>
+          <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}>💬 5</button>
+        </div>
       </div>
-    </>
-    </a>
+    </div>
   );
 }
 
@@ -382,6 +387,90 @@ export function PagedRestaurantSection({ items }: { items: any[] }) {
             link={res.link}
             tag={res.tag}
             imageUrl={res.imageUrl}
+          />
+        ))}
+      </div>
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+    </div>
+  );
+}
+
+/** 동네 이야기 카드 */
+function StoryCard({
+  emoji = "🏡", tag = "우리동네", name, author, summary, date, imageUrl,
+}: {
+  emoji?: string; tag?: string; name: string; author: string;
+  summary: string; date: string; imageUrl?: string;
+}) {
+  return (
+    <div style={{
+      background: "white", borderRadius: 16, padding: "20px",
+      border: "1px solid #f9a8d4", boxShadow: "0 4px 12px rgba(244,114,182,0.08)",
+      display: "flex", flexDirection: "column", gap: 12, minHeight: "340px",
+      position: "relative", overflow: "hidden"
+    }}>
+      {imageUrl ? (
+        <div style={{ width: "100%", height: "180px", borderRadius: "12px", overflow: "hidden", position: "relative" }}>
+          <img src={imageUrl} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0,
+            background: "linear-gradient(transparent, rgba(0,0,0,0.6))",
+            padding: "20px 12px 8px", color: "white", fontSize: "12px", fontWeight: 700
+          }}>
+            by {author}
+          </div>
+        </div>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{ fontSize: 32 }}>{emoji}</span>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#fdf2f8", color: "#db2777" }}>
+            {tag}
+          </span>
+        </div>
+      )}
+      
+      <h3 style={{ fontSize: 18, fontWeight: 800, color: "#1e293b", marginTop: imageUrl ? 4 : 0 }}>{name}</h3>
+      <p style={{ 
+        fontSize: 14, color: "#475569", lineHeight: 1.6, flex: 1,
+        display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" 
+      }}>{summary}</p>
+      
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: 12, borderTop: "1px solid #f1f5f9" }}>
+        <span style={{ fontSize: 12, color: "#94a3b8" }}>{date}</span>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}>❤️ 12</button>
+          <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}>💬 5</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** 페이징이 적용된 동네 이야기 섹션 */
+export function PagedStorySection({ items }: { items: any[] }) {
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+
+  const gridStyle: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+    gap: 24,
+  };
+
+  return (
+    <div>
+      <div style={gridStyle}>
+        {paginated.map((story: any) => (
+          <StoryCard
+            key={story.id}
+            emoji={story.emoji}
+            tag={story.tag}
+            name={story.name}
+            author={story.author}
+            summary={story.summary}
+            date={story.date}
+            imageUrl={story.imageUrl}
           />
         ))}
       </div>

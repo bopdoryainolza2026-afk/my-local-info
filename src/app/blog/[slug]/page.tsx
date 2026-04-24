@@ -115,8 +115,57 @@ export default async function PostPage({ params }: Props) {
           <h1 style={{ fontSize: 32, fontWeight: 900, color: "#1e293b", marginBottom: 12, lineHeight: 1.3 }}>
             {postData.title}
           </h1>
-          <p style={{ fontSize: 14, color: "#94a3b8" }}>최종 업데이트: {postData.date}</p>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <p style={{ fontSize: 14, color: "#94a3b8" }}>최종 업데이트: {postData.date}</p>
+            {/* 날짜 비교 및 경고 문구 추가 */}
+            {(() => {
+              const postDate = new Date(postData.date);
+              const today = new Date();
+              const diffTime = Math.abs(today.getTime() - postDate.getTime());
+              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+              
+              if (diffDays > 90) {
+                return (
+                  <div style={{ 
+                    background: "#fff7ed", color: "#c2410c", 
+                    padding: "6px 12px", borderRadius: "8px", 
+                    fontSize: "12px", fontWeight: 700,
+                    border: "1px solid #ffedd5",
+                    display: "flex", alignItems: "center", gap: "6px"
+                  }}>
+                    ⚠️ 작성된 지 3개월이 넘은 정보입니다.
+                  </div>
+                );
+              }
+              return null;
+            })()}
+          </div>
         </header>
+
+        {/* 오래된 글 안내 상세 배너 */}
+        {(() => {
+          const postDate = new Date(postData.date);
+          const today = new Date();
+          const diffDays = Math.ceil(Math.abs(today.getTime() - postDate.getTime()) / (1000 * 60 * 60 * 24));
+          if (diffDays > 90) {
+            return (
+              <div style={{ 
+                background: "#fff1f2", border: "1px solid #fecdd3", 
+                padding: "16px", borderRadius: "16px", marginBottom: "32px",
+                display: "flex", gap: "12px", alignItems: "flex-start"
+              }}>
+                <span style={{ fontSize: "24px" }}>📢</span>
+                <div>
+                  <p style={{ margin: 0, fontWeight: 800, color: "#be123c", fontSize: "15px" }}>잠시만요! 이 정보는 업데이트가 필요할 수 있어요.</p>
+                  <p style={{ margin: "4px 0 0", color: "#e11d48", fontSize: "13px", lineHeight: 1.5 }}>
+                    게시글이 작성된 지 <b>{diffDays}일</b>이 지났습니다. 지원 사업이나 행사의 경우 상세 내용이 변경되었을 수 있으니, 꼭 하단의 <b>'원문 출처'</b>를 통해 최신 내용을 확인해 주세요!
+                  </p>
+                </div>
+              </div>
+            );
+          }
+          return null;
+        })()}
 
         {/* 마크다운 렌더링 구역 */}
         <div className="prose prose-sky max-w-none" style={{ background: "white", padding: "32px", borderRadius: 20, border: "1px solid #e2e8f0" }}>

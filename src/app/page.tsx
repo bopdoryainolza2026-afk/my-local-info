@@ -2,7 +2,7 @@ import Link from "next/link";
 import localData from "../../public/data/local-info.json";
 import { getSortedPostsData } from "@/lib/posts";
 import RightSidebar from "@/components/RightSidebar";
-import { PagedEventSection, PagedBenefitSection, PagedRestaurantSection } from "@/components/PagedSections";
+import { PagedEventSection, PagedBenefitSection, PagedRestaurantSection, PagedStorySection } from "@/components/PagedSections";
 
 // 태그 색상 매핑
 const tagStyle: Record<string, { bg: string; color: string }> = {
@@ -27,6 +27,43 @@ function dateRange(start: string, end: string) {
 export default function Home() {
   const { events, benefits, restaurants, lastUpdated, source } = localData;
 
+  // 동네 이야기 모의 데이터 (사용자 참여 유도용)
+  const neighborhoodStories = [
+    {
+      id: "story-001",
+      name: "나만 알고 싶은 수지구 숲길 산책로 🌲",
+      author: "용인토박이",
+      summary: "성복동 어귀에 있는 작은 오솔길이에요. 아침 이슬 맞으며 걸으면 스트레스가 확 풀립니다. 사람도 별로 없어서 조용히 사색하기 좋아요.",
+      date: "2026-04-24",
+      imageUrl: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=400",
+      emoji: "🌲",
+      tag: "산책로"
+    },
+    {
+      id: "story-002",
+      name: "아이와 함께 가기 좋은 기흥구 카페 🍰",
+      author: "워킹맘민지",
+      summary: "보정동 카페거리에 있는 곳인데, 예스키즈존이라 눈치 안 보고 맛있는 케이크 먹고 왔어요. 마당에 작은 모래놀이장도 있더라고요!",
+      date: "2026-04-23",
+      imageUrl: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=400",
+      emoji: "🍰",
+      tag: "카페"
+    },
+    {
+      id: "story-003",
+      name: "처인구 고택의 고즈넉한 봄날 🏯",
+      author: "사진작가K",
+      summary: "양지면에 있는 오래된 고택에 다녀왔습니다. 지금 딱 매화가 예쁘게 피어있어서 사진 찍기 너무 좋아요. 이번 주말 출사지로 강추!",
+      date: "2026-04-22",
+      imageUrl: "https://images.unsplash.com/photo-1542640244-7e672d6cef21?auto=format&fit=crop&q=80&w=400",
+      emoji: "🏯",
+      tag: "명소"
+    }
+  ];
+
+
+  // 오늘 날짜 가져오기 (비교용)
+  const todayStr = new Date().toISOString().split('T')[0];
 
   // 용인시 포함 여부 검사 함수
   const isYongin = (item: any) => 
@@ -34,12 +71,36 @@ export default function Home() {
     (item.target && item.target.includes("용인")) || 
     (item.location && item.location.includes("용인"));
 
-  // 용인시 전용 데이터
-  const yonginEvents = events.filter(isYongin);
-  const yonginBenefits = benefits.filter(isYongin);
+  // 데이터 정렬 및 필터링 로직
+  const getActiveItems = (items: any[]) => {
+    return items
+      .filter(item => {
+        // 종료일이 오늘보다 이전이면 제외 (이미 끝난 행사)
+        const endDate = item.endDate || item.deadline || "9999-12-31";
+        return endDate >= todayStr;
+      })
+      .sort((a, b) => {
+        // 시작일이 미래인 것(곧 시작할 것)을 우선 순위로 배치
+        const aStart = a.startDate || a.date || "0000-00-00";
+        const bStart = b.startDate || b.date || "0000-00-00";
+        
+        const aIsFuture = aStart > todayStr;
+        const bIsFuture = bStart > todayStr;
 
-  const gyeonggiEvents = events.filter((e) => !isYongin(e));
-  const gyeonggiBenefits = benefits.filter((b) => !isYongin(b));
+        if (aIsFuture && !bIsFuture) return -1;
+        if (!aIsFuture && bIsFuture) return 1;
+
+        // 둘 다 미래이거나 둘 다 진행 중이면 최신순(시작일 가까운 순)
+        return aStart.localeCompare(bStart);
+      });
+  };
+
+  // 용인시 전용 데이터 필터링 및 정렬 적용
+  const yonginEvents = getActiveItems(events.filter(isYongin));
+  const yonginBenefits = getActiveItems(benefits.filter(isYongin));
+
+  const gyeonggiEvents = getActiveItems(events.filter((e) => !isYongin(e)));
+  const gyeonggiBenefits = getActiveItems(benefits.filter((b) => !isYongin(b)));
 
   // 모든 블로그 포스트 가져오기
   const allPosts = getSortedPostsData();
@@ -99,26 +160,79 @@ export default function Home() {
           </section>
 
 
-          {/* ---- 우리동네 맛집 섹션 (상단 이동) ---- */}
           <section id="restaurants" style={{ marginTop: 20, marginBottom: 50 }}>
             <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
             <PagedRestaurantSection items={restaurants as any[]} />
           </section>
 
+          {/* ---- 나만의 용인, 우리 동네 이야기 섹션 (개편) ---- */}
+          <section id="stories" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 14 }}>
+              <SectionTitle emoji="🏠" title="나만의 용인, 우리 동네 이야기" />
+              <button style={{
+                fontSize: "13px", fontWeight: 700, color: "#be185d", 
+                background: "#fff1f2", border: "1px solid #f9a8d4",
+                padding: "8px 16px", borderRadius: "10px", cursor: "pointer",
+                marginBottom: "14px"
+              }}>
+                글쓰기 가이드 보기
+              </button>
+            </div>
+            
+            <div style={{
+              background: "linear-gradient(135deg, #fff5f8 0%, #ffffff 100%)",
+              borderRadius: 24,
+              padding: "32px",
+              marginBottom: "32px",
+              border: "2px dashed #f9a8d4",
+              textAlign: "center",
+              boxShadow: "0 10px 25px rgba(219,39,119,0.05)"
+            }}>
+              <span style={{ fontSize: "40px", display: "block", marginBottom: "16px" }}>📸</span>
+              <h4 style={{ fontSize: "22px", fontWeight: 900, color: "#be185d", marginBottom: "12px" }}>
+                여러분의 소중한 경험을 들려주세요!
+              </h4>
+              <p style={{ fontSize: "15px", color: "#475569", lineHeight: 1.7, maxWidth: "500px", margin: "0 auto 24px" }}>
+                나만 알고 싶은 용인 맛집, 주차 꿀팁, 아이와 가기 좋은 공원... <br />
+                따뜻한 이야기 한 줄이 이웃에게 큰 힘이 됩니다. 💖
+              </p>
+              <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
+                <button style={{
+                  background: "#db2777", color: "white", padding: "14px 32px", borderRadius: "14px",
+                  fontWeight: 800, border: "none", cursor: "pointer", boxShadow: "0 4px 15px rgba(219,39,119,0.3)",
+                  fontSize: "16px"
+                }}>
+                  지금 바로 이야기 쓰기 →
+                </button>
+              </div>
+              <p style={{ fontSize: "12px", color: "#94a3b8", marginTop: "20px" }}>
+                * 선정된 이야기는 메인 화면에 소개되며, 소정의 선물을 드립니다!
+              </p>
+            </div>
+
+            <PagedStorySection items={neighborhoodStories} />
+          </section>
+
           {/* ---- 커뮤니티 및 소통 섹션 (신설) ---- */}
           <section id="community" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80 }}>
-            <SectionTitle emoji="💬" title="커뮤니티 및 소통" />
+            <SectionTitle emoji="💬" title="이웃과 함께하는 소통마당" />
             <div style={{
               background: "white",
               borderRadius: 20,
               padding: "32px 24px",
               boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
               border: "1px solid #e2e8f0",
-              textAlign: "center"
             }}>
-              <p style={{ fontSize: "16px", color: "#475569", marginBottom: "24px", fontWeight: 600 }}>
-                우리 동네 소식, 구청 게시판에서 이웃들과 함께 나누어 보세요!
-              </p>
+              <div style={{ textAlign: "center", marginBottom: "32px" }}>
+                <p style={{ fontSize: "16px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>
+                  우리 동네의 생생한 소식, 구청 소통마당에서 확인해 보세요!
+                </p>
+                <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.6 }}>
+                  다른 이웃들의 이야기에 <b>공감</b>하고, 자신만의 <b>추천 팁</b>을 댓글로 달아주세요. <br />
+                  가장 활발하게 소통해주신 분들께는 <b>지역 상점 쿠폰</b>을 드립니다! 🎁
+                </p>
+              </div>
+              
               <div style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
@@ -129,7 +243,7 @@ export default function Home() {
                   color: "white", padding: "18px", borderRadius: "16px",
                   fontWeight: 800, fontSize: "16px", textDecoration: "none",
                   boxShadow: "0 4px 12px rgba(14,165,233,0.3)",
-                  transition: "transform 0.2s"
+                  textAlign: "center"
                 }}>
                   🌳 처인구 소통마당 →
                 </a>
@@ -503,6 +617,7 @@ function MainNavbar() {
     { name: "💰 지원금/혜택", id: "#benefits" },
 
     { name: "🍱 지역맛집", id: "#restaurants" },
+    { name: "🏠 동네이야기", id: "#stories" },
     { name: "💬 커뮤니티", id: "#community" },
     { name: "📝 Blog", id: "#blog" },
   ];
@@ -571,11 +686,11 @@ function CleanHero() {
         </p>
         <h1 style={{ fontSize: "38px", fontWeight: 900, color: "#0f172a", marginBottom: "20px", lineHeight: 1.3 }}>
           똑똑한 용인 생활의 시작,<br />
-          <span style={{ color: "#0ea5e9" }}>모든 정보</span>를 한눈에 확인하세요.
+          <span style={{ color: "#0ea5e9" }}>우리 동네 이야기</span>와 함께하세요.
         </h1>
         <p style={{ fontSize: "17px", color: "#64748b", marginBottom: "32px", lineHeight: 1.6 }}>
-          용인시의 실시간 축제부터 정부 지원금, 현지인 추천 맛집까지<br />
-          매일 아침 AI가 정성껏 모아 전달해 드립니다.
+          용인의 실시간 축제부터 이웃들이 직접 전하는 숨은 명소까지<br />
+          매일 아침 AI와 이웃들이 정성껏 모아 전달해 드립니다.
         </p>
         <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
           <a href="#events" style={{
