@@ -219,9 +219,39 @@ function BenefitCard({
 
 /** 맛집 카드 */
 function RestaurantCard({ emoji, name, menu, location, summary, link, tag, imageUrl }: any) {
+  const cardStyle: React.CSSProperties = {
+    background: "white",
+    borderRadius: 16,
+    padding: "20px",
+    border: "1px solid #fed7aa",
+    boxShadow: "0 2px 8px rgba(234,179,8,0.1)",
+    textDecoration: "none",
+    color: "inherit",
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+    minHeight: "300px",
+  };
+
   return (
+    <a href={link} target="_blank" rel="noopener noreferrer" style={cardStyle}>
+      {imageUrl ? (
+        <div style={{ width: "100%", height: "160px", borderRadius: "12px", overflow: "hidden", marginBottom: "12px", position: "relative" }}>
+          <img src={imageUrl} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <span style={{ position: "absolute", top: "10px", right: "10px", fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#ffedd5", color: "#9a3412" }}>{tag}</span>
+        </div>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{ fontSize: 32 }}>{emoji}</span>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#ffedd5", color: "#9a3412" }}>{tag}</span>
+        </div>
+      )}
+      <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{name}</h3>
+      <p style={{ fontSize: 13, color: "#ea580c", fontWeight: 700 }}>🍴 {menu}</p>
+      <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{summary}</p>
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 4, marginTop: "auto" }}>
+        📍 {location}
       </div>
-    </>
     </a>
   );
 }
