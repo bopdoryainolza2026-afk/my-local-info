@@ -642,15 +642,15 @@ function MainNavbar() {
         <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
           <span style={{ fontSize: "12px", fontWeight: 700, color: "#94a3b8", marginRight: "4px" }}>구청 바로가기</span>
           <div style={{ display: "flex", gap: "4px", background: "#f8fafc", padding: "4px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
-            <a href="https://www.cheoin-gu.go.kr" target="_blank" rel="noreferrer" style={{ 
+            <a href="https://www.cheoingu.go.kr" target="_blank" rel="noreferrer" style={{ 
               textDecoration: "none", padding: "4px 10px", borderRadius: "6px", fontSize: "12px", 
               fontWeight: 800, color: "#475569", background: "white", boxShadow: "0 1px 2px rgba(0,0,0,0.05)" 
             }}>처인</a>
-            <a href="https://www.giheung-gu.go.kr" target="_blank" rel="noreferrer" style={{ 
+            <a href="https://www.giheunggu.go.kr" target="_blank" rel="noreferrer" style={{ 
               textDecoration: "none", padding: "4px 10px", borderRadius: "6px", fontSize: "12px", 
               fontWeight: 800, color: "#475569" 
             }}>기흥</a>
-            <a href="https://www.suji-gu.go.kr" target="_blank" rel="noreferrer" style={{ 
+            <a href="https://www.sujigu.go.kr" target="_blank" rel="noreferrer" style={{ 
               textDecoration: "none", padding: "4px 10px", borderRadius: "6px", fontSize: "12px", 
               fontWeight: 800, color: "#475569" 
             }}>수지</a>
