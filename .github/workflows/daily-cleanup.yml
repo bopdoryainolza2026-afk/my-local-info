@@ -1,0 +1,29 @@
+name: Daily Data Cleanup
+
+on:
+  schedule:
+    # 매일 한국 시간 오전 9시 (UTC 00:00)에 실행
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 수동 실행 버튼 추가
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Cleanup Script
+        run: node scripts/cleanup.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add public/data/local-info.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: daily data cleanup [skip ci]" && git push)
