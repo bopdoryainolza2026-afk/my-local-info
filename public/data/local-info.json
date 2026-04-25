@@ -45,7 +45,7 @@
       "location": "용인 에버랜드 장미원",
       "target": "용인시 전 시민 및 방문객",
       "summary": "수천만 송이의 장미가 펼쳐지는 향기로운 봄의 향연. 야간 조명과 함께 즐기는 로맨틱한 장미 정원은 용인 최고의 데이트 코스입니다.",
-      "link": "https://www.everland.com/everland/home/news/1224956_14838.html",
+      "link": "https://www.everland.com/everland/event",
       "emoji": "🌹",
       "tag": "관람"
     },
@@ -84,7 +84,7 @@
       "location": "용인 관내 주요 도서관",
       "target": "용인 시민 누구나",
       "summary": "올해의 한 책으로 선정된 도서의 작가를 직접 만나는 시간! 책 속 이야기에 대해 깊이 소통하고 인문학적 소양을 넓힐 수 있는 무료 강연입니다.",
-      "link": "https://lib.yongin.go.kr/suji/menu/10055/program/30013/eventList.do",
+      "link": "https://lib.yongin.go.kr/suji/index.do",
       "emoji": "📚",
       "tag": "강연"
     },
@@ -110,7 +110,7 @@
       "location": "용인 농촌테마파크 (원삼면)",
       "target": "가족 단위 방문객",
       "summary": "직접 수확한 농산물을 팔아보는 어린이 농부 체험부터 떡메치기까지! 시골의 정을 듬뿍 느낄 수 있는 가족 맞춤형 체험 행사입니다.",
-      "link": "https://www.yongin.go.kr/tour/fvtpexprnprgm/BD_groupFvtpExprnPrgmList.do",
+      "link": "https://www.yongin.go.kr/home/yitour/ytour01/yttour05.jsp",
       "emoji": "🌾",
       "tag": "체험"
     },
@@ -123,7 +123,7 @@
       "location": "용인 청년 LAB (수지·기흥·처인)",
       "target": "만 18세~39세 용인 청년",
       "summary": "AI 면접과 자기소개서 분석, 어떻게 대비할까요? 최신 AI 트렌드를 활용한 취업 전략을 전문가와 함께 세워보는 실무형 워크숍입니다.",
-      "link": "https://www.yylab.kr/program/list.do",
+      "link": "https://youth.yongin.go.kr/web/main/program/all/list",
       "emoji": "💻",
       "tag": "교육"
     },
