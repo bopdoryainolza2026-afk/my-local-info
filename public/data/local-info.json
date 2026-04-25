@@ -143,15 +143,15 @@
     {
       "id": "evt-2026-009",
       "category": "행사",
-      "name": "용인 처인구 '한택식물원' 여름 생태 학교",
-      "startDate": "2026-07-20",
-      "endDate": "2026-08-14",
+      "name": "2026 한택식물원 '봄꽃 페스티벌'",
+      "startDate": "2026-04-17",
+      "endDate": "2026-05-17",
       "location": "용인 한택식물원",
-      "target": "초등학생 및 동반 가족",
-      "summary": "희귀 식물들이 가득한 한택식물원에서 떠나는 초록색 모험! 자연의 신비로움을 직접 관찰하고 배우는 여름방학 최고의 생태 교육 프로그램입니다.",
-      "link": "http://www.hantaek.co.kr/fes_edu/edufam/fam_summer/",
-      "emoji": "🌿",
-      "tag": "교육"
+      "target": "용인 시민 및 방문객 누구나",
+      "summary": "36개의 테마 정원에서 펼쳐지는 1만여 종 꽃들의 향연! 인위적이지 않은 자연 그대로의 아름다움을 만끽할 수 있는 용인의 대표 봄 축제입니다.",
+      "link": "https://hantaek.co.kr/fes_edu/edufes/fes_spring/",
+      "emoji": "🌷",
+      "tag": "축제"
     },
     {
       "id": "evt-2026-010",
