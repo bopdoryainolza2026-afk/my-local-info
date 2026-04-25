@@ -674,8 +674,8 @@ function CleanHero() {
           YONGIN LOCAL GUIDE
         </p>
         <h1 style={{ fontSize: "38px", fontWeight: 900, color: "#0f172a", marginBottom: "20px", lineHeight: 1.3 }}>
-          똑똑한 용인 생활의 시작,<br />
-          <span style={{ color: "#0ea5e9" }}>우리 동네 이야기</span>와 함께하세요.
+          어제 나온 혜택부터 오늘 열리는 축제까지,<br />
+          용인의 <span style={{ color: "#0ea5e9" }}>모든 것</span>을 한눈에!
         </h1>
         <p style={{ fontSize: "17px", color: "#64748b", marginBottom: "32px", lineHeight: 1.6 }}>
           용인의 실시간 축제부터 이웃들이 직접 전하는 숨은 명소까지<br />
