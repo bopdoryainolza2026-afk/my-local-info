@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const ITEMS_PER_PAGE = 6;
@@ -319,6 +319,22 @@ function StoryCard({
 /** 페이징이 적용된 이벤트 섹션 */
 export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts: any[] }) {
   const [page, setPage] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // 페이지 번호 불러오기
+  useEffect(() => {
+    const savedPage = sessionStorage.getItem("event-page");
+    if (savedPage) setPage(Number(savedPage));
+    setIsLoaded(true);
+  }, []);
+
+  // 페이지 번호 저장하기
+  useEffect(() => {
+    if (isLoaded) {
+      sessionStorage.setItem("event-page", String(page));
+    }
+  }, [page, isLoaded]);
+
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
@@ -361,6 +377,20 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
 /** 페이징이 적용된 혜택 섹션 */
 export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPosts: any[] }) {
   const [page, setPage] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const savedPage = sessionStorage.getItem("benefit-page");
+    if (savedPage) setPage(Number(savedPage));
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      sessionStorage.setItem("benefit-page", String(page));
+    }
+  }, [page, isLoaded]);
+
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
@@ -403,6 +433,20 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
 /** 페이징이 적용된 맛집 섹션 */
 export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allPosts: any[] }) {
   const [page, setPage] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const savedPage = sessionStorage.getItem("restaurant-page");
+    if (savedPage) setPage(Number(savedPage));
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      sessionStorage.setItem("restaurant-page", String(page));
+    }
+  }, [page, isLoaded]);
+
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
@@ -447,6 +491,20 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
 /** 페이징이 적용된 동네 이야기 섹션 */
 export function PagedStorySection({ items }: { items: any[] }) {
   const [page, setPage] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const savedPage = sessionStorage.getItem("story-page");
+    if (savedPage) setPage(Number(savedPage));
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      sessionStorage.setItem("story-page", String(page));
+    }
+  }, [page, isLoaded]);
+
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
