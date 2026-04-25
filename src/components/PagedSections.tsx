@@ -323,7 +323,7 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const getLink = (item: any) => {
-    const matched = allPosts.find(p => p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
+    const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
     if (matched) return `/blog/${matched.slug}`;
     if (item.link && item.link !== "#") return item.link;
     return "/blog";
@@ -365,7 +365,7 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const getLink = (item: any) => {
-    const matched = allPosts.find(p => p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
+    const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
     if (matched) return `/blog/${matched.slug}`;
     if (item.link && item.link !== "#") return item.link;
     return "/blog";
@@ -407,15 +407,8 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const getLink = (item: any) => {
-    // 1. 이름으로 블로그 글 찾기
-    const matched = allPosts.find(p => 
-      p.title?.includes(item.name) || 
-      item.name?.includes(p.title) || 
-      p.content?.includes(item.name)
-    );
+    const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
     if (matched) return `/blog/${matched.slug}`;
-    
-    // 2. 없으면 기존 네이버 검색 링크
     if (item.link && item.link !== "#") return item.link;
     return "/blog";
   };

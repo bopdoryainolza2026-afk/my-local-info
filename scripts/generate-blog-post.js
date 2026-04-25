@@ -55,8 +55,13 @@ async function generateBlogPost() {
       if (isAlreadyWritten) continue;
 
       console.log(`[${createdCount + 1}/${MAX_POSTS_PER_RUN}] 블로그 생성 대상 항목:`, item.name);
-      await createPost(item, GEMINI_API_KEY, postsDirPath, allPostContents);
-      createdCount++;
+      try {
+        await createPost(item, GEMINI_API_KEY, postsDirPath, allPostContents);
+        createdCount++;
+      } catch (err) {
+        console.error(`❌ [${item.name}] 생성 실패:`, err.message);
+        continue; // 실패하면 다음 항목으로 진행
+      }
     }
 
     // [추가] 만약 새로 생성된 글이 너무 적으면, '오늘의 용인 생활 팁' 테마로 글 생성
