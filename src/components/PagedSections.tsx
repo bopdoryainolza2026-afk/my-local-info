@@ -258,17 +258,18 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag, image
 
 /** 동네 이야기 카드 */
 function StoryCard({
-  emoji = "🏡", tag = "우리동네", name, author, summary, date, imageUrl,
+  emoji = "🏡", tag = "우리동네", name, author, summary, date, imageUrl, link = "/blog",
 }: {
   emoji?: string; tag?: string; name: string; author: string;
-  summary: string; date: string; imageUrl?: string;
+  summary: string; date: string; imageUrl?: string; link?: string;
 }) {
   return (
-    <div style={{
+    <Link href={link} style={{
       background: "white", borderRadius: 16, padding: "20px",
       border: "1px solid #f9a8d4", boxShadow: "0 4px 12px rgba(244,114,182,0.08)",
       display: "flex", flexDirection: "column", gap: 12, minHeight: "340px",
-      position: "relative", overflow: "hidden"
+      position: "relative", overflow: "hidden", textDecoration: "none", color: "inherit",
+      cursor: "pointer"
     }}>
       {imageUrl ? (
         <div style={{ width: "100%", height: "180px", borderRadius: "12px", overflow: "hidden", position: "relative" }}>
@@ -303,7 +304,7 @@ function StoryCard({
           <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}>💬 5</button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -453,6 +454,7 @@ export function PagedStorySection({ items }: { items: any[] }) {
             summary={story.summary}
             date={story.date}
             imageUrl={story.imageUrl}
+            link={story.link}
           />
         ))}
       </div>

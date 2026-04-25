@@ -37,7 +37,8 @@ export default function Home() {
       date: "2026-04-24",
       imageUrl: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=400",
       emoji: "🌲",
-      tag: "산책로"
+      tag: "산책로",
+      link: "/blog/2026-04-24-yongin-walking-trail/"
     },
     {
       id: "story-002",
@@ -47,7 +48,8 @@ export default function Home() {
       date: "2026-04-23",
       imageUrl: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=400",
       emoji: "🍰",
-      tag: "카페"
+      tag: "카페",
+      link: "/blog/2026-04-23-giheung-kids-cafe/"
     },
     {
       id: "story-003",
@@ -57,7 +59,8 @@ export default function Home() {
       date: "2026-04-22",
       imageUrl: "https://images.unsplash.com/photo-1542640244-7e672d6cef21?auto=format&fit=crop&q=80&w=400",
       emoji: "🏯",
-      tag: "명소"
+      tag: "명소",
+      link: "/blog/2026-04-22-yongin-hanok-spring/"
     }
   ];
 
