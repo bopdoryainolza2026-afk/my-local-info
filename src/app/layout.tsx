@@ -59,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ></script>
         <meta name="google-adsense-account" content="ca-pub-2764192052550924" />
         <meta name="naver-site-verification" content="1daf4177364df2f359bc5fa40a9329dddad6673b" />
+        <meta name="google-site-verification" content="AAAjqQ7qdlEc-GZvCxCUt9RZo2BgQiUj7PTAP_xCPxI" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
