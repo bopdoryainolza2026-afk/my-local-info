@@ -140,6 +140,18 @@ export default async function PostPage({ params }: Props) {
               return null;
             })()}
           </div>
+          
+          {/* 상단 퀵 버튼 추가 */}
+          <div style={{ marginTop: "24px" }}>
+            <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{ 
+              display: "inline-block", fontSize: "14px", fontWeight: "bold", 
+              color: "white", background: "#0ea5e9", padding: "10px 24px", 
+              borderRadius: "30px", textDecoration: "none",
+              boxShadow: "0 4px 12px rgba(14,165,233,0.3)"
+            }}>
+              {postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 자세한 내용 원문 확인하기"}
+            </a>
+          </div>
         </header>
 
         {/* 오래된 글 안내 상세 배너 */}
