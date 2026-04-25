@@ -256,7 +256,7 @@
       "target": "용인시 거주 임신 20주 이상 임신부",
       "amount": "30만원 (용인와이페이)",
       "summary": "임신부의 건강한 출산을 돕기 위해 교통비 및 영양제 구입비 등으로 사용 가능한 지역화폐를 지원합니다. 보건소 방문 또는 온라인으로 신청 가능합니다.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www18/www18_05/www18_05_02/www18_05_02_03.jsp",
       "emoji": "🤰",
       "tag": "임신"
     },
@@ -270,7 +270,7 @@
       "target": "용인시 거주 출산 가정",
       "amount": "첫째 30만원 ~ 다섯째 이상 300만원",
       "summary": "아이를 낳고 키우기 좋은 용인을 만들기 위해 출산 시 현금을 지원합니다. 출생신고 시 함께 신청하면 편리합니다.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www18/www18_05/www18_05_02/www18_05_02_02.jsp",
       "emoji": "👶",
       "tag": "출산"
     },
@@ -284,7 +284,7 @@
       "target": "용인시 거주 만 18~39세 무주택 청년 소득 기준 충족자",
       "amount": "대출잔액의 1% (최대 100만원)",
       "summary": "자립을 준비하거나 신혼부부인 청년들을 위해 주택 대출 이자의 일부를 용인시가 대신 내드립니다. 주거비 부담을 덜어보세요.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www18/www18_06/www18_06_02/www18_06_02_05.jsp",
       "emoji": "🏘️",
       "tag": "청년"
     },
@@ -298,7 +298,7 @@
       "target": "용인시 거주 만 18~39세 취업 준비생",
       "amount": "연간 1인당 최대 5회 무료 대여",
       "summary": "취업 면접을 앞둔 청년들에게 정장부터 넥타이, 구두까지 풀세트로 무료 대여해 드립니다. 면접 비용 부담을 시원하게 덜어드리니 꼭 활용해 보세요!",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www18/www18_06/www18_06_02/www18_06_02_04.jsp",
       "emoji": "👔",
       "tag": "취업"
     },
@@ -312,21 +312,21 @@
       "target": "만 18세 미만 자녀 2인 이상 무주택 가구",
       "amount": "연간 최대 100만원 지원",
       "summary": "아이 키우는 다자녀 가구의 주거비 부담 완화를 위해 전세자금 대출 이자를 지원해 드립니다. 신청 기간을 확인하시어 꼭 혜택 받으세요.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www18/www18_07/www18_07_03/www18_07_03_02.jsp",
       "emoji": "🏠",
       "tag": "다자녀"
     },
     {
       "id": "ben-2026-006",
       "category": "혜택",
-      "name": "용인시 어르신 장수수당 지원",
+      "name": "용인시 어르신 기초연금 지원 안내",
       "startDate": "2026-01-01",
       "endDate": "상시",
       "location": "주소지 읍면동 행정복지센터",
-      "target": "용인시에 1년 이상 거주 중인 만 85세 이상 어르신",
-      "amount": "매월 5만원 지급",
-      "summary": "용인시의 소중한 어르신들의 건강하고 행복한 노후를 위해 장수수당을 드립니다. 생신이 지난 다음 달부터 바로 신청하실 수 있습니다.",
-      "link": "https://www.yongin.go.kr",
+      "target": "용인시 거주 만 65세 이상 어르신",
+      "amount": "소득 인정액에 따라 차등 지급",
+      "summary": "어르신들의 편안한 노후를 위해 매월 연금을 지원해 드립니다. 장수수당 대신 더욱 든든한 기초연금 혜택을 꼭 확인하세요.",
+      "link": "https://www.yongin.go.kr/home/www/www18/www18_01/www18_01_01/www18_01_01_01.jsp",
       "emoji": "👴",
       "tag": "복지"
     },
@@ -354,7 +354,7 @@
       "target": "용인시 소재 소상공인 사업자",
       "amount": "브랜드·로고 디자인 개발 100% 지원",
       "summary": "우리 가게 얼굴인 로고와 패키지 디자인, 전문가에게 맡겨보세요! 용인시가 전문 디자이너를 매칭하여 멋진 브랜드 디자인을 만들어 드립니다.",
-      "link": "https://www.yongin.go.kr",
+      "link": "http://www.yongin.go.kr/home/job/readyJobInfo/FoundSupport/SmallBusiness.jsp",
       "emoji": "🎨",
       "tag": "소상공인"
     },
@@ -368,7 +368,7 @@
       "target": "용인시에 주민등록을 둔 모든 시민",
       "amount": "사고 발생 시 최대 2,000만원 보장",
       "summary": "별도의 가입 절차 없이, 용인 시민이라면 누구나 자동으로 가입되어 있습니다. 예기치 못한 사고나 재난 시 든든한 버팀목이 되어 드립니다.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www11/www11_01/www11_01_13.jsp",
       "emoji": "🛡️",
       "tag": "안전"
     },
@@ -382,7 +382,7 @@
       "target": "용인시 거주 2자녀 이상 가정",
       "amount": "공영주차장 50%, 자연휴양림 면제 등",
       "summary": "아이와 함께하는 나들이, 용인시민카드로 할인 받으세요! 공공시설 이용료 할인부터 지역 상점 혜택까지 다자녀 가정의 행복을 응원합니다.",
-      "link": "https://www.yongin.go.kr",
+      "link": "http://www.yongin.go.kr/home/yiIf/yiIfProd/yiIfProd10.jsp",
       "emoji": "💳",
       "tag": "다자녀"
     },
@@ -396,7 +396,7 @@
       "target": "만 65세 이상 고혈압·당뇨병 환자",
       "amount": "월 3,500원 상당의 약제비 지원",
       "summary": "꾸준한 관리가 필요한 혈압과 당뇨, 약값이 부담되신다면 보건소에 신청하세요. 건강한 백세 시대를 위해 용인시가 함께합니다.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/health/healthSvc/inccHealth/inccHealth08.jsp",
       "emoji": "💊",
       "tag": "건강"
     },
@@ -410,7 +410,7 @@
       "target": "국가유공자 및 참전유공자 본인 또는 유족",
       "amount": "매월 10만원 ~ 20만원 지급",
       "summary": "나라를 위해 헌신하신 국가유공자분들의 희생을 잊지 않겠습니다. 예우와 감사의 마음을 담아 매월 명예수당을 정중히 드립니다.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www18/www18_01/www18_01_07/www18_01_07_01.jsp",
       "emoji": "🇰🇷",
       "tag": "복지"
     },
@@ -424,7 +424,7 @@
       "target": "용인시 소재 중소 제조기업",
       "amount": "쇼핑몰 입점 및 마케팅비 지원",
       "summary": "우리 기업 제품, 더 많은 사람들에게 알려보세요! 네이버, 쿠팡 등 주요 온라인 쇼핑몰 입점과 광고비를 시에서 든든하게 밀어드립니다.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www08/www08_02/www08_02_02.jsp",
       "emoji": "🛍️",
       "tag": "기업"
     },
@@ -438,7 +438,7 @@
       "target": "0세 ~ 7세 아동 양육 가정",
       "amount": "월 최대 100만원 지원",
       "summary": "아이의 밝은 미래를 위해 국가와 용인시가 함께 지원합니다. 아동수당과 부모급여로 양육 부담을 덜고 아이의 성장을 지켜봐 주세요.",
-      "link": "https://www.bokjiro.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www18/www18_05/www18_05_02/www18_05_02_01.jsp",
       "emoji": "🎁",
       "tag": "가족"
     },
@@ -452,7 +452,7 @@
       "target": "소득인정액 기준 충족 무주택 가구",
       "amount": "가구원수별 차등 지급",
       "summary": "안정적인 보금자리를 위해 월세를 지원해 드립니다. 주거 안정이 삶의 활력이 될 수 있도록 용인시가 월세 걱정을 덜어드릴게요.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www18/www18_01/www18_01_01/www18_01_01_01.jsp",
       "emoji": "🏠",
       "tag": "주거"
     },
@@ -466,7 +466,7 @@
       "target": "정부 활동지원 서비스를 받는 등록 장애인",
       "amount": "활동지원 시간 추가 제공",
       "summary": "정부 지원만으로는 부족한 활동지원 시간을 용인시가 더해 드립니다. 더 자유로운 일상생활과 사회 참여가 가능하도록 곁에서 돕겠습니다.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www18/www18_03/www18_03_04/www18_03_04_01.jsp",
       "emoji": "🤝",
       "tag": "복지"
     },
@@ -480,7 +480,7 @@
       "target": "실직 또는 정기소득이 없는 용인시민",
       "amount": "직접 일자리 제공 및 임금 지급",
       "summary": "다시 일어서고 싶은 시민분들께 공공분야 일자리를 드립니다. 행정 보조, 환경 정비 등 다양한 분야에서 새로운 시작을 준비해 보세요.",
-      "link": "https://www.yongin.go.kr",
+      "link": "https://www.yongin.go.kr/home/www/www_05/www_05_01/www_05_01_09/www_05_01_09_02.jsp",
       "emoji": "🔨",
       "tag": "일자리"
     },
@@ -494,7 +494,7 @@
       "target": "용인시 소재 소상공인",
       "amount": "최대 5,000만원 보증 지원",
       "summary": "담보가 부족해 대출이 어려운 사장님들을 위해 용인시가 보증을 서 드립니다. 저금리로 경영 자금을 마련하여 가게 운영에 힘을 보태세요.",
-      "link": "https://www.gcgf.or.kr",
+      "link": "http://www.yongin.go.kr/home/job/readyJobInfo/FoundSupport/SmallBusiness.jsp",
       "emoji": "📈",
       "tag": "소상공인"
     }
