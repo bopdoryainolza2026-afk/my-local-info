@@ -2,20 +2,20 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "용인시 생활 정보 | 행사·혜택·지원금 안내",
-  description: "용인시 주민을 위한 지역 행사, 축제, 지원금, 혜택 정보를 매일 업데이트합니다.",
-  keywords: ["용인시", "용인 행사", "용인 축제", "용인 지원금", "용인 혜택", "수지구", "기흥구", "처인구", "동네 소식", "용인 맛집"],
+  title: "용인시 포털 정보사이트 - 용인 시민을 위한 통합 생활 가이드",
+  description: "용인시 3개 구청 소식, 축제, 행사, 지원금 및 혜택 정보를 한곳에서 확인하세요. AI와 이웃이 함께 만드는 용인의 대표 포털 정보사이트입니다.",
+  keywords: ["용인시", "용인 포털", "용인 통합정보", "수지구", "기흥구", "처인구", "용인 축제", "용인 지원금", "용인 혜택", "용인 맛집"],
   openGraph: {
-    title: "용인시 생활 정보 | 행사·혜택·지원금 안내",
-    description: "용인시 주민을 위한 지역 행사, 축제, 지원금, 혜택 정보를 매일 업데이트합니다.",
+    title: "용인시 포털 정보사이트 - 용인 시민 통합 생활 가이드",
+    description: "용인시 3개 구청 소식부터 실시간 축제, 지원금 혜택까지! 용인의 모든 생활 정보를 한눈에 확인하세요.",
     url: "https://yongin-love-info.com",
-    siteName: "용인시 생활 정보",
+    siteName: "용인시 포털 정보사이트",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "용인시 생활 정보 대표 이미지",
+        alt: "용인시 포털 정보사이트 대표 이미지",
       },
     ],
     locale: "ko_KR",
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "용인시 생활 정보 | 행사·혜택·지원금 안내",
-    description: "용인시 주민을 위한 지역 행사, 축제, 지원금, 혜택 정보를 매일 업데이트합니다.",
+    title: "용인시 포털 정보사이트",
+    description: "용인 시민을 위한 실시간 통합 정보 포털",
     images: ["/og-image.png"],
   },
 };

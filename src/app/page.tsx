@@ -618,7 +618,7 @@ function MainNavbar() {
         {/* 로고 */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
           <span style={{ fontSize: "20px", fontWeight: 900, color: "#1e293b", letterSpacing: "-1px" }}>
-            🏘️ 용인시 <span style={{ color: "#0ea5e9" }}>생활정보</span>
+            🏛️ 용인시 <span style={{ color: "#0ea5e9" }}>포털 정보사이트</span>
           </span>
         </Link>
 
