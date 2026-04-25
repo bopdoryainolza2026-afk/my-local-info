@@ -638,8 +638,24 @@ function MainNavbar() {
           ))}
         </div>
 
-        {/* 우측 빈 공간 (메뉴 중앙 유지를 위해 필요 시 활용) */}
-        <div style={{ width: "100px", display: "none" }}></div>
+        {/* 우측 구청 퀵링크 */}
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <span style={{ fontSize: "12px", fontWeight: 700, color: "#94a3b8", marginRight: "4px" }}>구청 바로가기</span>
+          <div style={{ display: "flex", gap: "4px", background: "#f8fafc", padding: "4px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+            <a href="https://www.cheoin-gu.go.kr" target="_blank" rel="noreferrer" style={{ 
+              textDecoration: "none", padding: "4px 10px", borderRadius: "6px", fontSize: "12px", 
+              fontWeight: 800, color: "#475569", background: "white", boxShadow: "0 1px 2px rgba(0,0,0,0.05)" 
+            }}>처인</a>
+            <a href="https://www.giheung-gu.go.kr" target="_blank" rel="noreferrer" style={{ 
+              textDecoration: "none", padding: "4px 10px", borderRadius: "6px", fontSize: "12px", 
+              fontWeight: 800, color: "#475569" 
+            }}>기흥</a>
+            <a href="https://www.suji-gu.go.kr" target="_blank" rel="noreferrer" style={{ 
+              textDecoration: "none", padding: "4px 10px", borderRadius: "6px", fontSize: "12px", 
+              fontWeight: 800, color: "#475569" 
+            }}>수지</a>
+          </div>
+        </div>
       </div>
     </nav>
   );
