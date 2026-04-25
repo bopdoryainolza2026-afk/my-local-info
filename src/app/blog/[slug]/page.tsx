@@ -214,7 +214,7 @@ export default async function PostPage({ params }: Props) {
                 color: "white", background: "#0ea5e9", padding: "8px 16px", 
                 borderRadius: "20px", textDecoration: "none" 
               }}>
-                🔗 원문 출처 바로가기
+                {postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 원문 출처 바로가기"}
               </a>
             </div>
           </div>

@@ -219,6 +219,7 @@ function BenefitCard({
 
 /** 맛집 카드 */
 function RestaurantCard({ emoji, name, menu, location, summary, link, tag, imageUrl }: any) {
+  const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
     background: "white",
     borderRadius: 16,
@@ -231,10 +232,11 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag, image
     flexDirection: "column",
     gap: 10,
     minHeight: "300px",
+    cursor: "pointer",
   };
 
-  return (
-    <a href={link} target="_blank" rel="noopener noreferrer" style={cardStyle}>
+  const content = (
+    <>
       {imageUrl ? (
         <div style={{ width: "100%", height: "160px", borderRadius: "12px", overflow: "hidden", marginBottom: "12px", position: "relative" }}>
           <img src={imageUrl} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -252,7 +254,13 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag, image
       <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 4, marginTop: "auto" }}>
         📍 {location}
       </div>
-    </a>
+    </>
+  );
+
+  return isExternal ? (
+    <a href={link} target="_blank" rel="noopener noreferrer" style={cardStyle}>{content}</a>
+  ) : (
+    <Link href={link} style={cardStyle}>{content}</Link>
   );
 }
 
@@ -393,10 +401,24 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
 }
 
 /** 페이징이 적용된 맛집 섹션 */
-export function PagedRestaurantSection({ items }: { items: any[] }) {
+export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allPosts: any[] }) {
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+
+  const getLink = (item: any) => {
+    // 1. 이름으로 블로그 글 찾기
+    const matched = allPosts.find(p => 
+      p.title?.includes(item.name) || 
+      item.name?.includes(p.title) || 
+      p.content?.includes(item.name)
+    );
+    if (matched) return `/blog/${matched.slug}`;
+    
+    // 2. 없으면 기존 네이버 검색 링크
+    if (item.link && item.link !== "#") return item.link;
+    return "/blog";
+  };
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -415,7 +437,7 @@ export function PagedRestaurantSection({ items }: { items: any[] }) {
             menu={res.menu}
             location={res.location}
             summary={res.summary}
-            link={res.link}
+            link={getLink(res)}
             tag={res.tag}
             imageUrl={res.imageUrl}
           />

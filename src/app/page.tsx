@@ -165,7 +165,7 @@ export default function Home() {
 
           <section id="restaurants" style={{ marginTop: 20, marginBottom: 50 }}>
             <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
-            <PagedRestaurantSection items={restaurants as any[]} />
+            <PagedRestaurantSection items={restaurants as any[]} allPosts={allPosts} />
           </section>
 
           {/* ---- 나만의 용인, 우리 동네 이야기 섹션 (개편) ---- */}
