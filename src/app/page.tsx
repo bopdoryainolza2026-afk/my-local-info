@@ -179,36 +179,6 @@ export default function Home() {
               </button>
             </div>
             
-            <div style={{
-              background: "linear-gradient(135deg, #fff5f8 0%, #ffffff 100%)",
-              borderRadius: 24,
-              padding: "32px",
-              marginBottom: "32px",
-              border: "2px dashed #f9a8d4",
-              textAlign: "center",
-              boxShadow: "0 10px 25px rgba(219,39,119,0.05)"
-            }}>
-              <span style={{ fontSize: "40px", display: "block", marginBottom: "16px" }}>📸</span>
-              <h4 style={{ fontSize: "22px", fontWeight: 900, color: "#be185d", marginBottom: "12px" }}>
-                여러분의 소중한 경험을 들려주세요!
-              </h4>
-              <p style={{ fontSize: "15px", color: "#475569", lineHeight: 1.7, maxWidth: "500px", margin: "0 auto 24px" }}>
-                나만 알고 싶은 용인 맛집, 주차 꿀팁, 아이와 가기 좋은 공원... <br />
-                따뜻한 이야기 한 줄이 이웃에게 큰 힘이 됩니다. 💖
-              </p>
-              <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
-                <button style={{
-                  background: "#db2777", color: "white", padding: "14px 32px", borderRadius: "14px",
-                  fontWeight: 800, border: "none", cursor: "pointer", boxShadow: "0 4px 15px rgba(219,39,119,0.3)",
-                  fontSize: "16px"
-                }}>
-                  지금 바로 이야기 쓰기 →
-                </button>
-              </div>
-              <p style={{ fontSize: "12px", color: "#94a3b8", marginTop: "20px" }}>
-                * 선정된 이야기는 메인 화면에 소개되며, 소정의 선물을 드립니다!
-              </p>
-            </div>
 
             <PagedStorySection items={neighborhoodStories} />
           </section>
