@@ -24,6 +24,9 @@ jobs:
       - name: Run Fetch Data Script
         run: node scripts/fetch-data.js
 
+      - name: Run Generate Blog Script
+        run: node scripts/generate-blog.js
+
       - name: Commit and Push Changes
         run: |
           git config --local user.email "action@github.com"
