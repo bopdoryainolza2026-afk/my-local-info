@@ -44,7 +44,7 @@ export default async function PostPage({ params }: Props) {
     return notFound();
   }
 
-  const allItems = [...localData.events, ...localData.benefits];
+  const allItems = [...localData.events, ...localData.benefits, ...localData.restaurants];
   const matchedItem = allItems.find(item => 
     postData.content.includes(`[ITEM_ID: ${item.id}]`) ||
     postData.title.includes(item.name) || 
