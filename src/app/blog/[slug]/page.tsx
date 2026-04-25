@@ -169,7 +169,31 @@ export default async function PostPage({ params }: Props) {
 
         {/* 마크다운 렌더링 구역 */}
         <div className="prose prose-sky max-w-none" style={{ background: "white", padding: "32px", borderRadius: 20, border: "1px solid #e2e8f0" }}>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown 
+            remarkPlugins={[remarkGfm]}
+            components={{
+              h3: ({ node, ...props }) => {
+                // '📍 위치 정보' 제목을 찾으면 옆에 버튼을 붙여줌
+                const isLocationHeader = String(props.children).includes("위치 정보");
+                if (isLocationHeader) {
+                  return (
+                    <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap", marginBottom: "16px", marginTop: "24px" }}>
+                      <h3 {...props} style={{ margin: 0, fontSize: "20px" }} />
+                      <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{ 
+                        display: "inline-block", fontSize: "13px", fontWeight: "bold", 
+                        color: "white", background: "#0ea5e9", padding: "6px 16px", 
+                        borderRadius: "20px", textDecoration: "none",
+                        boxShadow: "0 4px 10px rgba(14,165,233,0.3)"
+                      }}>
+                        📍 실제 위치 지도 보기
+                      </a>
+                    </div>
+                  );
+                }
+                return <h3 {...props} />;
+              }
+            }}
+          >
             {postData.content}
           </ReactMarkdown>
 
@@ -208,15 +232,6 @@ export default async function PostPage({ params }: Props) {
             <p style={{ fontSize: "13px", color: "#64748b", margin: 0, lineHeight: 1.6 }}>
               이 글은 공공데이터포털(<a href="http://data.go.kr/" target="_blank" rel="noopener noreferrer" style={{ color: "#0ea5e9", textDecoration: "none" }}>data.go.kr</a>)의 정보를 바탕으로 AI가 작성하였습니다. 정확한 내용은 원문 링크를 통해 확인해주세요.
             </p>
-            <div style={{ marginTop: "12px" }}>
-              <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{ 
-                display: "inline-block", fontSize: "13px", fontWeight: "bold", 
-                color: "white", background: "#0ea5e9", padding: "8px 16px", 
-                borderRadius: "20px", textDecoration: "none" 
-              }}>
-                {postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 원문 출처 바로가기"}
-              </a>
-            </div>
           </div>
         </div>
 
