@@ -172,14 +172,6 @@ export default function Home() {
           <section id="stories" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 14 }}>
               <SectionTitle emoji="🏠" title="나만의 용인, 우리 동네 이야기" />
-              <button style={{
-                fontSize: "13px", fontWeight: 700, color: "#be185d", 
-                background: "#fff1f2", border: "1px solid #f9a8d4",
-                padding: "8px 16px", borderRadius: "10px", cursor: "pointer",
-                marginBottom: "14px"
-              }}>
-                글쓰기 가이드 보기
-              </button>
             </div>
             
 
