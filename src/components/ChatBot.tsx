@@ -120,44 +120,47 @@ export default function ChatBot() {
         </div>
 
         {/* 하단 질문 및 입력 영역 */}
-        <div className="bg-white border-t border-slate-100 px-8 pb-14 pt-5">
-          {/* 자주 묻는 질문 버튼들 */}
-          <div className="flex flex-wrap gap-1.5 mb-5">
+        <div className="bg-white border-t border-slate-100 px-6 pt-4 pb-10">
+          {/* 자주 묻는 질문 버튼 리스트 */}
+          <div className="flex flex-wrap gap-2 mb-6 px-1">
+            <p className="w-full text-[11px] text-slate-400 mb-1 ml-1 font-medium">자주 묻는 질문</p>
             {chatData.slice(0, 3).map((item, idx) => (
               <button
                 key={idx}
                 onClick={() => handleQuestionClick(item.question, item.answer)}
-                className="text-[11px] bg-slate-50 hover:bg-blue-50 text-slate-500 hover:text-blue-600 border border-slate-200 py-1.5 px-3 rounded-lg transition-all"
+                className="text-[12px] bg-slate-50 hover:bg-blue-50 text-slate-600 hover:text-blue-600 border border-slate-200 py-2 px-3.5 rounded-xl transition-all shadow-sm"
               >
                 {item.question}
               </button>
             ))}
           </div>
 
-          {/* 입력창 - 위치를 더 위로 올리기 위해 mb-2 추가 */}
-          <form 
-            onSubmit={(e) => { e.preventDefault(); handleSend(inputText); }}
-            className="flex items-center gap-2 bg-slate-100 p-2 rounded-2xl shadow-inner mb-2"
-          >
-            <input
-              type="text"
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              placeholder="메시지를 입력하세요..."
-              className="flex-1 bg-transparent border-none focus:outline-none px-4 text-sm"
-              disabled={isLoading}
-            />
-            <button 
-              type="submit"
-              disabled={!inputText.trim() || isLoading}
-              className={`
-                p-2 rounded-xl transition-all
-                ${inputText.trim() && !isLoading ? 'bg-blue-600 text-white shadow-md' : 'bg-slate-300 text-slate-100'}
-              `}
+          {/* 입력창 영역 - 훨씬 크고 여유롭게 변경 */}
+          <div className="px-1">
+            <form 
+              onSubmit={(e) => { e.preventDefault(); handleSend(inputText); }}
+              className="flex items-center gap-3 bg-slate-100 p-2.5 rounded-2xl shadow-inner border border-slate-200/50"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
-            </button>
-          </form>
+              <input
+                type="text"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                placeholder="궁금한 내용을 입력하세요..."
+                className="flex-1 bg-transparent border-none focus:outline-none px-4 py-1.5 text-[14.5px] placeholder:text-slate-400"
+                disabled={isLoading}
+              />
+              <button 
+                type="submit"
+                disabled={!inputText.trim() || isLoading}
+                className={`
+                  w-11 h-11 rounded-xl flex items-center justify-center transition-all shadow-sm
+                  ${inputText.trim() && !isLoading ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-slate-300 text-slate-100'}
+                `}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
 
