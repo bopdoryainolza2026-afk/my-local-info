@@ -120,14 +120,14 @@ export default function ChatBot() {
         </div>
 
         {/* 하단 질문 및 입력 영역 */}
-        <div className="bg-white border-t border-slate-100 px-4 pb-6 pt-3">
+        <div className="bg-white border-t border-slate-100 px-6 pb-8 pt-4">
           {/* 자주 묻는 질문 버튼들 */}
-          <div className="flex flex-wrap gap-1.5 mb-3">
+          <div className="flex flex-wrap gap-1.5 mb-4">
             {chatData.slice(0, 3).map((item, idx) => (
               <button
                 key={idx}
                 onClick={() => handleQuestionClick(item.question, item.answer)}
-                className="text-[11px] bg-slate-50 hover:bg-blue-50 text-slate-500 hover:text-blue-600 border border-slate-200 py-1.5 px-2.5 rounded-lg transition-all"
+                className="text-[11px] bg-slate-50 hover:bg-blue-50 text-slate-500 hover:text-blue-600 border border-slate-200 py-1.5 px-3 rounded-lg transition-all"
               >
                 {item.question}
               </button>
@@ -137,14 +137,14 @@ export default function ChatBot() {
           {/* 입력창 */}
           <form 
             onSubmit={(e) => { e.preventDefault(); handleSend(inputText); }}
-            className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl"
+            className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl shadow-inner"
           >
             <input
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="메시지를 입력하세요..."
-              className="flex-1 bg-transparent border-none focus:outline-none px-3 text-sm"
+              className="flex-1 bg-transparent border-none focus:outline-none px-4 text-sm"
               disabled={isLoading}
             />
             <button 
