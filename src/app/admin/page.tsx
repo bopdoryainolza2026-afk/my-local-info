@@ -132,11 +132,11 @@ export default function AdminPage() {
               </div>
             </div>
             
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6 px-10">
               {messages.map(m => (
                 <div key={m.id} className={`flex ${m.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`
-                    max-w-[70%] p-3.5 rounded-2xl text-sm shadow-sm leading-relaxed
+                    max-w-[75%] p-4 rounded-2xl text-[15px] shadow-md leading-relaxed
                     ${m.sender === 'user' 
                       ? 'bg-blue-600 text-white rounded-tr-none' 
                       : 'bg-white text-slate-700 rounded-tl-none border border-slate-200'}
