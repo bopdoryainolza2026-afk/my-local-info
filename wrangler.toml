@@ -4,3 +4,8 @@ pages_build_output_dir = "out"
 
 [ai]
 binding = "AI"
+
+[[kv_namespaces]]
+binding = "CHAT_DB"
+id = "chat_db_id" # 실제 배포 시에는 wrangler kv:namespace create로 생성한 ID를 넣어야 합니다.
+preview_id = "chat_db_preview_id"

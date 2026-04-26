@@ -11,57 +11,73 @@ interface Message {
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { type: 'bot', text: '안녕하세요! 무엇을 도와드릴까요?', id: Date.now() }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId, setSessionId] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // 세션 ID 초기화 및 채팅 내역 불러오기
+  useEffect(() => {
+    let sid = localStorage.getItem('chat_session_id');
+    if (!sid) {
+      sid = 'user_' + Math.random().toString(36).substring(2, 11);
+      localStorage.setItem('chat_session_id', sid);
+    }
+    setSessionId(sid);
+  }, []);
+
+  // 2초마다 새 메시지 확인 (폴링)
+  useEffect(() => {
+    if (!sessionId || !isOpen) return;
+
+    const fetchHistory = async () => {
+      try {
+        const res = await fetch(`/api/chat/history?sessionId=${sessionId}`);
+        if (res.ok) {
+          const data = await res.json();
+          setMessages(data);
+        }
+      } catch (err) {
+        console.error("채팅 내역 조회 실패:", err);
+      }
+    };
+
+    fetchHistory(); // 최초 실행
+    const interval = setInterval(fetchHistory, 2000); // 2초마다 실행
+    return () => clearInterval(interval);
+  }, [sessionId, isOpen]);
 
   // 새 메시지가 추가될 때마다 하단으로 스크롤
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages, isOpen, isLoading]);
-
-  const addMessage = (type: 'user' | 'bot', text: string) => {
-    setMessages(prev => [...prev, { type, text, id: Date.now() }]);
-  };
+  }, [messages, isOpen]);
 
   const handleSend = async (text: string) => {
-    if (!text.trim() || isLoading) return;
+    if (!text.trim() || !sessionId) return;
 
     const userText = text.trim();
     setInputText('');
-    addMessage('user', userText);
-    setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
+      await fetch('/api/chat/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userText }),
+        body: JSON.stringify({ sessionId, message: userText, sender: 'user' }),
       });
-
-      const data = await response.json();
-      if (data.answer) {
-        addMessage('bot', data.answer);
-      } else {
-        addMessage('bot', '죄송합니다. 답변을 가져오는 중에 문제가 발생했습니다.');
-      }
+      // 전송 성공 시 즉시 내역 갱신 (폴링을 기다리지 않음)
+      const res = await fetch(`/api/chat/history?sessionId=${sessionId}`);
+      if (res.ok) setMessages(await res.json());
     } catch (error) {
-      addMessage('bot', '서버와의 통신에 실패했습니다.');
-    } finally {
-      setIsLoading(false);
+      console.error("메시지 전송 실패:", error);
     }
   };
 
   const handleQuestionClick = (question: string, answer: string) => {
-    addMessage('user', question);
-    setTimeout(() => {
-      addMessage('bot', answer);
-    }, 500);
+    handleSend(question); // 질문을 DB에 저장
+    // [참고] 시나리오 답변은 현재 1:1 상담 위주이므로 필요시 관리자가 직접 답변하게 됨
   };
 
   return (
@@ -96,11 +112,16 @@ export default function ChatBot() {
           ref={scrollRef}
           className="flex-1 overflow-y-auto p-4 bg-[#f0f2f5] space-y-4"
         >
+          {messages.length === 0 && (
+            <div className="text-center text-slate-400 text-xs mt-10">
+              상담을 시작하려면 메시지를 입력해 주세요.
+            </div>
+          )}
           {messages.map((msg) => (
-            <div key={msg.id} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`
                 max-w-[85%] p-3 rounded-2xl text-[13.5px] shadow-sm leading-relaxed
-                ${msg.type === 'user' 
+                ${msg.sender === 'user' 
                   ? 'bg-blue-500 text-white rounded-tr-none' 
                   : 'bg-white text-slate-700 rounded-tl-none border border-slate-100'}
               `}>
