@@ -72,7 +72,7 @@ export default function ChatBot() {
           absolute bottom-20 right-0 w-[360px] h-[600px] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col
           transition-all duration-300 origin-bottom-right
           ${isOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0 pointer-events-none'}
-          max-sm:fixed max-sm:inset-0 max-sm:w-full max-sm:h-full max-sm:rounded-none
+          max-md:fixed max-md:inset-0 max-md:w-full max-md:h-full max-md:rounded-none
         `}
       >
         {/* 상단 헤더 */}
