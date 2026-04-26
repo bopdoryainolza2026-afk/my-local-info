@@ -120,9 +120,9 @@ export default function ChatBot() {
         </div>
 
         {/* 하단 질문 및 입력 영역 */}
-        <div className="bg-white border-t border-slate-100 px-6 pb-8 pt-4">
+        <div className="bg-white border-t border-slate-100 px-8 pb-14 pt-5">
           {/* 자주 묻는 질문 버튼들 */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          <div className="flex flex-wrap gap-1.5 mb-5">
             {chatData.slice(0, 3).map((item, idx) => (
               <button
                 key={idx}
@@ -134,10 +134,10 @@ export default function ChatBot() {
             ))}
           </div>
 
-          {/* 입력창 */}
+          {/* 입력창 - 위치를 더 위로 올리기 위해 mb-2 추가 */}
           <form 
             onSubmit={(e) => { e.preventDefault(); handleSend(inputText); }}
-            className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl shadow-inner"
+            className="flex items-center gap-2 bg-slate-100 p-2 rounded-2xl shadow-inner mb-2"
           >
             <input
               type="text"
