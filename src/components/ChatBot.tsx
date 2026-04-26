@@ -18,6 +18,48 @@ export default function ChatBot() {
   const [isHumanMode, setIsHumanMode] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // 드래그 관련 상태
+  const [position, setPosition] = useState({ x: -24, y: -24 }); // 초기 위치 (우하단 기준)
+  const isDragging = useRef(false);
+  const offset = useRef({ x: 0, y: 0 });
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = true;
+    // 현재 마우스 위치와 버튼 위치의 차이 계산
+    const rect = e.currentTarget.getBoundingClientRect();
+    offset.current = {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging.current) return;
+      
+      // 화면 경계 내에서 이동하도록 제한
+      const newX = e.clientX - offset.current.x;
+      const newY = e.clientY - offset.current.y;
+      
+      // 우하단 기준 좌표로 변환하여 저장
+      const rightX = window.innerWidth - newX - 64; // 64는 버튼 너비
+      const bottomY = window.innerHeight - newY - 64; // 64는 버튼 높이
+      
+      setPosition({ x: rightX, y: bottomY });
+    };
+
+    const handleMouseUp = () => {
+      isDragging.current = false;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
+
   // 세션 ID 초기화
   useEffect(() => {
     let sid = localStorage.getItem('chat_session_id');
@@ -94,7 +136,13 @@ export default function ChatBot() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[9999] font-sans">
+    <div 
+      className="fixed z-[9999] font-sans transition-all duration-75"
+      style={{ 
+        right: `max(24px, ${position.x}px)`, 
+        bottom: `max(24px, ${position.y}px)` 
+      }}
+    >
       {/* --- 채팅창 --- */}
       <div 
         className={`
@@ -217,17 +265,20 @@ export default function ChatBot() {
 
       {/* --- 플로팅 버튼 --- */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onMouseDown={handleMouseDown}
+        onClick={() => {
+          if (!isDragging.current) setIsOpen(!isOpen);
+        }}
         className={`
           w-16 h-16 bg-blue-600 rounded-full shadow-lg flex items-center justify-center text-white
-          hover:scale-110 active:scale-95 transition-all duration-300
+          hover:scale-110 active:scale-95 transition-all duration-300 cursor-move
           ${isOpen ? 'rotate-90' : 'rotate-0'}
         `}
       >
         {isOpen ? (
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+          <svg className="w-8 h-8 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
         ) : (
-          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+          <svg className="w-8 h-8 pointer-events-none" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
         )}
       </button>
     </div>
