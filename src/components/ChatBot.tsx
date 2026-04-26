@@ -173,7 +173,7 @@ export default function ChatBot() {
         {/* 대화 영역 */}
         <div 
           ref={scrollRef}
-          className="flex-1 overflow-y-auto p-5 bg-[#f0f2f5] space-y-5 px-6"
+          className="flex-1 overflow-y-auto p-5 bg-[#f0f2f5] space-y-6 px-10"
         >
           {messages.length === 0 && (
             <div className="text-center text-slate-400 text-xs mt-10">
@@ -181,9 +181,9 @@ export default function ChatBot() {
             </div>
           )}
           {messages.map((msg) => (
-            <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end pr-2' : 'justify-start'}`}>
               <div className={`
-                max-w-[85%] p-3.5 rounded-2xl text-[15px] shadow-md leading-relaxed
+                max-w-[80%] p-4 rounded-2xl text-[16px] shadow-md leading-relaxed
                 ${msg.sender === 'user' 
                   ? 'bg-blue-500 text-white rounded-tr-none' 
                   : (isHumanMode ? 'bg-yellow-100 text-slate-800' : 'bg-white text-slate-700') + ' rounded-tl-none border border-slate-100'}
