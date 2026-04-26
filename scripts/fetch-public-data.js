@@ -45,8 +45,8 @@ async function fetchPublicData() {
       return;
     }
 
-    // 타 지역(예: 부산) 데이터가 섞이지 않도록 제외 규칙을 포함한 필터링 함수
-    const excludeRegions = ['부산', '대구', '인천', '광주', '대전', '울산', '세종', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'];
+    // 타 지역 데이터가 섞이지 않도록 제외 규칙을 포함한 필터링 함수
+    const excludeRegions = ['부산', '성남', '대구', '인천', '광주', '대전', '울산', '세종', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'];
     const filterYonginGyeonggi = (item) => {
       const targetText = (item.서비스명 || '') + (item.서비스목적요약 || '') + (item.지원대상 || '') + (item.소관기관명 || '');
       
@@ -57,10 +57,12 @@ async function fetchPublicData() {
       
       const isYongin = hasYonginBase || hasYonginDistricts || hasCityHall;
       
-      // '경기'가 포함되어 있는지 확인 (단, 타 지역명이 포함된 경우는 제외하되 용인이 언급되면 우선순위)
-      const isGyeonggi = targetText.includes('경기') && !excludeRegions.some(region => targetText.includes(region) && !isYongin);
-      
-      return isYongin || isGyeonggi;
+      // 타 지역명이 포함되어 있는지 확인
+      const hasExcludedRegion = excludeRegions.some(region => targetText.includes(region));
+
+      // [핵심 변경] 용인이 명시적으로 포함되어 있고, 타 지역(성남, 부산 등)이 포함되지 않은 경우만 허용
+      // 경기도 정보라도 용인이 언급되지 않으면 일단 제외하여 정확도 향상
+      return isYongin && !hasExcludedRegion;
     };
 
     let filtered = items.filter(filterYonginGyeonggi);
