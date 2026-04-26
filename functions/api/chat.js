@@ -5,40 +5,58 @@ export async function onRequestPost(context) {
     const url = new URL(request.url);
     const origin = url.origin;
 
-    // [핵심] 블로그의 실제 데이터(JSON)를 가져옵니다.
-    // fetch를 통해 현재 배포된 최신 데이터를 실시간으로 읽어옵니다.
-    let blogContext = "";
-    try {
-      const dataResponse = await fetch(`${origin}/data/local-info.json`);
-      if (dataResponse.ok) {
-        const blogData = await dataResponse.json();
-        // 데이터가 너무 크면 AI 성능이 떨어지므로, 최신 행사와 혜택 위주로 요약
-        const events = blogData.events.slice(0, 15).map(e => `[행사] ${e.name} (기간: ${e.date})`).join('\n');
-        const benefits = blogData.benefits.slice(0, 15).map(b => `[혜택] ${b.name} (태그: ${b.tag})`).join('\n');
-        blogContext = `\n현재 블로그에 등록된 최신 정보:\n${events}\n${benefits}`;
-      }
-    } catch (e) {
-      console.error("데이터 로드 실패:", e);
-    }
+    // [1] 검색 인덱스 가져오기
+    const indexResponse = await fetch(`${origin}/data/search-index.json`);
+    const searchIndex = await indexResponse.json();
 
-    // Cloudflare Workers AI 호출
+    // [2] 간단한 키워드 매칭 검색
+    const keywords = message.split(' ').filter(word => word.length > 1);
+    const scoredItems = searchIndex.map(item => {
+      let score = 0;
+      const searchText = `${item.title} ${item.content} ${item.summary || ''}`;
+      keywords.forEach(keyword => {
+        if (searchText.includes(keyword)) score++;
+      });
+      return { ...item, score };
+    });
+
+    // 상위 3개 검색 결과 선택
+    const topMatches = scoredItems
+      .filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3);
+
+    const blogContext = topMatches.length > 0 
+      ? topMatches.map(m => `[${m.title}] ${m.summary || m.content.substring(0, 200)}`).join('\n')
+      : "관련 정보 없음";
+
+    // [3] 시스템 프롬프트 구성
+    const systemPrompt = `You are an AI assistant for a Korean local information blog.
+Answer ONLY in Korean. Keep answers to 2-3 sentences maximum.
+Do NOT use any markdown symbols (**, *, #, -). Plain text only.
+Base your answer ONLY on the following blog data. If not relevant, reply: 해당 내용은 블로그에서 확인이 어렵습니다. 다른 질문을 해주세요.
+
+[블로그 데이터]
+${blogContext}`;
+
+    // [4] Cloudflare Workers AI 호출
     const model = "@cf/meta/llama-3.1-8b-instruct";
     const result = await env.AI.run(model, {
       messages: [
-        { 
-          role: "system", 
-          content: `너는 '용인시 포털 정보사이트'의 전문 상담원이야. 
-          아래 제공된 '최신 정보'를 바탕으로 사용자에게 정확한 정보를 안내해줘.
-          만약 제공된 데이터에 없는 내용이라면, "해당 내용은 현재 블로그에 등록되지 않았습니다. 카테고리 메뉴에서 더 자세한 내용을 확인해 보세요."라고 안내해.
-          절대 정보를 지어내지 마. 친근한 말투(~해요, ~입니다)로 답변해줘.
-          ${blogContext}` 
-        },
+        { role: "system", content: systemPrompt },
         { role: "user", content: message },
       ],
-      max_tokens: 500,
+      max_tokens: 150,
     });
 
-    return new Response(JSON.stringify({ answer: result.response }), {
+    // [5] 마크다운 기호 제거 함수
+    const stripMarkdown = (text) => {
+      return text.replace(/[#*`_~-]/g, '').trim();
+    };
+
+    const finalAnswer = stripMarkdown(result.response);
+
+    return new Response(JSON.stringify({ answer: finalAnswer }), {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
