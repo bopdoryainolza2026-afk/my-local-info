@@ -120,7 +120,7 @@ export default function ChatBot() {
         </div>
 
         {/* 하단 질문 및 입력 영역 */}
-        <div className="bg-white border-t border-slate-100 p-3">
+        <div className="bg-white border-t border-slate-100 px-4 pb-6 pt-3">
           {/* 자주 묻는 질문 버튼들 */}
           <div className="flex flex-wrap gap-1.5 mb-3">
             {chatData.slice(0, 3).map((item, idx) => (
