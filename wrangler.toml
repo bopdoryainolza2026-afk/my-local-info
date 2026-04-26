@@ -1,3 +1,6 @@
 # Cloudflare Pages 배포 설정 파일
 name = "my-local-info"
 pages_build_output_dir = "out"
+
+[ai]
+binding = "AI"
