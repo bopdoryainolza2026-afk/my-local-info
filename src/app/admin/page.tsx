@@ -141,7 +141,7 @@ export default function AdminPage() {
                       ? 'bg-blue-600 text-white rounded-tr-none' 
                       : 'bg-white text-slate-700 rounded-tl-none border border-slate-200'}
                   `}>
-                    {m.text}
+                    {m.message || m.text}
                   </div>
                 </div>
               ))}

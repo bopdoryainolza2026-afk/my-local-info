@@ -140,7 +140,7 @@ export default function ChatBot() {
                   ? 'bg-blue-500 text-white rounded-tr-none' 
                   : (isHumanMode ? 'bg-yellow-100 text-slate-800' : 'bg-white text-slate-700') + ' rounded-tl-none border border-slate-100'}
               `}>
-                {msg.text}
+                {msg.message || msg.text}
               </div>
             </div>
           ))}
