@@ -29,6 +29,8 @@ export const metadata: Metadata = {
   },
 };
 
+import ChatBot from "@/components/ChatBot";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
   const showGa = gaId && gaId !== "나중에_입력";
@@ -82,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body style={{ margin: 0, padding: 0 }}>
         {children}
+        <ChatBot />
       </body>
     </html>
   );
