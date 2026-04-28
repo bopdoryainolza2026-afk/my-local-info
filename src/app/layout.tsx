@@ -85,6 +85,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body style={{ margin: 0, padding: 0 }}>
         {children}
         <ChatBot />
+        
+        {/* ===== 하단 푸터 (애드센스 필수 링크) ===== */}
+        <footer style={{ 
+          background: "#f1f5f9", 
+          padding: "40px 20px", 
+          textAlign: "center", 
+          borderTop: "1px solid #e2e8f0",
+          color: "#64748b",
+          fontSize: "14px"
+        }}>
+          <div style={{ maxWidth: 800, margin: "0 auto" }}>
+            <div style={{ marginBottom: "20px", display: "flex", justifyContent: "center", gap: "20px" }}>
+              <a href="/privacy" style={{ color: "#64748b", textDecoration: "none" }}>개인정보처리방침</a>
+              <a href="/terms" style={{ color: "#64748b", textDecoration: "none" }}>이용약관</a>
+              <a href="/contact" style={{ color: "#64748b", textDecoration: "none" }}>문의하기</a>
+            </div>
+            <p style={{ margin: "10px 0" }}>© 2026 용인시 생활 정보 포털. All rights reserved.</p>
+            <p style={{ fontSize: "12px", color: "#94a3b8" }}>
+              본 사이트는 공공데이터를 활용하여 시민들에게 유용한 정보를 제공하는 정보 큐레이션 서비스입니다.
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );
