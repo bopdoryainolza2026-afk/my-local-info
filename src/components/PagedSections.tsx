@@ -335,7 +335,8 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
   const getLink = (item: any) => {
     const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
     if (matched) return `/blog/${matched.slug}`;
-    return `/blog?search=${encodeURIComponent(item.name)}`;
+    // 블로그 포스트가 없으면 자동으로 정보를 보여주는 페이지로 연결
+    return `/blog/auto-post/${item.id}`;
   };
 
   const gridStyle: React.CSSProperties = {
@@ -390,7 +391,8 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
   const getLink = (item: any) => {
     const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
     if (matched) return `/blog/${matched.slug}`;
-    return `/blog?search=${encodeURIComponent(item.name)}`;
+    // 블로그 포스트가 없으면 자동으로 정보를 보여주는 페이지로 연결
+    return `/blog/auto-post/${item.id}`;
   };
 
   const gridStyle: React.CSSProperties = {
@@ -445,7 +447,8 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
   const getLink = (item: any) => {
     const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
     if (matched) return `/blog/${matched.slug}`;
-    return `/blog?search=${encodeURIComponent(item.name)}`;
+    // 블로그 포스트가 없으면 자동으로 정보를 보여주는 페이지로 연결
+    return `/blog/auto-post/${item.id}`;
   };
 
   const gridStyle: React.CSSProperties = {

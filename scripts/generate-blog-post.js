@@ -93,11 +93,11 @@ async function generateBlogPost() {
       ];
 
       for (const tip of dailyTips) {
-        const isAlreadyWritten = allPostContents.some(content => 
-          content.includes(tip.name) && content.includes(new Date().toISOString().split('T')[0])
+        const isAlreadyWritten = existingFiles.some(f => 
+          f.content.includes(tip.name) && f.content.includes(new Date().toISOString().split('T')[0])
         );
         if (!isAlreadyWritten) {
-          await createPost(tip, GEMINI_API_KEY, postsDirPath, allPostContents, true);
+          await createPost(tip, GEMINI_API_KEY, postsDirPath, true);
           createdCount++;
           break; // 하루에 하나만 추가
         }
