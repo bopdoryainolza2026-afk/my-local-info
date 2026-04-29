@@ -359,18 +359,19 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
     <div>
       <div style={gridStyle}>
         {paginated.map((ev: any) => (
-          <EventCard
-            key={ev.id}
-            emoji={ev.emoji}
-            tag={ev.tag}
-            name={ev.name}
-            dateStr={dateRange(ev.startDate, ev.endDate)}
-            location={ev.location}
-            target={ev.target}
-            summary={ev.summary}
-            link={getLink(ev)}
-            imageUrl={ev.imageUrl}
-          />
+          <div key={ev.id} style={ev.name?.includes("골목상권") ? { border: "3px solid #fbbf24", borderRadius: "20px", padding: "4px", background: "#fef9c3" } : {}}>
+            <EventCard
+              emoji={ev.emoji}
+              tag={ev.tag}
+              name={ev.name}
+              dateStr={dateRange(ev.startDate, ev.endDate)}
+              location={ev.location}
+              target={ev.target}
+              summary={ev.summary}
+              link={getLink(ev)}
+              imageUrl={ev.imageUrl}
+            />
+          </div>
         ))}
       </div>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
