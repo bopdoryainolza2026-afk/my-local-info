@@ -64,16 +64,14 @@ async function generateBlogPost() {
         continue;
       }
 
-      if (existingFile) {
-        console.log(`[${createdCount + 1}] 🔄 [${item.name}] 업그레이드 대상 (현재 크기: ${existingFile.content.length}바이트)`);
-        // 기존 파일 삭제 (중복 방지)
-        try { fs.unlinkSync(existingFile.path); } catch (e) {}
-      } else {
-        console.log(`[${createdCount + 1}] 🆕 [${item.name}] 새 글 작성 대상`);
-      }
-
       try {
         await createPost(item, GEMINI_API_KEY, postsDirPath);
+        
+        // 새로운 글 생성이 성공한 경우에만 기존 (짧은) 파일 삭제
+        if (existingFile) {
+          try { fs.unlinkSync(existingFile.path); } catch (e) {}
+        }
+        
         createdCount++;
         // API 속도 제한 방지를 위한 짧은 휴식
         await new Promise(resolve => setTimeout(resolve, 2000));
