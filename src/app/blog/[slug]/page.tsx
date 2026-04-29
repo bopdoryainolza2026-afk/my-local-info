@@ -20,7 +20,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const postData = getPostData(slug);
-  
+
   if (!postData) {
     return { title: "포스트를 찾을 수 없습니다." };
   }
@@ -45,9 +45,9 @@ export default async function PostPage({ params }: Props) {
   }
 
   const allItems = [...localData.events, ...localData.benefits, ...localData.restaurants];
-  const matchedItem = allItems.find(item => 
+  const matchedItem = allItems.find(item =>
     postData.content.includes(`[ITEM_ID: ${item.id}]`) ||
-    postData.title.includes(item.name) || 
+    postData.title.includes(item.name) ||
     postData.content.includes(item.name)
   );
   const sourceLink = matchedItem?.link || "https://data.go.kr/";
@@ -105,7 +105,7 @@ export default async function PostPage({ params }: Props) {
         }}>
           ← 목록으로 돌아가기
         </Link>
-        
+
         <header style={{ marginBottom: 40 }}>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
             <span style={{ fontSize: 12, fontWeight: 700, color: "#0284c7", background: "#e0f2fe", padding: "4px 10px", borderRadius: 12 }}>
@@ -123,12 +123,12 @@ export default async function PostPage({ params }: Props) {
               const today = new Date();
               const diffTime = Math.abs(today.getTime() - postDate.getTime());
               const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-              
+
               if (diffDays > 90) {
                 return (
-                  <div style={{ 
-                    background: "#fff7ed", color: "#c2410c", 
-                    padding: "6px 12px", borderRadius: "8px", 
+                  <div style={{
+                    background: "#fff7ed", color: "#c2410c",
+                    padding: "6px 12px", borderRadius: "8px",
                     fontSize: "12px", fontWeight: 700,
                     border: "1px solid #ffedd5",
                     display: "flex", alignItems: "center", gap: "6px"
@@ -140,12 +140,12 @@ export default async function PostPage({ params }: Props) {
               return null;
             })()}
           </div>
-          
+
           {/* 상단 퀵 버튼 추가 */}
           <div style={{ marginTop: "24px" }}>
-            <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{ 
-              display: "inline-block", fontSize: "14px", fontWeight: "bold", 
-              color: "white", background: "#0ea5e9", padding: "10px 24px", 
+            <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{
+              display: "inline-block", fontSize: "14px", fontWeight: "bold",
+              color: "white", background: "#0ea5e9", padding: "10px 24px",
               borderRadius: "30px", textDecoration: "none",
               boxShadow: "0 4px 12px rgba(14,165,233,0.3)"
             }}>
@@ -161,8 +161,8 @@ export default async function PostPage({ params }: Props) {
           const diffDays = Math.ceil(Math.abs(today.getTime() - postDate.getTime()) / (1000 * 60 * 60 * 24));
           if (diffDays > 90) {
             return (
-              <div style={{ 
-                background: "#fff1f2", border: "1px solid #fecdd3", 
+              <div style={{
+                background: "#fff1f2", border: "1px solid #fecdd3",
                 padding: "16px", borderRadius: "16px", marginBottom: "32px",
                 display: "flex", gap: "12px", alignItems: "flex-start"
               }}>
@@ -181,7 +181,7 @@ export default async function PostPage({ params }: Props) {
 
         {/* 마크다운 렌더링 구역 */}
         <div className="prose prose-sky max-w-none" style={{ background: "white", padding: "32px", borderRadius: 20, border: "1px solid #e2e8f0" }}>
-          <ReactMarkdown 
+          <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
               h3: ({ node, ...props }) => {
@@ -191,9 +191,9 @@ export default async function PostPage({ params }: Props) {
                   return (
                     <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap", marginBottom: "16px", marginTop: "24px" }}>
                       <h3 {...props} style={{ margin: 0, fontSize: "20px" }} />
-                      <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{ 
-                        display: "inline-block", fontSize: "13px", fontWeight: "bold", 
-                        color: "white", background: "#0ea5e9", padding: "6px 16px", 
+                      <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{
+                        display: "inline-block", fontSize: "13px", fontWeight: "bold",
+                        color: "white", background: "#0ea5e9", padding: "6px 16px",
                         borderRadius: "20px", textDecoration: "none",
                         boxShadow: "0 4px 10px rgba(14,165,233,0.3)"
                       }}>

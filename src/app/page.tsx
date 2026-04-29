@@ -478,9 +478,9 @@ function BenefitCard({
   );
 }
 
-function RestaurantCard({ emoji, name, menu, location, summary, link, tag }: any) {
+function RestaurantCard({ emoji, name, menu, location, summary, blogLink, tag }: any) {
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer" style={{
+    <Link href={blogLink} style={{
       background: "white",
       borderRadius: 16,
       padding: "20px",
@@ -492,6 +492,7 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag }: any
       flexDirection: "column",
       gap: 10,
       minHeight: "300px", // 높이 고정
+      cursor: "pointer",
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <span style={{ fontSize: 32 }}>{emoji}</span>
@@ -524,7 +525,7 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag }: any
       <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 4, marginTop: "auto" }}>
         📍 {location}
       </div>
-    </a>
+    </Link>
   );
 }
 

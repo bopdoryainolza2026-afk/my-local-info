@@ -133,9 +133,7 @@ function EventCard({
     </>
   );
 
-  return isExternal ? (
-    <a href={link} target="_blank" rel="noopener noreferrer" style={cardStyle}>{content}</a>
-  ) : (
+  return (
     <Link href={link} style={cardStyle}>{content}</Link>
   );
 }
@@ -210,9 +208,7 @@ function BenefitCard({
     </>
   );
 
-  return isExternal ? (
-    <a href={link} target="_blank" rel="noopener noreferrer" style={cardStyle}>{content}</a>
-  ) : (
+  return (
     <Link href={link} style={cardStyle}>{content}</Link>
   );
 }
@@ -257,9 +253,7 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag, image
     </>
   );
 
-  return isExternal ? (
-    <a href={link} target="_blank" rel="noopener noreferrer" style={cardStyle}>{content}</a>
-  ) : (
+  return (
     <Link href={link} style={cardStyle}>{content}</Link>
   );
 }
@@ -341,8 +335,7 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
   const getLink = (item: any) => {
     const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
     if (matched) return `/blog/${matched.slug}`;
-    if (item.link && item.link !== "#") return item.link;
-    return "/blog";
+    return `/blog?search=${encodeURIComponent(item.name)}`;
   };
 
   const gridStyle: React.CSSProperties = {
@@ -397,8 +390,7 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
   const getLink = (item: any) => {
     const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
     if (matched) return `/blog/${matched.slug}`;
-    if (item.link && item.link !== "#") return item.link;
-    return "/blog";
+    return `/blog?search=${encodeURIComponent(item.name)}`;
   };
 
   const gridStyle: React.CSSProperties = {
@@ -453,8 +445,7 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
   const getLink = (item: any) => {
     const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
     if (matched) return `/blog/${matched.slug}`;
-    if (item.link && item.link !== "#") return item.link;
-    return "/blog";
+    return `/blog?search=${encodeURIComponent(item.name)}`;
   };
 
   const gridStyle: React.CSSProperties = {

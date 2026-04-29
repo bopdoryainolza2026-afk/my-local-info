@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const REQUEST_DELAY = 15000; // 15초 간격 (4 RPM)
+const REQUEST_DELAY = 20000; // 20초 간격 (3 RPM)
 
 async function upgradeAllPosts() {
   try {
@@ -39,10 +39,18 @@ async function upgradeAllPosts() {
   };
 
   const files = fs.readdirSync(postsDirPath).filter(f => f.endsWith('.md'));
-  console.log(`총 ${files.length}개의 파일을 업그레이드합니다. (데이터 매칭 실패 시 기존 내용 활용)`);
+  
+  // 업그레이드가 필요한 파일만 선별 (2500자 미만)
+  const filesToUpgrade = files.filter(file => {
+    const filePath = path.join(postsDirPath, file);
+    const content = fs.readFileSync(filePath, 'utf8');
+    return content.length < 2500;
+  });
 
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
+  console.log(`총 ${files.length}개의 파일 중 ${filesToUpgrade.length}개의 파일을 업그레이드합니다. (이미 충분히 긴 글은 제외)`);
+
+  for (let i = 0; i < filesToUpgrade.length; i++) {
+    const file = filesToUpgrade[i];
     const filePath = path.join(postsDirPath, file);
     const content = fs.readFileSync(filePath, 'utf8');
     
@@ -67,11 +75,11 @@ async function upgradeAllPosts() {
     const useExistingContent = !item;
     const targetItem = item || { name: file, existingContent: content };
 
-    console.log(`[${i+1}/${files.length}] 업그레이드 중: ${item ? (item.name || item.title) : file}`);
+    console.log(`[${i+1}/${filesToUpgrade.length}] 업그레이드 중: ${item ? (item.name || item.title) : file}`);
     
     try {
       await createPost(targetItem, GEMINI_API_KEY, filePath, !!(itemId && itemId.startsWith('tip-')), useExistingContent);
-      if (i < files.length - 1) {
+      if (i < filesToUpgrade.length - 1) {
         await new Promise(resolve => setTimeout(resolve, REQUEST_DELAY));
       }
     } catch (err) {
