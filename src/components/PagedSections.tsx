@@ -333,9 +333,19 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const getLink = (item: any) => {
-    const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
+    // 골목상권 이벤트인 경우 강제로 매칭 (안전장치)
+    if (item.name?.includes("골목상권") || item.id === "evt-2026-010") {
+      const alleyPost = allPosts.find(p => p.slug.includes("wipay-alley-event") || p.title.includes("골목상권"));
+      if (alleyPost) return `/blog/${alleyPost.slug}`;
+    }
+
+    const matched = allPosts.find(p => 
+      (item.id && p.content?.includes(`[ITEM_ID: ${item.id}]`)) || 
+      (item.name && p.title?.includes(item.name)) || 
+      (item.name && item.name.includes(p.title))
+    );
+    
     if (matched) return `/blog/${matched.slug}`;
-    // 블로그 포스트가 없으면 자동으로 정보를 보여주는 페이지로 연결
     return `/blog/auto-post/${item.id}`;
   };
 
@@ -389,9 +399,19 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const getLink = (item: any) => {
-    const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
+    // 골목상권 이벤트인 경우 강제로 매칭 (안전장치)
+    if (item.name?.includes("골목상권") || item.id === "evt-2026-010") {
+      const alleyPost = allPosts.find(p => p.slug.includes("wipay-alley-event") || p.title.includes("골목상권"));
+      if (alleyPost) return `/blog/${alleyPost.slug}`;
+    }
+
+    const matched = allPosts.find(p => 
+      (item.id && p.content?.includes(`[ITEM_ID: ${item.id}]`)) || 
+      (item.name && p.title?.includes(item.name)) || 
+      (item.name && item.name.includes(p.title))
+    );
+    
     if (matched) return `/blog/${matched.slug}`;
-    // 블로그 포스트가 없으면 자동으로 정보를 보여주는 페이지로 연결
     return `/blog/auto-post/${item.id}`;
   };
 
@@ -445,9 +465,19 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const getLink = (item: any) => {
-    const matched = allPosts.find(p => p.content?.includes(`[ITEM_ID: ${item.id}]`) || p.title?.includes(item.name) || item.name?.includes(p.title) || p.content?.includes(item.name));
+    // 골목상권 이벤트인 경우 강제로 매칭 (안전장치)
+    if (item.name?.includes("골목상권") || item.id === "evt-2026-010") {
+      const alleyPost = allPosts.find(p => p.slug.includes("wipay-alley-event") || p.title.includes("골목상권"));
+      if (alleyPost) return `/blog/${alleyPost.slug}`;
+    }
+
+    const matched = allPosts.find(p => 
+      (item.id && p.content?.includes(`[ITEM_ID: ${item.id}]`)) || 
+      (item.name && p.title?.includes(item.name)) || 
+      (item.name && item.name.includes(p.title))
+    );
+    
     if (matched) return `/blog/${matched.slug}`;
-    // 블로그 포스트가 없으면 자동으로 정보를 보여주는 페이지로 연결
     return `/blog/auto-post/${item.id}`;
   };
 

@@ -53,7 +53,7 @@ export default function BlogPage() {
       {/* ===== 메인 섹션 ===== */}
       <main style={{ maxWidth: 800, margin: "0 auto", padding: "40px 20px 60px" }}>
         <h1 style={{ fontSize: 28, fontWeight: 900, color: "#1e293b", marginBottom: 12 }}>
-          📝 생활 정보 블로그
+          📝 생활 정보 블로그 (최신 반영됨)
         </h1>
         <p style={{ fontSize: 16, color: "#64748b", marginBottom: 40 }}>
           AI가 정리해드리는 용인시의 유용한 생활 팁과 소식입니다.
