@@ -131,21 +131,20 @@ function EventCard({
           <span>📍 {location}</span>
           <span>👤 {target}</span>
         </div>
-        {externalLink && (
-          <a 
-            href={externalLink} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            style={{ 
-              fontSize: "11px", color: "#0ea5e9", fontWeight: 700, 
-              background: "#f0f9ff", padding: "4px 8px", borderRadius: "6px",
-              textDecoration: "none", border: "1px solid #bae6fd"
-            }}
-          >
-            원문 보기 ↗
-          </a>
-        )}
+        <button 
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = link;
+          }}
+          style={{ 
+            fontSize: "11px", color: "#0ea5e9", fontWeight: 700, 
+            background: "#f0f9ff", padding: "6px 12px", borderRadius: "8px",
+            border: "1px solid #bae6fd", cursor: "pointer"
+          }}
+        >
+          상세 정보 보기
+        </button>
       </div>
     </>
   );
@@ -223,21 +222,20 @@ function BenefitCard({
           <span>👤 {target.substring(0, 20)}{target.length > 20 ? "..." : ""}</span>
           <span>📅 {formatDate(deadline)}까지</span>
         </div>
-        {externalLink && (
-          <a 
-            href={externalLink} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            style={{ 
-              fontSize: "11px", color: "#db2777", fontWeight: 700, 
-              background: "#fdf2f8", padding: "4px 8px", borderRadius: "6px",
-              textDecoration: "none", border: "1px solid #fce7f3"
-            }}
-          >
-            원문 보기 ↗
-          </a>
-        )}
+        <button 
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = link;
+          }}
+          style={{ 
+            fontSize: "11px", color: "#db2777", fontWeight: 700, 
+            background: "#fdf2f8", padding: "6px 12px", borderRadius: "8px",
+            border: "1px solid #fce7f3", cursor: "pointer"
+          }}
+        >
+          상세 정보 보기
+        </button>
       </div>
     </>
   );
@@ -283,21 +281,20 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag, image
       <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{summary}</p>
       <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 4, marginTop: "auto" }}>
         <span>📍 {location}</span>
-        {item && item.link && (
-          <a 
-            href={item.link} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            style={{ 
-              fontSize: "11px", color: "#ea580c", fontWeight: 700, 
-              background: "#fff7ed", padding: "4px 8px", borderRadius: "6px",
-              textDecoration: "none", border: "1px solid #fed7aa"
-            }}
-          >
-            원문 보기 ↗
-          </a>
-        )}
+        <button 
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = link;
+          }}
+          style={{ 
+            fontSize: "11px", color: "#ea580c", fontWeight: 700, 
+            background: "#fff7ed", padding: "6px 12px", borderRadius: "8px",
+            border: "1px solid #fed7aa", cursor: "pointer"
+          }}
+        >
+          상세 정보 보기
+        </button>
       </div>
     </>
   );
@@ -351,9 +348,25 @@ function StoryCard({
       
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: 12, borderTop: "1px solid #f1f5f9" }}>
         <span style={{ fontSize: 12, color: "#94a3b8" }}>{date}</span>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}>❤️ 12</button>
-          <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}>💬 5</button>
+        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+          <button 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              window.location.href = link;
+            }}
+            style={{ 
+              fontSize: "11px", color: "#db2777", fontWeight: 700, 
+              background: "#fdf2f8", padding: "6px 12px", borderRadius: "8px",
+              border: "1px solid #f9a8d4", cursor: "pointer"
+            }}
+          >
+            상세 정보 보기
+          </button>
+          <div style={{ display: "flex", gap: 8 }}>
+            <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}>❤️ 12</button>
+            <button style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14 }}>💬 5</button>
+          </div>
         </div>
       </div>
     </Link>
@@ -404,10 +417,11 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
       if (!p.content) return false;
       const cleanContent = p.content.replace(/\s+/g, "");
       const searchId = `[ITEM_ID:${item.id}]`;
+      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
       return (item.id && cleanContent.includes(searchId)) || 
              (item.id && p.content.includes(item.id)) ||
-             (item.name && p.title.includes(item.name)) || 
-             (item.name && item.name.includes(p.title));
+             (cleanTitle.includes(cleanName)) || 
+             (cleanName.includes(cleanTitle));
     });
     
     if (matched) return `/blog/${matched.slug}`;
@@ -482,10 +496,11 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
       if (!p.content) return false;
       const cleanContent = p.content.replace(/\s+/g, "");
       const searchId = `[ITEM_ID:${item.id}]`;
+      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
       return (item.id && cleanContent.includes(searchId)) || 
              (item.id && p.content.includes(item.id)) ||
-             (item.name && p.title.includes(item.name)) || 
-             (item.name && item.name.includes(p.title));
+             (cleanTitle.includes(cleanName)) || 
+             (cleanName.includes(cleanTitle));
     });
     
     if (matched) return `/blog/${matched.slug}`;
@@ -554,10 +569,11 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
       if (!p.content) return false;
       const cleanContent = p.content.replace(/\s+/g, "");
       const searchId = `[ITEM_ID:${item.id}]`;
+      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
       return (item.id && cleanContent.includes(searchId)) || 
              (item.id && p.content.includes(item.id)) ||
-             (item.name && p.title.includes(item.name)) || 
-             (item.name && item.name.includes(p.title));
+             (cleanTitle.includes(cleanName)) || 
+             (cleanName.includes(cleanTitle));
     });
     
     if (matched) return `/blog/${matched.slug}`;
