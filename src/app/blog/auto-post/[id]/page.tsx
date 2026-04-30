@@ -3,6 +3,13 @@ import Link from "next/link";
 import localData from "../../../../../public/data/local-info.json";
 import { Metadata } from "next";
 
+export function generateStaticParams() {
+  const allItems = [...localData.events, ...localData.benefits, ...localData.restaurants];
+  return allItems.map((item: any) => ({
+    id: item.id,
+  }));
+}
+
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const { id } = params;
   const allItems = [...localData.events, ...localData.benefits, ...localData.restaurants];
