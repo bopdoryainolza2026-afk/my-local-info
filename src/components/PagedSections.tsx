@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { getItemBlogLink } from "@/lib/item-slug-map";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -395,23 +396,6 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-  const getLink = (item: any) => {
-    // 1. 블로그 글 중에서 아이템 ID 혹은 제목이 정확히 일치하는 글 찾기
-    const matched = allPosts.find(p => {
-      if (!p.content) return false;
-      const cleanContent = p.content.replace(/\s+/g, "");
-      const searchId = `[ITEM_ID:${item.id}]`;
-      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
-      const cleanName = (item.name || "").replace(/\s+/g, "").toLowerCase();
-      
-      return (item.id && cleanContent.includes(searchId)) || 
-             (item.id && p.content.includes(item.id)) ||
-             (cleanTitle && cleanName && (cleanTitle.includes(cleanName) || cleanName.includes(cleanTitle)));
-    });
-    
-    if (matched) return `/blog/${matched.slug}`;
-    return `/blog/auto-post/${item.id}`;
-  };
 
 
   const gridStyle: React.CSSProperties = {
@@ -433,7 +417,7 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
               location={ev.location}
               target={ev.target}
               summary={ev.summary}
-              link={getLink(ev)}
+              link={getItemBlogLink(ev.id)}
               imageUrl={ev.imageUrl}
             />
           </div>
@@ -464,32 +448,6 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-  const getLink = (item: any) => {
-    const cleanName = item.name.replace(/\s+/g, "").toLowerCase();
-    
-    if (item.id === "ben-2026-007" || cleanName.includes("꿈드림")) {
-      const p = allPosts.find(p => p.slug.includes("youth-dream-support") || (p.content && p.content.includes("ben-2026-007")));
-      if (p) return `/blog/${p.slug}`;
-    }
-    if (item.id === "ben-2026-013" || (cleanName.includes("중소기업") && cleanName.includes("쇼핑몰"))) {
-      const p = allPosts.find(p => p.slug.includes("sme-online-support") || (p.content && p.content.includes("ben-2026-013")));
-      if (p) return `/blog/${p.slug}`;
-    }
-
-    const matched = allPosts.find(p => {
-      if (!p.content) return false;
-      const cleanContent = p.content.replace(/\s+/g, "");
-      const searchId = `[ITEM_ID:${item.id}]`;
-      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
-      return (item.id && cleanContent.includes(searchId)) || 
-             (item.id && p.content.includes(item.id)) ||
-             (cleanTitle.includes(cleanName)) || 
-             (cleanName.includes(cleanTitle));
-    });
-    
-    if (matched) return `/blog/${matched.slug}`;
-    return `/blog/auto-post/${item.id}`;
-  };
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -510,7 +468,7 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
             amount={"amount" in ben ? ben.amount : ""}
             summary={ben.summary}
             deadline={ben.endDate}
-            link={getLink(ben)}
+            link={getItemBlogLink(ben.id)}
             imageUrl={ben.imageUrl}
           />
         ))}
@@ -540,28 +498,6 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-  const getLink = (item: any) => {
-    const cleanName = item.name.replace(/\s+/g, "").toLowerCase();
-
-    if (cleanName.includes("중앙시장") && cleanName.includes("칼국수")) {
-      const p = allPosts.find(p => p.slug.includes("market-kalguksu") || (p.content && p.content.includes("res-005")));
-      if (p) return `/blog/${p.slug}`;
-    }
-
-    const matched = allPosts.find(p => {
-      if (!p.content) return false;
-      const cleanContent = p.content.replace(/\s+/g, "");
-      const searchId = `[ITEM_ID:${item.id}]`;
-      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
-      return (item.id && cleanContent.includes(searchId)) || 
-             (item.id && p.content.includes(item.id)) ||
-             (cleanTitle.includes(cleanName)) || 
-             (cleanName.includes(cleanTitle));
-    });
-    
-    if (matched) return `/blog/${matched.slug}`;
-    return `/blog/auto-post/${item.id}`;
-  };
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -580,7 +516,7 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
             menu={res.menu}
             location={res.location}
             summary={res.summary}
-            link={getLink(res)}
+            link={getItemBlogLink(res.id)}
             tag={res.tag}
             imageUrl={res.imageUrl}
             item={res}
@@ -663,23 +599,6 @@ export function PagedEducationSection({ items, allPosts }: { items: any[]; allPo
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-  const getLink = (item: any) => {
-    const matched = allPosts.find(p => {
-      if (!p.content) return false;
-      const cleanContent = p.content.replace(/\s+/g, "");
-      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
-      const cleanItemName = item.name.replace(/\s+/g, "").toLowerCase();
-      const searchId = `[ITEM_ID:${item.id}]`;
-      
-      return (item.id && cleanContent.includes(searchId)) || 
-             (item.id && p.content.includes(item.id)) ||
-             (cleanTitle.includes(cleanItemName)) || 
-             (cleanItemName.includes(cleanTitle));
-    });
-    
-    if (matched) return `/blog/${matched.slug}`;
-    return `/blog/auto-post/${item.id}`;
-  };
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -700,7 +619,7 @@ export function PagedEducationSection({ items, allPosts }: { items: any[]; allPo
             location={ev.location}
             target={ev.target}
             summary={ev.summary}
-            link={getLink(ev)}
+            link={getItemBlogLink(ev.id)}
             imageUrl={ev.imageUrl}
             
           />
@@ -731,23 +650,6 @@ export function PagedJobSection({ items, allPosts }: { items: any[]; allPosts: a
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-  const getLink = (item: any) => {
-    const matched = allPosts.find(p => {
-      if (!p.content) return false;
-      const cleanContent = p.content.replace(/\s+/g, "");
-      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
-      const cleanItemName = item.name.replace(/\s+/g, "").toLowerCase();
-      const searchId = `[ITEM_ID:${item.id}]`;
-      
-      return (item.id && cleanContent.includes(searchId)) || 
-             (item.id && p.content.includes(item.id)) ||
-             (cleanTitle.includes(cleanItemName)) || 
-             (cleanItemName.includes(cleanTitle));
-    });
-    
-    if (matched) return `/blog/${matched.slug}`;
-    return `/blog/auto-post/${item.id}`;
-  };
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -768,7 +670,7 @@ export function PagedJobSection({ items, allPosts }: { items: any[]; allPosts: a
             location={ev.location}
             target={ev.target}
             summary={ev.summary}
-            link={getLink(ev)}
+            link={getItemBlogLink(ev.id)}
             imageUrl={ev.imageUrl}
             
           />
@@ -799,23 +701,6 @@ export function PagedCultureSection({ items, allPosts }: { items: any[]; allPost
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-  const getLink = (item: any) => {
-    const matched = allPosts.find(p => {
-      if (!p.content) return false;
-      const cleanContent = p.content.replace(/\s+/g, "");
-      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
-      const cleanItemName = item.name.replace(/\s+/g, "").toLowerCase();
-      const searchId = `[ITEM_ID:${item.id}]`;
-      
-      return (item.id && cleanContent.includes(searchId)) || 
-             (item.id && p.content.includes(item.id)) ||
-             (cleanTitle.includes(cleanItemName)) || 
-             (cleanItemName.includes(cleanTitle));
-    });
-    
-    if (matched) return `/blog/${matched.slug}`;
-    return `/blog/auto-post/${item.id}`;
-  };
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -836,7 +721,7 @@ export function PagedCultureSection({ items, allPosts }: { items: any[]; allPost
             location={ev.location}
             target={ev.target}
             summary={ev.summary}
-            link={getLink(ev)}
+            link={getItemBlogLink(ev.id)}
             imageUrl={ev.imageUrl}
             
           />
