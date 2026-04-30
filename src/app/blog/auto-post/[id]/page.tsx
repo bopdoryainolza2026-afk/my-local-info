@@ -2,9 +2,17 @@ import React from "react";
 import Link from "next/link";
 import localData from "../../../../../public/data/local-info.json";
 import { Metadata } from "next";
+import { getSortedPostsData } from "../../../../../lib/posts";
 
 export function generateStaticParams() {
-  const allItems = [...localData.events, ...localData.benefits, ...localData.restaurants];
+  const allItems = [
+    ...localData.events, 
+    ...localData.benefits, 
+    ...localData.restaurants,
+    ...(localData.education || []),
+    ...(localData.jobs || []),
+    ...(localData.culture || [])
+  ];
   return allItems.map((item: any) => ({
     id: item.id,
   }));
@@ -12,7 +20,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const { id } = params;
-  const allItems = [...localData.events, ...localData.benefits, ...localData.restaurants];
+  const allItems = [
+    ...localData.events, 
+    ...localData.benefits, 
+    ...localData.restaurants,
+    ...(localData.education || []),
+    ...(localData.jobs || []),
+    ...(localData.culture || [])
+  ];
   const item = allItems.find((i: any) => i.id === id);
   
   return {
@@ -28,10 +43,21 @@ export default function AutoPostPage({ params }: { params: { id: string } }) {
   const allItems = [
     ...(localData.events as any[]),
     ...(localData.benefits as any[]),
-    ...(localData.restaurants as any[])
+    ...(localData.restaurants as any[]),
+    ...(localData.education || [] as any[]),
+    ...(localData.jobs || [] as any[]),
+    ...(localData.culture || [] as any[])
   ];
   
   const item = allItems.find((i: any) => i.id === id);
+
+  // 블로그 글이 있는지 확인
+  const allPosts = getSortedPostsData();
+  const matchedPost = allPosts.find(p => {
+    const cleanContent = p.content.replace(/\s+/g, "");
+    const searchId = `[ITEM_ID:${id}]`;
+    return cleanContent.includes(searchId) || p.content.includes(id);
+  });
 
   if (!item) {
     return (
@@ -42,6 +68,30 @@ export default function AutoPostPage({ params }: { params: { id: string } }) {
       </div>
     );
   }
+
+  // 블로그 글이 있으면 안내 메시지 추가
+  const banner = matchedPost ? (
+    <div style={{ 
+      background: "#fffbeb", 
+      border: "1px solid #fcd34d", 
+      padding: "15px", 
+      borderRadius: "12px", 
+      marginBottom: "20px",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px"
+    }}>
+      <span style={{ fontSize: "24px" }}>✍️</span>
+      <div>
+        <p style={{ margin: 0, fontSize: "14px", color: "#92400e", fontWeight: 700 }}>
+          이 정보에 대한 더 자세한 블로그 소식이 있습니다!
+        </p>
+        <Link href={`/blog/${matchedPost.slug}`} style={{ fontSize: "14px", color: "#b45309", fontWeight: 800 }}>
+          정식 블로그 글로 이동하여 읽기 →
+        </Link>
+      </div>
+    </div>
+  ) : null;
 
   return (
     <div style={{ fontFamily: "'Noto Sans KR', sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
@@ -92,6 +142,8 @@ export default function AutoPostPage({ params }: { params: { id: string } }) {
               🌐 실제 공유되는 원본 웹사이트 보기
             </a>
           </div>
+
+          {banner}
 
           <h2 style={{ fontSize: "20px", fontWeight: 800, color: "#1e293b", marginBottom: "20px", borderLeft: "5px solid #0ea5e9", paddingLeft: "15px" }}>
             📋 상세 안내
