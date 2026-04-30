@@ -3,7 +3,7 @@ import Link from "next/link";
 import localData from "../../public/data/local-info.json";
 import { getSortedPostsData } from "@/lib/posts";
 import RightSidebar from "@/components/RightSidebar";
-import { PagedEventSection, PagedBenefitSection, PagedRestaurantSection, PagedStorySection } from "@/components/PagedSections";
+import { PagedEventSection, PagedBenefitSection, PagedRestaurantSection, PagedStorySection, PagedEducationSection, PagedJobSection, PagedCultureSection } from "@/components/PagedSections";
 import SearchBar from "@/components/SearchBar";
 
 // 태그 색상 매핑
@@ -27,7 +27,7 @@ function dateRange(start: string, end: string) {
 }
 
 export default function Home() {
-  const { events, benefits, restaurants, lastUpdated, source } = localData;
+  const { events, benefits, restaurants, education, jobs, culture, lastUpdated, source } = localData;
 
   // 동네 이야기 모의 데이터 (사용자 참여 유도용)
   const neighborhoodStories = [
@@ -151,6 +151,10 @@ export default function Home() {
   const gyeonggiEvents = getActiveItems(events.filter((e) => !isYongin(e)));
   const gyeonggiBenefits = getActiveItems(benefits.filter((b) => !isYongin(b)));
 
+  const yonginEdu = getActiveItems((education || []).filter(isYongin));
+  const yonginJobs = getActiveItems((jobs || []).filter(isYongin));
+  const yonginCulture = getActiveItems((culture || []).filter(isYongin));
+
   // 모든 블로그 포스트 가져오기
   const allPosts = getSortedPostsData();
 
@@ -203,9 +207,27 @@ export default function Home() {
           </section>
 
           {/* ---- 지원금/혜택 섹션 ---- */}
-          <section id="benefits" style={{ scrollMarginTop: 80, marginBottom: 24 }}>
+          <section id="benefits" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
             <SectionTitle emoji="💰" title="지원금/혜택" />
             <PagedBenefitSection items={yonginBenefits} allPosts={allPosts} />
+          </section>
+
+          {/* ---- 교육/강좌 섹션 (신규) ---- */}
+          <section id="education" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
+            <SectionTitle emoji="🎓" title="배움의 즐거움, 교육/강좌" />
+            <PagedEducationSection items={yonginEdu} allPosts={allPosts} />
+          </section>
+
+          {/* ---- 일자리 섹션 (신규) ---- */}
+          <section id="jobs" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
+            <SectionTitle emoji="👔" title="새로운 시작, 일자리 소식" />
+            <PagedJobSection items={yonginJobs} allPosts={allPosts} />
+          </section>
+
+          {/* ---- 문화/예술 섹션 (신규) ---- */}
+          <section id="culture" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
+            <SectionTitle emoji="🎨" title="풍요로운 일상, 문화/예술" />
+            <PagedCultureSection items={yonginCulture} allPosts={allPosts} />
           </section>
 
 
@@ -608,11 +630,13 @@ function LiveInfoBar() {
 function MainNavbar() {
   const menus = [
     { name: "🎪 행사/축제", id: "#events" },
-    { name: "💰 지원금/혜택", id: "#benefits" },
-
-    { name: "🍱 지역맛집", id: "#restaurants" },
-    { name: "🏠 동네이야기", id: "#stories" },
-    { name: "💬 커뮤니티", id: "#community" },
+    { name: "💰 지원금", id: "#benefits" },
+    { name: "🎓 교육", id: "#education" },
+    { name: "👔 일자리", id: "#jobs" },
+    { name: "🎨 문화", id: "#culture" },
+    { name: "🍱 맛집", id: "#restaurants" },
+    { name: "🏠 이야기", id: "#stories" },
+    { name: "💬 소통", id: "#community" },
     { name: "📝 Blog", id: "#blog" },
   ];
 

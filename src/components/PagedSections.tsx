@@ -660,3 +660,206 @@ export function PagedStorySection({ items }: { items: any[] }) {
     </div>
   );
 }
+/** 페이징이 적용된 교육 섹션 */
+export function PagedEducationSection({ items, allPosts }: { items: any[]; allPosts: any[] }) {
+  const [page, setPage] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const savedPage = sessionStorage.getItem("edu-page");
+    if (savedPage) setPage(Number(savedPage));
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      sessionStorage.setItem("edu-page", String(page));
+    }
+  }, [page, isLoaded]);
+
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+
+  const getLink = (item: any) => {
+    const matched = allPosts.find(p => {
+      if (!p.content) return false;
+      const cleanContent = p.content.replace(/\s+/g, "");
+      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
+      const cleanItemName = item.name.replace(/\s+/g, "").toLowerCase();
+      const searchId = `[ITEM_ID:${item.id}]`;
+      
+      return (item.id && cleanContent.includes(searchId)) || 
+             (item.id && p.content.includes(item.id)) ||
+             (cleanTitle.includes(cleanItemName)) || 
+             (cleanItemName.includes(cleanTitle));
+    });
+    
+    if (matched) return `/blog/${matched.slug}`;
+    return `/blog/auto-post/${item.id}`;
+  };
+
+  const gridStyle: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+    gap: 24,
+  };
+
+  return (
+    <div>
+      <div style={gridStyle}>
+        {paginated.map((ev: any) => (
+          <EventCard
+            key={ev.id}
+            emoji={ev.emoji}
+            tag={ev.tag}
+            name={ev.name}
+            dateStr={dateRange(ev.startDate, ev.endDate)}
+            location={ev.location}
+            target={ev.target}
+            summary={ev.summary}
+            link={getLink(ev)}
+            imageUrl={ev.imageUrl}
+            externalLink={ev.link}
+          />
+        ))}
+      </div>
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+    </div>
+  );
+}
+
+/** 페이징이 적용된 일자리 섹션 */
+export function PagedJobSection({ items, allPosts }: { items: any[]; allPosts: any[] }) {
+  const [page, setPage] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const savedPage = sessionStorage.getItem("job-page");
+    if (savedPage) setPage(Number(savedPage));
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      sessionStorage.setItem("job-page", String(page));
+    }
+  }, [page, isLoaded]);
+
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+
+  const getLink = (item: any) => {
+    const matched = allPosts.find(p => {
+      if (!p.content) return false;
+      const cleanContent = p.content.replace(/\s+/g, "");
+      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
+      const cleanItemName = item.name.replace(/\s+/g, "").toLowerCase();
+      const searchId = `[ITEM_ID:${item.id}]`;
+      
+      return (item.id && cleanContent.includes(searchId)) || 
+             (item.id && p.content.includes(item.id)) ||
+             (cleanTitle.includes(cleanItemName)) || 
+             (cleanItemName.includes(cleanTitle));
+    });
+    
+    if (matched) return `/blog/${matched.slug}`;
+    return `/blog/auto-post/${item.id}`;
+  };
+
+  const gridStyle: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+    gap: 24,
+  };
+
+  return (
+    <div>
+      <div style={gridStyle}>
+        {paginated.map((ev: any) => (
+          <EventCard
+            key={ev.id}
+            emoji={ev.emoji}
+            tag={ev.tag}
+            name={ev.name}
+            dateStr={dateRange(ev.startDate, ev.endDate)}
+            location={ev.location}
+            target={ev.target}
+            summary={ev.summary}
+            link={getLink(ev)}
+            imageUrl={ev.imageUrl}
+            externalLink={ev.link}
+          />
+        ))}
+      </div>
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+    </div>
+  );
+}
+
+/** 페이징이 적용된 문화 섹션 */
+export function PagedCultureSection({ items, allPosts }: { items: any[]; allPosts: any[] }) {
+  const [page, setPage] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const savedPage = sessionStorage.getItem("culture-page");
+    if (savedPage) setPage(Number(savedPage));
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      sessionStorage.setItem("culture-page", String(page));
+    }
+  }, [page, isLoaded]);
+
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+
+  const getLink = (item: any) => {
+    const matched = allPosts.find(p => {
+      if (!p.content) return false;
+      const cleanContent = p.content.replace(/\s+/g, "");
+      const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
+      const cleanItemName = item.name.replace(/\s+/g, "").toLowerCase();
+      const searchId = `[ITEM_ID:${item.id}]`;
+      
+      return (item.id && cleanContent.includes(searchId)) || 
+             (item.id && p.content.includes(item.id)) ||
+             (cleanTitle.includes(cleanItemName)) || 
+             (cleanItemName.includes(cleanTitle));
+    });
+    
+    if (matched) return `/blog/${matched.slug}`;
+    return `/blog/auto-post/${item.id}`;
+  };
+
+  const gridStyle: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+    gap: 24,
+  };
+
+  return (
+    <div>
+      <div style={gridStyle}>
+        {paginated.map((ev: any) => (
+          <EventCard
+            key={ev.id}
+            emoji={ev.emoji}
+            tag={ev.tag}
+            name={ev.name}
+            dateStr={dateRange(ev.startDate, ev.endDate)}
+            location={ev.location}
+            target={ev.target}
+            summary={ev.summary}
+            link={getLink(ev)}
+            imageUrl={ev.imageUrl}
+            externalLink={ev.link}
+          />
+        ))}
+      </div>
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+    </div>
+  );
+}
