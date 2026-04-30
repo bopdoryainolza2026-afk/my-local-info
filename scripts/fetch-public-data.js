@@ -108,8 +108,8 @@ async function fetchPublicData() {
       return;
     }
 
-    // 한 번에 최대 몇 개까지 추가할지 설정 (기본 3개)
-    const MAX_NEW_ITEMS = 3;
+    // 한 번에 최대 몇 개까지 추가할지 설정 (기본 10개로 상향)
+    const MAX_NEW_ITEMS = 10;
     const processItems = newItemsFound.slice(0, MAX_NEW_ITEMS);
 
     console.log(`${processItems.length}개의 새로운 항목을 가공합니다.`);

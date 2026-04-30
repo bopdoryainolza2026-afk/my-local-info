@@ -62,6 +62,50 @@ export default function Home() {
       emoji: "🏯",
       tag: "명소",
       link: "/blog/2026-04-22-yongin-hanok-spring/"
+    },
+    {
+      id: "story-004",
+      name: "기흥호수공원, 저녁 노을 맛집이에요 🌅",
+      author: "호수산책러",
+      summary: "기흥호수공원 둘레길이 정말 잘 되어 있더라고요. 해 질 녘에 가면 물결에 비친 노을이 환상적입니다. 가벼운 러닝 코스로도 추천해요!",
+      date: "2026-04-25",
+      imageUrl: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=400",
+      emoji: "🌅",
+      tag: "산책",
+      link: "/blog/2026-04-25-giheung-lake-sunset/"
+    },
+    {
+      id: "story-005",
+      name: "수지 신봉동 외식타운 단골집 공유 🥘",
+      author: "미식가제이",
+      summary: "주말마다 가족들과 찾는 신봉동 외식타운! 보리밥부터 코다리조림까지 메뉴가 정말 다양해서 좋아요. 주차도 편해서 자주 가게 되네요.",
+      date: "2026-04-26",
+      imageUrl: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=400",
+      emoji: "🥘",
+      tag: "외식",
+      link: "/blog/2026-04-26-suji-sinbong-food/"
+    },
+    {
+      id: "story-006",
+      name: "아이들과 가기 좋은 용인농촌테마파크 👨‍👩‍👧‍👦",
+      author: "다둥이아빠",
+      summary: "처인구에 있는 농촌테마파크에 다녀왔습니다. 계절마다 꽃도 예쁘고 원두막에서 도시락 먹기도 좋아요. 아이들 체험학습 장소로 딱입니다.",
+      date: "2026-04-27",
+      imageUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=400",
+      emoji: "👨‍👩‍👧‍👦",
+      tag: "나들이",
+      link: "/blog/2026-04-27-yongin-rural-theme-park/"
+    },
+    {
+      id: "story-007",
+      name: "용인 자연휴양림에서 힐링하고 왔어요 🏕️",
+      author: "캠핑마니아",
+      summary: "예약하기 힘들기로 소문난 용인 자연휴양림! 숲속의 집에서 하룻밤 묵으니 공기가 정말 다르네요. 짚라인 체험도 아이들이 너무 좋아했어요.",
+      date: "2026-04-28",
+      imageUrl: "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=400",
+      emoji: "🏕️",
+      tag: "캠핑",
+      link: "/blog/2026-04-28-yongin-forest-healing/"
     }
   ];
 
