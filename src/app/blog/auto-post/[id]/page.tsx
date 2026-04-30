@@ -129,24 +129,25 @@ export default function AutoPostPage({ params }: { params: { id: string } }) {
           
           <div style={{ 
             padding: "20px", 
-            background: "rgba(14, 165, 233, 0.05)", 
+            background: "#f8fafc", 
             borderRadius: "16px", 
-            border: "1px dashed #0ea5e9",
+            border: "1px solid #e2e8f0",
             textAlign: "center",
             marginBottom: "40px"
           }}>
-            <p style={{ fontSize: "14px", color: "#64748b", marginBottom: "12px", fontWeight: 600 }}>
-              원본 사이트에서 더 자세한 내용이나 신청 방법을 확인하시려면 아래 버튼을 눌러주세요.
+            <p style={{ fontSize: "14px", color: "#64748b", marginBottom: "16px", fontWeight: 600 }}>
+              이 정보의 상세한 블로그 이야기를 준비하고 있습니다.<br/>
+              조금만 기다려주시면 유익한 포스팅으로 찾아뵙겠습니다!
             </p>
-            <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ 
+            <Link href="/blog" style={{ 
               display: "inline-block", fontSize: "16px", fontWeight: 800, 
-              color: "white", background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)", 
+              color: "white", background: "#1e293b", 
               padding: "14px 32px", 
               borderRadius: "50px", textDecoration: "none",
-              boxShadow: "0 8px 20px rgba(14,165,233,0.3)",
+              boxShadow: "0 8px 20px rgba(30,41,59,0.2)",
             }}>
-              🌐 실제 공유되는 원본 웹사이트 보기
-            </a>
+              🏠 블로그 목록으로 이동하기
+            </Link>
           </div>
 
           {banner}
