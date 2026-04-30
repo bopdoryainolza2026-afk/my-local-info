@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import localData from "../../../../../public/data/local-info.json";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { getSortedPostsData } from "../../../../../lib/posts";
 
 export function generateStaticParams() {
@@ -58,6 +59,11 @@ export default function AutoPostPage({ params }: { params: { id: string } }) {
     const searchId = `[ITEM_ID:${id}]`;
     return cleanContent.includes(searchId) || p.content.includes(id);
   });
+
+  // 블로그 글이 있으면 즉시 리다이렉트
+  if (matchedPost) {
+    redirect(`/blog/${matchedPost.slug}`);
+  }
 
   if (!item) {
     return (
