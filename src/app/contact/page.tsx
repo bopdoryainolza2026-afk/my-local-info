@@ -40,7 +40,7 @@ export default function ContactPage() {
           <div style={{ background: "#f1f5f9", padding: "20px", borderRadius: "12px", marginBottom: "30px" }}>
             <h3 style={{ fontSize: "18px", fontWeight: "700", marginBottom: "10px" }}>운영자 연락처</h3>
             <ul style={{ listStyle: "none", padding: 0 }}>
-              <li style={{ marginBottom: "8px" }}>📧 <strong>이메일:</strong> <a href="mailto:contact@yongin-love-info.com" style={{ color: "#f97316", textDecoration: "none" }}>contact@yongin-love-info.com</a></li>
+              <li style={{ marginBottom: "8px" }}>📧 <strong>이메일:</strong> <a href="mailto:bopdoryainolza2026@gmail.com" style={{ color: "#f97316", textDecoration: "none" }}>bopdoryainolza2026@gmail.com</a></li>
               <li>⏰ <strong>답변 시간:</strong> 평일 10:00 ~ 17:00 (순차적으로 답변해 드립니다)</li>
             </ul>
             <p style={{ fontSize: "12px", color: "#64748b", marginTop: "12px" }}>
