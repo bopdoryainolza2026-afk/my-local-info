@@ -65,11 +65,11 @@ function Pagination({
 
 /** 행사 카드 */
 function EventCard({
-  emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, imageUrl, externalLink,
+  emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, imageUrl,
 }: {
   emoji?: string; tag?: string; name: string; dateStr: string;
   location: string; target: string; summary: string; link: string;
-  imageUrl?: string; externalLink?: string;
+  imageUrl?: string;
 }) {
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
@@ -156,11 +156,11 @@ function EventCard({
 
 /** 혜택 카드 */
 function BenefitCard({
-  emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link, imageUrl, externalLink,
+  emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link, imageUrl,
 }: {
   emoji?: string; tag?: string; name: string; target: string;
   amount: string; summary: string; deadline: string; link: string;
-  imageUrl?: string; externalLink?: string;
+  imageUrl?: string;
 }) {
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
@@ -396,32 +396,17 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const getLink = (item: any) => {
-    const cleanName = item.name.replace(/\s+/g, "").toLowerCase();
-    
-    // 강제 매칭 규칙들 (사용자 요청 사항)
-    if (item.id === "evt-2026-011" || cleanName.includes("포은아트홀")) {
-      const p = allPosts.find(p => p.slug.includes("poeun-matinee") || (p.content && p.content.includes("evt-2026-011")));
-      if (p) return `/blog/${p.slug}`;
-    }
-    if (item.id === "evt-2026-002" || (cleanName.includes("중앙시장") && cleanName.includes("5일장"))) {
-      const p = allPosts.find(p => p.slug.includes("market-5day") || (p.content && p.content.includes("evt-2026-002")));
-      if (p) return `/blog/${p.slug}`;
-    }
-
-    if (item.name?.includes("골목상권") || item.id === "evt-2026-010") {
-      const alleyPost = allPosts.find(p => p.slug.includes("wipay-alley-event") || p.title.includes("골목상권"));
-      if (alleyPost) return `/blog/${alleyPost.slug}`;
-    }
-
+    // 1. 블로그 글 중에서 아이템 ID 혹은 제목이 정확히 일치하는 글 찾기
     const matched = allPosts.find(p => {
       if (!p.content) return false;
       const cleanContent = p.content.replace(/\s+/g, "");
       const searchId = `[ITEM_ID:${item.id}]`;
       const cleanTitle = (p.title || "").replace(/\s+/g, "").toLowerCase();
+      const cleanName = (item.name || "").replace(/\s+/g, "").toLowerCase();
+      
       return (item.id && cleanContent.includes(searchId)) || 
              (item.id && p.content.includes(item.id)) ||
-             (cleanTitle.includes(cleanName)) || 
-             (cleanName.includes(cleanTitle));
+             (cleanTitle && cleanName && (cleanTitle.includes(cleanName) || cleanName.includes(cleanTitle)));
     });
     
     if (matched) return `/blog/${matched.slug}`;
@@ -450,7 +435,6 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
               summary={ev.summary}
               link={getLink(ev)}
               imageUrl={ev.imageUrl}
-              externalLink={ev.link}
             />
           </div>
         ))}
@@ -528,7 +512,6 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
             deadline={ben.endDate}
             link={getLink(ben)}
             imageUrl={ben.imageUrl}
-            externalLink={ben.link}
           />
         ))}
       </div>
@@ -719,7 +702,7 @@ export function PagedEducationSection({ items, allPosts }: { items: any[]; allPo
             summary={ev.summary}
             link={getLink(ev)}
             imageUrl={ev.imageUrl}
-            externalLink={ev.link}
+            
           />
         ))}
       </div>
@@ -787,7 +770,7 @@ export function PagedJobSection({ items, allPosts }: { items: any[]; allPosts: a
             summary={ev.summary}
             link={getLink(ev)}
             imageUrl={ev.imageUrl}
-            externalLink={ev.link}
+            
           />
         ))}
       </div>
@@ -855,7 +838,7 @@ export function PagedCultureSection({ items, allPosts }: { items: any[]; allPost
             summary={ev.summary}
             link={getLink(ev)}
             imageUrl={ev.imageUrl}
-            externalLink={ev.link}
+            
           />
         ))}
       </div>
