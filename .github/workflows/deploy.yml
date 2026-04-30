@@ -59,6 +59,11 @@ jobs:
             echo "✅ 새로 추가된 데이터가 없습니다."
           fi
 
+      - name: Generate posts data JSON
+        run: |
+          echo "📚 블로그 포스트 데이터 동기화 중..."
+          node scripts/generate-posts-json.js
+
       - name: Build
         run: |
           echo "🏗️ 프로젝트 빌드 중..."
