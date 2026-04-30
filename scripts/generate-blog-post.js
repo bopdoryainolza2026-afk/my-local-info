@@ -171,7 +171,7 @@ tags: [${item.tag || '생활'}, 용인시, 경기도, ${isDailyTip ? '꿀팁' : 
   const filenameMatch = fullResponse.match(/FILENAME:\s*([^\s\n]+)/i);
   let finalFileName;
   if (filenameMatch) {
-    finalFileName = filenameMatch[1].trim();
+    finalFileName = filenameMatch[1].trim().replace(/[*"'/\\<>|?:]/g, '');
   } else {
     const safeName = item.name.replace(/[^a-zA-Z0-9가-힣]/g, '').substring(0, 10);
     finalFileName = `${today}-${safeName}`;
