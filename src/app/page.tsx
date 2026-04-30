@@ -161,11 +161,13 @@ export default function Home() {
   // 각 데이터 항목에 맞는 블로그 글 주소를 찾아주는 함수
   const getItemLink = (item: any) => {
     // 1. 블로그 글 중에서 아이템 ID 혹은 제목이 포함된 글 찾기
-    const matchedPost = allPosts.find(post => 
-      post.content.includes(`[ITEM_ID: ${item.id}]`) ||
-      post.title.includes(item.name) || 
-      item.name.includes(post.title)
-    );
+    const matchedPost = allPosts.find(post => {
+      const cleanContent = post.content.replace(/\s+/g, "");
+      const searchId = `[ITEM_ID:${item.id}]`;
+      return cleanContent.includes(searchId) ||
+             (item.id && post.content.includes(item.id)) ||
+             (item.name && post.title.includes(item.name));
+    });
     
     if (matchedPost) {
       return `/blog/${matchedPost.slug}`;
