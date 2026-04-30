@@ -76,6 +76,22 @@ export default function AboutPage() {
             수집된 다양한 지역 정보들은 인공지능(AI) 기술을 활용하여 주민분들이 읽기 편하도록 핵심 내용을 요약하고 정리합니다. 저희 '용인시 생활 정보'는 단순한 자동 생성을 넘어, 주민들에게 실질적인 가치를 효율적으로 전달하기 위해 노력하고 있습니다.
           </p>
         </section>
+
+        <section style={{ marginBottom: 30, background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)", padding: 32, borderRadius: 20, color: "white" }}>
+          <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 16, color: "white" }}>🌟 우리의 약속</h2>
+          <ul style={{ paddingLeft: 20, lineHeight: 1.8, fontSize: "15px" }}>
+            <li><b>정확성 최우선:</b> 공공기관의 데이터를 바탕으로 검증된 정보만을 전달합니다.</li>
+            <li><b>편의성 제공:</b> 복잡한 정보를 누구나 이해하기 쉬운 언어로 풀어냅니다.</li>
+            <li><b>신속한 업데이트:</b> 지역 사회의 변화를 빠르게 감지하여 매일 새로운 소식을 전합니다.</li>
+            <li><b>주민 중심 서비스:</b> 광고보다는 정보의 가치를 먼저 생각하며 운영합니다.</li>
+          </ul>
+        </section>
+
+        <div style={{ textAlign: "center", marginTop: 40 }}>
+          <p style={{ fontSize: "14px", color: "#94a3b8" }}>
+            '용인시 생활 정보'는 용인 시민 여러분의 더 나은 일상을 응원합니다.
+          </p>
+        </div>
       </main>
 
       {/* ===== 푸터 ===== */}

@@ -3,6 +3,7 @@ import localData from "../../public/data/local-info.json";
 import { getSortedPostsData } from "@/lib/posts";
 import RightSidebar from "@/components/RightSidebar";
 import { PagedEventSection, PagedBenefitSection, PagedRestaurantSection, PagedStorySection } from "@/components/PagedSections";
+import SearchBar from "@/components/SearchBar";
 
 // 태그 색상 매핑
 const tagStyle: Record<string, { bg: string; color: string }> = {
@@ -648,6 +649,11 @@ function CleanHero() {
           용인의 실시간 축제부터 이웃들이 직접 전하는 숨은 명소까지<br />
           매일 아침 AI와 이웃들이 정성껏 모아 전달해 드립니다.
         </p>
+
+        <div style={{ marginBottom: "40px" }}>
+          <SearchBar />
+        </div>
+
         <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
           <a href="#events" style={{
             background: "#1e293b", color: "white",

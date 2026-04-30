@@ -1,8 +1,19 @@
 import Link from "next/link";
 import { getSortedPostsData } from "@/lib/posts";
+import SearchBar from "@/components/SearchBar";
 
-export default function BlogPage() {
+export default async function BlogPage({ searchParams }: { searchParams: { q?: string } }) {
   const allPostsData = getSortedPostsData();
+  const { q } = await searchParams;
+  const query = q || "";
+
+  const filteredPosts = query
+    ? allPostsData.filter(post => 
+        post.title.toLowerCase().includes(query.toLowerCase()) || 
+        post.summary.toLowerCase().includes(query.toLowerCase()) ||
+        post.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
+      )
+    : allPostsData;
 
   return (
     <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
@@ -55,14 +66,25 @@ export default function BlogPage() {
         <h1 style={{ fontSize: 28, fontWeight: 900, color: "#1e293b", marginBottom: 12 }}>
           📝 생활 정보 블로그 (최신 반영됨)
         </h1>
-        <p style={{ fontSize: 16, color: "#64748b", marginBottom: 40 }}>
+        <p style={{ fontSize: 16, color: "#64748b", marginBottom: 30 }}>
           AI가 정리해드리는 용인시의 유용한 생활 팁과 소식입니다.
         </p>
 
+        {/* 검색창 추가 */}
+        <div style={{ marginBottom: 40 }}>
+          <SearchBar placeholder="블로그 내 검색..." initialValue={query} />
+        </div>
+
+        {query && (
+          <p style={{ marginBottom: 20, fontSize: 14, color: "#0ea5e9", fontWeight: 700 }}>
+            🔍 '{query}' 검색 결과 ({filteredPosts.length}건)
+          </p>
+        )}
+
         {/* 블로그 목록 */}
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          {allPostsData.length > 0 ? (
-            allPostsData.map((post) => (
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
