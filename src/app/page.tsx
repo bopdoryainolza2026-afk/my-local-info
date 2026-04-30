@@ -190,7 +190,7 @@ export default function Home() {
             }}>
               <div style={{ textAlign: "center", marginBottom: "32px" }}>
                 <p style={{ fontSize: "16px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>
-                  우리 동네의 생생한 소식, 구청 소통마당에서 확인해 보세요!
+                  우리 동네의 생생한 소식, 용인시 통합 소통마당에서 확인해 보세요!
                 </p>
                 <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.6 }}>
                   다른 이웃들의 이야기에 <b>공감</b>하고, 자신만의 <b>추천 팁</b>을 댓글로 달아주세요. <br />
@@ -203,32 +203,14 @@ export default function Home() {
                 gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
                 gap: "16px"
               }}>
-                <a href="https://www.cheoingu.go.kr/home/index.do" target="_blank" rel="noopener noreferrer" style={{
+                <a href="https://www.yongin.go.kr" target="_blank" rel="noopener noreferrer" style={{
                   background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
                   color: "white", padding: "18px", borderRadius: "16px",
                   fontWeight: 800, fontSize: "16px", textDecoration: "none",
                   boxShadow: "0 4px 12px rgba(14,165,233,0.3)",
                   textAlign: "center"
                 }}>
-                  🌳 처인구 소통마당 →
-                </a>
-                <a href="https://www.giheunggu.go.kr/_lmth/03_board/board_0101.asp" target="_blank" rel="noopener noreferrer" style={{
-                  background: "linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)",
-                  color: "white", padding: "18px", borderRadius: "16px",
-                  fontWeight: 800, fontSize: "16px", textDecoration: "none",
-                  boxShadow: "0 4px 12px rgba(244,63,94,0.3)",
-                  transition: "transform 0.2s"
-                }}>
-                  🌆 기흥구 소통마당 →
-                </a>
-                <a href="https://www.sujigu.go.kr/_lmth/03com01.asp" target="_blank" rel="noopener noreferrer" style={{
-                  background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-                  color: "white", padding: "18px", borderRadius: "16px",
-                  fontWeight: 800, fontSize: "16px", textDecoration: "none",
-                  boxShadow: "0 4px 12px rgba(16,185,129,0.3)",
-                  transition: "transform 0.2s"
-                }}>
-                  🏔️ 수지구 소통마당 →
+                  🌳 용인시 통합 소통마당 바로가기 →
                 </a>
               </div>
             </div>
@@ -631,22 +613,14 @@ function MainNavbar() {
           ))}
         </div>
 
-        {/* 우측 구청 퀵링크 */}
+        {/* 우측 용인시청 퀵링크 */}
         <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-          <span style={{ fontSize: "12px", fontWeight: 700, color: "#94a3b8", marginRight: "4px" }}>구청 바로가기</span>
+          <span style={{ fontSize: "12px", fontWeight: 700, color: "#94a3b8", marginRight: "4px" }}>용인시청 통합 바로가기</span>
           <div style={{ display: "flex", gap: "4px", background: "#f8fafc", padding: "4px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
-            <a href="https://www.cheoingu.go.kr" target="_blank" rel="noreferrer" style={{ 
+            <a href="https://www.yongin.go.kr" target="_blank" rel="noreferrer" style={{ 
               textDecoration: "none", padding: "4px 10px", borderRadius: "6px", fontSize: "12px", 
               fontWeight: 800, color: "#475569", background: "white", boxShadow: "0 1px 2px rgba(0,0,0,0.05)" 
-            }}>처인</a>
-            <a href="https://www.giheunggu.go.kr" target="_blank" rel="noreferrer" style={{ 
-              textDecoration: "none", padding: "4px 10px", borderRadius: "6px", fontSize: "12px", 
-              fontWeight: 800, color: "#475569" 
-            }}>기흥</a>
-            <a href="https://www.sujigu.go.kr" target="_blank" rel="noreferrer" style={{ 
-              textDecoration: "none", padding: "4px 10px", borderRadius: "6px", fontSize: "12px", 
-              fontWeight: 800, color: "#475569" 
-            }}>수지</a>
+            }}>용인시 공식 홈페이지 이동</a>
           </div>
         </div>
       </div>

@@ -65,11 +65,11 @@ function Pagination({
 
 /** 행사 카드 */
 function EventCard({
-  emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, imageUrl,
+  emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, imageUrl, externalLink,
 }: {
   emoji?: string; tag?: string; name: string; dateStr: string;
   location: string; target: string; summary: string; link: string;
-  imageUrl?: string;
+  imageUrl?: string; externalLink?: string;
 }) {
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
@@ -126,9 +126,26 @@ function EventCard({
       <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
         {summary}
       </p>
-      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: "auto" }}>
-        <span>📍 {location}</span>
-        <span>👤 {target}</span>
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginTop: "auto" }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <span>📍 {location}</span>
+          <span>👤 {target}</span>
+        </div>
+        {externalLink && (
+          <a 
+            href={externalLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            style={{ 
+              fontSize: "11px", color: "#0ea5e9", fontWeight: 700, 
+              background: "#f0f9ff", padding: "4px 8px", borderRadius: "6px",
+              textDecoration: "none", border: "1px solid #bae6fd"
+            }}
+          >
+            원문 보기 ↗
+          </a>
+        )}
       </div>
     </>
   );
@@ -140,11 +157,11 @@ function EventCard({
 
 /** 혜택 카드 */
 function BenefitCard({
-  emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link, imageUrl,
+  emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link, imageUrl, externalLink,
 }: {
   emoji?: string; tag?: string; name: string; target: string;
   amount: string; summary: string; deadline: string; link: string;
-  imageUrl?: string;
+  imageUrl?: string; externalLink?: string;
 }) {
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
@@ -201,9 +218,26 @@ function BenefitCard({
       <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
         {summary}
       </p>
-      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: "auto" }}>
-        <span>👤 {target.substring(0, 30)}{target.length > 30 ? "..." : ""}</span>
-        <span>📅 {formatDate(deadline)}까지</span>
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginTop: "auto" }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <span>👤 {target.substring(0, 20)}{target.length > 20 ? "..." : ""}</span>
+          <span>📅 {formatDate(deadline)}까지</span>
+        </div>
+        {externalLink && (
+          <a 
+            href={externalLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            style={{ 
+              fontSize: "11px", color: "#db2777", fontWeight: 700, 
+              background: "#fdf2f8", padding: "4px 8px", borderRadius: "6px",
+              textDecoration: "none", border: "1px solid #fce7f3"
+            }}
+          >
+            원문 보기 ↗
+          </a>
+        )}
       </div>
     </>
   );
@@ -214,7 +248,7 @@ function BenefitCard({
 }
 
 /** 맛집 카드 */
-function RestaurantCard({ emoji, name, menu, location, summary, link, tag, imageUrl }: any) {
+function RestaurantCard({ emoji, name, menu, location, summary, link, tag, imageUrl, item }: any) {
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
     background: "white",
@@ -247,8 +281,23 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag, image
       <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{name}</h3>
       <p style={{ fontSize: 13, color: "#ea580c", fontWeight: 700 }}>🍴 {menu}</p>
       <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{summary}</p>
-      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", gap: 4, marginTop: "auto" }}>
-        📍 {location}
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 4, marginTop: "auto" }}>
+        <span>📍 {location}</span>
+        {item && item.link && (
+          <a 
+            href={item.link} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            style={{ 
+              fontSize: "11px", color: "#ea580c", fontWeight: 700, 
+              background: "#fff7ed", padding: "4px 8px", borderRadius: "6px",
+              textDecoration: "none", border: "1px solid #fed7aa"
+            }}
+          >
+            원문 보기 ↗
+          </a>
+        )}
       </div>
     </>
   );
@@ -257,6 +306,7 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag, image
     <Link href={link} style={cardStyle}>{content}</Link>
   );
 }
+
 
 /** 동네 이야기 카드 */
 function StoryCard({
@@ -333,21 +383,37 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const getLink = (item: any) => {
-    // 골목상권 이벤트인 경우 강제로 매칭 (안전장치)
+    const cleanName = item.name.replace(/\s+/g, "").toLowerCase();
+    
+    // 강제 매칭 규칙들 (사용자 요청 사항)
+    if (item.id === "evt-2026-011" || cleanName.includes("포은아트홀")) {
+      const p = allPosts.find(p => p.slug.includes("poeun-matinee") || (p.content && p.content.includes("evt-2026-011")));
+      if (p) return `/blog/${p.slug}`;
+    }
+    if (item.id === "evt-2026-002" || (cleanName.includes("중앙시장") && cleanName.includes("5일장"))) {
+      const p = allPosts.find(p => p.slug.includes("market-5day") || (p.content && p.content.includes("evt-2026-002")));
+      if (p) return `/blog/${p.slug}`;
+    }
+
     if (item.name?.includes("골목상권") || item.id === "evt-2026-010") {
       const alleyPost = allPosts.find(p => p.slug.includes("wipay-alley-event") || p.title.includes("골목상권"));
       if (alleyPost) return `/blog/${alleyPost.slug}`;
     }
 
-    const matched = allPosts.find(p => 
-      (item.id && p.content?.includes(`[ITEM_ID: ${item.id}]`)) || 
-      (item.name && p.title?.includes(item.name)) || 
-      (item.name && item.name.includes(p.title))
-    );
+    const matched = allPosts.find(p => {
+      if (!p.content) return false;
+      const cleanContent = p.content.replace(/\s+/g, "");
+      const searchId = `[ITEM_ID:${item.id}]`;
+      return (item.id && cleanContent.includes(searchId)) || 
+             (item.id && p.content.includes(item.id)) ||
+             (item.name && p.title.includes(item.name)) || 
+             (item.name && item.name.includes(p.title));
+    });
     
     if (matched) return `/blog/${matched.slug}`;
     return `/blog/auto-post/${item.id}`;
   };
+
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -370,6 +436,7 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
               summary={ev.summary}
               link={getLink(ev)}
               imageUrl={ev.imageUrl}
+              externalLink={ev.link}
             />
           </div>
         ))}
@@ -400,17 +467,26 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const getLink = (item: any) => {
-    // 골목상권 이벤트인 경우 강제로 매칭 (안전장치)
-    if (item.name?.includes("골목상권") || item.id === "evt-2026-010") {
-      const alleyPost = allPosts.find(p => p.slug.includes("wipay-alley-event") || p.title.includes("골목상권"));
-      if (alleyPost) return `/blog/${alleyPost.slug}`;
+    const cleanName = item.name.replace(/\s+/g, "").toLowerCase();
+    
+    if (item.id === "ben-2026-007" || cleanName.includes("꿈드림")) {
+      const p = allPosts.find(p => p.slug.includes("youth-dream-support") || (p.content && p.content.includes("ben-2026-007")));
+      if (p) return `/blog/${p.slug}`;
+    }
+    if (item.id === "ben-2026-013" || (cleanName.includes("중소기업") && cleanName.includes("쇼핑몰"))) {
+      const p = allPosts.find(p => p.slug.includes("sme-online-support") || (p.content && p.content.includes("ben-2026-013")));
+      if (p) return `/blog/${p.slug}`;
     }
 
-    const matched = allPosts.find(p => 
-      (item.id && p.content?.includes(`[ITEM_ID: ${item.id}]`)) || 
-      (item.name && p.title?.includes(item.name)) || 
-      (item.name && item.name.includes(p.title))
-    );
+    const matched = allPosts.find(p => {
+      if (!p.content) return false;
+      const cleanContent = p.content.replace(/\s+/g, "");
+      const searchId = `[ITEM_ID:${item.id}]`;
+      return (item.id && cleanContent.includes(searchId)) || 
+             (item.id && p.content.includes(item.id)) ||
+             (item.name && p.title.includes(item.name)) || 
+             (item.name && item.name.includes(p.title));
+    });
     
     if (matched) return `/blog/${matched.slug}`;
     return `/blog/auto-post/${item.id}`;
@@ -437,6 +513,7 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
             deadline={ben.endDate}
             link={getLink(ben)}
             imageUrl={ben.imageUrl}
+            externalLink={ben.link}
           />
         ))}
       </div>
@@ -466,17 +543,22 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
   const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const getLink = (item: any) => {
-    // 골목상권 이벤트인 경우 강제로 매칭 (안전장치)
-    if (item.name?.includes("골목상권") || item.id === "evt-2026-010") {
-      const alleyPost = allPosts.find(p => p.slug.includes("wipay-alley-event") || p.title.includes("골목상권"));
-      if (alleyPost) return `/blog/${alleyPost.slug}`;
+    const cleanName = item.name.replace(/\s+/g, "").toLowerCase();
+
+    if (cleanName.includes("중앙시장") && cleanName.includes("칼국수")) {
+      const p = allPosts.find(p => p.slug.includes("market-kalguksu") || (p.content && p.content.includes("res-005")));
+      if (p) return `/blog/${p.slug}`;
     }
 
-    const matched = allPosts.find(p => 
-      (item.id && p.content?.includes(`[ITEM_ID: ${item.id}]`)) || 
-      (item.name && p.title?.includes(item.name)) || 
-      (item.name && item.name.includes(p.title))
-    );
+    const matched = allPosts.find(p => {
+      if (!p.content) return false;
+      const cleanContent = p.content.replace(/\s+/g, "");
+      const searchId = `[ITEM_ID:${item.id}]`;
+      return (item.id && cleanContent.includes(searchId)) || 
+             (item.id && p.content.includes(item.id)) ||
+             (item.name && p.title.includes(item.name)) || 
+             (item.name && item.name.includes(p.title));
+    });
     
     if (matched) return `/blog/${matched.slug}`;
     return `/blog/auto-post/${item.id}`;
@@ -502,6 +584,7 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
             link={getLink(res)}
             tag={res.tag}
             imageUrl={res.imageUrl}
+            item={res}
           />
         ))}
       </div>
