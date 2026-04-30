@@ -655,12 +655,13 @@ function MainNavbar() {
       padding: "0 24px"
     }}>
       <div style={{
-        maxWidth: "1200px",
+        maxWidth: "1350px",
         width: "100%",
         margin: "0 auto",
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        gap: "20px"
       }}>
         {/* 로고 */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
@@ -670,14 +671,15 @@ function MainNavbar() {
         </Link>
 
         {/* 중앙 메뉴 버튼들 (imweb 스타일) */}
-        <div style={{ display: "flex", gap: "28px" }}>
+        <div style={{ display: "flex", gap: "16px", flexShrink: 1, overflow: "hidden" }}>
           {menus.map((m) => (
             <a key={m.id} href={m.id} style={{
-              fontSize: "15px",
+              fontSize: "14px",
               fontWeight: 700,
               color: "#475569",
               textDecoration: "none",
               transition: "color 0.2s",
+              whiteSpace: "nowrap",
               ":hover": { color: "#0ea5e9" }
             } as any}>
               {m.name}
@@ -686,13 +688,14 @@ function MainNavbar() {
         </div>
 
         {/* 우측 용인시청 퀵링크 */}
-        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-          <span style={{ fontSize: "12px", fontWeight: 700, color: "#94a3b8", marginRight: "4px" }}>용인시청 통합 바로가기</span>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center", flexShrink: 0 }}>
+          <span style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", display: "none" }}>용인시청 통합 바로가기</span>
           <div style={{ display: "flex", gap: "4px", background: "#f8fafc", padding: "4px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
             <a href="https://www.yongin.go.kr" target="_blank" rel="noreferrer" style={{ 
-              textDecoration: "none", padding: "4px 10px", borderRadius: "6px", fontSize: "12px", 
-              fontWeight: 800, color: "#475569", background: "white", boxShadow: "0 1px 2px rgba(0,0,0,0.05)" 
-            }}>용인시 공식 홈페이지 이동</a>
+              textDecoration: "none", padding: "4px 8px", borderRadius: "6px", fontSize: "11px", 
+              fontWeight: 800, color: "#475569", background: "white", boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+              whiteSpace: "nowrap"
+            }}>용인시청 이동</a>
           </div>
         </div>
       </div>
