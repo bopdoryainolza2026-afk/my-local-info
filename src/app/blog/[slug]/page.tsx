@@ -50,7 +50,20 @@ export default async function PostPage({ params }: Props) {
     postData.title.includes(item.name) ||
     postData.content.includes(item.name)
   );
-  const sourceLink = matchedItem?.link || "https://data.go.kr/";
+  let sourceLink = matchedItem?.link || "https://data.go.kr/";
+  let buttonText = postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 자세한 내용 원문 확인하기";
+
+  // 우리동네 이야기(모의 데이터)를 위한 하드코딩 링크 처리
+  if (slug === "2026-04-24-yongin-walking-trail") {
+    sourceLink = "https://www.sujigu.go.kr/_lmth/03com01.asp";
+    buttonText = "🌲 수지구 소통마당 구경하기";
+  } else if (slug === "2026-04-23-giheung-kids-cafe") {
+    sourceLink = "https://www.giheunggu.go.kr/_lmth/03_board/board_0101.asp";
+    buttonText = "🍰 기흥구 소통마당 구경하기";
+  } else if (slug === "2026-04-22-yongin-hanok-spring") {
+    sourceLink = "https://www.cheoingu.go.kr/home/index.do";
+    buttonText = "🏯 처인구 소통마당 구경하기";
+  }
 
   return (
     <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
@@ -149,7 +162,7 @@ export default async function PostPage({ params }: Props) {
               borderRadius: "30px", textDecoration: "none",
               boxShadow: "0 4px 12px rgba(14,165,233,0.3)"
             }}>
-              {postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 자세한 내용 원문 확인하기"}
+              {buttonText}
             </a>
           </div>
         </header>
