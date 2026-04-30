@@ -613,8 +613,9 @@ export function PagedStorySection({ items }: { items: any[] }) {
     }
   }, [page, isLoaded]);
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+  const STORY_ITEMS_PER_PAGE = 4;
+  const totalPages = Math.ceil(items.length / STORY_ITEMS_PER_PAGE);
+  const paginated = items.slice((page - 1) * STORY_ITEMS_PER_PAGE, page * STORY_ITEMS_PER_PAGE);
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
