@@ -30,7 +30,7 @@ export default function ContactPage() {
       {/* ===== 메인 컨텐츠 ===== */}
       <main style={{ maxWidth: 800, margin: "0 auto", padding: "40px 20px" }}>
         <h1 style={{ fontSize: 28, fontWeight: 800, color: "#1e293b", marginBottom: 30 }}>문의하기</h1>
-        
+
         <div style={{ background: "white", padding: "30px", borderRadius: "16px", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)", lineHeight: "1.7", color: "#334155" }}>
           <p style={{ marginBottom: "20px" }}>
             용인시 생활 정보 사이트를 이용해 주셔서 감사합니다. <br />
