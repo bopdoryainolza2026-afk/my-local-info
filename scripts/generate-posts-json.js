@@ -31,9 +31,10 @@ function generate() {
         slug,
         title: matterResult.data.title || '',
         date,
-        summary: matterResult.data.summary || '',
+        summary: matterResult.data.summary || matterResult.data.excerpt || '',
         category: matterResult.data.category || '',
         tags: matterResult.data.tags || [],
+        imageUrl: matterResult.data.imageUrl || '',
         content: matterResult.content,
       };
     });

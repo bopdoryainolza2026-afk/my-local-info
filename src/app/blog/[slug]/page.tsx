@@ -165,6 +165,25 @@ export default async function PostPage({ params }: Props) {
           <h1 style={{ fontSize: 32, fontWeight: 900, color: "#1e293b", marginBottom: 12, lineHeight: 1.3 }}>
             {postData.title}
           </h1>
+
+          {/* 대표 이미지 추가 */}
+          {postData.imageUrl && (
+            <div style={{ 
+              width: "100%", 
+              height: "400px", 
+              borderRadius: "24px", 
+              overflow: "hidden", 
+              marginBottom: "32px",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+              border: "1px solid rgba(0,0,0,0.05)"
+            }}>
+              <img 
+                src={postData.imageUrl} 
+                alt={postData.title} 
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+          )}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p style={{ fontSize: 14, color: "#94a3b8" }}>최종 업데이트: {postData.date}</p>
             {/* 날짜 비교 및 경고 문구 추가 */}

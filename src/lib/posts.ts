@@ -7,6 +7,7 @@ export interface PostData {
   summary: string;
   category: string;
   tags: string[];
+  imageUrl?: string;
   content: string;
 }
 
