@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getPostData, getSortedPostsData } from "@/lib/posts";
 import localData from "../../../../public/data/local-info.json";
+import { getItemIdBySlug } from "@/lib/item-slug-map";
 
 interface Props {
   params: { slug: string };
@@ -44,8 +45,18 @@ export default async function PostPage({ params }: Props) {
     return notFound();
   }
 
-  const allItems = [...localData.events, ...localData.benefits, ...localData.restaurants];
-  const matchedItem = allItems.find(item => {
+  const allItems = [
+    ...localData.events, 
+    ...localData.benefits, 
+    ...localData.restaurants,
+    ...(localData.education || []),
+    ...(localData.jobs || []),
+    ...(localData.culture || [])
+  ];
+  // [수정] 작동이 잘 되는 카드들과 동일하게 매핑 테이블을 사용하여 아이템을 찾습니다.
+  const cleanSlug = slug.replace(/\/$/, "");
+  const itemId = getItemIdBySlug(cleanSlug);
+  const matchedItem = itemId ? allItems.find(item => item.id === itemId) : allItems.find(item => {
     if (!item.id || !item.name) return false;
     const cleanContent = postData.content.replace(/\s+/g, "").toLowerCase();
     const cleanTitle = postData.title.replace(/\s+/g, "").toLowerCase();
@@ -53,13 +64,31 @@ export default async function PostPage({ params }: Props) {
     
     return (
       cleanContent.includes(`[item_id:${item.id.toLowerCase()}]`) ||
+      cleanContent.includes(`item_id:${item.id.toLowerCase()}`) || // 브라켓 없는 경우도 포함
       cleanContent.includes(item.id.toLowerCase()) ||
       cleanTitle.includes(cleanItemName) ||
       cleanContent.includes(cleanItemName)
     );
   });
-  let sourceLink = matchedItem?.link || "https://data.go.kr/";
+  let sourceLink = matchedItem?.link || "https://www.yongin.go.kr";
   let buttonText = postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 자세한 내용 원문 확인하기";
+
+  // [최종 강화] 카드 매핑이 실패하더라도 제목이나 내용에 키워드가 있으면 공식 사이트로 연결
+  const youthKeywords = ["youth", "청년", "lab", "lab", "이사비", "주거", "전월세", "보증금", "월세", "꿈드림"];
+  const isYouthRelated = youthKeywords.some(k => 
+    slug.toLowerCase().includes(k) || 
+    postData.title.toLowerCase().includes(k) || 
+    postData.content.toLowerCase().includes(k)
+  );
+  
+  if (isYouthRelated) {
+    sourceLink = "https://youth.yongin.go.kr";
+    if (slug.includes("moving") || slug.includes("housing") || slug.includes("rent") || postData.title.includes("주거") || postData.title.includes("이사")) {
+      buttonText = "🏠 용인청년 Lab 주거지원 페이지 가기";
+    } else {
+      buttonText = "🔗 용인청년 Lab 공식 홈페이지 가기";
+    }
+  }
 
   // 우리동네 이야기(모의 데이터)를 위한 하드코딩 링크 처리
   if (slug === "2026-04-24-yongin-walking-trail") {
@@ -263,7 +292,7 @@ export default async function PostPage({ params }: Props) {
           <div style={{ background: "#f8fafc", padding: "20px", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
             <h3 style={{ fontSize: "15px", fontWeight: "bold", color: "#334155", marginBottom: "8px", marginTop: 0 }}>ℹ️ 정보 안내</h3>
             <p style={{ fontSize: "13px", color: "#64748b", margin: 0, lineHeight: 1.6 }}>
-              이 글은 공공데이터포털(<a href="http://data.go.kr/" target="_blank" rel="noopener noreferrer" style={{ color: "#0ea5e9", textDecoration: "none" }}>data.go.kr</a>)의 정보를 바탕으로 AI가 작성하였습니다. 정확한 내용은 원문 링크를 통해 확인해주세요.
+              이 글은 <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{ color: "#0ea5e9", textDecoration: "none", fontWeight: 700 }}>공식 홈페이지 원문 정보</a>를 바탕으로 AI가 작성하였습니다. 정확한 상세 내용은 링크를 통해 확인해주세요.
             </p>
           </div>
         </div>

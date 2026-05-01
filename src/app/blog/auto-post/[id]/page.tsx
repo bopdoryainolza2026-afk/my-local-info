@@ -139,15 +139,42 @@ export default function AutoPostPage({ params }: { params: { id: string } }) {
               이 정보의 상세한 블로그 이야기를 준비하고 있습니다.<br/>
               조금만 기다려주시면 유익한 포스팅으로 찾아뵙겠습니다!
             </p>
-            <Link href="/blog" style={{ 
-              display: "inline-block", fontSize: "16px", fontWeight: 800, 
-              color: "white", background: "#1e293b", 
-              padding: "14px 32px", 
-              borderRadius: "50px", textDecoration: "none",
-              boxShadow: "0 8px 20px rgba(30,41,59,0.2)",
-            }}>
-              🏠 블로그 목록으로 이동하기
-            </Link>
+            <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+              <Link href="/blog" style={{ 
+                display: "inline-block", fontSize: "15px", fontWeight: 800, 
+                color: "white", background: "#1e293b", 
+                padding: "12px 24px", 
+                borderRadius: "50px", textDecoration: "none",
+                boxShadow: "0 4px 12px rgba(30,41,59,0.1)",
+              }}>
+                🏠 블로그 목록 가기
+              </Link>
+              {(() => {
+                let link = item.link || "https://www.yongin.go.kr";
+                let text = "🔗 자세한 내용 원문 확인하기";
+                
+                // 청년 LAB 관련 하드코딩 및 키워드 매칭
+                const youthKeywords = ["youth", "청년", "lab", "lab", "이사비", "주거", "전월세", "보증금", "월세", "꿈드림"];
+                const isYouth = youthKeywords.some(k => id.toLowerCase().includes(k) || item.name.toLowerCase().includes(k));
+
+                if (isYouth || id.includes("edu-002")) {
+                  link = "https://youth.yongin.go.kr";
+                  text = "🔗 용인청년 Lab 공식 홈페이지 가기";
+                }
+
+                return (
+                  <a href={link} target="_blank" rel="noopener noreferrer" style={{ 
+                    display: "inline-block", fontSize: "15px", fontWeight: 800, 
+                    color: "white", background: "#0ea5e9", 
+                    padding: "12px 24px", 
+                    borderRadius: "50px", textDecoration: "none",
+                    boxShadow: "0 4px 12px rgba(14,165,233,0.3)",
+                  }}>
+                    {text}
+                  </a>
+                );
+              })()}
+            </div>
           </div>
 
           {banner}

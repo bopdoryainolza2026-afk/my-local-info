@@ -70,13 +70,26 @@ export const ITEM_SLUG_MAP: Record<string, string> = {
   "job-001": "2026-04-30-yongin-job-fair",
   "job-002": "2026-04-30-yongin-semiconductor-training",
   "job-003": "2026-04-30-yongin-middle-aged-job",
-  // job-004는 블로그 글 없음 → auto-post 페이지 사용
+  "job-004": "2026-04-30-yongin-hope-dream-job",
 
   // === 문화/예술 ===
   "cul-001": "2026-04-30-yongin-matinee-concert",
   "cul-002": "2026-04-30-yongin-njp-art-center",
   "cul-003": "2026-04-30-yongin-city-hall-cinema",
   "cul-004": "2026-04-30-yongin-busking-event",
+
+  // === 신규 추가 및 기타 매핑 ===
+  "yongin-youth-moving-support-2026": "2026-04-04-yongin-youth-moving-support",
+  "yongin-youth-housing-2026": "2026-03-24-yongin-youth-housing-support",
+  "yongin-eco-car-2026": "2026-04-12-yongin-ev-subsidy",
+  "yongin-childrens-day-2026": "2026-04-04-yongin-childrens-day-festival",
+  "story-001": "2026-04-24-yongin-walking-trail",
+  "story-002": "2026-04-23-giheung-kids-cafe",
+  "story-003": "2026-04-22-yongin-hanok-spring",
+  "story-004": "2026-04-25-giheung-lake-sunset",
+  "story-005": "2026-04-26-suji-sinbong-food",
+  "story-006": "2026-04-27-yongin-rural-theme-park",
+  "story-007": "2026-04-28-yongin-forest-healing",
 };
 
 /**
@@ -87,4 +100,13 @@ export function getItemBlogLink(itemId: string): string {
   const slug = ITEM_SLUG_MAP[itemId];
   if (slug) return `/blog/${slug}`;
   return `/blog/auto-post/${itemId}`;
+}
+/**
+ * 블로그 슬러그로 카드 아이디를 반환합니다.
+ */
+export function getItemIdBySlug(slug: string): string | null {
+  // 슬래시 제거 후 비교
+  const cleanSlug = slug.replace(/\/$/, "");
+  const entry = Object.entries(ITEM_SLUG_MAP).find(([_, s]) => s.replace(/\/$/, "") === cleanSlug);
+  return entry ? entry[0] : null;
 }
