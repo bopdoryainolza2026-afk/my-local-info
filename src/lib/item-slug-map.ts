@@ -63,6 +63,8 @@ export const ITEM_SLUG_MAP: Record<string, string> = {
 
   // === 교육/강좌 ===
   "edu-001": "2026-04-30-yongin-citizen-university",
+  "edu-002": "2026-05-01-yongin-youth-lab-digital-marketing",
+  "edu-004": "2026-05-01-yongin-library-parenting-class",
 
   // === 일자리 ===
   "job-001": "2026-05-01-yongin-large-job-fair",
