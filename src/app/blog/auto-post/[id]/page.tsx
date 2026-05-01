@@ -3,7 +3,7 @@ import Link from "next/link";
 import localData from "../../../../../public/data/local-info.json";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { getSortedPostsData } from "../../../../../lib/posts";
+import { getSortedPostsData } from "@/lib/posts";
 
 export function generateStaticParams() {
   const allItems = [
@@ -74,30 +74,6 @@ export default function AutoPostPage({ params }: { params: { id: string } }) {
       </div>
     );
   }
-
-  // 블로그 글이 있으면 안내 메시지 추가
-  const banner = matchedPost ? (
-    <div style={{ 
-      background: "#fffbeb", 
-      border: "1px solid #fcd34d", 
-      padding: "15px", 
-      borderRadius: "12px", 
-      marginBottom: "20px",
-      display: "flex",
-      alignItems: "center",
-      gap: "12px"
-    }}>
-      <span style={{ fontSize: "24px" }}>✍️</span>
-      <div>
-        <p style={{ margin: 0, fontSize: "14px", color: "#92400e", fontWeight: 700 }}>
-          이 정보에 대한 더 자세한 블로그 소식이 있습니다!
-        </p>
-        <Link href={`/blog/${matchedPost.slug}`} style={{ fontSize: "14px", color: "#b45309", fontWeight: 800 }}>
-          정식 블로그 글로 이동하여 읽기 →
-        </Link>
-      </div>
-    </div>
-  ) : null;
 
   return (
     <div style={{ fontFamily: "'Noto Sans KR', sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
@@ -176,8 +152,6 @@ export default function AutoPostPage({ params }: { params: { id: string } }) {
               })()}
             </div>
           </div>
-
-          {banner}
 
           <h2 style={{ fontSize: "20px", fontWeight: 800, color: "#1e293b", marginBottom: "20px", borderLeft: "5px solid #0ea5e9", paddingLeft: "15px" }}>
             📋 상세 안내
