@@ -243,7 +243,7 @@ export default function ChatBot() {
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder={isHumanMode ? "상담원에게 메시지 보내기..." : "궁금한 내용을 입력하세요..."}
-                className="flex-1 bg-transparent border-none focus:outline-none px-4 py-1.5 text-[14.5px] placeholder:text-slate-400"
+                className="flex-1 bg-transparent border-none focus:outline-none px-4 py-1.5 text-[14.5px] text-slate-800 placeholder:text-slate-400"
                 disabled={isLoading}
               />
               <button 
