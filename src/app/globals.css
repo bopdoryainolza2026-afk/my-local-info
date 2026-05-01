@@ -32,3 +32,30 @@ a {
 
 
 @plugin "@tailwindcss/typography";
+
+/* 모바일 대응 (반응형) 디자인 */
+@media (max-width: 768px) {
+  /* 1. 제목 크기 자동 조절 */
+  h1 { font-size: 24px !important; line-height: 1.4 !important; }
+  h2 { font-size: 18px !important; }
+  h3 { font-size: 16px !important; }
+  
+  /* 2. 네비게이션 및 헤더 최적화 */
+  nav { height: auto !important; padding: 10px !important; }
+  .mobile-hide { display: none !important; }
+  .mobile-column { flex-direction: column !important; gap: 10px !important; text-align: center !important; }
+  .mobile-wrap { flex-wrap: wrap !important; justify-content: center !important; }
+  
+  /* 3. 본문 패딩 조절 */
+  main { padding: 10px !important; margin-top: 20px !important; }
+  section { padding: 16px !important; border-radius: 16px !important; }
+  
+  /* 4. 히어로 섹션 패딩 줄이기 */
+  .hero-section { padding: 40px 16px !important; }
+}
+
+/* 스무스 스크롤 효과 */
+html {
+  scroll-behavior: smooth;
+}
+

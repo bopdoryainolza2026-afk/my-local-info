@@ -591,7 +591,7 @@ function LiveInfoBar() {
       borderBottom: "1px solid rgba(255,255,255,0.1)",
       padding: "8px 20px"
     }}>
-      <div style={{
+      <div className="mobile-column" style={{
         maxWidth: 1300,
         margin: "0 auto",
         display: "flex",
@@ -600,30 +600,28 @@ function LiveInfoBar() {
         fontSize: 13,
         color: "#cbd5e1"
       }}>
-        <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
-          <span>☀️ <b>용인시 날씨:</b> 맑음 (18°C)</span>
-          <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-            🚗 <b>교통 상황:</b> <span style={{ color: "#22c55e", fontWeight: 700 }}>원활</span>
+        <div className="mobile-wrap" style={{ display: "flex", gap: 10, alignItems: "center", justifyContent: "center" }}>
+          <span>☀️ <b>용인 날씨:</b> 맑음</span>
+          <span className="mobile-hide" style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            🚗 <b>교통:</b> <span style={{ color: "#22c55e", fontWeight: 700 }}>원활</span>
           </span>
-          <span style={{ display: "flex", alignItems: "center", gap: 10, marginLeft: 10 }}>
-            📊 <b>방문자</b> 
-            <span style={{ fontSize: "11px", color: "#64748b" }}>오늘</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: "11px", color: "#94a3b8" }}>방문자</span>
             <img 
               src={`https://visitor-badge.laobi.icu/badge?page_id=yongin-love-info.com.${new Date().toISOString().split('T')[0]}&color=0ea5e9`}
               alt="Today"
-              style={{ height: "18px" }}
+              style={{ height: "16px" }}
             />
-            <span style={{ fontSize: "11px", color: "#64748b" }}>누계</span>
             <img 
               src="https://visitor-badge.laobi.icu/badge?page_id=yongin-love-info.com&color=475569" 
               alt="Total"
-              style={{ height: "18px" }}
+              style={{ height: "16px" }}
             />
-          </span>
+          </div>
         </div>
-        <div style={{ display: "flex", gap: 12 }}>
-          <a href="https://www.its.go.kr/" target="_blank" rel="noopener noreferrer" style={{ color: "#0ea5e9", textDecoration: "none", fontSize: 12, fontWeight: 600 }}>
-            실시간 CCTV 보기 →
+        <div className="mobile-hide" style={{ display: "flex", gap: 12 }}>
+          <a href="https://www.its.go.kr/" target="_blank" rel="noopener noreferrer" style={{ color: "#0ea5e9", textDecoration: "none", fontSize: 11, fontWeight: 600 }}>
+            CCTV 보기 →
           </a>
         </div>
       </div>
@@ -634,74 +632,67 @@ function LiveInfoBar() {
 
 function MainNavbar() {
   const menus = [
-    { name: "🎪 행사/축제", id: "#events" },
+    { name: "🎪 행사", id: "#events" },
     { name: "💰 지원금", id: "#benefits" },
     { name: "🎓 교육", id: "#education" },
     { name: "👔 일자리", id: "#jobs" },
     { name: "🎨 문화", id: "#culture" },
     { name: "🍱 맛집", id: "#restaurants" },
-    { name: "🏠 이야기", id: "#stories" },
     { name: "💬 소통", id: "#community" },
-    { name: "📝 Blog", id: "#blog" },
   ];
 
   return (
     <nav style={{
-      background: "rgba(42, 56, 84, 0.7)",
+      background: "rgba(42, 56, 84, 0.8)",
       backdropFilter: "blur(12px)",
       borderBottom: "1px solid rgba(255,255,255,0.1)",
-      height: "70px",
+      minHeight: "60px",
       display: "flex",
       alignItems: "center",
       position: "sticky",
       top: 0,
       zIndex: 100,
       boxShadow: "0 4px 30px rgba(0, 0, 0, 0.5)",
-      padding: "0 24px"
+      padding: "10px 16px"
     }}>
-      <div style={{
+      <div className="mobile-column" style={{
         maxWidth: "1350px",
         width: "100%",
         margin: "0 auto",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        gap: "20px"
+        gap: "10px"
       }}>
         {/* 로고 */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-          <span style={{ fontSize: "20px", fontWeight: 900, color: "#f8fafc", letterSpacing: "-1px" }}>
-            🏛️ 용인시 <span style={{ color: "#06b6d4" }}>포털 정보사이트</span>
+          <span style={{ fontSize: "18px", fontWeight: 900, color: "#f8fafc", letterSpacing: "-0.5px" }}>
+            🏛️ 용인시 <span style={{ color: "#06b6d4" }}>포털</span>
           </span>
         </Link>
 
-        {/* 중앙 메뉴 버튼들 (imweb 스타일) */}
-        <div style={{ display: "flex", gap: "16px", flexShrink: 1, overflow: "hidden" }}>
+        {/* 중앙 메뉴 버튼들 */}
+        <div className="mobile-wrap" style={{ display: "flex", gap: "10px 14px", justifyContent: "center" }}>
           {menus.map((m) => (
             <a key={m.id} href={m.id} style={{
-              fontSize: "14px",
+              fontSize: "13px",
               fontWeight: 700,
               color: "#cbd5e1",
               textDecoration: "none",
-              transition: "color 0.2s",
               whiteSpace: "nowrap",
-              ":hover": { color: "#06b6d4" }
-            } as any}>
+            }}>
               {m.name}
             </a>
           ))}
         </div>
 
         {/* 우측 용인시청 퀵링크 */}
-        <div style={{ display: "flex", gap: "8px", alignItems: "center", flexShrink: 0 }}>
-          <span style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", display: "none" }}>용인시청 통합 바로가기</span>
-          <div style={{ display: "flex", gap: "4px", background: "#f8fafc", padding: "4px", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
-            <a href="https://www.yongin.go.kr" target="_blank" rel="noreferrer" style={{ 
-              textDecoration: "none", padding: "4px 8px", borderRadius: "6px", fontSize: "11px", 
-              fontWeight: 800, color: "#475569", background: "white", boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-              whiteSpace: "nowrap"
-            }}>용인시청 이동</a>
-          </div>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <a href="https://www.yongin.go.kr" target="_blank" rel="noreferrer" style={{ 
+            textDecoration: "none", padding: "6px 12px", borderRadius: "8px", fontSize: "11px", 
+            fontWeight: 800, color: "#475569", background: "white", boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+            whiteSpace: "nowrap"
+          }}>시청 이동</a>
         </div>
       </div>
     </nav>
@@ -710,54 +701,51 @@ function MainNavbar() {
 
 function CleanHero() {
   return (
-    <div style={{ padding: "0 20px" }}>
-      <section style={{
+    <div style={{ padding: "0 16px" }}>
+      <section className="hero-section" style={{
         background: "linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%)",
         backdropFilter: "blur(12px)",
-        margin: "40px auto",
+        margin: "20px auto",
         maxWidth: "1000px",
         borderRadius: "32px",
-        padding: "70px 20px",
+        padding: "60px 20px",
         textAlign: "center",
         boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
         border: "1px solid rgba(255,255,255,0.1)",
         borderTop: "1px solid rgba(255,255,255,0.25)"
       }}>
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-        <p style={{ fontSize: "14px", fontWeight: 700, color: "#06b6d4", marginBottom: "12px", letterSpacing: "1px", textShadow: "0 0 10px rgba(6,182,212,0.5)" }}>
+        <p style={{ fontSize: "13px", fontWeight: 700, color: "#06b6d4", marginBottom: "12px", letterSpacing: "1px" }}>
           YONGIN LOCAL GUIDE
         </p>
-        <h1 style={{ fontSize: "38px", fontWeight: 900, color: "#f8fafc", marginBottom: "20px", lineHeight: 1.3 }}>
-          어제 나온 혜택부터 오늘 열리는 축제까지,<br />
-          용인의 <span style={{ color: "#06b6d4", textShadow: "0 0 15px rgba(6,182,212,0.5)" }}>모든 것</span>을 한눈에!
+        <h1 style={{ fontSize: "32px", fontWeight: 900, color: "#f8fafc", marginBottom: "20px", lineHeight: 1.3 }}>
+          용인의 <span style={{ color: "#06b6d4" }}>모든 것</span>을<br className="mobile-hide" /> 한눈에 확인하세요!
         </h1>
-        <p style={{ fontSize: "17px", color: "#cbd5e1", marginBottom: "32px", lineHeight: 1.6 }}>
-          용인의 실시간 축제부터 이웃들이 직접 전하는 숨은 명소까지<br />
-          매일 아침 AI와 이웃들이 정성껏 모아 전달해 드립니다.
+        <p style={{ fontSize: "15px", color: "#cbd5e1", marginBottom: "32px", lineHeight: 1.6 }}>
+          매일 아침 AI가 전해드리는 실시간 축제와<br />
+          우리 이웃들이 추천하는 숨은 명소까지!
         </p>
 
-        <div style={{ marginBottom: "40px" }}>
+        <div style={{ marginBottom: "32px" }}>
           <SearchBar />
         </div>
 
-        <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
+        <div className="mobile-wrap" style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
           <a href="#events" style={{
             background: "linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)", color: "white",
-            padding: "14px 28px", borderRadius: "12px",
-            fontWeight: 700, fontSize: "15px", textDecoration: "none",
-            boxShadow: "0 4px 12px rgba(6,182,212,0.4)"
+            padding: "12px 24px", borderRadius: "12px",
+            fontWeight: 700, fontSize: "14px", textDecoration: "none",
           }}>
-            오늘의 행사 확인하기
+            오늘의 행사
           </a>
           <a href="#benefits" style={{
             background: "rgba(255,255,255,0.05)", color: "#f8fafc",
             backdropFilter: "blur(10px)",
-            padding: "14px 28px", borderRadius: "12px",
-            fontWeight: 700, fontSize: "15px", textDecoration: "none",
+            padding: "12px 24px", borderRadius: "12px",
+            fontWeight: 700, fontSize: "14px", textDecoration: "none",
             border: "1px solid rgba(255,255,255,0.1)",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.2)"
           }}>
-            맞춤 혜택 찾기
+            맞춤 혜택
           </a>
         </div>
       </div>
