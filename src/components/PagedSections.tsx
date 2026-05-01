@@ -731,3 +731,52 @@ export function PagedCultureSection({ items, allPosts }: { items: any[]; allPost
     </div>
   );
 }
+
+/** 페이징이 적용된 부동산 섹션 */
+export function PagedRealEstateSection({ items, allPosts }: { items: any[]; allPosts: any[] }) {
+  const [page, setPage] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const savedPage = sessionStorage.getItem("realestate-page");
+    if (savedPage) setPage(Number(savedPage));
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      sessionStorage.setItem("realestate-page", String(page));
+    }
+  }, [page, isLoaded]);
+
+  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+
+  const gridStyle: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+    gap: 24,
+  };
+
+  return (
+    <div>
+      <div style={gridStyle}>
+        {paginated.map((ben: any) => (
+          <BenefitCard
+            key={ben.id}
+            emoji={ben.emoji}
+            tag={ben.tag}
+            name={ben.name}
+            target={ben.target}
+            amount={"amount" in ben ? ben.amount : ""}
+            summary={ben.summary}
+            deadline={ben.endDate}
+            link={getItemBlogLink(ben.id)}
+            imageUrl={ben.imageUrl}
+          />
+        ))}
+      </div>
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+    </div>
+  );
+}

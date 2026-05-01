@@ -183,7 +183,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "transparent", minHeight: "100vh", color: "#f8fafc" }}>
       {/* ===== 2단: 화이트 네비게이션 바 (상단 고정) ===== */}
       <MainNavbar />
       
@@ -208,43 +208,43 @@ export default function Home() {
         {/* 1. 왼쪽 본문 영역 */}
         <div style={{ flex: "1 1 700px", maxWidth: "800px" }}>
           
-          <section id="events" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
+          <section id="events" style={{ scrollMarginTop: 80, marginBottom: 50, background: "rgba(0,0,0,0.15)", padding: "24px", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
             <SectionTitle emoji="🎪" title="이번 달 행사/축제" />
             <PagedEventSection items={yonginEvents} allPosts={allPosts} />
           </section>
 
           {/* ---- 지원금/혜택 섹션 ---- */}
-          <section id="benefits" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
+          <section id="benefits" style={{ scrollMarginTop: 80, marginBottom: 50, background: "rgba(0,0,0,0.15)", padding: "24px", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
             <SectionTitle emoji="💰" title="지원금/혜택" />
             <PagedBenefitSection items={yonginBenefits} allPosts={allPosts} />
           </section>
 
           {/* ---- 교육/강좌 섹션 (신규) ---- */}
-          <section id="education" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
+          <section id="education" style={{ scrollMarginTop: 80, marginBottom: 50, background: "rgba(0,0,0,0.15)", padding: "24px", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
             <SectionTitle emoji="🎓" title="배움의 즐거움, 교육/강좌" />
             <PagedEducationSection items={yonginEdu} allPosts={allPosts} />
           </section>
 
           {/* ---- 일자리 섹션 (신규) ---- */}
-          <section id="jobs" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
+          <section id="jobs" style={{ scrollMarginTop: 80, marginBottom: 50, background: "rgba(0,0,0,0.15)", padding: "24px", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
             <SectionTitle emoji="👔" title="새로운 시작, 일자리 소식" />
             <PagedJobSection items={yonginJobs} allPosts={allPosts} />
           </section>
 
           {/* ---- 문화/예술 섹션 (신규) ---- */}
-          <section id="culture" style={{ scrollMarginTop: 80, marginBottom: 50 }}>
+          <section id="culture" style={{ scrollMarginTop: 80, marginBottom: 50, background: "rgba(0,0,0,0.15)", padding: "24px", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
             <SectionTitle emoji="🎨" title="풍요로운 일상, 문화/예술" />
             <PagedCultureSection items={yonginCulture} allPosts={allPosts} />
           </section>
 
 
-          <section id="restaurants" style={{ marginTop: 20, marginBottom: 50 }}>
+          <section id="restaurants" style={{ marginTop: 20, marginBottom: 50, background: "rgba(0,0,0,0.15)", padding: "24px", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
             <SectionTitle emoji="🍱" title="우리동네 추천 맛집" />
             <PagedRestaurantSection items={restaurants as any[]} allPosts={allPosts} />
           </section>
 
           {/* ---- 나만의 용인, 우리 동네 이야기 섹션 (개편) ---- */}
-          <section id="stories" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80 }}>
+          <section id="stories" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80, background: "rgba(0,0,0,0.15)", padding: "24px", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 14 }}>
               <SectionTitle emoji="🏠" title="나만의 용인, 우리 동네 이야기" />
             </div>
@@ -254,20 +254,21 @@ export default function Home() {
           </section>
 
           {/* ---- 커뮤니티 및 소통 섹션 (신설) ---- */}
-          <section id="community" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80 }}>
+          <section id="community" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80, background: "rgba(0,0,0,0.15)", padding: "24px", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
             <SectionTitle emoji="💬" title="이웃과 함께하는 소통마당" />
             <div style={{
-              background: "white",
+              background: "rgba(255, 255, 255, 0.05)",
+              backdropFilter: "blur(12px)",
               borderRadius: 20,
               padding: "32px 24px",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
-              border: "1px solid #e2e8f0",
+              boxShadow: "0 8px 32px 0 rgba(0,0,0,0.3)",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
             }}>
               <div style={{ textAlign: "center", marginBottom: "32px" }}>
-                <p style={{ fontSize: "16px", color: "#475569", marginBottom: "12px", fontWeight: 600 }}>
+                <p style={{ fontSize: "16px", color: "#f8fafc", marginBottom: "12px", fontWeight: 600 }}>
                   우리 동네의 생생한 소식, 용인시 통합 소통마당에서 확인해 보세요!
                 </p>
-                <p style={{ fontSize: "14px", color: "#64748b", lineHeight: 1.6 }}>
+                <p style={{ fontSize: "14px", color: "#cbd5e1", lineHeight: 1.6 }}>
                   다른 이웃들의 이야기에 <b>공감</b>하고, 자신만의 <b>추천 팁</b>을 댓글로 달아주세요. <br />
                   가장 활발하게 소통해주신 분들께는 <b>지역 상점 쿠폰</b>을 드립니다! 🎁
                 </p>
@@ -279,10 +280,10 @@ export default function Home() {
                 gap: "16px"
               }}>
                 <a href="https://www.yongin.go.kr" target="_blank" rel="noopener noreferrer" style={{
-                  background: "linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)",
+                  background: "linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)",
                   color: "white", padding: "18px", borderRadius: "16px",
                   fontWeight: 800, fontSize: "16px", textDecoration: "none",
-                  boxShadow: "0 4px 12px rgba(14,165,233,0.3)",
+                  boxShadow: "0 4px 12px rgba(6,182,212,0.4)",
                   textAlign: "center"
                 }}>
                   🌳 용인시 통합 소통마당 바로가기 →
@@ -293,10 +294,13 @@ export default function Home() {
 
         {/* ---- 블로그 배너 ---- */}
         <div id="blog" style={{
-          background: "linear-gradient(135deg, #1e293b 0%, #334155 100%)",
+          background: "rgba(255, 255, 255, 0.05)",
+          backdropFilter: "blur(12px)",
           borderRadius: 16,
           padding: "28px 24px",
           color: "white",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          boxShadow: "0 8px 32px 0 rgba(0,0,0,0.3)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -330,12 +334,14 @@ export default function Home() {
 
       {/* ===== 푸터 ===== */}
       <footer style={{
-        background: "#1e293b",
+        background: "rgba(15, 23, 42, 0.6)",
+        backdropFilter: "blur(10px)",
         color: "#94a3b8",
         padding: "32px 20px",
         textAlign: "center",
         fontSize: 13,
         lineHeight: 1.8,
+        borderTop: "1px solid rgba(255,255,255,0.1)",
       }}>
         <div style={{ marginBottom: 24, display: "flex", justifyContent: "center", gap: 20 }}>
           <Link href="/privacy" style={{ color: "#cbd5e1", textDecoration: "none", fontWeight: 600 }}>개인정보 처리방침</Link>
@@ -390,18 +396,19 @@ export default function Home() {
 function SectionTitle({ emoji, title }: { emoji: string; title: string }) {
   return (
     <div style={{
-      background: "white",
+      background: "rgba(255, 255, 255, 0.05)",
+      backdropFilter: "blur(10px)",
       borderRadius: 16,
       padding: "18px 20px",
       marginBottom: 14,
-      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-      border: "1px solid #bae6fd",
+      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.3)",
+      border: "1px solid rgba(255, 255, 255, 0.1)",
       display: "flex",
       alignItems: "center",
       gap: 10,
     }}>
       <span style={{ fontSize: 22 }}>{emoji}</span>
-      <h2 style={{ fontSize: 18, fontWeight: 800, color: "#1e293b" }}>{title}</h2>
+      <h2 style={{ fontSize: 18, fontWeight: 800, color: "#f8fafc" }}>{title}</h2>
     </div>
   );
 }
@@ -429,13 +436,14 @@ function EventCard({
 }) {
   return (
     <Link href={link} style={{
-      background: "white",
+      background: "rgba(255, 255, 255, 0.03)",
+      backdropFilter: "blur(10px)",
       borderRadius: 16,
       padding: "20px",
-      border: "1px solid #bae6fd",
-      boxShadow: "0 2px 8px rgba(14,165,233,0.06)",
+      border: "1px solid rgba(255, 255, 255, 0.1)",
+      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.3)",
       textDecoration: "none",
-      color: "inherit",
+      color: "#f8fafc",
       display: "flex",
       flexDirection: "column",
       gap: 12,
@@ -486,13 +494,14 @@ function BenefitCard({
 }) {
   return (
     <Link href={link} style={{
-      background: "white",
+      background: "rgba(255, 255, 255, 0.03)",
+      backdropFilter: "blur(10px)",
       borderRadius: 16,
       padding: "20px",
-      border: "1px solid #e0f2fe",
-      boxShadow: "0 2px 8px rgba(125,211,252,0.08)",
+      border: "1px solid rgba(255, 255, 255, 0.1)",
+      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.3)",
       textDecoration: "none",
-      color: "inherit",
+      color: "#f8fafc",
       display: "flex",
       flexDirection: "column",
       gap: 12,
@@ -538,13 +547,14 @@ function BenefitCard({
 function RestaurantCard({ emoji, name, menu, location, summary, blogLink, tag }: any) {
   return (
     <Link href={blogLink} style={{
-      background: "white",
+      background: "rgba(255, 255, 255, 0.03)",
+      backdropFilter: "blur(10px)",
       borderRadius: 16,
       padding: "20px",
-      border: "1px solid #fed7aa",
-      boxShadow: "0 2px 8px rgba(234,179,8,0.1)",
+      border: "1px solid rgba(255, 255, 255, 0.1)",
+      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.3)",
       textDecoration: "none",
-      color: "inherit",
+      color: "#f8fafc",
       display: "flex",
       flexDirection: "column",
       gap: 10,
@@ -589,8 +599,9 @@ function RestaurantCard({ emoji, name, menu, location, summary, blogLink, tag }:
 function LiveInfoBar() {
   return (
     <div style={{
-      background: "#f8fafc",
-      borderBottom: "1px solid #e2e8f0",
+      background: "rgba(42, 56, 84, 0.6)",
+      backdropFilter: "blur(8px)",
+      borderBottom: "1px solid rgba(255,255,255,0.1)",
       padding: "8px 20px"
     }}>
       <div style={{
@@ -600,7 +611,7 @@ function LiveInfoBar() {
         justifyContent: "space-between",
         alignItems: "center",
         fontSize: 13,
-        color: "#475569"
+        color: "#cbd5e1"
       }}>
         <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
           <span>☀️ <b>용인시 날씨:</b> 맑음 (18°C)</span>
@@ -649,14 +660,16 @@ function MainNavbar() {
 
   return (
     <nav style={{
-      background: "white",
+      background: "rgba(42, 56, 84, 0.7)",
+      backdropFilter: "blur(12px)",
+      borderBottom: "1px solid rgba(255,255,255,0.1)",
       height: "70px",
       display: "flex",
       alignItems: "center",
       position: "sticky",
       top: 0,
       zIndex: 100,
-      boxShadow: "0 1px 10px rgba(0,0,0,0.05)",
+      boxShadow: "0 4px 30px rgba(0, 0, 0, 0.5)",
       padding: "0 24px"
     }}>
       <div style={{
@@ -670,8 +683,8 @@ function MainNavbar() {
       }}>
         {/* 로고 */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-          <span style={{ fontSize: "20px", fontWeight: 900, color: "#1e293b", letterSpacing: "-1px" }}>
-            🏛️ 용인시 <span style={{ color: "#0ea5e9" }}>포털 정보사이트</span>
+          <span style={{ fontSize: "20px", fontWeight: 900, color: "#f8fafc", letterSpacing: "-1px" }}>
+            🏛️ 용인시 <span style={{ color: "#06b6d4" }}>포털 정보사이트</span>
           </span>
         </Link>
 
@@ -681,11 +694,11 @@ function MainNavbar() {
             <a key={m.id} href={m.id} style={{
               fontSize: "14px",
               fontWeight: 700,
-              color: "#475569",
+              color: "#cbd5e1",
               textDecoration: "none",
               transition: "color 0.2s",
               whiteSpace: "nowrap",
-              ":hover": { color: "#0ea5e9" }
+              ":hover": { color: "#06b6d4" }
             } as any}>
               {m.name}
             </a>
@@ -710,21 +723,28 @@ function MainNavbar() {
 
 function CleanHero() {
   return (
-    <section style={{
-      background: "white",
-      padding: "60px 20px 80px",
-      textAlign: "center",
-      borderBottom: "1px solid #f1f5f9"
-    }}>
+    <div style={{ padding: "0 20px" }}>
+      <section style={{
+        background: "linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%)",
+        backdropFilter: "blur(12px)",
+        margin: "40px auto",
+        maxWidth: "1000px",
+        borderRadius: "32px",
+        padding: "70px 20px",
+        textAlign: "center",
+        boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
+        border: "1px solid rgba(255,255,255,0.1)",
+        borderTop: "1px solid rgba(255,255,255,0.25)"
+      }}>
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-        <p style={{ fontSize: "14px", fontWeight: 700, color: "#0ea5e9", marginBottom: "12px", letterSpacing: "1px" }}>
+        <p style={{ fontSize: "14px", fontWeight: 700, color: "#06b6d4", marginBottom: "12px", letterSpacing: "1px", textShadow: "0 0 10px rgba(6,182,212,0.5)" }}>
           YONGIN LOCAL GUIDE
         </p>
-        <h1 style={{ fontSize: "38px", fontWeight: 900, color: "#0f172a", marginBottom: "20px", lineHeight: 1.3 }}>
+        <h1 style={{ fontSize: "38px", fontWeight: 900, color: "#f8fafc", marginBottom: "20px", lineHeight: 1.3 }}>
           어제 나온 혜택부터 오늘 열리는 축제까지,<br />
-          용인의 <span style={{ color: "#0ea5e9" }}>모든 것</span>을 한눈에!
+          용인의 <span style={{ color: "#06b6d4", textShadow: "0 0 15px rgba(6,182,212,0.5)" }}>모든 것</span>을 한눈에!
         </h1>
-        <p style={{ fontSize: "17px", color: "#64748b", marginBottom: "32px", lineHeight: 1.6 }}>
+        <p style={{ fontSize: "17px", color: "#cbd5e1", marginBottom: "32px", lineHeight: 1.6 }}>
           용인의 실시간 축제부터 이웃들이 직접 전하는 숨은 명소까지<br />
           매일 아침 AI와 이웃들이 정성껏 모아 전달해 드립니다.
         </p>
@@ -735,23 +755,26 @@ function CleanHero() {
 
         <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
           <a href="#events" style={{
-            background: "#1e293b", color: "white",
+            background: "linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)", color: "white",
             padding: "14px 28px", borderRadius: "12px",
             fontWeight: 700, fontSize: "15px", textDecoration: "none",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
+            boxShadow: "0 4px 12px rgba(6,182,212,0.4)"
           }}>
             오늘의 행사 확인하기
           </a>
           <a href="#benefits" style={{
-            background: "#f1f5f9", color: "#475569",
+            background: "rgba(255,255,255,0.05)", color: "#f8fafc",
+            backdropFilter: "blur(10px)",
             padding: "14px 28px", borderRadius: "12px",
             fontWeight: 700, fontSize: "15px", textDecoration: "none",
-            border: "1px solid #e2e8f0"
+            border: "1px solid rgba(255,255,255,0.1)",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.2)"
           }}>
             맞춤 혜택 찾기
           </a>
         </div>
       </div>
     </section>
+  </div>
   );
 }
