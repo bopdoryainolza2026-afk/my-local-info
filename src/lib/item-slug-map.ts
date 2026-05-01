@@ -57,14 +57,15 @@ export const ITEM_SLUG_MAP: Record<string, string> = {
   "res-012": "2026-05-01-yongin-sansarang-review",
   "res-013": "2026-05-01-aloafslicepiece-yongin",
   "res-014": "2026-05-01-yongin-calliope-info",
+  "res-015": "2026-05-01-giheung-jangsuchon-review",
   "res-016": "2026-05-01-yongin-owasushi-review",
   "res-017": "2026-05-01-yongin-solsol-udon",
 
   // === 교육/강좌 ===
   "edu-001": "2026-04-30-yongin-citizen-university",
-  "edu-002": "2026-04-30-yongin-youth-lab",
 
   // === 일자리 ===
+  "job-001": "2026-05-01-yongin-large-job-fair",
   "job-002": "2026-04-30-yongin-semiconductor-training",
   "job-003": "2026-04-30-yongin-middle-aged-job",
   "job-004": "2026-04-30-yongin-hope-dream-job",
