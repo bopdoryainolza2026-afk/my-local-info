@@ -5,6 +5,7 @@ import { getSortedPostsData } from "@/lib/posts";
 import RightSidebar from "@/components/RightSidebar";
 import { PagedEventSection, PagedBenefitSection, PagedRestaurantSection, PagedStorySection, PagedEducationSection, PagedJobSection, PagedCultureSection } from "@/components/PagedSections";
 import SearchBar from "@/components/SearchBar";
+import AIRequestForm from "@/components/AIRequestForm";
 import { ITEM_SLUG_MAP } from "@/lib/item-slug-map";
 
 // 태그 색상 매핑
@@ -253,9 +254,9 @@ export default function Home() {
             <PagedStorySection items={neighborhoodStories} />
           </section>
 
-          {/* ---- 커뮤니티 및 소통 섹션 (신설) ---- */}
+          {/* ---- AI 기자 취재 요청 및 소통 섹션 (개편) ---- */}
           <section id="community" style={{ marginTop: 20, marginBottom: 50, scrollMarginTop: 80, background: "rgba(0,0,0,0.15)", padding: "24px", borderRadius: "24px", border: "1px solid rgba(255,255,255,0.05)" }}>
-            <SectionTitle emoji="💬" title="이웃과 함께하는 소통마당" />
+            <SectionTitle emoji="💬" title="AI 기자와 함께하는 소통마당" />
             <div style={{
               background: "rgba(255, 255, 255, 0.05)",
               backdropFilter: "blur(12px)",
@@ -265,30 +266,16 @@ export default function Home() {
               border: "1px solid rgba(255, 255, 255, 0.1)",
             }}>
               <div style={{ textAlign: "center", marginBottom: "32px" }}>
-                <p style={{ fontSize: "16px", color: "#f8fafc", marginBottom: "12px", fontWeight: 600 }}>
-                  우리 동네의 생생한 소식, 용인시 통합 소통마당에서 확인해 보세요!
+                <p style={{ fontSize: "18px", color: "#f8fafc", marginBottom: "12px", fontWeight: 800 }}>
+                  궁금한 용인 소식, AI 기자에게 요청하세요! 🕵️‍♂️
                 </p>
                 <p style={{ fontSize: "14px", color: "#cbd5e1", lineHeight: 1.6 }}>
-                  다른 이웃들의 이야기에 <b>공감</b>하고, 자신만의 <b>추천 팁</b>을 댓글로 달아주세요. <br />
-                  가장 활발하게 소통해주신 분들께는 <b>지역 상점 쿠폰</b>을 드립니다! 🎁
+                  우리 동네 맛집, 행사, 정책 등 궁금한 점을 남겨주시면 <br />
+                  <b>AI 블로그 매니저</b>가 인터넷을 샅샅이 뒤져 내일 아침 리포트를 작성해 드립니다.
                 </p>
               </div>
               
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                gap: "16px"
-              }}>
-                <a href="https://www.yongin.go.kr" target="_blank" rel="noopener noreferrer" style={{
-                  background: "linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)",
-                  color: "white", padding: "18px", borderRadius: "16px",
-                  fontWeight: 800, fontSize: "16px", textDecoration: "none",
-                  boxShadow: "0 4px 12px rgba(6,182,212,0.4)",
-                  textAlign: "center"
-                }}>
-                  🌳 용인시 통합 소통마당 바로가기 →
-                </a>
-              </div>
+              <AIRequestForm />
             </div>
           </section>
 
