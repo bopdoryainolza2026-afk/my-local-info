@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;700&display=swap');
 
 :root {
   --primary: #2563eb;
@@ -21,8 +21,13 @@
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Noto Sans KR', 'Inter', sans-serif;
-  line-height: 1.6;
+  font-family: 'Gowun Dodum', 'Noto Sans KR', sans-serif;
+  line-height: 1.8; /* 줄 간격을 좀 더 넓게 */
+}
+
+/* 본문 문단 간격 추가 */
+p {
+  margin-bottom: 1.5rem;
 }
 
 a {
