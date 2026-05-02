@@ -21,29 +21,40 @@
 
 body {
   background-color: var(--bg);
-  color: var(--text) !important; /* 글자색이 흐릿하지 않게 강제 적용 */
-  font-family: 'Gowun Dodum', 'Noto Sans KR', sans-serif;
+  color: #1e293b !important; /* 글자색 강제 적용 */
+  font-family: 'Gowun Dodum', 'Noto Sans KR', sans-serif !important;
   line-height: 1.8;
 }
 
-/* 블로그 본문 내 텍스트 가독성 강화 */
-p, li, span, div {
-  color: #2d3748; /* 더 진한 회색으로 변경 */
+/* 
+  강력한 오버라이드: Tailwind Typography(prose)가 
+  글자를 하얗게 만드는 것을 방지하고 이미지 크기를 강제로 줄입니다. 
+*/
+.prose, .prose * {
+  color: #2d3748 !important; /* 강제 진한 회색 */
+  font-family: 'Gowun Dodum', 'Noto Sans KR', sans-serif !important;
 }
 
-/* 이미지 크기 조절 및 반응형 설정 */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 2.5rem auto; /* 위아래 여백을 넉넉히 */
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+.prose img {
+  max-width: 100% !important;
+  max-height: 400px !important; /* 이미지 높이 제한 */
+  width: auto !important; /* 비율 유지 */
+  height: auto !important;
+  display: block !important;
+  margin: 2rem auto !important; /* 가운데 정렬 및 여백 */
+  border-radius: 12px !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
 }
 
-/* 문단 간격 추가 */
-p {
-  margin-bottom: 2rem;
+.prose p {
+  margin-bottom: 2rem !important;
+  line-height: 1.8 !important;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  color: #1a202c !important; /* 제목은 더 진하게 */
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
 }
 
 a {
@@ -51,34 +62,24 @@ a {
   text-decoration: none;
 }
 
-
 @plugin "@tailwindcss/typography";
 
 /* 모바일 대응 (반응형) 디자인 */
 @media (max-width: 768px) {
-  /* 1. 제목 크기 자동 조절 */
   h1 { font-size: 24px !important; line-height: 1.4 !important; }
   h2 { font-size: 18px !important; }
   h3 { font-size: 16px !important; }
   
-  /* 2. 네비게이션 및 헤더 최적화 */
-  nav { height: auto !important; padding: 10px !important; }
-  .mobile-hide { display: none !important; }
-  .mobile-column { flex-direction: column !important; gap: 10px !important; text-align: center !important; }
-  .mobile-wrap { flex-wrap: wrap !important; justify-content: center !important; }
-  
-  /* 3. 본문 패딩 조절 */
   main { padding: 15px !important; margin-top: 20px !important; }
   section { padding: 16px !important; border-radius: 16px !important; }
   
-  /* 4. 히어로 섹션 패딩 줄이기 */
   .hero-section { padding: 40px 16px !important; }
   
   /* 이미지 모바일 대응 */
-  img { margin: 1.5rem auto; }
+  .prose img { margin: 1.5rem auto !important; max-height: 300px !important; }
 }
 
 /* 스무스 스크롤 효과 */
 html {
   scroll-behavior: smooth;
-
+}

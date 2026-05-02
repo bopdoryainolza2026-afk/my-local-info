@@ -300,8 +300,6 @@ export default async function PostPage({ params }: Props) {
           >
             {postData.content}
           </ReactMarkdown>
-            {postData.content}
-          </ReactMarkdown>
 
           <script
             type="application/ld+json"
