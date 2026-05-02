@@ -103,7 +103,7 @@ export default async function PostPage({ params }: Props) {
   }
 
   return (
-    <div style={{ fontFamily: "'Noto Sans KR', 'Inter', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Gowun Dodum', 'Noto Sans KR', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
       {/* ===== 헤더 ===== */}
       <header style={{
         background: "linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #7dd3fc 100%)",
@@ -185,7 +185,7 @@ export default async function PostPage({ params }: Props) {
             </div>
           )}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <p style={{ fontSize: 14, color: "#94a3b8" }}>최종 업데이트: {postData.date}</p>
+            <p style={{ fontSize: 14, color: "#64748b" }}>최종 업데이트: {postData.date}</p>
             {/* 날짜 비교 및 경고 문구 추가 */}
             {(() => {
               const postDate = new Date(postData.date);
@@ -249,7 +249,13 @@ export default async function PostPage({ params }: Props) {
         })()}
 
         {/* 마크다운 렌더링 구역 */}
-        <div className="prose prose-sky max-w-none" style={{ background: "white", padding: "32px", borderRadius: 20, border: "1px solid #e2e8f0" }}>
+        <div className="prose prose-sky max-w-none" style={{ 
+          background: "white", 
+          padding: "32px", 
+          borderRadius: 20, 
+          border: "1px solid #e2e8f0",
+          color: "#2d3748" // 글자색 명시적 지정
+        }}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -259,7 +265,7 @@ export default async function PostPage({ params }: Props) {
                 if (isLocationHeader) {
                   return (
                     <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap", marginBottom: "16px", marginTop: "24px" }}>
-                      <h3 {...props} style={{ margin: 0, fontSize: "20px" }} />
+                      <h3 {...props} style={{ margin: 0, fontSize: "20px", color: "#1e293b" }} />
                       <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{
                         display: "inline-block", fontSize: "13px", fontWeight: "bold",
                         color: "white", background: "#0ea5e9", padding: "6px 16px",
@@ -271,10 +277,29 @@ export default async function PostPage({ params }: Props) {
                     </div>
                   );
                 }
-                return <h3 {...props} />;
-              }
+                return <h3 {...props} style={{ color: "#1e293b", marginTop: "2rem" }} />;
+              },
+              p: ({ node, ...props }) => (
+                <p {...props} style={{ color: "#2d3748", marginBottom: "1.5rem", lineHeight: "1.8" }} />
+              ),
+              img: ({ node, ...props }) => (
+                <div style={{ margin: "2rem 0", textAlign: "center" }}>
+                  <img 
+                    {...props} 
+                    style={{ 
+                      maxWidth: "100%", 
+                      maxHeight: "500px", // 이미지 높이 제한
+                      borderRadius: "12px", 
+                      boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+                      display: "inline-block"
+                    }} 
+                  />
+                </div>
+              )
             }}
           >
+            {postData.content}
+          </ReactMarkdown>
             {postData.content}
           </ReactMarkdown>
 
