@@ -30,6 +30,8 @@ export const metadata: Metadata = {
 };
 
 import ChatBot from "@/components/ChatBot";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -82,32 +84,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body style={{ margin: 0, padding: 0, background: "linear-gradient(135deg, #2a3854 0%, #3d3570 100%)", color: "#f8fafc" }}>
-        {children}
+      <body style={{ margin: 0, padding: 0, background: "linear-gradient(135deg, #2a3854 0%, #3d3570 100%)", color: "#f8fafc", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+        <Header />
+        <main style={{ flex: 1 }}>
+          {children}
+        </main>
+        <Footer />
         <ChatBot />
-        
-        {/* ===== 하단 푸터 (애드센스 필수 링크) ===== */}
-        <footer style={{ 
-          background: "rgba(42, 56, 84, 0.6)",
-          backdropFilter: "blur(10px)",
-          padding: "40px 20px", 
-          textAlign: "center", 
-          borderTop: "1px solid rgba(255,255,255,0.1)",
-          color: "#94a3b8",
-          fontSize: "14px"
-        }}>
-          <div style={{ maxWidth: 800, margin: "0 auto" }}>
-            <div style={{ marginBottom: "20px", display: "flex", justifyContent: "center", gap: "20px" }}>
-              <a href="/privacy" style={{ color: "#94a3b8", textDecoration: "none" }}>개인정보처리방침</a>
-              <a href="/terms" style={{ color: "#94a3b8", textDecoration: "none" }}>이용약관</a>
-              <a href="/contact" style={{ color: "#94a3b8", textDecoration: "none" }}>문의하기</a>
-            </div>
-            <p style={{ margin: "10px 0" }}>© 2026 용인시 생활 정보 포털. All rights reserved.</p>
-            <p style={{ fontSize: "12px", color: "#94a3b8" }}>
-              본 사이트는 공공데이터를 활용하여 시민들에게 유용한 정보를 제공하는 정보 큐레이션 서비스입니다.
-            </p>
-          </div>
-        </footer>
       </body>
     </html>
   );

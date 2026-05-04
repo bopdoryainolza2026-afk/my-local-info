@@ -45,6 +45,12 @@ export default async function PostPage({ params }: Props) {
     return notFound();
   }
 
+  // 연관 게시글 찾기 (같은 카테고리에서 현재 글 제외하고 3개)
+  const allPosts = getSortedPostsData();
+  const relatedPosts = allPosts
+    .filter(p => p.category === postData.category && p.slug !== postData.slug)
+    .slice(0, 3);
+
   const allItems = [
     ...localData.events, 
     ...localData.benefits, 
@@ -53,7 +59,7 @@ export default async function PostPage({ params }: Props) {
     ...(localData.jobs || []),
     ...(localData.culture || [])
   ];
-  // [수정] 작동이 잘 되는 카드들과 동일하게 매핑 테이블을 사용하여 아이템을 찾습니다.
+  
   const cleanSlug = slug.replace(/\/$/, "");
   const itemId = getItemIdBySlug(cleanSlug);
   const matchedItem = itemId ? allItems.find(item => item.id === itemId) : allItems.find(item => {
@@ -64,16 +70,16 @@ export default async function PostPage({ params }: Props) {
     
     return (
       cleanContent.includes(`[item_id:${item.id.toLowerCase()}]`) ||
-      cleanContent.includes(`item_id:${item.id.toLowerCase()}`) || // 브라켓 없는 경우도 포함
+      cleanContent.includes(`item_id:${item.id.toLowerCase()}`) ||
       cleanContent.includes(item.id.toLowerCase()) ||
       cleanTitle.includes(cleanItemName) ||
       cleanContent.includes(cleanItemName)
     );
   });
+
   let sourceLink = matchedItem?.link || "https://www.yongin.go.kr";
   let buttonText = postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 자세한 내용 원문 확인하기";
 
-  // [최종 강화] 카드 매핑이 실패하더라도 제목이나 내용에 키워드가 있으면 공식 사이트로 연결
   const youthKeywords = ["youth", "청년", "lab", "lab", "이사비", "주거", "전월세", "보증금", "월세", "꿈드림"];
   const isYouthRelated = youthKeywords.some(k => 
     slug.toLowerCase().includes(k) || 
@@ -90,208 +96,102 @@ export default async function PostPage({ params }: Props) {
     }
   }
 
-  // 우리동네 이야기(모의 데이터)를 위한 하드코딩 링크 처리
-  if (slug === "2026-04-24-yongin-walking-trail") {
-    sourceLink = "https://www.yongin.go.kr";
-    buttonText = "🌲 용인시 통합 소통마당 가기";
-  } else if (slug === "2026-04-23-giheung-kids-cafe") {
-    sourceLink = "https://www.yongin.go.kr";
-    buttonText = "🍰 용인시 통합 소통마당 가기";
-  } else if (slug === "2026-04-22-yongin-hanok-spring") {
-    sourceLink = "https://www.yongin.go.kr";
-    buttonText = "🏯 용인시 통합 소통마당 가기";
-  }
-
   return (
-    <div style={{ fontFamily: "'Gowun Dodum', 'Noto Sans KR', sans-serif", background: "#f0f9ff", minHeight: "100vh" }}>
-      {/* ===== 헤더 ===== */}
-      <header style={{
-        background: "linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #7dd3fc 100%)",
-        padding: "0 20px",
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        boxShadow: "0 2px 16px rgba(2,132,199,0.3)",
-      }}>
-        <div style={{
-          maxWidth: 800,
-          margin: "0 auto",
-          height: 60,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}>
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-            <span style={{ fontSize: 24, fontWeight: 900, color: "white", letterSpacing: "-0.5px" }}>
-              🏘️ 용인시 생활 정보
-            </span>
-          </Link>
-          <div style={{ display: "flex", gap: 10 }}>
-            <Link href="/about" style={{
-              fontSize: 13, fontWeight: 600, color: "white",
-              padding: "6px 14px", borderRadius: 20,
-              border: "1.5px solid rgba(255,255,255,0.6)",
-              textDecoration: "none"
-            }}>
-              🏢 소개
-            </Link>
-            <Link href="/blog" style={{
-              fontSize: 13, fontWeight: 600, color: "white",
-              padding: "6px 14px", borderRadius: 20,
-              border: "1.5px solid rgba(255,255,255,0.6)",
-              textDecoration: "none"
-            }}>
-              📝 블로그
-            </Link>
-          </div>
-        </div>
-      </header>
-
+    <div style={{ fontFamily: "'Noto Sans KR', sans-serif", padding: "40px 20px" }}>
       {/* ===== 블로그 본문 ===== */}
-      <article style={{ maxWidth: 800, margin: "0 auto", padding: "40px 20px 80px" }}>
+      <article style={{ maxWidth: 800, margin: "0 auto" }}>
         <Link href="/blog" style={{
-          display: "inline-block", color: "#0284c7", fontWeight: 700, fontSize: 14,
+          display: "inline-block", color: "#0ea5e9", fontWeight: 700, fontSize: 14,
           marginBottom: 24, textDecoration: "none"
         }}>
-          ← 목록으로 돌아가기
+          ← 다른 소식 더 보기
         </Link>
 
         <header style={{ marginBottom: 40 }}>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: "#0284c7", background: "#e0f2fe", padding: "4px 10px", borderRadius: 12 }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "#0284c7", background: "rgba(2,132,199,0.1)", padding: "4px 10px", borderRadius: 12, border: "1px solid rgba(2,132,199,0.2)" }}>
               {postData.category}
             </span>
           </div>
-          <h1 style={{ fontSize: 32, fontWeight: 900, color: "#1e293b", marginBottom: 12, lineHeight: 1.3 }}>
+          <h1 style={{ fontSize: "clamp(24px, 5vw, 36px)", fontWeight: 900, color: "white", marginBottom: 16, lineHeight: 1.3 }}>
             {postData.title}
           </h1>
 
-          {/* 대표 이미지 추가 */}
-          {postData.imageUrl && (
-            <div style={{ 
-              width: "100%", 
-              height: "400px", 
-              borderRadius: "24px", 
-              overflow: "hidden", 
-              marginBottom: "32px",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
-              border: "1px solid rgba(0,0,0,0.05)"
-            }}>
-              <img 
-                src={postData.imageUrl} 
-                alt={postData.title} 
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-          )}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <p style={{ fontSize: 14, color: "#64748b" }}>최종 업데이트: {postData.date}</p>
-            {/* 날짜 비교 및 경고 문구 추가 */}
-            {(() => {
-              const postDate = new Date(postData.date);
-              const today = new Date();
-              const diffTime = Math.abs(today.getTime() - postDate.getTime());
-              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-              if (diffDays > 90) {
-                return (
-                  <div style={{
-                    background: "#fff7ed", color: "#c2410c",
-                    padding: "6px 12px", borderRadius: "8px",
-                    fontSize: "12px", fontWeight: 700,
-                    border: "1px solid #ffedd5",
-                    display: "flex", alignItems: "center", gap: "6px"
-                  }}>
-                    ⚠️ 작성된 지 3개월이 넘은 정보입니다.
-                  </div>
-                );
-              }
-              return null;
-            })()}
-          </div>
-
-          {/* 상단 퀵 버튼 추가 */}
-          <div style={{ marginTop: "24px" }}>
-            <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{
-              display: "inline-block", fontSize: "14px", fontWeight: "bold",
-              color: "white", background: "#0ea5e9", padding: "10px 24px",
-              borderRadius: "30px", textDecoration: "none",
-              boxShadow: "0 4px 12px rgba(14,165,233,0.3)"
-            }}>
-              {buttonText}
-            </a>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid rgba(255,255,255,0.1)", paddingBottom: "20px" }}>
+            <p style={{ fontSize: 14, color: "#94a3b8" }}>작성일: {postData.date}</p>
           </div>
         </header>
 
-        {/* 오래된 글 안내 상세 배너 */}
-        {(() => {
-          const postDate = new Date(postData.date);
-          const today = new Date();
-          const diffDays = Math.ceil(Math.abs(today.getTime() - postDate.getTime()) / (1000 * 60 * 60 * 24));
-          if (diffDays > 90) {
-            return (
-              <div style={{
-                background: "#fff1f2", border: "1px solid #fecdd3",
-                padding: "16px", borderRadius: "16px", marginBottom: "32px",
-                display: "flex", gap: "12px", alignItems: "flex-start"
-              }}>
-                <span style={{ fontSize: "24px" }}>📢</span>
-                <div>
-                  <p style={{ margin: 0, fontWeight: 800, color: "#be123c", fontSize: "15px" }}>잠시만요! 이 정보는 업데이트가 필요할 수 있어요.</p>
-                  <p style={{ margin: "4px 0 0", color: "#e11d48", fontSize: "13px", lineHeight: 1.5 }}>
-                    게시글이 작성된 지 <b>{diffDays}일</b>이 지났습니다. 지원 사업이나 행사의 경우 상세 내용이 변경되었을 수 있으니, 꼭 하단의 <b>'원문 출처'</b>를 통해 최신 내용을 확인해 주세요!
-                  </p>
-                </div>
-              </div>
-            );
-          }
-          return null;
-        })()}
+        {/* 핵심 요약 박스 (SEO 및 가독성) */}
+        <div style={{ 
+          background: "linear-gradient(135deg, rgba(249,115,22,0.1) 0%, rgba(237,100,166,0.1) 100%)", 
+          padding: "24px", 
+          borderRadius: "20px", 
+          marginBottom: "40px",
+          border: "1px solid rgba(249,115,22,0.2)",
+          position: "relative",
+          overflow: "hidden"
+        }}>
+          <div style={{ position: "absolute", top: -10, right: -10, fontSize: "60px", opacity: 0.1 }}>💡</div>
+          <h3 style={{ margin: "0 0 12px 0", fontSize: "18px", fontWeight: "800", color: "#fb923c" }}>📝 한눈에 보는 핵심 요약</h3>
+          <p style={{ margin: 0, color: "#cbd5e1", lineHeight: 1.6, fontSize: "15px" }}>
+            {postData.summary}
+          </p>
+        </div>
+
+        {/* 대표 이미지 */}
+        {postData.imageUrl && (
+          <div style={{ 
+            width: "100%", 
+            height: "auto", 
+            maxHeight: "450px",
+            borderRadius: "24px", 
+            overflow: "hidden", 
+            marginBottom: "40px",
+            boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
+            border: "1px solid rgba(255,255,255,0.1)"
+          }}>
+            <img 
+              src={postData.imageUrl} 
+              alt={postData.title} 
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
+        )}
 
         {/* 마크다운 렌더링 구역 */}
-        <div className="prose prose-sky max-w-none" style={{ 
-          background: "white", 
-          padding: "32px", 
-          borderRadius: 20, 
-          border: "1px solid #e2e8f0",
-          color: "#2d3748" // 글자색 명시적 지정
+        <div style={{ 
+          background: "rgba(255, 255, 255, 0.03)", 
+          backdropFilter: "blur(10px)",
+          padding: "40px", 
+          borderRadius: "24px", 
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          color: "#cbd5e1",
+          lineHeight: "1.8",
+          fontSize: "17px"
         }}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              h3: ({ node, ...props }) => {
-                // '📍 위치 정보' 제목을 찾으면 옆에 버튼을 붙여줌
-                const isLocationHeader = String(props.children).includes("위치 정보");
-                if (isLocationHeader) {
-                  return (
-                    <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap", marginBottom: "16px", marginTop: "24px" }}>
-                      <h3 {...props} style={{ margin: 0, fontSize: "20px", color: "#1e293b" }} />
-                      <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{
-                        display: "inline-block", fontSize: "13px", fontWeight: "bold",
-                        color: "white", background: "#0ea5e9", padding: "6px 16px",
-                        borderRadius: "20px", textDecoration: "none",
-                        boxShadow: "0 4px 10px rgba(14,165,233,0.3)"
-                      }}>
-                        📍 실제 위치 지도 보기
-                      </a>
-                    </div>
-                  );
-                }
-                return <h3 {...props} style={{ color: "#1e293b", marginTop: "2rem" }} />;
-              },
+              h3: ({ node, ...props }) => (
+                <h3 {...props} style={{ color: "white", marginTop: "2.5rem", marginBottom: "1.2rem", fontSize: "22px", fontWeight: "800", borderLeft: "4px solid #f97316", paddingLeft: "15px" }} />
+              ),
               p: ({ node, ...props }) => (
-                <p {...props} style={{ color: "#2d3748", marginBottom: "1.5rem", lineHeight: "1.8" }} />
+                <p {...props} style={{ marginBottom: "1.5rem" }} />
+              ),
+              li: ({ node, ...props }) => (
+                <li {...props} style={{ marginBottom: "8px" }} />
               ),
               img: ({ node, ...props }) => (
-                <div style={{ margin: "2rem 0", textAlign: "center" }}>
+                <div style={{ margin: "2.5rem 0", textAlign: "center" }}>
                   <img 
                     {...props} 
                     style={{ 
                       maxWidth: "100%", 
-                      maxHeight: "500px", // 이미지 높이 제한
-                      borderRadius: "12px", 
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-                      display: "inline-block"
+                      borderRadius: "16px", 
+                      boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+                      display: "inline-block",
+                      border: "1px solid rgba(255,255,255,0.1)"
                     }} 
                   />
                 </div>
@@ -301,64 +201,86 @@ export default async function PostPage({ params }: Props) {
             {postData.content}
           </ReactMarkdown>
 
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://yongin-love-info.com" },
-                  { "@type": "ListItem", "position": 2, "name": "블로그", "item": "https://yongin-love-info.com/blog" },
-                  { "@type": "ListItem", "position": 3, "name": postData.title, "item": `https://yongin-love-info.com/blog/${slug}` }
-                ]
-              })
-            }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "BlogPosting",
-                "headline": postData.title,
-                "datePublished": postData.date,
-                "description": postData.summary,
-                "author": { "@type": "Organization", "name": "용인시 생활 정보" },
-                "publisher": { "@type": "Organization", "name": "용인시 생활 정보" }
-              })
-            }}
-          />
-
-          <hr style={{ margin: "40px 0 20px", borderColor: "#e2e8f0" }} />
-          <div style={{ background: "#f8fafc", padding: "20px", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
-            <h3 style={{ fontSize: "15px", fontWeight: "bold", color: "#334155", marginBottom: "8px", marginTop: 0 }}>ℹ️ 정보 안내</h3>
-            <p style={{ fontSize: "13px", color: "#64748b", margin: 0, lineHeight: 1.6 }}>
-              이 글은 <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{ color: "#0ea5e9", textDecoration: "none", fontWeight: 700 }}>공식 홈페이지 원문 정보</a>를 바탕으로 AI가 작성하였습니다. 정확한 상세 내용은 링크를 통해 확인해주세요.
+          <div style={{ marginTop: "40px", padding: "24px", background: "rgba(0,0,0,0.2)", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.05)" }}>
+            <h3 style={{ fontSize: "16px", fontWeight: "bold", color: "white", marginBottom: "10px", marginTop: 0 }}>🔗 정보 원문 및 출처</h3>
+            <p style={{ fontSize: "14px", color: "#94a3b8", margin: 0, lineHeight: 1.6 }}>
+              상세한 내용은 공식 홈페이지를 통해 다시 한번 확인하시기 바랍니다.<br />
+              <a href={sourceLink} target="_blank" rel="noopener noreferrer" style={{ 
+                display: "inline-block", marginTop: "10px", color: "white", background: "#0ea5e9", padding: "8px 20px", borderRadius: "20px", textDecoration: "none", fontWeight: 700 
+              }}>
+                {buttonText}
+              </a>
             </p>
           </div>
         </div>
 
+        {/* 연관 게시글 추천 (AdSense 승인 핵심 요소) */}
+        {relatedPosts.length > 0 && (
+          <div style={{ marginTop: "60px" }}>
+            <h3 style={{ fontSize: "22px", fontWeight: "900", color: "white", marginBottom: "25px", display: "flex", alignItems: "center", gap: "10px" }}>
+              <span>👀</span> 이 소식은 어떠세요?
+            </h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "20px" }}>
+              {relatedPosts.map((post) => (
+                <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: "none" }}>
+                  <div style={{ 
+                    background: "rgba(255, 255, 255, 0.05)", 
+                    padding: "20px", 
+                    borderRadius: "20px", 
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    height: "100%",
+                    transition: "transform 0.2s, background 0.2s"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-5px)";
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)";
+                  }}
+                  >
+                    <span style={{ fontSize: "11px", fontWeight: "bold", color: "#0ea5e9", textTransform: "uppercase", letterSpacing: "1px" }}>
+                      {post.category}
+                    </span>
+                    <h4 style={{ margin: "8px 0", fontSize: "16px", fontWeight: "700", color: "white", lineHeight: 1.4 }}>
+                      {post.title}
+                    </h4>
+                    <p style={{ margin: 0, fontSize: "13px", color: "#64748b", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
+                      {post.summary}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* 하단 태그 */}
-        <div style={{ marginTop: 40, display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <div style={{ marginTop: 60, display: "flex", gap: 10, flexWrap: "wrap", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: "30px" }}>
           {postData.tags.map((tag) => (
-            <span key={tag} style={{ fontSize: 13, color: "#64748b", background: "#f1f5f9", padding: "4px 12px", borderRadius: 6 }}>
+            <span key={tag} style={{ fontSize: 13, color: "#94a3b8", background: "rgba(255,255,255,0.05)", padding: "6px 14px", borderRadius: 10, border: "1px solid rgba(255,255,255,0.05)" }}>
               #{tag}
             </span>
           ))}
         </div>
       </article>
 
-      {/* ===== 푸터 ===== */}
-      <footer style={{
-        background: "#1e293b",
-        color: "#94a3b8",
-        padding: "24px 20px",
-        textAlign: "center",
-        fontSize: 13,
-      }}>
-        <p>© 2026 용인시 생활 정보</p>
-      </footer>
+      {/* SEO를 위한 JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": postData.title,
+            "datePublished": postData.date,
+            "description": postData.summary,
+            "image": postData.imageUrl || "https://yongin-love-info.com/og-image.png",
+            "author": { "@type": "Organization", "name": "용인시 생활 정보" }
+          })
+        }}
+      />
     </div>
   );
 }
