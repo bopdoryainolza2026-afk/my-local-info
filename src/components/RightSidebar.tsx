@@ -16,7 +16,7 @@ export default function RightSidebar() {
       gap: "16px",
       padding: "0 8px",
     }}>
-      
+
       {/* 1. 커스텀 추천 광고 (태허철학관 스타일) */}
       <div style={{
         background: "linear-gradient(135deg, rgba(42, 56, 84, 0.7) 0%, rgba(61, 53, 112, 0.7) 100%)",
@@ -40,7 +40,7 @@ export default function RightSidebar() {
         }}>
           ✨ 추천 서비스
         </div>
-        
+
         <div style={{
           width: "80px",
           height: "80px",
@@ -91,7 +91,7 @@ export default function RightSidebar() {
         <p style={{ fontSize: "11px", color: "#94a3b8", marginBottom: "12px", textAlign: "center" }}>
           🛒 이달의 추천 상품
         </p>
-        
+
         <div style={{
           width: "100%",
           aspectRatio: "1 / 1",
@@ -108,11 +108,11 @@ export default function RightSidebar() {
         </div>
 
         <div style={{ marginBottom: "8px" }}>
-          <span style={{ 
-            color: "#ef4444", 
-            fontSize: "16px", 
-            fontWeight: 800, 
-            marginRight: "6px" 
+          <span style={{
+            color: "#ef4444",
+            fontSize: "16px",
+            fontWeight: 800,
+            marginRight: "6px"
           }}>
             15%
           </span>
@@ -120,14 +120,14 @@ export default function RightSidebar() {
             245,000원
           </span>
         </div>
-        
+
         <p style={{ fontSize: "14px", color: "#f8fafc", fontWeight: 600, marginBottom: "12px" }}>
           고급 무선 노이즈캔슬링 헤드셋
         </p>
-        
-        <div style={{ 
-          fontSize: "12px", 
-          color: "#0ea5e9", 
+
+        <div style={{
+          fontSize: "12px",
+          color: "#0ea5e9",
           fontWeight: 700,
           display: "flex",
           alignItems: "center",
@@ -138,9 +138,9 @@ export default function RightSidebar() {
       </div>
 
       {/* 여기에 나중에 실제 광고(애드센스 등) 코드를 넣을 수 있는 공간 */}
-      <div style={{ 
-        padding: "20px", 
-        border: "1px dashed rgba(255,255,255,0.2)", 
+      <div style={{
+        padding: "20px",
+        border: "1px dashed rgba(255,255,255,0.2)",
         background: "rgba(255,255,255,0.02)",
         borderRadius: "20px",
         textAlign: "center",
