@@ -230,16 +230,7 @@ export default async function PostPage({ params }: Props) {
                     border: "1px solid rgba(255, 255, 255, 0.1)",
                     height: "100%",
                     transition: "transform 0.2s, background 0.2s"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-5px)";
-                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)";
-                  }}
-                  >
+                  }}>
                     <span style={{ fontSize: "11px", fontWeight: "bold", color: "#0ea5e9", textTransform: "uppercase", letterSpacing: "1px" }}>
                       {post.category}
                     </span>
