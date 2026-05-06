@@ -90,7 +90,8 @@ export default async function PostPage({ params }: Props) {
   });
 
   const youthKeywords = ["youth", "청년", "lab", "이사비", "주거", "전월세", "보증금", "월세", "꿈드림"];
-  const isYouthRelated = youthKeywords.some(k => 
+  const isPlatformCity = slug.toLowerCase().includes("platform") || postData.title.includes("플랫폼시티") || slug.toLowerCase().includes("guseong") || postData.title.includes("구성역");
+  const isYouthRelated = !isPlatformCity && youthKeywords.some(k => 
     slug.toLowerCase().includes(k) || 
     postData.title.toLowerCase().includes(k) || 
     postData.content.toLowerCase().includes(k)
