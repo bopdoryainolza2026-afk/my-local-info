@@ -61,8 +61,17 @@ export default async function PostPage({ params }: Props) {
   ];
   
   const cleanSlug = slug.replace(/\/$/, "");
-  const itemId = getItemIdBySlug(cleanSlug);
-  const matchedItem = itemId ? allItems.find(item => item.id === itemId) : allItems.find(item => {
+  
+  // 1. 본문 내의 <!-- [ITEM_ID: ...] --> 태그에서 ID 추출 시도
+  const itemIdMatch = postData.content.match(/<!--\s*\[ITEM_ID:\s*(.*?)\s*\]\s*-->/);
+  const extractedItemId = itemIdMatch ? itemIdMatch[1] : null;
+
+  // 2. 슬러그 맵핑에서 ID 찾기
+  const slugMappedId = getItemIdBySlug(cleanSlug);
+
+  const finalItemId = extractedItemId || slugMappedId;
+
+  const matchedItem = finalItemId ? allItems.find(item => item.id.toLowerCase() === finalItemId.toLowerCase()) : allItems.find(item => {
     if (!item.id || !item.name) return false;
     const cleanContent = postData.content.replace(/\s+/g, "").toLowerCase();
     const cleanTitle = postData.title.replace(/\s+/g, "").toLowerCase();
