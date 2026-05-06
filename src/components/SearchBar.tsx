@@ -37,6 +37,8 @@ export default function SearchBar({ placeholder = "궁금한 정보를 검색해
           padding: "16px 24px",
           paddingRight: "60px",
           fontSize: "16px",
+          background: "white",
+          color: "#1e293b",
           border: "2px solid #e2e8f0",
           borderRadius: "16px",
           outline: "none",

@@ -56,7 +56,7 @@ export default function Home() {
         border: "1px solid rgba(255,255,255,0.1)",
       }}>
         <h1 style={{ fontSize: "clamp(30px, 7vw, 46px)", fontWeight: 900, color: "white", marginBottom: "20px", lineHeight: 1.2, letterSpacing: "-1px" }}>
-          용인의 <span style={{ color: "#0ea5e9" }}>모든 소식</span>을<br /> 한곳에서 확인하세요
+          당신만 몰랐던 <span style={{ color: "#0ea5e9" }}>용인의 혜택</span>,<br /> AI가 실시간으로 찾아드려요
         </h1>
         <p style={{ fontSize: "18px", color: "#94a3b8", marginBottom: "40px", lineHeight: 1.6 }}>
           AI가 정리하는 실시간 축제와 정부 지원금,<br />
