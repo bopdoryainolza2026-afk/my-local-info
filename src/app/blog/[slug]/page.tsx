@@ -87,18 +87,18 @@ export default async function PostPage({ params }: Props) {
     );
   });
 
-  let sourceLink = matchedItem?.link || "https://www.yongin.go.kr";
-  let buttonText = postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 자세한 내용 원문 확인하기";
-
-  const youthKeywords = ["youth", "청년", "lab", "lab", "이사비", "주거", "전월세", "보증금", "월세", "꿈드림"];
+  const youthKeywords = ["youth", "청년", "lab", "이사비", "주거", "전월세", "보증금", "월세", "꿈드림"];
   const isYouthRelated = youthKeywords.some(k => 
     slug.toLowerCase().includes(k) || 
     postData.title.toLowerCase().includes(k) || 
     postData.content.toLowerCase().includes(k)
   );
-  
-  if (isYouthRelated) {
-    sourceLink = "https://youth.yongin.go.kr";
+
+  let sourceLink = matchedItem?.link || (isYouthRelated ? "https://youth.yongin.go.kr" : "https://www.yongin.go.kr");
+  let buttonText = postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 자세한 내용 원문 확인하기";
+
+  // 청년 관련 특화 버튼 텍스트 (매칭된 아이템이 없을 때만 청년 특화 텍스트 적용)
+  if (isYouthRelated && !matchedItem) {
     if (slug.includes("moving") || slug.includes("housing") || slug.includes("rent") || postData.title.includes("주거") || postData.title.includes("이사")) {
       buttonText = "🏠 용인청년 Lab 주거지원 페이지 가기";
     } else {
