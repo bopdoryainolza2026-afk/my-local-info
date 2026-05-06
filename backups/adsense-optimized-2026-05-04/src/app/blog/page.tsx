@@ -47,10 +47,10 @@ function BlogList() {
   }, []);
 
   const filteredPosts = query
-    ? posts.filter(post => 
-        post.title.toLowerCase().includes(query.toLowerCase()) || 
-        post.summary.toLowerCase().includes(query.toLowerCase())
-      )
+    ? posts.filter(post =>
+      post.title.toLowerCase().includes(query.toLowerCase()) ||
+      post.summary.toLowerCase().includes(query.toLowerCase())
+    )
     : posts;
 
   return (
@@ -100,12 +100,12 @@ function BlogList() {
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                <span style={{ 
-                  fontSize: 12, 
-                  fontWeight: 800, 
-                  color: "#0ea5e9", 
-                  background: "rgba(14,165,233,0.1)", 
-                  padding: "6px 14px", 
+                <span style={{
+                  fontSize: 12,
+                  fontWeight: 800,
+                  color: "#0ea5e9",
+                  background: "rgba(14,165,233,0.1)",
+                  padding: "6px 14px",
                   borderRadius: 12,
                   border: "1px solid rgba(14,165,233,0.2)"
                 }}>

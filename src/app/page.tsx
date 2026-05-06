@@ -1,4 +1,6 @@
-// Build Refresh: 2026-05-04
+"use client";
+
+// Build Refresh: 2026-05-06
 import Link from "next/link";
 import localData from "../../public/data/local-info.json";
 import { getSortedPostsData } from "@/lib/posts";
