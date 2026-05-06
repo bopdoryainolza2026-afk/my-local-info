@@ -198,7 +198,7 @@ export default async function PostPage({ params }: Props) {
               )
             }}
           >
-            {postData.content}
+            {postData.content.replace(/<!--\s*\[ITEM_ID:.*?\]\s*-->/g, "")}
           </ReactMarkdown>
 
           <div style={{ marginTop: "40px", padding: "24px", background: "rgba(0,0,0,0.2)", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.05)" }}>
