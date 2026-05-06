@@ -44,4 +44,4 @@ imageUrl: "https://images.unsplash.com/photo-1510906594845-bc082582c8cc?auto=for
 여러분의 생각은 어떠신가요? 어떤 후보의 교통 정책이 더 현실적이라고 보시나요? 댓글로 의견을 나눠주세요!
 
 ---
-<!-- [ITEM_ID: election-001] -->
+<!-- [ITEM_ID: election-003] -->
