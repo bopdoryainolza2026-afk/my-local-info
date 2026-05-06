@@ -65,16 +65,16 @@ const HomeScreen = () => (
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {[
-          { icon: <PartyPopper />, label: "축제/행사", color: "bg-indigo-50 text-indigo-600" },
-          { icon: <Wallet />, label: "지원금/혜택", color: "bg-emerald-50 text-emerald-600" },
-          { icon: <GraduationCap />, label: "교육/강좌", color: "bg-blue-50 text-blue-600" },
-          { icon: <Briefcase />, label: "일자리소식", color: "bg-amber-50 text-amber-600" },
-          { icon: <Theater />, label: "문화/예술", color: "bg-purple-50 text-purple-600" },
-          { icon: <Utensils />, label: "추천맛집", color: "bg-rose-50 text-rose-600" },
+          { Icon: PartyPopper, label: "축제/행사", color: "bg-indigo-50 text-indigo-600" },
+          { Icon: Wallet, label: "지원금/혜택", color: "bg-emerald-50 text-emerald-600" },
+          { Icon: GraduationCap, label: "교육/강좌", color: "bg-blue-50 text-blue-600" },
+          { Icon: Briefcase, label: "일자리소식", color: "bg-amber-50 text-amber-600" },
+          { Icon: Theater, label: "문화/예술", color: "bg-purple-50 text-purple-600" },
+          { Icon: Utensils, label: "추천맛집", color: "bg-rose-50 text-rose-600" },
         ].map((item, i) => (
           <button key={i} className="flex flex-col items-center justify-center p-8 bg-white rounded-[1.5rem] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-50 hover:shadow-xl hover:translate-y-[-6px] transition-all group">
             <div className={`p-5 rounded-3xl mb-4 ${item.color} group-hover:scale-110 transition-transform`}>
-              {React.cloneElement(item.icon as React.ReactElement, { className: "w-9 h-9" })}
+              <item.Icon className="w-9 h-9" />
             </div>
             <span className="text-base font-bold text-slate-700 tracking-tight">{item.label}</span>
           </button>
@@ -293,13 +293,13 @@ const RestaurantsScreen = () => (
       </div>
       <div className="flex gap-4 overflow-x-auto no-scrollbar w-full md:w-auto">
         {[
-          { icon: <Coffee />, label: "카페/디저트", active: true },
-          { icon: <Utensils />, label: "한식 정찬" },
-          { icon: <MoreHorizontal />, label: "고기/구이" },
-          { icon: <MoreHorizontal />, label: "퓨전/양식" },
+          { Icon: Coffee, label: "카페/디저트", active: true },
+          { Icon: Utensils, label: "한식 정찬" },
+          { Icon: MoreHorizontal, label: "고기/구이" },
+          { Icon: MoreHorizontal, label: "퓨전/양식" },
         ].map((cat, i) => (
           <button key={i} className={`flex-shrink-0 flex items-center gap-4 px-10 py-4 rounded-[1.5rem] font-black text-lg shadow-sm border transition-all ${cat.active ? "bg-indigo-600 text-white border-transparent shadow-xl" : "bg-white text-slate-400 border-slate-50 hover:border-indigo-200"}`}>
-            {React.cloneElement(cat.icon as React.ReactElement, { className: "w-6 h-6" })}
+            <cat.Icon className="w-6 h-6" />
             <span>{cat.label}</span>
           </button>
         ))}
@@ -374,10 +374,10 @@ export default function App() {
         </div>
         
         <nav className="flex-1 space-y-6">
-          <SidebarButton active={activeTab === 'home'} onClick={() => setActiveTab('home')} icon={<HomeIcon />} label="홈 화면" />
-          <SidebarButton active={activeTab === 'events'} onClick={() => setActiveTab('events')} icon={<Calendar />} label="축제 및 행사" />
-          <SidebarButton active={activeTab === 'subsidies'} onClick={() => setActiveTab('subsidies')} icon={<Wallet />} label="지원금·복지" />
-          <SidebarButton active={activeTab === 'restaurants'} onClick={() => setActiveTab('restaurants')} icon={<Utensils />} label="맛집 가이드" />
+          <SidebarButton active={activeTab === 'home'} onClick={() => setActiveTab('home')} icon={HomeIcon} label="홈 화면" />
+          <SidebarButton active={activeTab === 'events'} onClick={() => setActiveTab('events')} icon={Calendar} label="축제 및 행사" />
+          <SidebarButton active={activeTab === 'subsidies'} onClick={() => setActiveTab('subsidies')} icon={Wallet} label="지원금·복지" />
+          <SidebarButton active={activeTab === 'restaurants'} onClick={() => setActiveTab('restaurants')} icon={Utensils} label="맛집 가이드" />
         </nav>
 
         <div className="mt-auto space-y-10">
@@ -451,23 +451,23 @@ export default function App() {
 
       {/* 모바일 최적화 하단 탭 내비게이션 */}
       <nav className="lg:hidden fixed bottom-10 left-10 right-10 z-50 bg-slate-950 shadow-2xl border border-white/10 rounded-2xl p-4 flex justify-between items-center backdrop-blur-3xl bg-opacity-95">
-        <NavButton active={activeTab === 'home'} onClick={() => setActiveTab('home')} icon={<HomeIcon />} label="홈" />
-        <NavButton active={activeTab === 'events'} onClick={() => setActiveTab('events')} icon={<Calendar />} label="행사" />
-        <NavButton active={activeTab === 'subsidies'} onClick={() => setActiveTab('subsidies')} icon={<Wallet />} label="지원금" />
-        <NavButton active={activeTab === 'restaurants'} onClick={() => setActiveTab('restaurants')} icon={<Utensils />} label="맛집" />
+        <NavButton active={activeTab === 'home'} onClick={() => setActiveTab('home')} icon={HomeIcon} label="홈" />
+        <NavButton active={activeTab === 'events'} onClick={() => setActiveTab('events')} icon={Calendar} label="행사" />
+        <NavButton active={activeTab === 'subsidies'} onClick={() => setActiveTab('subsidies')} icon={Wallet} label="지원금" />
+        <NavButton active={activeTab === 'restaurants'} onClick={() => setActiveTab('restaurants')} icon={Utensils} label="맛집" />
       </nav>
     </div>
   );
 }
 
-function SidebarButton({ active, onClick, icon, label }: { active: boolean, onClick: () => void, icon: React.ReactNode, label: string }) {
+function SidebarButton({ active, onClick, icon: Icon, label }: { active: boolean, onClick: () => void, icon: React.ElementType, label: string }) {
   return (
     <button 
       onClick={onClick}
       className={`w-full flex items-center gap-5 px-8 py-5 rounded-[1.75rem] font-black text-lg transition-all group ${active ? "bg-indigo-600 text-white shadow-2xl shadow-indigo-600/30" : "text-slate-500 hover:bg-white/5 hover:text-slate-200"}`}
     >
       <div className={`transition-transform duration-500 ${active ? "scale-110" : "scale-100 group-hover:rotate-12"}`}>
-        {React.cloneElement(icon as React.ReactElement, { className: "w-7 h-7" })}
+        <Icon className="w-7 h-7" />
       </div>
       <span className="tracking-tight">{label}</span>
       {active && (
@@ -477,16 +477,16 @@ function SidebarButton({ active, onClick, icon, label }: { active: boolean, onCl
   );
 }
 
-function NavButton({ active, onClick, icon, label }: { active: boolean, onClick: () => void, icon: React.ReactNode, label: string }) {
+function NavButton({ active, onClick, icon: Icon, label }: { active: boolean, onClick: () => void, icon: React.ElementType, label: string }) {
   return (
     <button 
       onClick={onClick}
       className={`flex-1 flex flex-col items-center gap-2 transition-all relative group py-3 ${active ? "text-indigo-400 scale-105" : "text-slate-500"}`}
     >
       <div className={`p-3 transition-all duration-500 rounded-2xl ${active ? "bg-indigo-500/10 shadow-inner" : ""}`}>
-        {React.cloneElement(icon as React.ReactElement, { 
-          className: `w-7 h-7 transition-colors ${active ? "stroke-[2.5px]" : "stroke-[1.5px]"}` 
-        })}
+        <Icon 
+          className={`w-7 h-7 transition-colors ${active ? "stroke-[2.5px]" : "stroke-[1.5px]"}`} 
+        />
       </div>
       <span className={`text-[11px] font-black uppercase tracking-tighter transition-all ${active ? "opacity-100" : "opacity-0 translate-y-2"}`}>{label}</span>
       {active && (
