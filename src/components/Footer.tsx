@@ -43,7 +43,7 @@ export default function Footer() {
             <ul style={{ listStyle: "none", padding: 0, lineHeight: "2.2" }}>
               <li><Link href="/privacy" style={{ color: "#cbd5e1", fontWeight: 600, textDecoration: "none" }}>개인정보처리방침</Link></li>
               <li><Link href="/terms" style={{ color: "#94a3b8", textDecoration: "none" }}>이용약관</Link></li>
-              <li><Link href="/sitemap.xml" style={{ color: "#94a3b8", textDecoration: "none" }}>사이트맵</Link></li>
+              <li><Link href="/sitemap" style={{ color: "#94a3b8", textDecoration: "none" }}>사이트맵</Link></li>
             </ul>
           </div>
 
