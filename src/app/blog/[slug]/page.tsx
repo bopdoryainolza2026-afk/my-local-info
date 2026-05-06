@@ -52,12 +52,14 @@ export default async function PostPage({ params }: Props) {
     .slice(0, 3);
 
   const allItems = [
-    ...localData.events, 
-    ...localData.benefits, 
-    ...localData.restaurants,
+    ...(localData.educationNews || []),
+    ...(localData.events || []), 
+    ...(localData.benefits || []), 
+    ...(localData.restaurants || []),
     ...(localData.education || []),
     ...(localData.jobs || []),
     ...(localData.culture || []),
+    ...(localData.realEstate || []),
     ...(localData.hotTopics || [])
   ];
   
