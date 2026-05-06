@@ -57,7 +57,8 @@ export default async function PostPage({ params }: Props) {
     ...localData.restaurants,
     ...(localData.education || []),
     ...(localData.jobs || []),
-    ...(localData.culture || [])
+    ...(localData.culture || []),
+    ...(localData.hotTopics || [])
   ];
   
   const cleanSlug = slug.replace(/\/$/, "");

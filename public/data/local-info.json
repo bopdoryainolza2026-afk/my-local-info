@@ -934,5 +934,23 @@
       "emoji": "🛡️",
       "tag": "주거지원"
     }
+  ],
+  "hotTopics": [
+    {
+      "id": "election-001",
+      "category": "정책",
+      "name": "용인 처인구 국회의원 후보 교통 공약 비교",
+      "summary": "경강선 연장부터 반도체 고속도로까지, 처인구의 미래를 바꿀 후보별 교통 공약을 한눈에 분석합니다.",
+      "link": "https://www.joongboo.com/news/articleView.html?idxno=363640000",
+      "emoji": "🗳️"
+    },
+    {
+      "id": "election-002",
+      "category": "경제",
+      "name": "용인 반도체 고속도로 및 L자형 벨트 공약 분석",
+      "summary": "양향자 후보의 반도체 고속도로와 추미애 후보의 L자형 벨트 완성 공약! 용인 경제의 핵심 인프라 계획을 비교합니다.",
+      "link": "https://www.etnews.com/20260506000001",
+      "emoji": "🛣️"
+    }
   ]
 }
