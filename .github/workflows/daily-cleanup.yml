@@ -1,5 +1,9 @@
 name: Daily Data Cleanup
 
+permissions:
+  contents: write
+
+
 on:
   schedule:
     # 매일 한국 시간 오전 7시 (UTC 22:00)에 실행

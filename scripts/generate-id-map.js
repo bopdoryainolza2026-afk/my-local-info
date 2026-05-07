@@ -8,8 +8,11 @@ const allItems = [
   ...localData.restaurants,
   ...(localData.education || []),
   ...(localData.jobs || []),
-  ...(localData.culture || [])
+  ...(localData.culture || []),
+  ...(localData.realEstate || []),
+  ...(localData.hotTopics || [])
 ];
+
 
 const map = {};
 const missing = [];
