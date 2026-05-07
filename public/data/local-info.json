@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-30",
+  "lastUpdated": "2026-05-07",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -100,19 +100,6 @@
       "link": "https://www.yicf.or.kr/main/show/view.do?SHOW_IDX=16487",
       "emoji": "🎸",
       "tag": "공연"
-    },
-    {
-      "id": "evt-2026-006",
-      "category": "행사",
-      "name": "용인 농촌테마파크 '시골 장터' 일일 체험",
-      "startDate": "2026-05-04",
-      "endDate": "2026-05-05",
-      "location": "용인 농촌테마파크 (원삼면)",
-      "target": "가족 단위 방문객",
-      "summary": "직접 수확한 농산물을 팔아보는 어린이 농부 체험부터 떡메치기까지! 시골의 정을 듬뿍 느낄 수 있는 가족 맞춤형 체험 행사입니다.",
-      "link": "https://www.yongin.go.kr/home/yitour/ytour01/yttour05.jsp",
-      "emoji": "🌾",
-      "tag": "체험"
     },
     {
       "id": "evt-2026-007",
@@ -948,7 +935,6 @@
       "id": "election-002",
       "category": "경제",
       "name": "용인 플랫폼시티 및 반도체 고속도로 공약 분석",
-
       "summary": "양향자 후보의 반도체 고속도로와 추미애 후보의 L자형 벨트 완성 공약! 용인 경제의 핵심 인프라 계획을 비교합니다.",
       "link": "https://www.thepublic.kr/news/articleView.html?idxno=300751",
       "emoji": "🛣️"
