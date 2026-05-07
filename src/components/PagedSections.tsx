@@ -85,6 +85,7 @@ function EventCard({
     flexDirection: "column",
     gap: 12,
     minHeight: "300px",
+    height: "100%",
     cursor: "pointer",
   };
 
@@ -176,6 +177,7 @@ function BenefitCard({
     flexDirection: "column",
     gap: 12,
     minHeight: "300px",
+    height: "100%",
     cursor: "pointer",
   };
 
@@ -261,6 +263,7 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag, image
     flexDirection: "column",
     gap: 10,
     minHeight: "300px",
+    height: "100%",
     cursor: "pointer",
   };
 
@@ -319,7 +322,8 @@ function StoryCard({
       border: "1px solid #f9a8d4", boxShadow: "0 4px 12px rgba(244,114,182,0.08)",
       display: "flex", flexDirection: "column", gap: 12, minHeight: "340px",
       position: "relative", overflow: "hidden", textDecoration: "none", color: "inherit",
-      cursor: "pointer"
+      cursor: "pointer",
+      height: "100%"
     }}>
       {imageUrl ? (
         <div style={{ width: "100%", height: "180px", borderRadius: "12px", overflow: "hidden", position: "relative" }}>
@@ -408,19 +412,18 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
     <div>
       <div style={gridStyle}>
         {paginated.map((ev: any) => (
-          <div key={ev.id}>
-            <EventCard
-              emoji={ev.emoji}
-              tag={ev.tag}
-              name={ev.name}
-              dateStr={dateRange(ev.startDate, ev.endDate)}
-              location={ev.location}
-              target={ev.target}
-              summary={ev.summary}
-              link={getItemBlogLink(ev.id)}
-              imageUrl={ev.imageUrl}
-            />
-          </div>
+          <EventCard
+            key={ev.id}
+            emoji={ev.emoji}
+            tag={ev.tag}
+            name={ev.name}
+            dateStr={dateRange(ev.startDate, ev.endDate)}
+            location={ev.location}
+            target={ev.target}
+            summary={ev.summary}
+            link={getItemBlogLink(ev.id)}
+            imageUrl={ev.imageUrl}
+          />
         ))}
       </div>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />

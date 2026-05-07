@@ -119,7 +119,8 @@ export default function Home() {
                       transition: "all 0.3s ease",
                       display: "flex",
                       flexDirection: "column",
-                      gap: "12px"
+                      gap: "12px",
+                      height: "100%"
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = "translateY(-5px)";
@@ -134,7 +135,7 @@ export default function Home() {
                   >
                     <span style={{ fontSize: "12px", color: "#fb923c", fontWeight: 800 }}>{post.category}</span>
                     <h3 style={{ fontSize: "18px", fontWeight: 800, color: "white", lineHeight: 1.4 }}>{post.title}</h3>
-                    <p style={{ fontSize: "14px", color: "#94a3b8", lineHeight: 1.6, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                    <p style={{ fontSize: "14px", color: "#94a3b8", lineHeight: 1.6, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", flex: 1 }}>
                       {post.summary}
                     </p>
                     <div style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: "4px", color: "#fb923c", fontSize: "13px", fontWeight: 700 }}>
