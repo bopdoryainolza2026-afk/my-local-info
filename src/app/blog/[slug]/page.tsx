@@ -65,43 +65,34 @@ export default async function PostPage({ params }: Props) {
   
   const cleanSlug = slug.replace(/\/$/, "");
   
-  // 1. 본문 내의 <!-- [ITEM_ID: ...] --> 태그에서 ID 추출 시도
+  // 1. 본문 내의 <!-- [ITEM_ID: ...] --> 태그에서 ID 추출 (최우선)
   const itemIdMatch = postData.content.match(/<!--\s*\[ITEM_ID:\s*(.*?)\s*\]\s*-->/);
-  const extractedItemId = itemIdMatch ? itemIdMatch[1] : null;
+  const extractedItemId = itemIdMatch ? itemIdMatch[1].trim() : null;
 
-  // 2. 슬러그 맵핑에서 ID 찾기
+  // 2. 슬러그 맵핑에서 ID 찾기 (ITEM_ID가 없을 때만 사용)
   const slugMappedId = getItemIdBySlug(cleanSlug);
 
-  const finalItemId = extractedItemId || slugMappedId;
+  // 최종 ID: ITEM_ID 태그 > slug 맵 순서, 없으면 null (fuzzy 매칭 완전 제거)
+  const finalItemId = extractedItemId || slugMappedId || null;
 
-  const matchedItem = finalItemId ? allItems.find(item => item.id.toLowerCase() === finalItemId.toLowerCase()) : allItems.find(item => {
-    const anyItem = item as any;
-    if (!anyItem.id || (!anyItem.name && !anyItem.title)) return false;
-    const cleanContent = postData.content.replace(/\s+/g, "").toLowerCase();
-    const cleanTitle = postData.title.replace(/\s+/g, "").toLowerCase();
-    const cleanItemName = (anyItem.name || anyItem.title || "").replace(/\s+/g, "").toLowerCase();
-    
-    return (
-      cleanContent.includes(`[item_id:${item.id.toLowerCase()}]`) ||
-      cleanContent.includes(`item_id:${item.id.toLowerCase()}`) ||
-      cleanContent.includes(item.id.toLowerCase()) ||
-      cleanTitle.includes(cleanItemName) ||
-      cleanContent.includes(cleanItemName)
-    );
-  });
+  // ID가 명확하게 있을 때만 매칭 (키워드/제목 기반 fuzzy 매칭 완전 제거)
+  const matchedItem = finalItemId
+    ? allItems.find(item => item.id.toLowerCase() === finalItemId.toLowerCase())
+    : null;
 
+  // 청년 관련 링크 (매칭된 아이템이 없을 때 기본 링크로 사용)
   const youthKeywords = ["youth", "청년", "lab", "이사비", "주거", "전월세", "보증금", "월세", "꿈드림"];
   const isPlatformCity = slug.toLowerCase().includes("platform") || postData.title.includes("플랫폼시티") || slug.toLowerCase().includes("guseong") || postData.title.includes("구성역");
   const isYouthRelated = !isPlatformCity && youthKeywords.some(k => 
     slug.toLowerCase().includes(k) || 
-    postData.title.toLowerCase().includes(k) || 
-    postData.content.toLowerCase().includes(k)
+    postData.title.toLowerCase().includes(k)
   );
 
+  // 기본 링크 결정: 매칭된 아이템이 있으면 해당 링크, 없으면 청년/시청 홈페이지
   let sourceLink = matchedItem?.link || (isYouthRelated ? "https://youth.yongin.go.kr" : "https://www.yongin.go.kr");
   let buttonText = postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 자세한 내용 원문 확인하기";
 
-  // 청년 관련 특화 버튼 텍스트 (매칭된 아이템이 없을 때만 청년 특화 텍스트 적용)
+  // 청년 관련 특화 버튼 텍스트 (매칭된 아이템이 없을 때만 적용)
   if (isYouthRelated && !matchedItem) {
     if (slug.includes("moving") || slug.includes("housing") || slug.includes("rent") || postData.title.includes("주거") || postData.title.includes("이사")) {
       buttonText = "🏠 용인청년 Lab 주거지원 페이지 가기";
