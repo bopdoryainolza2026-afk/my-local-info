@@ -48,4 +48,4 @@ imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=for
 기흥구 주민으로서 플랫폼시티에 가장 기대하는 시설은 무엇인가요? 문화예술회관? 대형 백화점? 아니면 스타트업 센터? 여러분의 소중한 의견을 들려주세요!
 
 ---
-<!-- [ITEM_ID: re-001] -->
+<!-- [ITEM_ID: election-002] -->
