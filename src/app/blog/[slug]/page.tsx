@@ -75,10 +75,11 @@ export default async function PostPage({ params }: Props) {
   const finalItemId = extractedItemId || slugMappedId;
 
   const matchedItem = finalItemId ? allItems.find(item => item.id.toLowerCase() === finalItemId.toLowerCase()) : allItems.find(item => {
-    if (!item.id || !item.name) return false;
+    const anyItem = item as any;
+    if (!anyItem.id || (!anyItem.name && !anyItem.title)) return false;
     const cleanContent = postData.content.replace(/\s+/g, "").toLowerCase();
     const cleanTitle = postData.title.replace(/\s+/g, "").toLowerCase();
-    const cleanItemName = item.name.replace(/\s+/g, "").toLowerCase();
+    const cleanItemName = (anyItem.name || anyItem.title || "").replace(/\s+/g, "").toLowerCase();
     
     return (
       cleanContent.includes(`[item_id:${item.id.toLowerCase()}]`) ||
