@@ -32,7 +32,7 @@ export const ITEM_SLUG_MAP: Record<string, string> = {
   "ben-2026-007": "2026-04-29-yongin-youth-dream-support",
   "ben-2026-008": "2026-04-29-yongin-small-business-design-support",
   "ben-2026-009": "2026-04-29-yongin-citizen-safety-insurance",
-  "ben-2026-010": "2026-05-01-yongin-citizen-card",
+  "ben-2026-010": "2026-05-06-yongin-citizen-card",
   "ben-2026-011": "2026-04-29-yongin-health-support",
   "ben-2026-012": "2026-04-29-yongin-veterans-honor-allowance",
   "ben-2026-013": "2026-04-29-yongin-sme-online-support",
