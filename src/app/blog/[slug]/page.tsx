@@ -91,13 +91,15 @@ export default async function PostPage({ params }: Props) {
   // 기본 링크 결정: 매칭된 아이템이 있으면 해당 링크, 없으면 청년/시청 홈페이지
   let sourceLink = matchedItem?.link || (isYouthRelated ? "https://youth.yongin.go.kr" : "https://www.yongin.go.kr");
   
-  // 키즈카페 글인 경우 네이버 검색 결과로 연결
+  // 특정 글인 경우 네이버 검색 결과로 연결
   if (slug.includes("kids-cafe")) {
     sourceLink = "https://search.naver.com/search.naver?query=%EB%B3%B4%EC%A0%95%EB%8F%99+%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC+%EC%98%88%EC%8A%A4%ED%82%A4%EC%A6%88%EC%A1%B4+%EC%B9%B4%ED%8E%98";
   } else if (slug.includes("walking-trail")) {
     sourceLink = "https://search.naver.com/search.naver?query=%EC%84%B1%EB%B3%B5%EB%8F%99+%EC%82%B0%EC%B1%85%EB%A1%9C";
   } else if (slug.includes("lake-sunset")) {
     sourceLink = "https://search.naver.com/search.naver?query=%EA%B8%B0%ED%9D%A5%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90+%EB%91%98%EB%A0%88%EA%B8%B8";
+  } else if (slug.includes("suji-sinbong-food")) {
+    sourceLink = "https://search.naver.com/search.naver?query=%EC%8B%A0%EB%B4%89%EB%8F%99+%EC%99%B8%EC%8B%9D%ED%83%80%EC%9A%B4+%EB%A7%9B%EC%A7%91";
   }
 
   let buttonText = postData.category === "맛집" ? "🔗 원문보기" : "🔗 자세한 내용 원문 확인하기";
