@@ -35,4 +35,4 @@ tags: [처인구, 고택, 봄나들이]
 
 ---
 
-* **관련 사이트:** [용인시청 홈페이지 바로가기](https://www.yongin.go.kr)
+* **관련 정보 보기:** [네이버 블로그 바로가기](https://m.blog.naver.com/govlrodtnr/222400315303)
