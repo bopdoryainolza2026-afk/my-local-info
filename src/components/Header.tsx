@@ -50,7 +50,49 @@ export default function Header() {
         </Link>
 
         {/* 데스크탑 메뉴 */}
-        <nav style={{ display: "flex", gap: "8px" }}>
+        <nav style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+          {/* 카테고리 링크 (버튼 스타일) */}
+          {[
+            { name: "축제", href: "/#events", emoji: "🎪" },
+            { name: "혜택", href: "/#benefits", emoji: "💰" },
+            { name: "교육", href: "/#education", emoji: "🎓" },
+            { name: "일자리", href: "/#jobs", emoji: "👔" },
+            { name: "맛집", href: "/#restaurants", emoji: "🍱" },
+          ].map((item) => (
+            <Link 
+              key={item.href} 
+              href={item.href} 
+              style={{
+                fontSize: "13px",
+                fontWeight: 700,
+                color: "#1f2937",
+                padding: "6px 12px",
+                borderRadius: "10px",
+                textDecoration: "none",
+                transition: "all 0.2s",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+                background: "#f3f4f6"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#e5e7eb";
+                e.currentTarget.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#f3f4f6";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              <span>{item.emoji}</span>
+              {item.name}
+            </Link>
+          ))}
+          
+          {/* 구분선 */}
+          <div style={{ width: "1px", height: "20px", background: "#e5e7eb", margin: "0 8px" }} />
+
+          {/* 기존 기본 메뉴 */}
           {[
             { name: "소개", href: "/about", emoji: "🏢" },
             { name: "블로그", href: "/blog", emoji: "📝" },
@@ -60,16 +102,16 @@ export default function Header() {
               key={item.href} 
               href={item.href} 
               style={{
-                fontSize: "14px",
+                fontSize: "13px",
                 fontWeight: 600,
                 color: "#4b5563",
-                padding: "8px 16px",
-                borderRadius: "12px",
+                padding: "6px 12px",
+                borderRadius: "10px",
                 textDecoration: "none",
                 transition: "all 0.2s",
                 display: "flex",
                 alignItems: "center",
-                gap: "6px"
+                gap: "4px"
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "#f3f4f6";
