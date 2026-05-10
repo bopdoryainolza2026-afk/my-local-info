@@ -50,7 +50,7 @@ export default function Home() {
         margin: "40px auto",
         maxWidth: "1000px",
         borderRadius: "40px",
-        padding: "80px 40px",
+        padding: "40px 20px",
         textAlign: "center",
         boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
         border: "1px solid rgba(255,255,255,0.1)",

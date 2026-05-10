@@ -43,14 +43,22 @@ export default function Header() {
             background: "linear-gradient(135deg, #f97316 0%, #ed64a6 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            letterSpacing: "-0.5px"
+            letterSpacing: "-0.5px",
+            whiteSpace: "nowrap"
           }}>
             용인시 생활 정보
           </span>
         </Link>
 
         {/* 데스크탑 메뉴 */}
-        <nav style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+        <nav style={{ 
+          display: "flex", 
+          gap: "6px", 
+          alignItems: "center",
+          overflowX: "auto",
+          flexShrink: 1,
+          WebkitOverflowScrolling: "touch"
+        }}>
           {/* 카테고리 링크 (버튼 스타일) */}
           {[
             { name: "축제", href: "/#events", emoji: "🎪" },
@@ -73,7 +81,8 @@ export default function Header() {
                 display: "flex",
                 alignItems: "center",
                 gap: "4px",
-                background: "#f3f4f6"
+                background: "#f3f4f6",
+                flexShrink: 0
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "#e5e7eb";
@@ -111,7 +120,8 @@ export default function Header() {
                 transition: "all 0.2s",
                 display: "flex",
                 alignItems: "center",
-                gap: "4px"
+                gap: "4px",
+                flexShrink: 0
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "#f3f4f6";
