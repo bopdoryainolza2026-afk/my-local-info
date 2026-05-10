@@ -34,8 +34,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
-  const showGa = gaId && gaId !== "나중에_입력";
+  const gaId = "G-CGBQHDBXPW";
+  const showGa = true;
 
   return (
     <html lang="ko">
