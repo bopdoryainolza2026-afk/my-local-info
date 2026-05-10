@@ -90,7 +90,13 @@ export default async function PostPage({ params }: Props) {
 
   // 기본 링크 결정: 매칭된 아이템이 있으면 해당 링크, 없으면 청년/시청 홈페이지
   let sourceLink = matchedItem?.link || (isYouthRelated ? "https://youth.yongin.go.kr" : "https://www.yongin.go.kr");
-  let buttonText = postData.category === "맛집" ? "📍 실제 위치 지도 보기" : "🔗 자세한 내용 원문 확인하기";
+  
+  // 키즈카페 글인 경우 네이버 검색 결과로 연결
+  if (slug.includes("kids-cafe")) {
+    sourceLink = "https://search.naver.com/search.naver?query=%EB%B3%B4%EC%A0%95%EB%8F%99+%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC+%EC%98%88%EC%8A%A4%ED%82%A4%EC%A6%88%EC%A1%B4+%EC%B9%B4%ED%8E%98";
+  }
+
+  let buttonText = postData.category === "맛집" ? "🔗 원문보기" : "🔗 자세한 내용 원문 확인하기";
 
   // 청년 관련 특화 버튼 텍스트 (매칭된 아이템이 없을 때만 적용)
   if (isYouthRelated && !matchedItem) {
