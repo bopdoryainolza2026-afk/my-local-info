@@ -2,19 +2,19 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Home as HomeIcon, 
-  Calendar, 
-  Wallet, 
-  MoreHorizontal, 
-  Search, 
-  Menu, 
-  PartyPopper, 
-  GraduationCap, 
-  Briefcase, 
-  Theater, 
-  Utensils, 
-  ChevronRight, 
+import {
+  Home as HomeIcon,
+  Calendar,
+  Wallet,
+  MoreHorizontal,
+  Search,
+  Menu,
+  PartyPopper,
+  GraduationCap,
+  Briefcase,
+  Theater,
+  Utensils,
+  ChevronRight,
   ArrowRight,
   Star,
   MapPin,
@@ -47,9 +47,9 @@ const HomeScreen = () => (
     <section className="relative">
       <div className="flex items-center gap-5 bg-white border border-slate-200 rounded-2xl px-8 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all">
         <Search className="text-slate-400 w-7 h-7" />
-        <input 
-          type="text" 
-          placeholder="What are you looking for in Yongin?" 
+        <input
+          type="text"
+          placeholder="What are you looking for in Yongin?"
           className="w-full bg-transparent border-none outline-none text-xl font-medium placeholder:text-slate-300"
         />
         <button className="bg-indigo-600 text-white px-8 py-3 rounded-2xl font-black text-base shadow-lg shadow-indigo-100 hover:bg-indigo-700 active:scale-95 transition-all">
@@ -360,7 +360,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-700 flex flex-col lg:flex-row overflow-x-hidden">
-      
+
       {/* 데스크톱 사이드바 */}
       <aside className="hidden lg:flex w-96 bg-slate-950 h-screen sticky top-0 flex-col p-12 text-white z-[60]">
         <div className="flex items-center gap-5 mb-24">
@@ -372,7 +372,7 @@ export default function App() {
             <span className="text-slate-500 text-[11px] font-black uppercase tracking-[0.2em] mt-2 block">Premium Citizen Portal</span>
           </div>
         </div>
-        
+
         <nav className="flex-1 space-y-6">
           <SidebarButton active={activeTab === 'home'} onClick={() => setActiveTab('home')} icon={HomeIcon} label="홈 화면" />
           <SidebarButton active={activeTab === 'events'} onClick={() => setActiveTab('events')} icon={Calendar} label="축제 및 행사" />
@@ -406,7 +406,7 @@ export default function App() {
               </button>
               <h1 className="text-3xl font-black text-indigo-600 tracking-tighter">용인 포털</h1>
             </div>
-            
+
             <div className="hidden lg:block">
               <h1 className="text-4xl font-black text-slate-800 tracking-tighter leading-none">
                 반갑습니다, <span className="text-indigo-600">용인 시민님!</span>
@@ -462,7 +462,7 @@ export default function App() {
 
 function SidebarButton({ active, onClick, icon: Icon, label }: { active: boolean, onClick: () => void, icon: React.ElementType, label: string }) {
   return (
-    <button 
+    <button
       onClick={onClick}
       className={`w-full flex items-center gap-5 px-8 py-5 rounded-[1.75rem] font-black text-lg transition-all group ${active ? "bg-indigo-600 text-white shadow-2xl shadow-indigo-600/30" : "text-slate-500 hover:bg-white/5 hover:text-slate-200"}`}
     >
@@ -479,18 +479,18 @@ function SidebarButton({ active, onClick, icon: Icon, label }: { active: boolean
 
 function NavButton({ active, onClick, icon: Icon, label }: { active: boolean, onClick: () => void, icon: React.ElementType, label: string }) {
   return (
-    <button 
+    <button
       onClick={onClick}
       className={`flex-1 flex flex-col items-center gap-2 transition-all relative group py-3 ${active ? "text-indigo-400 scale-105" : "text-slate-500"}`}
     >
       <div className={`p-3 transition-all duration-500 rounded-2xl ${active ? "bg-indigo-500/10 shadow-inner" : ""}`}>
-        <Icon 
-          className={`w-7 h-7 transition-colors ${active ? "stroke-[2.5px]" : "stroke-[1.5px]"}`} 
+        <Icon
+          className={`w-7 h-7 transition-colors ${active ? "stroke-[2.5px]" : "stroke-[1.5px]"}`}
         />
       </div>
       <span className={`text-[11px] font-black uppercase tracking-tighter transition-all ${active ? "opacity-100" : "opacity-0 translate-y-2"}`}>{label}</span>
       {active && (
-        <motion.div 
+        <motion.div
           layoutId="mobileActive"
           className="absolute -bottom-2 w-2 h-2 bg-indigo-500 rounded-full shadow-[0_0_12px_rgba(99,102,241,1)]"
         />
