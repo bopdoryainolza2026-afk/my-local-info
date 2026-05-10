@@ -217,19 +217,6 @@
       "link": "https://www.yongin.go.kr/home/job/jobCenter/recruitEvent.jsp",
       "emoji": "🤝",
       "tag": "취업"
-    },
-    {
-      "id": "evt-2026-016",
-      "category": "행사",
-      "name": "용인시 자원봉사센터 '주말 가족 봉사' 체험",
-      "startDate": "2026-05-09",
-      "endDate": "2026-05-09",
-      "location": "용인시 관내 공원 및 복지시설",
-      "target": "용인시 거주 가족 단위",
-      "summary": "가족이 함께 나누는 따뜻한 사랑! 환경 정화 활동이나 복지시설 방문을 통해 나눔의 기쁨을 배우고 가족 간의 유대감도 쌓아보세요.",
-      "link": "https://www.yongin1365.or.kr",
-      "emoji": "💖",
-      "tag": "봉사"
     }
   ],
   "benefits": [
@@ -415,7 +402,6 @@
       "emoji": "🛍️",
       "tag": "기업"
     },
-
     {
       "id": "ben-2026-015",
       "category": "혜택",
