@@ -39,7 +39,7 @@ export const ITEM_SLUG_MAP: Record<string, string> = {
   "ben-2026-014": "2026-05-01-yongin-child-allowance",
   "ben-2026-015": "2026-04-30-yongin-housing-allowance",
   "ben-2026-016": "2026-05-01-yongin-disability-support",
-  "ben-2026-017": "2026-04-30-yongin-hope-dream-job",
+  "ben-2026-017": "2026-05-10-yongin-hope-dream-job",
   "ben-2026-018": "2026-05-01-yongin-small-business-support",
 
   // === 맛집 ===
@@ -70,7 +70,7 @@ export const ITEM_SLUG_MAP: Record<string, string> = {
   "job-001": "2026-05-01-yongin-large-job-fair",
   "job-002": "2026-04-30-yongin-semiconductor-training",
   "job-003": "2026-04-30-yongin-middle-aged-job",
-  "job-004": "2026-04-30-yongin-hope-dream-job",
+  "job-004": "2026-05-10-yongin-hope-dream-job",
 
   // === 문화/예술 ===
   "cul-001": "2026-04-30-yongin-matinee-concert",
