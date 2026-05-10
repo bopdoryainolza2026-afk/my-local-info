@@ -80,7 +80,7 @@ export const ITEM_SLUG_MAP: Record<string, string> = {
 
   // === 신규 추가 및 기타 매핑 ===
   "yongin-youth-moving-support-2026": "2026-05-10-yongin-youth-moving-support",
-  "yongin-youth-housing-2026": "2026-05-01-yongin-youth-housing-support",
+  "yongin-youth-housing-2026": "2026-05-10-yongin-youth-housing",
   "yongin-eco-car-2026": "2026-05-10-yongin-eco-car-subsidy",
   "story-001": "2026-04-24-yongin-walking-trail",
   "story-002": "2026-04-23-giheung-kids-cafe",
