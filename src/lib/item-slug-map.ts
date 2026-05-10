@@ -43,12 +43,12 @@ export const ITEM_SLUG_MAP: Record<string, string> = {
   "ben-2026-018": "2026-05-09-yongin-small-business-support",
 
   // === 맛집 ===
-  "res-001": "2026-05-01-yongin-gogiri-makguksu",
-  "res-002": "2026-05-01-baegam-sundae-jungang",
-  "res-003": "2026-05-01-giheung-sanmotungi-pork",
-  "res-004": "2026-05-01-miga-huoguo-suji",
-  "res-005": "2026-05-01-yongin-market-kalguksu",
-  "res-006": "2026-05-01-hwangso-gojip-yongin",
+  "res-001": "2026-05-10-gogiri-makguksu-review",
+  "res-002": "2026-05-10-baekam-sundae-jungang-sikdang",
+  "res-003": "2026-05-10-sanmotungi-yongin-review",
+  "res-004": "2026-05-10-suji-miga-huoguo",
+  "res-005": "2026-05-10-yongin-market-kalguksu",
+  "res-006": "2026-05-10-yongin-hwangso-gojib",
   "res-007": "2026-05-01-yongin-memilrae-review",
   "res-008": "2026-05-01-bojeong-moons-brunch",
   "res-009": "2026-05-01-yongin-giheung-eoryang-jjamppong",
