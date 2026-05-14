@@ -102,19 +102,6 @@
       "tag": "공연"
     },
     {
-      "id": "evt-2026-007",
-      "category": "행사",
-      "name": "용인 청년 LAB 'AI 취업 준비' 워크숍",
-      "startDate": "2026-05-12",
-      "endDate": "2026-05-13",
-      "location": "용인 청년 LAB (수지·기흥·처인)",
-      "target": "만 18세~39세 용인 청년",
-      "summary": "AI 면접과 자기소개서 분석, 어떻게 대비할까요? 최신 AI 트렌드를 활용한 취업 전략을 전문가와 함께 세워보는 실무형 워크숍입니다.",
-      "link": "https://youth.yongin.go.kr/web/main/program/all/list",
-      "emoji": "💻",
-      "tag": "교육"
-    },
-    {
       "id": "evt-2026-008",
       "category": "행사",
       "name": "용인시청 '하늘광장' 야외 영화 상영회",
