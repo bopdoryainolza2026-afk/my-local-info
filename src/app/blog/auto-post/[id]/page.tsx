@@ -19,8 +19,8 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const { id } = params;
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
   const allItems = [
     ...localData.events, 
     ...localData.benefits, 
@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default function AutoPostPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function AutoPostPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   
   // 모든 데이터 통합
   const allItems = [
