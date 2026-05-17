@@ -80,22 +80,120 @@ export default function Home() {
         {/* 1. 왼쪽 본문 영역 */}
         <div style={{ display: "flex", flexDirection: "column", gap: "80px" }}>
           
-          {/* ===== 2026 지방선거 특집 섹션 (임시 수록) ===== */}
-          <section id="election-special" style={{ 
+          {/* ===== AI 실시간 우리동네 특보 (최신 뉴스) ===== */}
+          <section id="realtime-news" style={{ 
             scrollMarginTop: 100,
-            background: "linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(234, 179, 8, 0.05) 100%)",
+            background: "linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(37, 99, 235, 0.05) 100%)",
             borderRadius: "32px",
             padding: "40px",
-            border: "1px solid rgba(249, 115, 22, 0.2)",
+            border: "1px solid rgba(14, 165, 233, 0.2)",
             boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.2)"
           }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "32px" }}>
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-                  <span style={{ background: "#f97316", color: "white", padding: "4px 10px", borderRadius: "8px", fontSize: "12px", fontWeight: 900 }}>HOT</span>
-                  <p style={{ fontSize: "14px", fontWeight: 800, color: "#fb923c", textTransform: "uppercase", letterSpacing: "1px" }}>2026 지방선거 기획</p>
+                  <span style={{ background: "#0ea5e9", color: "white", padding: "4px 10px", borderRadius: "8px", fontSize: "12px", fontWeight: 900 }}>NEW</span>
+                  <p style={{ fontSize: "14px", fontWeight: 800, color: "#38bdf8", textTransform: "uppercase", letterSpacing: "1px" }}>오늘의 새로운 정보</p>
                 </div>
                 <h2 style={{ fontSize: "28px", fontWeight: "900", color: "white", letterSpacing: "-1px" }}>
+                  AI 실시간 <span style={{ color: "#38bdf8" }}>우리동네 소식통</span>
+                </h2>
+              </div>
+              <Link href="/blog" style={{ color: "#94a3b8", textDecoration: "none", fontSize: "14px", fontWeight: 700 }}>전체 보기 →</Link>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px" }}>
+              {allPosts
+                .slice(0, 3)
+                .map((post) => (
+                  <Link 
+                    key={post.slug} 
+                    href={`/blog/${post.slug}`}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.03)",
+                      borderRadius: "24px",
+                      padding: "24px",
+                      border: "1px solid rgba(255, 255, 255, 0.05)",
+                      textDecoration: "none",
+                      transition: "all 0.3s ease",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "12px",
+                      height: "100%"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "translateY(-5px)";
+                      e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                      e.currentTarget.style.borderColor = "rgba(14, 165, 233, 0.3)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
+                      e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.05)";
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontSize: "12px", color: "#38bdf8", fontWeight: 800 }}>{post.category}</span>
+                      <span style={{ fontSize: "11px", color: "#64748b" }}>{post.date}</span>
+                    </div>
+                    <h3 style={{ fontSize: "18px", fontWeight: 800, color: "white", lineHeight: 1.4 }}>{post.title}</h3>
+                    <p style={{ fontSize: "14px", color: "#94a3b8", lineHeight: 1.6, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", flex: 1 }}>
+                      {post.summary}
+                    </p>
+                    <div style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: "4px", color: "#38bdf8", fontSize: "13px", fontWeight: 700 }}>
+                      자세히 보기 <span>→</span>
+                    </div>
+                  </Link>
+                ))
+              }
+            </div>
+          </section>
+          <section id="events" style={{ scrollMarginTop: 100 }}>
+            <SectionTitle emoji="🎪" title="추천 행사 / 축제" />
+            <PagedEventSection items={yonginEvents} allPosts={allPosts} />
+          </section>
+
+          <section id="benefits" style={{ scrollMarginTop: 100 }}>
+            <SectionTitle emoji="💰" title="지원금 및 맞춤 혜택" />
+            <PagedBenefitSection items={yonginBenefits} allPosts={allPosts} />
+          </section>
+
+          <section id="education" style={{ scrollMarginTop: 100 }}>
+            <SectionTitle emoji="🎓" title="지역 교육 및 강좌" />
+            <PagedEducationSection items={yonginEdu} allPosts={allPosts} />
+          </section>
+
+          <section id="jobs" style={{ scrollMarginTop: 100 }}>
+            <SectionTitle emoji="👔" title="일자리 정보" />
+            <PagedJobSection items={yonginJobs} allPosts={allPosts} />
+          </section>
+
+          <section id="culture" style={{ scrollMarginTop: 100 }}>
+            <SectionTitle emoji="🎨" title="문화 및 전시" />
+            <PagedCultureSection items={yonginCulture} allPosts={allPosts} />
+          </section>
+
+          <section id="restaurants" style={{ scrollMarginTop: 100 }}>
+            <SectionTitle emoji="🍱" title="AI 추천 우리동네 맛집" />
+            <PagedRestaurantSection items={restaurants as any[]} allPosts={allPosts} />
+          </section>
+
+          {/* ===== 2026 지방선거 특집 섹션 (이동됨) ===== */}
+          <section id="election-special" style={{ 
+            scrollMarginTop: 100,
+            background: "linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(234, 179, 8, 0.03) 100%)",
+            borderRadius: "32px",
+            padding: "40px",
+            border: "1px solid rgba(249, 115, 22, 0.15)",
+            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "32px" }}>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+                  <span style={{ background: "#f97316", color: "white", padding: "4px 10px", borderRadius: "8px", fontSize: "12px", fontWeight: 900 }}>SPECIAL</span>
+                  <p style={{ fontSize: "14px", fontWeight: 800, color: "#fb923c", textTransform: "uppercase", letterSpacing: "1px" }}>2026 지방선거 기획</p>
+                </div>
+                <h2 style={{ fontSize: "24px", fontWeight: "900", color: "white", letterSpacing: "-1px" }}>
                   4년 전 약속, <span style={{ color: "#fb923c" }}>지금은 어디까지 왔을까?</span>
                 </h2>
               </div>
@@ -145,35 +243,6 @@ export default function Home() {
                 ))
               }
             </div>
-          </section>
-          <section id="events" style={{ scrollMarginTop: 100 }}>
-            <SectionTitle emoji="🎪" title="추천 행사 / 축제" />
-            <PagedEventSection items={yonginEvents} allPosts={allPosts} />
-          </section>
-
-          <section id="benefits" style={{ scrollMarginTop: 100 }}>
-            <SectionTitle emoji="💰" title="지원금 및 맞춤 혜택" />
-            <PagedBenefitSection items={yonginBenefits} allPosts={allPosts} />
-          </section>
-
-          <section id="education" style={{ scrollMarginTop: 100 }}>
-            <SectionTitle emoji="🎓" title="지역 교육 및 강좌" />
-            <PagedEducationSection items={yonginEdu} allPosts={allPosts} />
-          </section>
-
-          <section id="jobs" style={{ scrollMarginTop: 100 }}>
-            <SectionTitle emoji="👔" title="일자리 정보" />
-            <PagedJobSection items={yonginJobs} allPosts={allPosts} />
-          </section>
-
-          <section id="culture" style={{ scrollMarginTop: 100 }}>
-            <SectionTitle emoji="🎨" title="문화 및 전시" />
-            <PagedCultureSection items={yonginCulture} allPosts={allPosts} />
-          </section>
-
-          <section id="restaurants" style={{ scrollMarginTop: 100 }}>
-            <SectionTitle emoji="🍱" title="AI 추천 우리동네 맛집" />
-            <PagedRestaurantSection items={restaurants as any[]} allPosts={allPosts} />
           </section>
 
           <section id="community" style={{ scrollMarginTop: 100 }}>

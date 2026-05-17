@@ -35,7 +35,8 @@ function BlogList() {
             category: item.category || "정보",
             summary: item.summary || item.content.substring(0, 100) + "...",
             tags: item.tags || []
-          }));
+          }))
+          .sort((a: any, b: any) => b.date.localeCompare(a.date)); // 최신 날짜순 정렬
         setPosts(blogPosts);
       } catch (err) {
         console.error("블로그 데이터를 불러오는데 실패했습니다:", err);
