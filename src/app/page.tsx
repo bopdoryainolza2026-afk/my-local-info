@@ -14,9 +14,9 @@ export default function Home() {
 
   const todayStr = new Date().toISOString().split('T')[0];
 
-  const isYongin = (item: any) => 
-    (item.name && item.name.includes("용인")) || 
-    (item.target && item.target.includes("용인")) || 
+  const isYongin = (item: any) =>
+    (item.name && item.name.includes("용인")) ||
+    (item.target && item.target.includes("용인")) ||
     (item.location && item.location.includes("용인"));
 
   const getActiveItems = (items: any[]) => {
@@ -42,7 +42,7 @@ export default function Home() {
 
   return (
     <div style={{ fontFamily: "'Noto Sans KR', sans-serif", padding: "0 20px 60px" }}>
-      
+
       {/* ===== 히어로 섹션 (프리미엄 디자인) ===== */}
       <section style={{
         background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)",
@@ -68,9 +68,9 @@ export default function Home() {
       </section>
 
       {/* ===== 본문 영역 ===== */}
-      <main style={{ 
-        maxWidth: 1200, 
-        margin: "0 auto", 
+      <main style={{
+        maxWidth: 1200,
+        margin: "0 auto",
         display: "grid",
         gridTemplateColumns: "1fr minmax(300px, 350px)",
         gap: "40px",
@@ -79,9 +79,9 @@ export default function Home() {
 
         {/* 1. 왼쪽 본문 영역 */}
         <div style={{ display: "flex", flexDirection: "column", gap: "80px" }}>
-          
+
           {/* ===== AI 실시간 우리동네 특보 (최신 뉴스) ===== */}
-          <section id="realtime-news" style={{ 
+          <section id="realtime-news" style={{
             scrollMarginTop: 100,
             background: "linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(37, 99, 235, 0.05) 100%)",
             borderRadius: "32px",
@@ -106,8 +106,8 @@ export default function Home() {
               {allPosts
                 .slice(0, 3)
                 .map((post) => (
-                  <Link 
-                    key={post.slug} 
+                  <Link
+                    key={post.slug}
                     href={`/blog/${post.slug}`}
                     style={{
                       background: "rgba(255, 255, 255, 0.03)",
@@ -179,7 +179,7 @@ export default function Home() {
           </section>
 
           {/* ===== 2026 지방선거 특집 섹션 (이동됨) ===== */}
-          <section id="election-special" style={{ 
+          <section id="election-special" style={{
             scrollMarginTop: 100,
             background: "linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(234, 179, 8, 0.03) 100%)",
             borderRadius: "32px",
@@ -205,8 +205,8 @@ export default function Home() {
                 .filter(post => post.slug.includes('election') || post.slug.includes('platform-city') || post.slug.includes('semiconductor-highway'))
                 .slice(0, 3)
                 .map((post) => (
-                  <Link 
-                    key={post.slug} 
+                  <Link
+                    key={post.slug}
                     href={`/blog/${post.slug}`}
                     style={{
                       background: "rgba(255, 255, 255, 0.03)",
@@ -269,7 +269,7 @@ export default function Home() {
           </section>
 
           {/* 블로그 링크 카드 */}
-          <section style={{ 
+          <section style={{
             background: "linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%)",
             borderRadius: "32px",
             padding: "40px",
@@ -303,11 +303,11 @@ export default function Home() {
         {/* 2. 오른쪽 사이드바 영역 */}
         <aside style={{ position: "sticky", top: "100px", display: "flex", flexDirection: "column", gap: "30px" }}>
           <RightSidebar />
-          
-          <div style={{ 
-            padding: "32px", 
-            background: "rgba(255, 255, 255, 0.03)", 
-            borderRadius: "28px", 
+
+          <div style={{
+            padding: "32px",
+            background: "rgba(255, 255, 255, 0.03)",
+            borderRadius: "28px",
             border: "1px solid rgba(255, 255, 255, 0.1)",
             boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
           }}>
