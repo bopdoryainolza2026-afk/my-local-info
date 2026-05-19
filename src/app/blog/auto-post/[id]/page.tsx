@@ -145,6 +145,15 @@ export default async function AutoPostPage({ params }: { params: Promise<{ id: s
                 let link = item.link || "https://www.yongin.go.kr";
                 let text = "🔗 자세한 내용 원문 확인하기";
                 
+                // [원천 차단 안전장치] 링크가 내부 블로그(/blog/) 주소로 되어 있는데
+                // 이 임시 상세 페이지가 활성화된 상황이라면, 해당 글이 누락되었거나 배포 중이라는 뜻입니다.
+                // 404 에러 대신 네이버 검색창으로 연결하여 사용자 경험을 지켜줍니다.
+                if (link.startsWith("/blog/")) {
+                  const query = encodeURIComponent(`용인 ${item.name}`);
+                  link = `https://search.naver.com/search.naver?query=${query}`;
+                  text = `🔍 네이버에서 '${item.name}' 직접 검색하기`;
+                }
+
                 // 청년 LAB 관련 하드코딩 및 키워드 매칭
                 const youthKeywords = ["youth", "청년", "lab", "lab", "이사비", "주거", "전월세", "보증금", "월세", "꿈드림"];
                 const isYouth = youthKeywords.some(k => id.toLowerCase().includes(k) || item.name.toLowerCase().includes(k));
