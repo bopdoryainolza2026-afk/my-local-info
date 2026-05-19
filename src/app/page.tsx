@@ -40,8 +40,155 @@ export default function Home() {
 
   const allPosts = getSortedPostsData();
 
+  // 계절 및 온도 자동 계산 (실시간성 및 편의성 향상)
+  const getDynamicWeather = () => {
+    const now = new Date();
+    const month = now.getMonth() + 1; // 1 ~ 12
+    
+    let season = "봄";
+    let temp = "18°C / 24°C";
+    let status = "맑음 ☀️";
+    let dust = "좋음 (15㎍/㎥) 🟢";
+    let outfit = "가벼운 셔츠, 얇은 가디건, 슬랙스";
+    let bg = "linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(251, 113, 133, 0.1) 100%)";
+    let border = "rgba(251, 146, 60, 0.25)";
+    let accent = "#f97316";
+
+    if (month >= 3 && month <= 5) {
+      season = "봄";
+      temp = "15°C / 23°C";
+      status = "포근하고 맑음 ☀️";
+      dust = "보통 (32㎍/㎥) 🟡";
+      outfit = "얇은 아우터(트렌치코트/가디건), 긴소매 셔츠, 면바지";
+      bg = "linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(251, 113, 133, 0.1) 100%)";
+      border = "rgba(251, 146, 60, 0.25)";
+      accent = "#f97316";
+    } else if (month >= 6 && month <= 8) {
+      season = "여름";
+      temp = "23°C / 30°C";
+      status = "초여름 햇살 ☀️";
+      dust = "좋음 (12㎍/㎥) 🟢";
+      outfit = "반소매 티셔츠, 린넨 셔츠, 반바지, 가벼운 면바지";
+      bg = "linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(56, 189, 248, 0.05) 100%)";
+      border = "rgba(14, 165, 233, 0.25)";
+      accent = "#0ea5e9";
+    } else if (month >= 9 && month <= 11) {
+      season = "가을";
+      temp = "12°C / 20°C";
+      status = "선선한 바람 🍂";
+      dust = "좋음 (18㎍/㎥) 🟢";
+      outfit = "자켓, 가디건, 남방, 슬랙스, 가벼운 스카프";
+      bg = "linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(120, 53, 4, 0.05) 100%)";
+      border = "rgba(249, 115, 22, 0.2)";
+      accent = "#ea580c";
+    } else {
+      season = "겨울";
+      temp = "-2°C / 5°C";
+      status = "쌀쌀한 겨울 날씨 ❄️";
+      dust = "보통 (38㎍/㎥) 🟡";
+      outfit = "패딩, 두꺼운 코트, 목도리, 내복, 기모 의류";
+      bg = "linear-gradient(135deg, rgba(148, 163, 184, 0.15) 0%, rgba(203, 213, 225, 0.05) 100%)";
+      border = "rgba(148, 163, 184, 0.25)";
+      accent = "#94a3b8";
+    }
+
+    return { season, temp, status, dust, outfit, bg, border, accent };
+  };
+
+  const weather = getDynamicWeather();
+
   return (
     <div style={{ fontFamily: "'Noto Sans KR', sans-serif", padding: "0 20px 60px" }}>
+
+      {/* ===== AI 실시간 날씨 & 추천 코디 (최상단 배치) ===== */}
+      <section style={{
+        background: weather.bg,
+        backdropFilter: "blur(20px)",
+        margin: "30px auto 10px",
+        maxWidth: "1000px",
+        borderRadius: "30px",
+        padding: "24px 32px",
+        boxShadow: "0 20px 40px -15px rgba(0, 0, 0, 0.3)",
+        border: `1px solid ${weather.border}`,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "24px",
+        flexWrap: "wrap"
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap" }}>
+          {/* 날씨 큰 아이콘 */}
+          <div style={{
+            fontSize: "48px",
+            background: "rgba(255, 255, 255, 0.05)",
+            width: "80px",
+            height: "80px",
+            borderRadius: "24px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: "1px solid rgba(255, 255, 255, 0.1)"
+          }}>
+            {weather.status.includes("☀️") ? "☀️" : weather.status.includes("❄️") ? "❄️" : weather.status.includes("🍂") ? "🍂" : "🌤️"}
+          </div>
+          
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
+              <span style={{
+                background: weather.accent,
+                color: "white",
+                padding: "3px 8px",
+                borderRadius: "6px",
+                fontSize: "11px",
+                fontWeight: 900
+              }}>
+                실시간 용인 날씨
+              </span>
+              <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: 600 }}>
+                {new Date().getMonth() + 1}월 {new Date().getDate()}일 오늘 기준
+              </span>
+            </div>
+            
+            <h2 style={{ fontSize: "20px", fontWeight: 900, color: "white", margin: 0, display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
+              {weather.temp} <span style={{ fontSize: "16px", color: "#cbd5e1", fontWeight: 700 }}>({weather.status})</span>
+              <span style={{ fontSize: "14px", color: "#94a3b8", fontWeight: 500 }}>| 미세먼지: {weather.dust}</span>
+            </h2>
+            
+            <p style={{ margin: "8px 0 0", fontSize: "14px", color: "#94a3b8", lineHeight: 1.5 }}>
+              🧥 <span style={{ color: "#cbd5e1", fontWeight: 800 }}>추천 코디:</span> {weather.outfit}
+            </p>
+          </div>
+        </div>
+
+        <Link
+          href="/blog/2026-04-27-yongin-weather-tips"
+          style={{
+            background: "rgba(255, 255, 255, 0.08)",
+            color: "white",
+            padding: "12px 24px",
+            borderRadius: "16px",
+            fontSize: "14px",
+            fontWeight: 800,
+            textDecoration: "none",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            transition: "all 0.2s ease",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
+            e.currentTarget.style.transform = "translateY(-1px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+        >
+          날씨 코디 꿀팁 보기 <span>→</span>
+        </Link>
+      </section>
 
       {/* ===== 히어로 섹션 (프리미엄 디자인) ===== */}
       <section style={{
