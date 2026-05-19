@@ -90,6 +90,14 @@ export default async function PostPage({ params }: Props) {
 
   // 기본 링크 결정: 매칭된 아이템이 있으면 해당 링크, 없으면 청년/시청 홈페이지
   let sourceLink = matchedItem?.link || (isYouthRelated ? "https://youth.yongin.go.kr" : "https://www.yongin.go.kr");
+
+  // [원천 안전장치] 블로그 상세 페이지 내부의 원문출처 버튼이 우리 블로그 내부 주소(/blog/)로 지정되어 있다면,
+  // 이것은 자기 자신을 다시 가리키는 무한 루프이거나 날짜 불일치로 인한 404 유발 요인입니다.
+  // 이 경우, 방문자를 네이버 검색창(예: '용인 솔솔우동')으로 연결해 주어 맛집 정보나 지도를 바로 찾을 수 있도록 돕습니다.
+  if (sourceLink.startsWith("/blog/")) {
+    const cleanItemName = (matchedItem as any)?.name || postData.title.replace(/\[.*?\]/g, "").trim();
+    sourceLink = `https://search.naver.com/search.naver?query=${encodeURIComponent("용인 " + cleanItemName)}`;
+  }
   
   // 특정 글인 경우 네이버 검색 결과로 연결
   if (slug.includes("kids-cafe")) {
