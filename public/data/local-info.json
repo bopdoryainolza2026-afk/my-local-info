@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-18",
+  "lastUpdated": "2026-05-19",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -152,19 +152,6 @@
       "link": "https://gcm.ggcf.kr/exhibitions",
       "emoji": "📐",
       "tag": "전시"
-    },
-    {
-      "id": "evt-2026-013",
-      "category": "행사",
-      "name": "용인시 처인구 '청년 농업인' 플리마켓",
-      "startDate": "2026-05-18",
-      "endDate": "2026-05-18",
-      "location": "처인구청 앞 광장",
-      "target": "용인 시민 누구나",
-      "summary": "용인 청년 농부들이 직접 기른 건강한 농산물을 가장 싱싱하게 만나는 날! 수제 잼, 유기농 채소 등 청년들의 열정이 담긴 먹거리를 만나보세요.",
-      "link": "https://www.yongin.go.kr/user/bbs/BD_selectBbs.do?q_bbsCode=1001&q_clCode=1&q_bbscttSn=20251120110755573",
-      "emoji": "🌽",
-      "tag": "시장"
     },
     {
       "id": "evt-2026-014",
