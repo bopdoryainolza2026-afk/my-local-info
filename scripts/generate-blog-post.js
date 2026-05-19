@@ -91,8 +91,9 @@ async function generateBlogPost() {
       ];
 
       for (const tip of dailyTips) {
+        // [수정] 날짜 무관하게, 이 팁 ID로 이미 작성된 파일이 있으면 건너뜀
         const isAlreadyWritten = existingFiles.some(f => 
-          f.content.includes(tip.name) && f.content.includes(new Date().toISOString().split('T')[0])
+          f.content.includes(tip.id) || f.content.includes(tip.name)
         );
         if (!isAlreadyWritten) {
           await createPost(tip, GEMINI_API_KEY, postsDirPath, true);
