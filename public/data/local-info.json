@@ -76,19 +76,6 @@
       "tag": "관람"
     },
     {
-      "id": "evt-2026-004",
-      "category": "행사",
-      "name": "용인시 수지·기흥 도서관 '한 책 읽기' 작가 강연",
-      "startDate": "2026-05-10",
-      "endDate": "2026-05-25",
-      "location": "용인 관내 주요 도서관",
-      "target": "용인 시민 누구나",
-      "summary": "올해의 한 책으로 선정된 도서의 작가를 직접 만나는 시간! 책 속 이야기에 대해 깊이 소통하고 인문학적 소양을 넓힐 수 있는 무료 강연입니다.",
-      "link": "https://lib.yongin.go.kr/suji/menu/12408/program/30027/lectureList.do",
-      "emoji": "📚",
-      "tag": "강연"
-    },
-    {
       "id": "evt-2026-005",
       "category": "행사",
       "name": "기흥 호수공원 '토요 버스킹' 공연",
