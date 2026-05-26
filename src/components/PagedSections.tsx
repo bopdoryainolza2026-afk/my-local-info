@@ -6,6 +6,21 @@ import { getItemBlogLink } from "@/lib/item-slug-map";
 
 const ITEMS_PER_PAGE = 6;
 
+/** ID에서 타임스탬프를 추출하여 3일 이내 신규 항목인지 판별 */
+function isNewItem(id: string) {
+  if (!id) return false;
+  const match = id.match(/-(\d{10,})/);
+  if (match) {
+    const raw = match[1];
+    const timestamp = raw.length > 13
+      ? parseInt(raw.substring(0, 13), 10)
+      : parseInt(raw, 10);
+    const now = Date.now();
+    return now - timestamp < 72 * 60 * 60 * 1000;
+  }
+  return false;
+}
+
 // 태그 색상 (필요 시 확장)
 const tagStyle: Record<string, { bg: string; color: string }> = {
   "무료": { bg: "#dcfce7", color: "#166534" },
@@ -66,12 +81,13 @@ function Pagination({
 
 /** 행사 카드 */
 function EventCard({
-  emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, imageUrl,
+  id = "", emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, imageUrl,
 }: {
-  emoji?: string; tag?: string; name: string; dateStr: string;
+  id?: string; emoji?: string; tag?: string; name: string; dateStr: string;
   location: string; target: string; summary: string; link: string;
   imageUrl?: string;
 }) {
+  const isNew = isNewItem(id);
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
     background: "white",
@@ -122,7 +138,7 @@ function EventCard({
         </div>
       )}
       <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
-        {name}
+        {isNew ? <><span style={{ color: "#ef4444", fontSize: 13, marginRight: 6, fontWeight: 900 }}>[신규]</span>{name}</> : name}
       </h3>
       <p style={{ fontSize: 13, color: "#0ea5e9", fontWeight: 700 }}>📅 {dateStr}</p>
       <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
@@ -158,12 +174,13 @@ function EventCard({
 
 /** 혜택 카드 */
 function BenefitCard({
-  emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link, imageUrl,
+  id = "", emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link, imageUrl,
 }: {
-  emoji?: string; tag?: string; name: string; target: string;
+  id?: string; emoji?: string; tag?: string; name: string; target: string;
   amount: string; summary: string; deadline: string; link: string;
   imageUrl?: string;
 }) {
+  const isNew = isNewItem(id);
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
     background: "white",
@@ -214,7 +231,7 @@ function BenefitCard({
         </div>
       )}
       <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
-        {name}
+        {isNew ? <><span style={{ color: "#ef4444", fontSize: 13, marginRight: 6, fontWeight: 900 }}>[신규]</span>{name}</> : name}
       </h3>
       {amount && <p style={{ fontSize: 13, color: "#db2777", fontWeight: 700 }}>💰 {amount}</p>}
       <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
@@ -249,7 +266,8 @@ function BenefitCard({
 }
 
 /** 맛집 카드 */
-function RestaurantCard({ emoji, name, menu, location, summary, link, tag, imageUrl, item }: any) {
+function RestaurantCard({ id = "", emoji, name, menu, location, summary, link, tag, imageUrl, item }: any) {
+  const isNew = isNewItem(id);
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
     background: "white",
@@ -280,7 +298,9 @@ function RestaurantCard({ emoji, name, menu, location, summary, link, tag, image
           <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "#ffedd5", color: "#9a3412" }}>{tag}</span>
         </div>
       )}
-      <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{name}</h3>
+      <h3 style={{ fontSize: 17, fontWeight: 800, color: "#1e293b", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+        {isNew ? <><span style={{ color: "#ef4444", fontSize: 13, marginRight: 6, fontWeight: 900 }}>[신규]</span>{name}</> : name}
+      </h3>
       <p style={{ fontSize: 13, color: "#ea580c", fontWeight: 700 }}>🍴 {menu}</p>
       <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{summary}</p>
       <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 4, marginTop: "auto" }}>
@@ -414,6 +434,7 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
         {paginated.map((ev: any) => (
           <EventCard
             key={ev.id}
+            id={ev.id}
             emoji={ev.emoji}
             tag={ev.tag}
             name={ev.name}
@@ -464,6 +485,7 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
         {paginated.map((ben: any) => (
           <BenefitCard
             key={ben.id}
+            id={ben.id}
             emoji={ben.emoji}
             tag={ben.tag}
             name={ben.name}
@@ -514,6 +536,7 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
         {paginated.map((res: any) => (
           <RestaurantCard
             key={res.id}
+            id={res.id}
             emoji={res.emoji}
             name={res.name}
             menu={res.menu}
@@ -615,6 +638,7 @@ export function PagedEducationSection({ items, allPosts }: { items: any[]; allPo
         {paginated.map((ev: any) => (
           <EventCard
             key={ev.id}
+            id={ev.id}
             emoji={ev.emoji}
             tag={ev.tag}
             name={ev.name}
@@ -624,7 +648,6 @@ export function PagedEducationSection({ items, allPosts }: { items: any[]; allPo
             summary={ev.summary}
             link={getItemBlogLink(ev.id)}
             imageUrl={ev.imageUrl}
-            
           />
         ))}
       </div>
@@ -666,6 +689,7 @@ export function PagedJobSection({ items, allPosts }: { items: any[]; allPosts: a
         {paginated.map((ev: any) => (
           <EventCard
             key={ev.id}
+            id={ev.id}
             emoji={ev.emoji}
             tag={ev.tag}
             name={ev.name}
@@ -675,7 +699,6 @@ export function PagedJobSection({ items, allPosts }: { items: any[]; allPosts: a
             summary={ev.summary}
             link={getItemBlogLink(ev.id)}
             imageUrl={ev.imageUrl}
-            
           />
         ))}
       </div>
@@ -717,6 +740,7 @@ export function PagedCultureSection({ items, allPosts }: { items: any[]; allPost
         {paginated.map((ev: any) => (
           <EventCard
             key={ev.id}
+            id={ev.id}
             emoji={ev.emoji}
             tag={ev.tag}
             name={ev.name}
@@ -726,7 +750,6 @@ export function PagedCultureSection({ items, allPosts }: { items: any[]; allPost
             summary={ev.summary}
             link={getItemBlogLink(ev.id)}
             imageUrl={ev.imageUrl}
-            
           />
         ))}
       </div>
@@ -767,6 +790,7 @@ export function PagedRealEstateSection({ items, allPosts }: { items: any[]; allP
         {paginated.map((ben: any) => (
           <BenefitCard
             key={ben.id}
+            id={ben.id}
             emoji={ben.emoji}
             tag={ben.tag}
             name={ben.name}
