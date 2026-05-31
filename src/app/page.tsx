@@ -25,11 +25,7 @@ export default function Home() {
         const endDate = item.endDate || item.deadline || "9999-12-31";
         return endDate >= todayStr;
       })
-      .sort((a, b) => {
-        const aStart = a.startDate || a.date || "0000-00-00";
-        const bStart = b.startDate || b.date || "0000-00-00";
-        return aStart.localeCompare(bStart);
-      });
+      .reverse();
   };
 
   const yonginEvents = getActiveItems(events.filter(isYongin));
@@ -322,7 +318,7 @@ export default function Home() {
 
           <section id="restaurants" style={{ scrollMarginTop: 100 }}>
             <SectionTitle emoji="🍱" title="AI 추천 우리동네 맛집" />
-            <PagedRestaurantSection items={restaurants as any[]} allPosts={allPosts} />
+            <PagedRestaurantSection items={[...(restaurants || [])].reverse()} allPosts={allPosts} />
           </section>
 
           {/* ===== 2026 지방선거 특집 섹션 (이동됨) ===== */}

@@ -127,8 +127,8 @@ startDate가 없으면 오늘 날짜(${today}), endDate가 없으면 '상시'로
 
 데이터: ${JSON.stringify(newItemSource)}`;
 
-      // [수정] 오류 방지를 위해 더 안정적이고 무료 한도가 확실한 gemini-1.5-flash 모델로 변경합니다.
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+      // [수정] 오류 방지를 위해 더 안정적이고 무료 한도가 확실한 gemini-flash-latest 모델로 변경합니다.
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
       
       let geminiResponse;
       let success = false;

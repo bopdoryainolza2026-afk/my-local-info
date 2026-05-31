@@ -12,7 +12,12 @@ export interface PostData {
 }
 
 export function getSortedPostsData(): PostData[] {
-  return postsData as PostData[];
+  const posts = postsData as PostData[];
+  return posts.sort((a, b) => {
+    if (a.date < b.date) return 1;
+    if (a.date > b.date) return -1;
+    return 0;
+  });
 }
 
 export function getPostData(slug: string): PostData | null {

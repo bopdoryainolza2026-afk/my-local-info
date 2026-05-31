@@ -154,8 +154,8 @@ tags: [${item.tag || '생활'}, 용인시, 경기도, ${isDailyTip ? '꿀팁' : 
 
 반드시 위 형식만 출력하고 다른 설명 텍스트는 포함하지 마.`;
 
-  // [수정] 안정적이고 무료 한도가 확실한 gemini-1.5-flash 모델로 변경
-  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  // [수정] 안정적이고 무료 한도가 확실한 gemini-flash-latest 모델로 변경
+  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
   
   let geminiResponse;
   let success = false;
