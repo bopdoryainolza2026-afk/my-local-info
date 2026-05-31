@@ -235,7 +235,46 @@ export default async function PostPage({ params }: Props) {
           </div>
         </div>
 
-        {/* 연관 게시글 추천 (AdSense 승인 핵심 요소) */}
+        {/* E-E-A-T 에디터 프로필 (AdSense 신뢰도 요건) */}
+        <div style={{ 
+          marginTop: "40px", 
+          padding: "30px", 
+          background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)", 
+          borderRadius: "20px", 
+          border: "1px solid rgba(255,255,255,0.1)",
+          display: "flex",
+          gap: "20px",
+          alignItems: "center",
+          flexWrap: "wrap"
+        }}>
+          <div style={{
+            width: "70px", height: "70px", borderRadius: "50%", background: "#0ea5e9",
+            display: "flex", alignItems: "center", justifyContent: "center", fontSize: "35px", flexShrink: 0
+          }}>
+            ✍️
+          </div>
+          <div style={{ flex: 1, minWidth: "200px" }}>
+            <p style={{ margin: "0 0 5px 0", fontSize: "14px", color: "#0ea5e9", fontWeight: 800 }}>지역 전문 에디터</p>
+            <h4 style={{ margin: "0 0 10px 0", fontSize: "20px", color: "white", fontWeight: 900 }}>용식이</h4>
+            <p style={{ margin: 0, fontSize: "15px", color: "#cbd5e1", lineHeight: 1.6 }}>
+              용인 거주 10년 차, 지역 주민을 위해 복잡한 정책과 숨은 꿀팁을 알기 쉽게 풀어내는 스토리텔러입니다. 주민들의 더 나은 일상을 위해 매일 발로 뛰고 있습니다.
+            </p>
+          </div>
+        </div>
+
+        {/* YMYL 면책 조항 (Disclaimer) */}
+        <div style={{ 
+          marginTop: "20px", 
+          padding: "20px", 
+          background: "rgba(249, 115, 22, 0.05)", 
+          borderRadius: "16px", 
+          border: "1px solid rgba(249, 115, 22, 0.2)",
+          color: "#94a3b8",
+          fontSize: "13px",
+          lineHeight: 1.6
+        }}>
+          <strong>⚠️ 알아두세요:</strong> 본 게시글은 용인시청 및 공공기관의 데이터를 바탕으로 주민들의 이해를 돕기 위해 재구성된 정보성 콘텐츠입니다. 시기나 상황에 따라 정책 및 혜택 내용이 변경될 수 있으므로, 최종적이고 정확한 상세 내용은 반드시 해당 주관 기관의 공식 홈페이지나 안내처를 통해 확인하시기 바랍니다. 본 사이트는 제공된 정보의 활용 결과에 대해 법적 책임을 지지 않습니다.
+        </div>
         {relatedPosts.length > 0 && (
           <div style={{ marginTop: "60px" }}>
             <h3 style={{ fontSize: "22px", fontWeight: "900", color: "white", marginBottom: "25px", display: "flex", alignItems: "center", gap: "10px" }}>
