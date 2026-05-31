@@ -108,8 +108,8 @@ async function fetchPublicData() {
       return;
     }
 
-    // 한 번에 최대 몇 개까지 추가할지 설정 (기본 10개로 상향)
-    const MAX_NEW_ITEMS = 10;
+    // 한 번에 최대 몇 개까지 추가할지 설정 (무료 API 한도 고려하여 5개로 조절)
+    const MAX_NEW_ITEMS = 5;
     const processItems = newItemsFound.slice(0, MAX_NEW_ITEMS);
 
     console.log(`${processItems.length}개의 새로운 항목을 가공합니다.`);
@@ -127,21 +127,50 @@ startDate가 없으면 오늘 날짜(${today}), endDate가 없으면 '상시'로
 
 데이터: ${JSON.stringify(newItemSource)}`;
 
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
-      const geminiResponse = await fetch(geminiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }]
-        })
-      });
+      // [수정] 오류 방지를 위해 더 안정적이고 무료 한도가 확실한 gemini-1.5-flash 모델로 변경합니다.
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+      
+      let geminiResponse;
+      let success = false;
+
+      // AI 한도 초과 시 잠깐 기다렸다가 다시 시도합니다 (최대 3번)
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        geminiResponse = await fetch(geminiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }]
+          })
+        });
+        
+        if (geminiResponse.status === 429) {
+          const waitTime = attempt * 15; // 15초, 30초, 45초 기다림
+          console.warn(`⏳ AI가 너무 바빠요! ${waitTime}초만 기다렸다가 다시 시도할게요... (${attempt}/3)`);
+          await new Promise(resolve => setTimeout(resolve, waitTime * 1000));
+          continue;
+        }
+        
+        if (geminiResponse.ok) {
+          success = true;
+          break; // 성공하면 그만 기다림
+        } else {
+          break; // 다른 종류의 오류면 바로 중단
+        }
+      }
 
       const geminiResult = await geminiResponse.json();
       
-      if (!geminiResult.candidates || !geminiResult.candidates[0]?.content?.parts?.[0]?.text) {
-        console.error(`Gemini AI 응답 실패: ${newItemSource.서비스명}`);
+      // 3번 시도해도 안 되거나 AI 응답이 이상한 경우
+      if (!success || !geminiResult.candidates || !geminiResult.candidates[0]?.content?.parts?.[0]?.text) {
+        console.error(`❌ [${newItemSource.서비스명}] 정리 실패! 이 항목은 건너뜁니다.`);
+        if (geminiResult.error) {
+          console.error(`👉 원인: ${geminiResult.error.message}`);
+        }
         continue;
       }
+      
+      // [개선] API 속도 제한 방지를 위한 6초 대기
+      await new Promise(resolve => setTimeout(resolve, 6000));
 
       let aiText = geminiResult.candidates[0].content.parts[0].text;
       aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();

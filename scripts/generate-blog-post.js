@@ -34,7 +34,8 @@ async function generateBlogPost() {
     const combinedItems = [...db.events, ...db.benefits, ...db.restaurants];
 
     // 한 번에 생성할 모든 미작성 항목 처리 (제한을 크게 늘림)
-    const MAX_POSTS_PER_RUN = 100;
+    // 한 번에 생성할 최대 개수 (무료 API 한도 고려하여 5개로 조절)
+    const MAX_POSTS_PER_RUN = 5;
     let createdCount = 0;
 
     console.log(`블로그 작성을 시작합니다. (모든 미작성 항목 대상)`);
@@ -73,8 +74,8 @@ async function generateBlogPost() {
         }
         
         createdCount++;
-        // API 속도 제한 방지를 위한 짧은 휴식 (15 RPM 제한을 피하기 위해 4.5초로 증가)
-        await new Promise(resolve => setTimeout(resolve, 4500));
+        // API 속도 제한 방지를 위한 6초 대기
+        await new Promise(resolve => setTimeout(resolve, 6000));
       } catch (err) {
         console.error(`❌ [${item.name}] 처리 실패:`, err.message);
         continue;
@@ -153,19 +154,39 @@ tags: [${item.tag || '생활'}, 용인시, 경기도, ${isDailyTip ? '꿀팁' : 
 
 반드시 위 형식만 출력하고 다른 설명 텍스트는 포함하지 마.`;
 
-  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
+  // [수정] 안정적이고 무료 한도가 확실한 gemini-1.5-flash 모델로 변경
+  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
   
-  const geminiResponse = await fetch(geminiUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }]
-    })
-  });
+  let geminiResponse;
+  let success = false;
+  
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    geminiResponse = await fetch(geminiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }]
+      })
+    });
+    
+    if (geminiResponse.status === 429) {
+      const waitTime = attempt * 15; // 15초, 30초, 45초 대기
+      console.warn(`⏳ AI가 글을 쓰느라 너무 바빠요! ${waitTime}초 후 다시 시도합니다... (${attempt}/3)`);
+      await new Promise(resolve => setTimeout(resolve, waitTime * 1000));
+      continue;
+    }
+    
+    if (geminiResponse.ok) {
+      success = true;
+      break;
+    } else {
+      break;
+    }
+  }
 
   const geminiResult = await geminiResponse.json();
-  if (!geminiResult.candidates || !geminiResult.candidates[0]?.content?.parts?.[0]?.text) {
-    throw new Error(`AI 응답 오류 (${item.name}): ` + JSON.stringify(geminiResult));
+  if (!success || !geminiResult.candidates || !geminiResult.candidates[0]?.content?.parts?.[0]?.text) {
+    throw new Error(`AI 응답 오류 (${item.name}): ` + (geminiResult.error ? geminiResult.error.message : "알 수 없는 오류"));
   }
 
   let fullResponse = geminiResult.candidates[0].content.parts[0].text;
