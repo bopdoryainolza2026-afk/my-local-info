@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-31",
+  "lastUpdated": "2026-06-01",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -100,19 +100,6 @@
       "link": "https://www.yongin.go.kr/user/bbs/BD_selectBbs.do?q_bbsCode=1001&q_clCode=1&q_bbscttSn=20260424154127559",
       "emoji": "🎬",
       "tag": "관람"
-    },
-    {
-      "id": "evt-2026-010",
-      "category": "행사",
-      "name": "용인 와이페이 '우리 동네 골목상권' 영수증 이벤트",
-      "startDate": "2026-05-01",
-      "endDate": "2026-05-31",
-      "location": "용인시 지정 전통시장 및 골목상권",
-      "target": "용인 와이페이 이용 시민",
-      "summary": "골목 상점에서 와이페이로 결제하고 영수증을 인증하세요! 추첨을 통해 든든한 와이페이 포인트 선물을 드립니다.",
-      "link": "https://www.yongin.go.kr/home/www/www08/www08_03/www08_03_01.jsp",
-      "emoji": "💰",
-      "tag": "이벤트"
     },
     {
       "id": "evt-2026-011",
