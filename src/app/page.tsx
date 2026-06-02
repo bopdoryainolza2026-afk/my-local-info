@@ -321,72 +321,7 @@ export default function Home() {
             <PagedRestaurantSection items={[...(restaurants || [])].reverse()} allPosts={allPosts} />
           </section>
 
-          {/* ===== 2026 지방선거 특집 섹션 (이동됨) ===== */}
-          <section id="election-special" style={{
-            scrollMarginTop: 100,
-            background: "linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(234, 179, 8, 0.03) 100%)",
-            borderRadius: "32px",
-            padding: "40px",
-            border: "1px solid rgba(249, 115, 22, 0.15)",
-            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
-          }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "32px" }}>
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-                  <span style={{ background: "#f97316", color: "white", padding: "4px 10px", borderRadius: "8px", fontSize: "12px", fontWeight: 900 }}>SPECIAL</span>
-                  <p style={{ fontSize: "14px", fontWeight: 800, color: "#fb923c", textTransform: "uppercase", letterSpacing: "1px" }}>2026 지방선거 기획</p>
-                </div>
-                <h2 style={{ fontSize: "24px", fontWeight: "900", color: "white", letterSpacing: "-1px" }}>
-                  4년 전 약속, <span style={{ color: "#fb923c" }}>지금은 어디까지 왔을까?</span>
-                </h2>
-              </div>
-              <Link href="/blog" style={{ color: "#94a3b8", textDecoration: "none", fontSize: "14px", fontWeight: 700 }}>전체 보기 →</Link>
-            </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px" }}>
-              {allPosts
-                .filter(post => post.slug.includes('election') || post.slug.includes('platform-city') || post.slug.includes('semiconductor-highway'))
-                .slice(0, 3)
-                .map((post) => (
-                  <Link
-                    key={post.slug}
-                    href={`/blog/${post.slug}`}
-                    style={{
-                      background: "rgba(255, 255, 255, 0.03)",
-                      borderRadius: "24px",
-                      padding: "24px",
-                      border: "1px solid rgba(255, 255, 255, 0.05)",
-                      textDecoration: "none",
-                      transition: "all 0.3s ease",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "12px",
-                      height: "100%"
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "translateY(-5px)";
-                      e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
-                      e.currentTarget.style.borderColor = "rgba(249, 115, 22, 0.3)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
-                      e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.05)";
-                    }}
-                  >
-                    <span style={{ fontSize: "12px", color: "#fb923c", fontWeight: 800 }}>{post.category}</span>
-                    <h3 style={{ fontSize: "18px", fontWeight: 800, color: "white", lineHeight: 1.4 }}>{post.title}</h3>
-                    <p style={{ fontSize: "14px", color: "#94a3b8", lineHeight: 1.6, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", flex: 1 }}>
-                      {post.summary}
-                    </p>
-                    <div style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: "4px", color: "#fb923c", fontSize: "13px", fontWeight: 700 }}>
-                      자세히 보기 <span>→</span>
-                    </div>
-                  </Link>
-                ))
-              }
-            </div>
-          </section>
 
           <section id="community" style={{ scrollMarginTop: 100 }}>
             <SectionTitle emoji="💬" title="AI 기자 취재 요청" />
