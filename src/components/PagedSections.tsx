@@ -41,6 +41,26 @@ function dateRange(start: string, end: string) {
   return `${formatDate(start)} ~ ${formatDate(end)}`;
 }
 
+/** 블로그 포스트 작성일을 기준으로 아이템 정렬 (새로 작성된 글이 맨 앞으로) */
+function sortByPostDate(items: any[], allPosts: any[]) {
+  return [...items].sort((a, b) => {
+    const linkA = getItemBlogLink(a.id);
+    const linkB = getItemBlogLink(b.id);
+    const slugA = linkA.replace('/blog/', '');
+    const slugB = linkB.replace('/blog/', '');
+    const postA = allPosts.find((p: any) => p.slug === slugA);
+    const postB = allPosts.find((p: any) => p.slug === slugB);
+    
+    const dateA = postA ? new Date(postA.date).getTime() : 0;
+    const dateB = postB ? new Date(postB.date).getTime() : 0;
+    
+    if (dateA !== dateB) {
+      return dateB - dateA;
+    }
+    return 0;
+  });
+}
+
 /** 페이지 번호 버튼 UI */
 function Pagination({
   currentPage,
@@ -417,10 +437,9 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
     }
   }, [page, isLoaded]);
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
-
-
+  const sortedItems = sortByPostDate(items, allPosts);
+  const totalPages = Math.ceil(sortedItems.length / ITEMS_PER_PAGE);
+  const paginated = sortedItems.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -469,9 +488,9 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
     }
   }, [page, isLoaded]);
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
-
+  const sortedItems = sortByPostDate(items, allPosts);
+  const totalPages = Math.ceil(sortedItems.length / ITEMS_PER_PAGE);
+  const paginated = sortedItems.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -520,9 +539,9 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
     }
   }, [page, isLoaded]);
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
-
+  const sortedItems = sortByPostDate(items, allPosts);
+  const totalPages = Math.ceil(sortedItems.length / ITEMS_PER_PAGE);
+  const paginated = sortedItems.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -622,9 +641,9 @@ export function PagedEducationSection({ items, allPosts }: { items: any[]; allPo
     }
   }, [page, isLoaded]);
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
-
+  const sortedItems = sortByPostDate(items, allPosts);
+  const totalPages = Math.ceil(sortedItems.length / ITEMS_PER_PAGE);
+  const paginated = sortedItems.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -673,9 +692,9 @@ export function PagedJobSection({ items, allPosts }: { items: any[]; allPosts: a
     }
   }, [page, isLoaded]);
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
-
+  const sortedItems = sortByPostDate(items, allPosts);
+  const totalPages = Math.ceil(sortedItems.length / ITEMS_PER_PAGE);
+  const paginated = sortedItems.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -724,9 +743,9 @@ export function PagedCultureSection({ items, allPosts }: { items: any[]; allPost
     }
   }, [page, isLoaded]);
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
-
+  const sortedItems = sortByPostDate(items, allPosts);
+  const totalPages = Math.ceil(sortedItems.length / ITEMS_PER_PAGE);
+  const paginated = sortedItems.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
@@ -775,8 +794,9 @@ export function PagedRealEstateSection({ items, allPosts }: { items: any[]; allP
     }
   }, [page, isLoaded]);
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-  const paginated = items.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+  const sortedItems = sortByPostDate(items, allPosts);
+  const totalPages = Math.ceil(sortedItems.length / ITEMS_PER_PAGE);
+  const paginated = sortedItems.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
   const gridStyle: React.CSSProperties = {
     display: "grid",
