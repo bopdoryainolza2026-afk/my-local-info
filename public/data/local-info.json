@@ -585,6 +585,17 @@
       "link": "https://map.kakao.com/link/search/솔솔우동 양지면 주북로",
       "emoji": "🍗",
       "tag": "처인구"
+    },
+    {
+      "id": "res-018",
+      "name": "묵리459",
+      "menu": "커피, 묵리플, 브런치",
+      "location": "용인시 처인구 이동읍 이원로 484",
+      "summary": "먹물로 색을 낸 묵리플과 고즈넉한 한옥풍의 갤러리 인테리어가 돋보이는 숲속 대형 힐링 카페입니다.",
+      "link": "https://place.map.kakao.com/1396914565",
+      "emoji": "☕",
+      "tag": "처인구",
+      "imageUrl": "/images/restaurants/cafe.png"
     }
   ],
   "education": [
