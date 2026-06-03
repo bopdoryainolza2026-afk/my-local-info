@@ -104,6 +104,8 @@ export default async function PostPage({ params }: Props) {
     sourceLink = "https://search.naver.com/search.naver?query=%EC%9A%A9%EC%9D%B8+%EC%9E%90%EC%97%B0%ED%9C%B4%EC%96%91%EB%A6%BC";
   } else if (slug.includes("rural-theme-park")) {
     sourceLink = "https://search.naver.com/search.naver?query=%EC%9A%A9%EC%9D%B8%EB%86%8D%EC%B4%8C%ED%85%8C%EB%A7%88%ED%8C%8C%ED%81%AC";
+  } else if (slug.includes("yongin-cityhall-movie")) {
+    sourceLink = "https://search.naver.com/search.naver?query=%EC%9A%A9%EC%9D%B8%EC%8B%9C%EC%B2%AD+%ED%95%98%EB%8A%98%EA%B4%91%EC%9E%A5+%EC%95%BC%EC%99%B8%EC%98%81%ED%99%94+%EC%83%81%EC%98%81%ED%9A%8C";
   }
 
   let buttonText = postData.category === "맛집" ? "🔗 원문보기" : "🔗 자세한 내용 원문 확인하기";
