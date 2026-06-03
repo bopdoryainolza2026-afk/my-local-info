@@ -105,6 +105,8 @@ export default async function PostPage({ params }: Props) {
     sourceLink = "https://www.yongin.go.kr/tour/theme/index.do";
   } else if (slug.includes("yongin-cityhall-movie")) {
     sourceLink = "https://www.yongin.go.kr/home/www/www12/www12_01/www12_01_01.jsp";
+  } else if (slug.includes("yongin-eco-car-subsidy")) {
+    sourceLink = "https://www.yongin.go.kr/home/www/www08/www08_02/www08_02_02.jsp";
   }
 
   let buttonText = postData.category === "맛집" ? "🔗 원문보기" : "🔗 자세한 내용 원문 확인하기";
