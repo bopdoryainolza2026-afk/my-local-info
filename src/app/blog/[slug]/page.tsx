@@ -104,7 +104,7 @@ export default async function PostPage({ params }: Props) {
   } else if (slug.includes("rural-theme-park")) {
     sourceLink = "https://www.yongin.go.kr/tour/theme/index.do";
   } else if (slug.includes("yongin-city-hall-cinema")) {
-    sourceLink = "https://www.yonginmedia.or.kr/";
+    sourceLink = "https://www.yongin.go.kr/user/bbs/BD_selectBbs.do?q_bbsCode=1001&q_clCode=1&q_bbscttSn=20260424154127559";
   } else if (slug.includes("yongin-eco-car-subsidy")) {
     sourceLink = "https://www.yongin.go.kr";
   } else if (slug.includes("yongin-small-business-support")) {
