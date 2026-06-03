@@ -25,15 +25,31 @@ jobs:
       - name: Run Cleanup Script
         run: node scripts/cleanup.js
 
-      - name: Run Fetch Data Script
-        run: node scripts/fetch-data.js
+      - name: Run Fetch Public Data Script (AI 연동)
+        env:
+          PUBLIC_DATA_API_KEY: ${{ secrets.PUBLIC_DATA_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -z "$PUBLIC_DATA_API_KEY" ]; then
+            echo "API 키가 설정되지 않아 데이터 수집을 건너뜁니다."
+          else
+            node scripts/fetch-public-data.js
+          fi
 
-      - name: Run Generate Blog Script
-        run: node scripts/generate-blog.js
+      - name: Run Generate Posts JSON
+        run: node scripts/generate-posts-json.js
+
+      - name: Run Build Search Index
+        run: node scripts/build-search-index.js
 
       - name: Commit and Push Changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add public/data/local-info.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: daily data cleanup [skip ci]" && git push)
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: daily data update [skip ci]"
+            git push
+          else
+            echo "No changes to commit"
+          fi
