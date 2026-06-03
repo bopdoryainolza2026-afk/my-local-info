@@ -113,6 +113,8 @@ export default async function PostPage({ params }: Props) {
     sourceLink = "https://ybs.ypa.or.kr";
   } else if (slug.includes("yongin-citizen-university")) {
     sourceLink = "https://lll.yongin.go.kr";
+  } else if (slug.includes("yongin-semiconductor-training") || slug.includes("yongin-middle-aged-job")) {
+    sourceLink = "https://www.yongin.go.kr/job/index.do";
   }
 
   let buttonText = postData.category === "맛집" ? "🔗 원문보기" : "🔗 자세한 내용 원문 확인하기";
