@@ -101,11 +101,11 @@ function Pagination({
 
 /** 행사 카드 */
 function EventCard({
-  id = "", emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, imageUrl,
+  id = "", emoji = "📍", tag = "정보", name, dateStr, location, target, summary, link, imageUrl, createdAt,
 }: {
   id?: string; emoji?: string; tag?: string; name: string; dateStr: string;
   location: string; target: string; summary: string; link: string;
-  imageUrl?: string;
+  imageUrl?: string; createdAt?: string;
 }) {
   const isNew = isNewItem(id);
   const isExternal = link.startsWith("http");
@@ -169,6 +169,7 @@ function EventCard({
           <span>📍 {location}</span>
           <span>👤 {target}</span>
         </div>
+        {createdAt && <div style={{ fontSize: 11, color: "#64748b", width: "100%", marginBottom: 4 }}>📝 최초 작성: {createdAt.split('T')[0]}</div>}
         <button 
           onClick={(e) => {
             e.preventDefault();
@@ -194,11 +195,11 @@ function EventCard({
 
 /** 혜택 카드 */
 function BenefitCard({
-  id = "", emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link, imageUrl,
+  id = "", emoji = "💰", tag = "혜택", name, target, amount, summary, deadline, link, imageUrl, createdAt,
 }: {
   id?: string; emoji?: string; tag?: string; name: string; target: string;
   amount: string; summary: string; deadline: string; link: string;
-  imageUrl?: string;
+  imageUrl?: string; createdAt?: string;
 }) {
   const isNew = isNewItem(id);
   const isExternal = link.startsWith("http");
@@ -262,6 +263,7 @@ function BenefitCard({
           <span>👤 {target.substring(0, 20)}{target.length > 20 ? "..." : ""}</span>
           <span>📅 {formatDate(deadline)}까지</span>
         </div>
+        {createdAt && <div style={{ fontSize: 11, color: "#64748b", width: "100%", marginBottom: 4 }}>📝 최초 작성: {createdAt.split('T')[0]}</div>}
         <button 
           onClick={(e) => {
             e.preventDefault();
@@ -286,7 +288,7 @@ function BenefitCard({
 }
 
 /** 맛집 카드 */
-function RestaurantCard({ id = "", emoji, name, menu, location, summary, link, tag, imageUrl, item }: any) {
+function RestaurantCard({ id = "", emoji, name, menu, location, summary, link, tag, imageUrl, createdAt }: any) {
   const isNew = isNewItem(id);
   const isExternal = link.startsWith("http");
   const cardStyle: React.CSSProperties = {
@@ -323,8 +325,9 @@ function RestaurantCard({ id = "", emoji, name, menu, location, summary, link, t
       </h3>
       <p style={{ fontSize: 13, color: "#ea580c", fontWeight: 700 }}>🍴 {menu}</p>
       <p style={{ fontSize: 13, color: "#64748b", lineHeight: 1.5, flex: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{summary}</p>
-      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 4, marginTop: "auto" }}>
+      <div style={{ fontSize: 12, color: "#94a3b8", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 4, marginTop: "auto", flexWrap: "wrap" }}>
         <span>📍 {location}</span>
+        {createdAt && <div style={{ fontSize: 11, color: "#64748b", width: "100%", marginBottom: 4 }}>📝 최초 작성: {createdAt.split('T')[0]}</div>}
         <button 
           onClick={(e) => {
             e.preventDefault();
@@ -450,21 +453,27 @@ export function PagedEventSection({ items, allPosts }: { items: any[]; allPosts:
   return (
     <div>
       <div style={gridStyle}>
-        {paginated.map((ev: any) => (
-          <EventCard
-            key={ev.id}
-            id={ev.id}
-            emoji={ev.emoji}
-            tag={ev.tag}
-            name={ev.name}
-            dateStr={dateRange(ev.startDate, ev.endDate)}
-            location={ev.location}
-            target={ev.target}
-            summary={ev.summary}
-            link={getItemBlogLink(ev.id)}
-            imageUrl={ev.imageUrl}
-          />
-        ))}
+        {paginated.map((ev: any) => {
+          const link = getItemBlogLink(ev.id);
+          const slug = link.replace('/blog/', '');
+          const post = allPosts.find((p: any) => p.slug === slug);
+          return (
+            <EventCard
+              key={ev.id}
+              id={ev.id}
+              emoji={ev.emoji}
+              tag={ev.tag}
+              name={ev.name}
+              dateStr={dateRange(ev.startDate, ev.endDate)}
+              location={ev.location}
+              target={ev.target}
+              summary={ev.summary}
+              link={link}
+              imageUrl={ev.imageUrl}
+              createdAt={post?.date}
+            />
+          );
+        })}
       </div>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
@@ -501,21 +510,27 @@ export function PagedBenefitSection({ items, allPosts }: { items: any[]; allPost
   return (
     <div>
       <div style={gridStyle}>
-        {paginated.map((ben: any) => (
-          <BenefitCard
-            key={ben.id}
-            id={ben.id}
-            emoji={ben.emoji}
-            tag={ben.tag}
-            name={ben.name}
-            target={ben.target}
-            amount={"amount" in ben ? ben.amount : ""}
-            summary={ben.summary}
-            deadline={ben.endDate}
-            link={getItemBlogLink(ben.id)}
-            imageUrl={ben.imageUrl}
-          />
-        ))}
+        {paginated.map((ben: any) => {
+          const link = getItemBlogLink(ben.id);
+          const slug = link.replace('/blog/', '');
+          const post = allPosts.find((p: any) => p.slug === slug);
+          return (
+            <BenefitCard
+              key={ben.id}
+              id={ben.id}
+              emoji={ben.emoji}
+              tag={ben.tag}
+              name={ben.name}
+              target={ben.target}
+              amount={"amount" in ben ? ben.amount : ""}
+              summary={ben.summary}
+              deadline={ben.endDate}
+              link={link}
+              imageUrl={ben.imageUrl}
+              createdAt={post?.date}
+            />
+          );
+        })}
       </div>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
@@ -552,21 +567,26 @@ export function PagedRestaurantSection({ items, allPosts }: { items: any[]; allP
   return (
     <div>
       <div style={gridStyle}>
-        {paginated.map((res: any) => (
-          <RestaurantCard
-            key={res.id}
-            id={res.id}
-            emoji={res.emoji}
-            name={res.name}
-            menu={res.menu}
-            location={res.location}
-            summary={res.summary}
-            link={getItemBlogLink(res.id)}
-            tag={res.tag}
-            imageUrl={res.imageUrl}
-            item={res}
-          />
-        ))}
+        {paginated.map((res: any) => {
+          const link = getItemBlogLink(res.id);
+          const slug = link.replace('/blog/', '');
+          const post = allPosts.find((p: any) => p.slug === slug);
+          return (
+            <RestaurantCard
+              key={res.id}
+              id={res.id}
+              emoji={res.emoji}
+              name={res.name}
+              menu={res.menu}
+              location={res.location}
+              summary={res.summary}
+              link={link}
+              tag={res.tag}
+              imageUrl={res.imageUrl}
+              createdAt={post?.date}
+            />
+          );
+        })}
       </div>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
@@ -654,21 +674,27 @@ export function PagedEducationSection({ items, allPosts }: { items: any[]; allPo
   return (
     <div>
       <div style={gridStyle}>
-        {paginated.map((ev: any) => (
-          <EventCard
-            key={ev.id}
-            id={ev.id}
-            emoji={ev.emoji}
-            tag={ev.tag}
-            name={ev.name}
-            dateStr={dateRange(ev.startDate, ev.endDate)}
-            location={ev.location}
-            target={ev.target}
-            summary={ev.summary}
-            link={getItemBlogLink(ev.id)}
-            imageUrl={ev.imageUrl}
-          />
-        ))}
+        {paginated.map((ev: any) => {
+          const link = getItemBlogLink(ev.id);
+          const slug = link.replace('/blog/', '');
+          const post = allPosts.find((p: any) => p.slug === slug);
+          return (
+            <EventCard
+              key={ev.id}
+              id={ev.id}
+              emoji={ev.emoji}
+              tag={ev.tag}
+              name={ev.name}
+              dateStr={dateRange(ev.startDate, ev.endDate)}
+              location={ev.location}
+              target={ev.target}
+              summary={ev.summary}
+              link={link}
+              imageUrl={ev.imageUrl}
+              createdAt={post?.date}
+            />
+          );
+        })}
       </div>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
@@ -705,21 +731,27 @@ export function PagedJobSection({ items, allPosts }: { items: any[]; allPosts: a
   return (
     <div>
       <div style={gridStyle}>
-        {paginated.map((ev: any) => (
-          <EventCard
-            key={ev.id}
-            id={ev.id}
-            emoji={ev.emoji}
-            tag={ev.tag}
-            name={ev.name}
-            dateStr={dateRange(ev.startDate, ev.endDate)}
-            location={ev.location}
-            target={ev.target}
-            summary={ev.summary}
-            link={getItemBlogLink(ev.id)}
-            imageUrl={ev.imageUrl}
-          />
-        ))}
+        {paginated.map((ev: any) => {
+          const link = getItemBlogLink(ev.id);
+          const slug = link.replace('/blog/', '');
+          const post = allPosts.find((p: any) => p.slug === slug);
+          return (
+            <EventCard
+              key={ev.id}
+              id={ev.id}
+              emoji={ev.emoji}
+              tag={ev.tag}
+              name={ev.name}
+              dateStr={dateRange(ev.startDate, ev.endDate)}
+              location={ev.location}
+              target={ev.target}
+              summary={ev.summary}
+              link={link}
+              imageUrl={ev.imageUrl}
+              createdAt={post?.date}
+            />
+          );
+        })}
       </div>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
@@ -756,21 +788,27 @@ export function PagedCultureSection({ items, allPosts }: { items: any[]; allPost
   return (
     <div>
       <div style={gridStyle}>
-        {paginated.map((ev: any) => (
-          <EventCard
-            key={ev.id}
-            id={ev.id}
-            emoji={ev.emoji}
-            tag={ev.tag}
-            name={ev.name}
-            dateStr={dateRange(ev.startDate, ev.endDate)}
-            location={ev.location}
-            target={ev.target}
-            summary={ev.summary}
-            link={getItemBlogLink(ev.id)}
-            imageUrl={ev.imageUrl}
-          />
-        ))}
+        {paginated.map((ev: any) => {
+          const link = getItemBlogLink(ev.id);
+          const slug = link.replace('/blog/', '');
+          const post = allPosts.find((p: any) => p.slug === slug);
+          return (
+            <EventCard
+              key={ev.id}
+              id={ev.id}
+              emoji={ev.emoji}
+              tag={ev.tag}
+              name={ev.name}
+              dateStr={dateRange(ev.startDate, ev.endDate)}
+              location={ev.location}
+              target={ev.target}
+              summary={ev.summary}
+              link={link}
+              imageUrl={ev.imageUrl}
+              createdAt={post?.date}
+            />
+          );
+        })}
       </div>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
