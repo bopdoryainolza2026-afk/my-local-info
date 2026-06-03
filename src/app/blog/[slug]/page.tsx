@@ -103,8 +103,8 @@ export default async function PostPage({ params }: Props) {
     sourceLink = "https://www.yonginforest.net/";
   } else if (slug.includes("rural-theme-park")) {
     sourceLink = "https://www.yongin.go.kr/tour/theme/index.do";
-  } else if (slug.includes("yongin-cityhall-movie")) {
-    sourceLink = "https://www.yongin.go.kr";
+  } else if (slug.includes("yongin-city-hall-cinema")) {
+    sourceLink = "https://www.yonginmedia.or.kr/";
   } else if (slug.includes("yongin-eco-car-subsidy")) {
     sourceLink = "https://www.yongin.go.kr";
   } else if (slug.includes("yongin-small-business-support")) {
