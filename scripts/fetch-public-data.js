@@ -82,8 +82,8 @@ async function fetchPublicData() {
     console.log(`필터링된 데이터 수: ${filtered.length}건`);
 
     // [3단계] 기존 데이터와 비교 (여러 개 추가 가능하도록 변경)
-    const existingNames = [...db.events, ...db.benefits].map(item => item.name);
-    const existingIds = [...db.events, ...db.benefits].map(item => String(item.id));
+    const existingNames = [...(db.events||[]), ...(db.benefits||[]), ...(db.edu||[]), ...(db.jobs||[])].map(item => item.name);
+    const existingIds = [...(db.events||[]), ...(db.benefits||[]), ...(db.edu||[]), ...(db.jobs||[])].map(item => String(item.id));
 
     // 혹시 첫 페이지에 새로운 게 없다면 2페이지도 한 번 더 시도 (더 넓은 수집을 위해)
     if (filtered.filter(item => !existingNames.includes(item.서비스명) && !existingIds.includes(String(item.서비스ID))).length === 0) {
@@ -119,8 +119,8 @@ async function fetchPublicData() {
 
       // [4단계] Gemini AI로 새 항목 가공
       const prompt = `아래 공공데이터 1건을 분석해서 JSON 객체로 변환해줘. 형식:
-{id: 숫자, name: 서비스명, category: '행사' 또는 '혜택', startDate: 'YYYY-MM-DD', endDate: 'YYYY-MM-DD', location: 장소 또는 기관명, target: 지원대상, summary: 한줄요약, link: 상세URL, emoji: 관련 이모지 1개, tag: 핵심태그 1개(예: 청년, 교육, 복지 등)}
-category는 내용을 보고 행사/축제면 '행사', 지원금/서비스면 '혜택'으로 판단해.
+{id: 숫자, name: 서비스명, category: '행사' 또는 '혜택' 또는 '교육' 또는 '일자리', startDate: 'YYYY-MM-DD', endDate: 'YYYY-MM-DD', location: 장소 또는 기관명, target: 지원대상, summary: 한줄요약, link: 상세URL, emoji: 관련 이모지 1개, tag: 핵심태그 1개(예: 청년, 교육, 복지 등)}
+category는 내용을 보고 행사/축제면 '행사', 지원금/복지서비스면 '혜택', 교육/강좌면 '교육', 구인/일자리/취업지원이면 '일자리'로 정확하게 판단해. 맛집 정보는 제외하고 행사, 혜택, 교육, 일자리를 우선적으로 분류해.
 startDate가 없으면 오늘 날짜(${today}), endDate가 없으면 '상시'로 넣어.
 용인시 또는 경기도 정보인지 다시 한 번 확인하고 가공해줘.
 반드시 JSON 객체만 출력해. 다른 텍스트 없이.
@@ -180,8 +180,16 @@ startDate가 없으면 오늘 날짜(${today}), endDate가 없으면 '상시'로
         if (processedItem.id === undefined) processedItem.id = Date.now() + Math.floor(Math.random() * 1000);
         
         if (processedItem.category === '행사') {
+          if (!db.events) db.events = [];
           db.events.push(processedItem);
+        } else if (processedItem.category === '교육') {
+          if (!db.edu) db.edu = [];
+          db.edu.push(processedItem);
+        } else if (processedItem.category === '일자리') {
+          if (!db.jobs) db.jobs = [];
+          db.jobs.push(processedItem);
         } else {
+          if (!db.benefits) db.benefits = [];
           db.benefits.push(processedItem);
         }
         console.log("✅ 데이터 추가 성공:", processedItem.name);
