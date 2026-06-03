@@ -30,3 +30,5 @@ tags: [수지구, 산책로, 힐링]
 ---
 
 * **관련 정보 보기:** [성복동 산책로 네이버 검색 바로가기](https://search.naver.com/search.naver?query=%EC%84%B1%EB%B3%B5%EB%8F%99+%EC%82%B0%EC%B1%85%EB%A1%9C)
+
+<!-- [ITEM_ID: blog-only-023] -->

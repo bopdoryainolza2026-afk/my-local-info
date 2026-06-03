@@ -94,3 +94,5 @@ tags: [복지, 소득지원, 세금혜택, 근로장려금, 자녀장려금, 용
 
 ---
 <!-- ITEM_ID: post_20260428_eitc_guide -->
+
+<!-- [ITEM_ID: blog-only-002] -->

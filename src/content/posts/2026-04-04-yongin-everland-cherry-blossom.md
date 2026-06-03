@@ -76,3 +76,5 @@ tags: [관람, 용인시, 경기도, 에버랜드, 벚꽃축제, 호암미술관
 
 ---
 <!-- ITEM_ID: everland_cherry_blossom_2026_guide -->
+
+<!-- [ITEM_ID: blog-only-007] -->

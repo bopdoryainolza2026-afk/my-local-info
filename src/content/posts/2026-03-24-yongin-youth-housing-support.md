@@ -118,3 +118,5 @@ tags: [용인시, 청년지원, 주거복지, 이사비지원, 월세지원, 경
 ---
 
 **ITEM_ID: yongin-youth-housing-2026**
+
+<!-- [ITEM_ID: blog-only-001] -->
