@@ -77,7 +77,7 @@ export default async function PostPage({ params }: Props) {
 
   // ID가 명확하게 있을 때만 매칭 (키워드/제목 기반 fuzzy 매칭 완전 제거)
   const matchedItem = finalItemId
-    ? allItems.find(item => item.id.toLowerCase() === finalItemId.toLowerCase())
+    ? allItems.find(item => String(item.id).toLowerCase() === finalItemId.toLowerCase())
     : null;
 
   // 청년 관련 링크 (매칭된 아이템이 없을 때 기본 링크로 사용)
