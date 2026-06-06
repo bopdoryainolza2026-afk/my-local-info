@@ -15,7 +15,7 @@ export function generateStaticParams() {
     ...(localData.culture || [])
   ];
   return allItems.map((item: any) => ({
-    id: item.id,
+    id: String(item.id),
   }));
 }
 
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     ...(localData.jobs || []),
     ...(localData.culture || [])
   ];
-  const item = allItems.find((i: any) => i.id === id);
+  const item = allItems.find((i: any) => String(i.id) === String(id));
   
   return {
     title: item ? `${item.name} - 상세 정보` : "정보를 찾을 수 없습니다",
@@ -50,7 +50,7 @@ export default async function AutoPostPage({ params }: { params: Promise<{ id: s
     ...(localData.culture || [] as any[])
   ];
   
-  const item = allItems.find((i: any) => i.id === id);
+  const item = allItems.find((i: any) => String(i.id) === String(id));
 
   // 블로그 글이 있는지 확인
   const allPosts = getSortedPostsData();
