@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-05",
+  "lastUpdated": "2026-06-06",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -152,6 +152,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🎪",
       "tag": "축제"
+    },
+    {
+      "id": 10124,
+      "name": "2026 용인 포은아트홀 여름밤의 클래식 산책",
+      "category": "행사",
+      "startDate": "2026-06-20",
+      "endDate": "2026-06-21",
+      "location": "용인포은아트홀",
+      "target": "용인시민 누구나 (전석 무료, 사전 예약 필수)",
+      "summary": "초여름 밤을 맞이하여 온 가족이 함께 즐길 수 있는 국내 정상급 오케스트라의 클래식 협연 공연입니다.",
+      "link": "https://www.yicf.or.kr",
+      "emoji": "🎼",
+      "tag": "문화예술"
     }
   ],
   "benefits": [
@@ -868,6 +881,19 @@
       "target": "용인시 거주 만 19세~39세 미취업 청년",
       "summary": "반도체 산업 허브 용인시에서 제공하는 실무 중심의 반도체 공정 및 설계 무료 전문 교육 과정입니다.",
       "link": "https://www.yongin.go.kr/user/jobs/index.do",
+      "emoji": "💻",
+      "tag": "청년"
+    },
+    {
+      "id": 10125,
+      "name": "2026 용인 청년 AI·빅데이터 실무 인재 양성 교육",
+      "category": "교육",
+      "startDate": "2026-06-10",
+      "endDate": "2026-06-25",
+      "location": "용인시 청년랩 (수지/기흥/처인)",
+      "target": "용인시에 거주하거나 활동하는 만 18세 이상 39세 이하 미취업 청년",
+      "summary": "4차 산업 맞춤형 AI 및 빅데이터 분석 실무 교육부터 포트폴리오 제작, 취업 매칭까지 전액 무료 지원합니다.",
+      "link": "https://www.yongin.go.kr",
       "emoji": "💻",
       "tag": "청년"
     }
