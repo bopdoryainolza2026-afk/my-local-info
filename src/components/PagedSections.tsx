@@ -7,9 +7,9 @@ import { getItemBlogLink } from "@/lib/item-slug-map";
 const ITEMS_PER_PAGE = 6;
 
 /** ID에서 타임스탬프를 추출하여 3일 이내 신규 항목인지 판별 */
-function isNewItem(id: string) {
+function isNewItem(id: string | number) {
   if (!id) return false;
-  const match = id.match(/-(\d{10,})/);
+  const match = String(id).match(/-(\d{10,})/);
   if (match) {
     const raw = match[1];
     const timestamp = raw.length > 13
