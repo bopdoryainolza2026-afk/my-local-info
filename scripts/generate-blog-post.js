@@ -60,8 +60,8 @@ async function generateBlogPost() {
         f.content.includes(item.name) || f.content.includes(`[ITEM_ID: ${item.id}]`)
       );
 
-      // 이미 충분히 긴 글(업그레이드된 글)인지 확인 (기준: 5000바이트)
-      if (existingFile && existingFile.content.length > 5000) {
+      // 이미 충분히 긴 글(업그레이드된 글)인지 확인 (기준: 1500자)
+      if (existingFile && existingFile.content.length > 1500) {
         continue;
       }
 

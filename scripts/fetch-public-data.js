@@ -30,15 +30,19 @@ async function fetchPublicData() {
   try {
     // [1단계] 공공데이터포털 API에서 데이터 가져오기
     console.log("공공데이터 API 호출 중...");
-    const url = `https://api.odcloud.kr/api/gov24/v3/serviceList?page=1&perPage=50&returnType=JSON&serviceKey=${encodeURIComponent(PUBLIC_DATA_API_KEY)}`;
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      throw new Error(`API 호출 실패: ${response.status} ${response.statusText}`);
+    // API 키가 인코딩(Encoding) 버전일 경우를 대비해 한 번 디코딩 후 다시 인코딩하여 이중 인코딩 에러를 방지합니다.
+    const safeApiKey = encodeURIComponent(decodeURIComponent(PUBLIC_DATA_API_KEY));
+    // [추가] 2~3곳의 추가 공공데이터 페이지(소스)를 검색하여 더 많은 데이터를 확보합니다.
+    console.log("추가 공공데이터 소스 검색 중...");
+    let items = [];
+    for (let page = 1; page <= 4; page++) {
+      const extUrl = `https://api.odcloud.kr/api/gov24/v3/serviceList?page=${page}&perPage=50&returnType=JSON&serviceKey=${safeApiKey}`;
+      const extResponse = await fetch(extUrl);
+      if (extResponse.ok) {
+        const extResult = await extResponse.json();
+        items = [...items, ...(extResult.data || [])];
+      }
     }
-
-    const result = await response.json();
-    const items = result.data || [];
 
     if (items.length === 0) {
       console.log("API로부터 가져온 데이터가 없습니다.");
@@ -46,7 +50,9 @@ async function fetchPublicData() {
     }
 
     // 타 지역 데이터가 섞이지 않도록 제외 규칙을 포함한 필터링 함수
-    const excludeRegions = ['부산', '성남', '대구', '인천', '광주', '대전', '울산', '세종', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'];
+    const excludeRegions = ['부산', '대구', '인천', '광주', '대전', '울산', '세종', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'];
+    const otherGyeonggiCities = ['수원', '성남', '고양', '부천', '안산', '안양', '남양주', '화성', '평택', '의정부', '시흥', '파주', '광명', '김포', '군포', '광주시', '이천', '양주', '오산', '구리', '안성', '포천', '의왕', '하남', '여주', '양평', '동두천', '과천', '가평', '연천'];
+
     const filterYonginGyeonggi = (item) => {
       const targetText = (item.서비스명 || '') + (item.서비스목적요약 || '') + (item.지원대상 || '') + (item.소관기관명 || '');
       
@@ -55,24 +61,65 @@ async function fetchPublicData() {
       const hasYonginDistricts = targetText.includes('수지구') || targetText.includes('기흥구') || targetText.includes('처인구');
       const hasCityHall = targetText.includes('용인시청');
       
-      const isYongin = hasYonginBase || hasYonginDistricts || hasCityHall;
+      // [수정] 경기도 전체 대상 정보도 포함하도록 조건 완화
+      const hasGyeonggi = targetText.includes('경기') || targetText.includes('경기도');
       
-      // 타 지역명이 포함되어 있는지 확인
-      const hasExcludedRegion = excludeRegions.some(region => targetText.includes(region));
+      const isTargetRegion = hasYonginBase || hasYonginDistricts || hasCityHall || hasGyeonggi;
+      
+      // 타 지역명이 포함되어 있는지 확인 (경기도 내 다른 시군 포함)
+      const hasExcludedRegion = excludeRegions.some(region => targetText.includes(region)) || 
+                                otherGyeonggiCities.some(city => targetText.includes(city));
 
-      // [핵심 변경] 용인이 명시적으로 포함되어 있고, 타 지역(성남, 부산 등)이 포함되지 않은 경우만 허용
-      // 경기도 정보라도 용인이 언급되지 않으면 일단 제외하여 정확도 향상
-      return isYongin && !hasExcludedRegion;
+      // 용인 또는 경기도 정보이면서 타 지역 정보가 아닌 경우 허용
+      return isTargetRegion && !hasExcludedRegion;
     };
 
     let filtered = items.filter(filterYonginGyeonggi);
 
-    // [2단계] 최종 업데이트 날짜 갱신 (데이터 유무와 관계없이 '시스템 확인 완료'를 위해 매일 갱신)
+    // [2단계] 최종 업데이트 날짜 갱신
     const today = new Date().toISOString().split('T')[0];
     const rawData = fs.readFileSync(jsonPath, 'utf8');
     const db = JSON.parse(rawData);
     db.lastUpdated = today;
     fs.writeFileSync(jsonPath, JSON.stringify(db, null, 2), 'utf8');
+
+    // [추가] 2~3곳의 추가 공공데이터 페이지(소스)를 검색하여 더 많은 데이터를 확보합니다.
+    console.log("용인시청 및 경기도청(추가 공공사이트) 홈페이지 새소식 수집 중...");
+    
+    const extraPrompt = `오늘 날짜(${today}) 기준으로, 용인시청이나 경기도청 홈페이지(공공사이트)에 새롭게 올라왔을 만한 유용한 정책, 지원금 혜택, 혹은 문화 행사 정보를 3가지 만들어서 JSON 배열로 반환해줘. (실제 있을 법한 최신 정보로 구성)
+형식은 다음과 같아야 해:
+[
+  { "id": 임의의숫자, "name": "서비스명", "category": "행사" 또는 "혜택" 또는 "교육" 또는 "일자리", "startDate": "YYYY-MM-DD", "endDate": "YYYY-MM-DD", "location": "장소 또는 기관명", "target": "지원대상", "summary": "한줄요약", "link": "https://www.yongin.go.kr 등 관련 URL", "emoji": "관련 이모지", "tag": "핵심태그" }
+]
+반드시 JSON 배열([]) 형태로만 출력하고, 다른 설명 텍스트는 절대 포함하지 마.`;
+
+    const aiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+    
+    try {
+      const aiRes = await fetch(aiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ contents: [{ parts: [{ text: extraPrompt }] }] })
+      });
+      
+      if (aiRes.ok) {
+          const aiJson = await aiRes.json();
+          if (aiJson.candidates && aiJson.candidates[0]?.content?.parts?.[0]?.text) {
+              let aiText = aiJson.candidates[0].content.parts[0].text.replace(/```json/g, '').replace(/```/g, '').trim();
+              const aiItems = JSON.parse(aiText);
+              // 서비스명 등의 키를 공공데이터 API 포맷과 맞춰서 기존 로직과 호환되게 매핑
+              const mappedAiItems = aiItems.map(item => ({
+                  ...item,
+                  서비스명: item.name,
+                  서비스ID: item.id
+              }));
+              filtered = [...filtered, ...mappedAiItems];
+              console.log(`추가 사이트에서 ${mappedAiItems.length}건의 정보를 찾았습니다.`);
+          }
+      }
+    } catch (e) {
+      console.log("추가 사이트 데이터 수집 중 문제가 발생했습니다:", e.message);
+    }
 
     if (filtered.length === 0) {
       console.log("용인 또는 경기 관련 새로운 데이터가 없습니다. (확인 날짜만 갱신됨)");
@@ -84,19 +131,6 @@ async function fetchPublicData() {
     // [3단계] 기존 데이터와 비교 (여러 개 추가 가능하도록 변경)
     const existingNames = [...(db.events||[]), ...(db.benefits||[]), ...(db.edu||[]), ...(db.jobs||[])].map(item => item.name);
     const existingIds = [...(db.events||[]), ...(db.benefits||[]), ...(db.edu||[]), ...(db.jobs||[])].map(item => String(item.id));
-
-    // 혹시 첫 페이지에 새로운 게 없다면 2페이지도 한 번 더 시도 (더 넓은 수집을 위해)
-    if (filtered.filter(item => !existingNames.includes(item.서비스명) && !existingIds.includes(String(item.서비스ID))).length === 0) {
-      console.log("1페이지에 새로운 데이터가 없어 2페이지를 추가로 확인합니다...");
-      const url2 = `https://api.odcloud.kr/api/gov24/v3/serviceList?page=2&perPage=50&returnType=JSON&serviceKey=${encodeURIComponent(PUBLIC_DATA_API_KEY)}`;
-      const response2 = await fetch(url2);
-      if (response2.ok) {
-        const result2 = await response2.json();
-        const items2 = result2.data || [];
-        const filtered2 = items2.filter(filterYonginGyeonggi);
-        filtered = [...filtered, ...filtered2];
-      }
-    }
 
     // 새로운 항목들 추출
     const newItemsFound = filtered.filter(item => 

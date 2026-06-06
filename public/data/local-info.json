@@ -139,6 +139,19 @@
       "link": "https://www.yicf.or.kr",
       "emoji": "🎼",
       "tag": "공연"
+    },
+    {
+      "id": 204912,
+      "name": "2026 용인 패밀리 페스티벌",
+      "category": "행사",
+      "startDate": "2026-06-13",
+      "endDate": "2026-06-14",
+      "location": "용인시청 광장 및 하늘광장",
+      "target": "용인 시민 및 방문객 누구나",
+      "summary": "온 가족이 함께 즐길 수 있는 문화 공연, 체험 부스, 푸드트럭이 어우러진 용인시 대표 가족 축제입니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🎪",
+      "tag": "축제"
     }
   ],
   "benefits": [
@@ -421,6 +434,19 @@
       "link": "https://www.yongin.go.kr/home/health/healthSvc/inccHealth/inccHealth08.jsp",
       "emoji": "💊",
       "tag": "건강"
+    },
+    {
+      "id": 102485,
+      "name": "2026년 2분기 경기도 청년기본소득 신청",
+      "category": "혜택",
+      "startDate": "2026-06-01",
+      "endDate": "2026-06-30",
+      "location": "경기도 및 시·군 행정복지센터",
+      "target": "경기도 내 만 24세 청년 (3년 이상 계속 거주 또는 합산 10년 이상)",
+      "summary": "경기도 만 24세 청년에게 분기별 25만 원(연 최대 100만 원)을 지역화폐로 지급하는 지원금 제도입니다.",
+      "link": "https://apply.jobaba.net",
+      "emoji": "💰",
+      "tag": "청년"
     }
   ],
   "restaurants": [
@@ -829,6 +855,21 @@
       "summary": "추미애 경기도지사 후보의 수지구 3호선 연장 추진 및 6~18세 무상교통 공약 관련 뉴스를 네이버에서 확인하세요.",
       "link": "https://search.naver.com/search.naver?where=news&query=%EC%B6%94%EB%AF%B8%EC%95%A0+%EA%B2%BD%EA%B8%B0%EB%8F%84%EC%A7%80%EC%82%AC+%EA%B5%90%ED%86%B5%EA%B3%B5%EC%95%BD+%EB%AC%B4%EC%83%81%EA%B5%90%ED%86%B5",
       "emoji": "🚄"
+    }
+  ],
+  "edu": [
+    {
+      "id": 305821,
+      "name": "용인 반도체 전문인력 양성과정 교육생 모집",
+      "category": "교육",
+      "startDate": "2026-06-05",
+      "endDate": "2026-06-25",
+      "location": "용인시 일자리센터 및 관내 협약 대학",
+      "target": "용인시 거주 만 19세~39세 미취업 청년",
+      "summary": "반도체 산업 허브 용인시에서 제공하는 실무 중심의 반도체 공정 및 설계 무료 전문 교육 과정입니다.",
+      "link": "https://www.yongin.go.kr/user/jobs/index.do",
+      "emoji": "💻",
+      "tag": "청년"
     }
   ]
 }
