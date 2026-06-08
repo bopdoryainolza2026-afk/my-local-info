@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-07",
+  "lastUpdated": "2026-06-08",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -191,6 +191,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "🎵",
       "tag": "문화예술"
+    },
+    {
+      "id": 20591,
+      "name": "2026 용인 에코 뮤직 페스티벌",
+      "category": "행사",
+      "startDate": "2026-06-19",
+      "endDate": "2026-06-21",
+      "location": "용인농촌테마파크 잔디광장",
+      "target": "용인시민 및 경기도민 누구나",
+      "summary": "자연 속에서 펼쳐지는 친환경 음악 축제와 로컬 푸드 마켓, 버스킹 공연",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🎵",
+      "tag": "축제"
     }
   ],
   "benefits": [
@@ -499,6 +512,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🏠",
       "tag": "청년"
+    },
+    {
+      "id": 10482,
+      "name": "2026년 용인시 청년 전월세 보증금 이자 지원",
+      "category": "혜택",
+      "startDate": "2026-06-01",
+      "endDate": "2026-06-30",
+      "location": "용인시청 청년담당관",
+      "target": "용인시 거주 만 18세~39세 무주택 청년",
+      "summary": "청년들의 주거비 부담 완화를 위해 전월세 임차보증금 대출 이자를 최대 연 2.0% 지원",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🏠",
+      "tag": "청년"
     }
   ],
   "restaurants": [
@@ -769,6 +795,19 @@
       "link": "https://www.yongin.go.kr/job/index.do",
       "emoji": "💼",
       "tag": "재취업"
+    },
+    {
+      "id": 30124,
+      "name": "경기도 미래산업 청년 인턴십 채용 지원",
+      "category": "일자리",
+      "startDate": "2026-06-08",
+      "endDate": "2026-06-26",
+      "location": "경기도일자리재단",
+      "target": "경기도 거주 만 19세~34세 미취업 청년",
+      "summary": "AI, 반도체 등 미래 신산업 분야 우수 기업 인턴 매칭 및 기프트 카드, 월 급여 지원",
+      "link": "https://www.gg.go.kr",
+      "emoji": "💻",
+      "tag": "청년"
     }
   ],
   "culture": [
