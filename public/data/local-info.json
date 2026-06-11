@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-10",
+  "lastUpdated": "2026-06-11",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -204,6 +204,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🎵",
       "tag": "축제"
+    },
+    {
+      "id": 2,
+      "name": "용인포은아트홀 ‘정오의 브런치 콘서트’",
+      "category": "행사",
+      "startDate": "2026-06-17",
+      "endDate": "2026-06-17",
+      "location": "용인포은아트홀",
+      "target": "클래식과 문화예술을 사랑하는 용인시민 누구나",
+      "summary": "바쁜 일상 속 편안한 해설과 함께 감상하는 고품격 클래식 음악 공연 및 브런치 제공 행사입니다.",
+      "link": "https://www.yicf.or.kr",
+      "emoji": "🎵",
+      "tag": "문화예술"
     }
   ],
   "benefits": [
@@ -524,6 +537,19 @@
       "summary": "청년들의 주거비 부담 완화를 위해 전월세 임차보증금 대출 이자를 최대 연 2.0% 지원",
       "link": "https://www.yongin.go.kr",
       "emoji": "🏠",
+      "tag": "청년"
+    },
+    {
+      "id": 1,
+      "name": "2026년 2분기 경기도 청년기본소득 지원",
+      "category": "혜택",
+      "startDate": "2026-06-01",
+      "endDate": "2026-06-30",
+      "location": "경기도(주소지 시·군청)",
+      "target": "경기도에 3년 이상 계속 거주하거나 합산 10년 이상 거주한 만 24세 청년",
+      "summary": "조건을 만족하는 경기도 청년에게 분기별 25만 원(연 최대 100만 원)을 지역화폐로 지급합니다.",
+      "link": "https://apply.jobaba.net",
+      "emoji": "💰",
       "tag": "청년"
     }
   ],
@@ -998,6 +1024,19 @@
       "target": "용인시 거주 만 19세~34세 미취업 청년 구직자",
       "summary": "4차 산업 맞춤형 인재 양성을 위한 데이터 분석 및 AI 실무 교육을 전액 무료로 제공하고 취업을 연계합니다.",
       "link": "https://www.yongin.go.kr",
+      "emoji": "💻",
+      "tag": "청년"
+    },
+    {
+      "id": 3,
+      "name": "용인시 청년 디지털 혁신 실무 인재 양성 과정",
+      "category": "교육",
+      "startDate": "2026-06-11",
+      "endDate": "2026-07-03",
+      "location": "용인시산업진흥원 교육장",
+      "target": "용인시 거주 만 19세 이상 39세 이하의 미취업 청년",
+      "summary": "빅데이터 및 AI 실무 프로젝트 교육을 전액 무료로 제공하고 취업 연계까지 지원하는 교육 프로그램입니다.",
+      "link": "https://www.ypa.or.kr",
       "emoji": "💻",
       "tag": "청년"
     }
