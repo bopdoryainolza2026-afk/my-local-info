@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13",
+  "lastUpdated": "2026-06-14",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -230,6 +230,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🌳",
       "tag": "축제"
+    },
+    {
+      "id": 102,
+      "name": "2026 용인 잔디광장 서머 북크닉",
+      "category": "행사",
+      "startDate": "2026-06-20",
+      "endDate": "2026-06-21",
+      "location": "용인시청 하늘광장",
+      "target": "용인시민 누구나 (가족 단위 권장)",
+      "summary": "도심 속 잔디광장에서 책과 함께 즐기는 야외 독서 휴가 및 다채로운 문화 공연 프로그램입니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "📚",
+      "tag": "문화"
     }
   ],
   "benefits": [
@@ -563,6 +576,19 @@
       "summary": "조건을 만족하는 경기도 청년에게 분기별 25만 원(연 최대 100만 원)을 지역화폐로 지급합니다.",
       "link": "https://apply.jobaba.net",
       "emoji": "💰",
+      "tag": "청년"
+    },
+    {
+      "id": 101,
+      "name": "2026 용인 청년 전세보증금 반환보증료 지원",
+      "category": "혜택",
+      "startDate": "2026-06-15",
+      "endDate": "2026-11-30",
+      "location": "용인시청 청년담당관",
+      "target": "용인시 거주 만 19세~39세 무주택 청년 (연소득 5천만 원 이하)",
+      "summary": "전세사기 예방을 위해 청년들이 납부한 전세보증금 반환보증 보증료를 최대 30만 원까지 전액 지원합니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🏠",
       "tag": "청년"
     }
   ],
@@ -1063,6 +1089,19 @@
       "target": "용인시에 주소를 둔 만 19세 이상 39세 이하의 미취업 청년",
       "summary": "반도체 핵심 공정 실무 및 장비 실습 교육을 전액 무료로 제공하고 관내 기업 취업 연계를 지원합니다.",
       "link": "https://www.yongin.go.kr",
+      "emoji": "💻",
+      "tag": "청년"
+    },
+    {
+      "id": 103,
+      "name": "경기도 청년 AI·반도체 실무 인재 양성 과정",
+      "category": "교육",
+      "startDate": "2026-06-15",
+      "endDate": "2026-07-10",
+      "location": "경기도일자리재단",
+      "target": "경기도 거주 만 19세~34세 미취업 청년",
+      "summary": "용인 반도체 클러스터 맞춤형 실무 교육과 대기업 연계 취업 멘토링을 전액 무료로 제공합니다.",
+      "link": "https://www.gg.go.kr",
       "emoji": "💻",
       "tag": "청년"
     }
