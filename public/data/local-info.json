@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21",
+  "lastUpdated": "2026-06-22",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -243,6 +243,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "📚",
       "tag": "문화"
+    },
+    {
+      "id": 202602,
+      "name": "2026 용인중앙시장 별빛마당 야시장",
+      "category": "행사",
+      "startDate": "2026-06-26",
+      "endDate": "2026-06-28",
+      "location": "용인중앙시장 일원",
+      "target": "용인시민 및 방문객 누구나",
+      "summary": "다채로운 먹거리 푸드트럭, 플리마켓, 지역 예술인들의 버스킹 공연이 함께하는 초여름 밤의 야시장 축제입니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "✨",
+      "tag": "축제"
     }
   ],
   "benefits": [
@@ -1102,6 +1115,19 @@
       "target": "경기도 거주 만 19세~34세 미취업 청년",
       "summary": "용인 반도체 클러스터 맞춤형 실무 교육과 대기업 연계 취업 멘토링을 전액 무료로 제공합니다.",
       "link": "https://www.gg.go.kr",
+      "emoji": "💻",
+      "tag": "청년"
+    },
+    {
+      "id": 202603,
+      "name": "용인 청년 AI·디지털 마케팅 실무 인재 양성 과정",
+      "category": "교육",
+      "startDate": "2026-06-15",
+      "endDate": "2026-07-10",
+      "location": "용인시 청년랩 기흥/수지",
+      "target": "용인시 거주 만 18세 이상 39세 이하 미취업 청년",
+      "summary": "최신 AI 툴을 활용한 콘텐츠 기획 및 실무 디지털 마케팅 역량을 키우고 맞춤형 취업 연계까지 지원하는 무료 교육입니다.",
+      "link": "https://www.yongin.go.kr",
       "emoji": "💻",
       "tag": "청년"
     }
