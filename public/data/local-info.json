@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-23",
+  "lastUpdated": "2026-06-24",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -255,6 +255,19 @@
       "summary": "다채로운 먹거리 푸드트럭, 플리마켓, 지역 예술인들의 버스킹 공연이 함께하는 초여름 밤의 야시장 축제입니다.",
       "link": "https://www.yongin.go.kr",
       "emoji": "✨",
+      "tag": "축제"
+    },
+    {
+      "id": 102402,
+      "name": "2026 용인 패밀리 페스티벌 '용인에서 놀자'",
+      "category": "행사",
+      "startDate": "2026-07-11",
+      "endDate": "2026-07-12",
+      "location": "용인시청 하늘광장 및 용인시민체육공원",
+      "target": "용인시민 및 경기도민 누구나",
+      "summary": "한여름 밤의 야외 버스킹 공연, 푸드트럭, 어린이 물놀이존을 무료로 즐기는 가족 축제",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🎪",
       "tag": "축제"
     }
   ],
@@ -602,6 +615,19 @@
       "summary": "전세사기 예방을 위해 청년들이 납부한 전세보증금 반환보증 보증료를 최대 30만 원까지 전액 지원합니다.",
       "link": "https://www.yongin.go.kr",
       "emoji": "🏠",
+      "tag": "청년"
+    },
+    {
+      "id": 102401,
+      "name": "2026년 하반기 경기도 청년기본소득 신청",
+      "category": "혜택",
+      "startDate": "2026-07-01",
+      "endDate": "2026-07-30",
+      "location": "경기도(잡아바 어플라이 온라인 접수)",
+      "target": "경기도에 주민등록을 둔 만 24세 청년 (3년 이상 계속 거주 또는 합산 10년 이상 거주)",
+      "summary": "조건을 충족하는 경기도 청년에게 분기별 25만 원(최대 100만 원)을 지역화폐로 지급합니다.",
+      "link": "https://apply.jobaba.net",
+      "emoji": "💰",
       "tag": "청년"
     }
   ],
@@ -1130,6 +1156,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "💻",
       "tag": "청년"
+    },
+    {
+      "id": 102403,
+      "name": "신중년 재취업 대비 생성형 AI 실무 활용 교육",
+      "category": "교육",
+      "startDate": "2026-07-06",
+      "endDate": "2026-07-24",
+      "location": "용인시 일자리센터 배움터",
+      "target": "용인시에 거주하는 만 40세 이상 65세 이하 미취업 구직자",
+      "summary": "챗GPT 등 최신 AI 툴을 활용한 문서 작성 및 업무 자동화 교육으로 재취업 역량을 강화합니다.",
+      "link": "https://www.yongin.go.kr/user/jobs",
+      "emoji": "💻",
+      "tag": "중장년"
     }
   ]
 }
