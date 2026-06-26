@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25",
+  "lastUpdated": "2026-06-26",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -269,6 +269,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🎪",
       "tag": "축제"
+    },
+    {
+      "id": 20485,
+      "name": "2026 용인 패밀리 페스티벌 (한여름 밤의 음악회)",
+      "category": "행사",
+      "startDate": "2026-07-10",
+      "endDate": "2026-07-12",
+      "location": "용인시청 하늘광장",
+      "target": "용인시민 누구나",
+      "summary": "무더운 여름밤을 시원하게 만들어줄 온 가족 참여형 음악 콘서트 및 야시장 행사입니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🎵",
+      "tag": "문화"
     }
   ],
   "benefits": [
@@ -628,6 +641,19 @@
       "summary": "조건을 충족하는 경기도 청년에게 분기별 25만 원(최대 100만 원)을 지역화폐로 지급합니다.",
       "link": "https://apply.jobaba.net",
       "emoji": "💰",
+      "tag": "청년"
+    },
+    {
+      "id": 10294,
+      "name": "2026년 하반기 용인시 청년 월세 특별지원",
+      "category": "혜택",
+      "startDate": "2026-07-01",
+      "endDate": "2026-08-31",
+      "location": "용인시청 청년담당관",
+      "target": "용인시 거주 만 19세~34세 무주택 청년",
+      "summary": "청년들의 주거비 부담 경감을 위해 월 최대 20만 원씩 12개월간 월세를 지원합니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🏠",
       "tag": "청년"
     }
   ],
@@ -1169,6 +1195,19 @@
       "link": "https://www.yongin.go.kr/user/jobs",
       "emoji": "💻",
       "tag": "중장년"
+    },
+    {
+      "id": 30571,
+      "name": "경기도 청년 AI·빅데이터 실무 인재 양성 교육생 모집",
+      "category": "교육",
+      "startDate": "2026-06-26",
+      "endDate": "2026-07-15",
+      "location": "경기도일자리재단",
+      "target": "경기도 거주 만 19세~39세 미취업 청년",
+      "summary": "4차 산업 핵심 기술인 AI 및 빅데이터 실무 교육과 기업 인턴십 연계를 전액 무료로 제공합니다.",
+      "link": "https://www.gg.go.kr",
+      "emoji": "💻",
+      "tag": "청년"
     }
   ]
 }
