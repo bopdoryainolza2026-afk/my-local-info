@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03",
+  "lastUpdated": "2026-07-04",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -668,6 +668,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🏠",
       "tag": "청년"
+    },
+    {
+      "id": 20260701,
+      "name": "2026년 경기도 소상공인 폭염 대비 에너지 지원금",
+      "category": "혜택",
+      "startDate": "2026-07-06",
+      "endDate": "2026-07-31",
+      "location": "경기도시장상권진흥원",
+      "target": "경기도 내 사업장을 둔 연매출 3억원 이하의 소상공인",
+      "summary": "여름철 폭염으로 인한 전기요금 부담 완화를 위해 소상공인 사업장당 냉방비 10만 원 일시 지원",
+      "link": "https://www.gg.go.kr",
+      "emoji": "☀️",
+      "tag": "소상공인"
     }
   ],
   "restaurants": [
