@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07",
+  "lastUpdated": "2026-07-08",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -295,6 +295,19 @@
       "link": "https://www.yicf.or.kr",
       "emoji": "🎵",
       "tag": "문화"
+    },
+    {
+      "id": 204918,
+      "name": "2026 한여름 밤의 용인 미르스타디움 페스티벌",
+      "category": "행사",
+      "startDate": "2026-07-24",
+      "endDate": "2026-07-26",
+      "location": "용인미르스타디움 주경기장 및 야외광장",
+      "target": "문화예술을 즐기고 싶은 용인시민 및 경기도민 누구나",
+      "summary": "한여름 무더위를 날릴 야외 시네마, 버스킹 공연, 푸드트럭 및 플리마켓이 함께하는 시민 축제",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🎪",
+      "tag": "축제"
     }
   ],
   "benefits": [
@@ -681,6 +694,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "☀️",
       "tag": "소상공인"
+    },
+    {
+      "id": 102482,
+      "name": "2026년 3분기 용인시 청년기본소득 신청 안내",
+      "category": "혜택",
+      "startDate": "2026-07-01",
+      "endDate": "2026-07-30",
+      "location": "경기도 잡아바 및 용인시청 청년담당관",
+      "target": "용인시에 주민등록을 둔 만 24세 청년 (3년 이상 계속 거주 또는 합산 10년 이상 거주)",
+      "summary": "분기별 25만 원(연 최대 100만 원)을 용인와이페이(카드형 지역화폐)로 지급하는 청년 복지 제도",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "💰",
+      "tag": "청년"
     }
   ],
   "restaurants": [
@@ -1247,6 +1273,19 @@
       "link": "https://www.gjf.or.kr",
       "emoji": "💻",
       "tag": "청년"
+    },
+    {
+      "id": 305819,
+      "name": "경기 중장년 디지털 직무 역량 강화 교육생 모집",
+      "category": "교육",
+      "startDate": "2026-07-10",
+      "endDate": "2026-08-10",
+      "location": "용인시 평생학습관 및 경기도 평생학습포털(G-SEEK)",
+      "target": "경기도에 거주하는 만 40세 이상 64세 이하 중장년 미취업자",
+      "summary": "취업 연계를 위한 실무 맞춤형 오피스 프로그램 및 AI 협업 툴 활용 무상 교육",
+      "link": "https://www.gg.go.kr",
+      "emoji": "💻",
+      "tag": "중장년"
     }
   ]
 }
