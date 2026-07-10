@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-09",
+  "lastUpdated": "2026-07-10",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -308,6 +308,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🎪",
       "tag": "축제"
+    },
+    {
+      "id": 202607102,
+      "name": "2026 용인 포은아트홀 한여름 밤의 클래식 산책",
+      "category": "행사",
+      "startDate": "2026-07-24",
+      "endDate": "2026-07-26",
+      "location": "용인포은아트홀 야외무대",
+      "target": "문화예술에 관심 있는 용인시민 누구나 (선착순 무료 관람)",
+      "summary": "무더운 여름밤을 시원하게 식혀줄 대중적인 클래식과 영화 OST 야외 콘서트를 개최합니다.",
+      "link": "https://www.yicf.or.kr",
+      "emoji": "🎵",
+      "tag": "문화"
     }
   ],
   "benefits": [
@@ -707,6 +720,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "💰",
       "tag": "청년"
+    },
+    {
+      "id": 202607101,
+      "name": "2026 용인시 소상공인 여름철 냉방비 지원사업",
+      "category": "혜택",
+      "startDate": "2026-07-10",
+      "endDate": "2026-08-07",
+      "location": "용인시청 지역경제과",
+      "target": "용인시 관내 연 매출 3억 원 이하의 영세 소상공인",
+      "summary": "치솟는 여름철 전기요금 부담을 완화하기 위해 소상공인 사업장당 10만 원의 냉방비를 지원합니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "❄️",
+      "tag": "소상공인"
     }
   ],
   "restaurants": [
@@ -1286,6 +1312,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "💻",
       "tag": "중장년"
+    },
+    {
+      "id": 202607103,
+      "name": "경기도 청년 AI·소프트웨어 실무 인재 양성 과정",
+      "category": "교육",
+      "startDate": "2026-07-10",
+      "endDate": "2026-08-14",
+      "location": "경기도일자리재단 (경기테크노파크)",
+      "target": "경기도 거주 만 19세 이상 39세 이하 미취업 청년",
+      "summary": "전액 국비 지원으로 인공지능(AI) 및 웹/앱 개발 실무를 배우고 IT 대기업 취업 매칭 기회를 제공합니다.",
+      "link": "https://www.gg.go.kr",
+      "emoji": "💻",
+      "tag": "청년"
     }
   ]
 }
