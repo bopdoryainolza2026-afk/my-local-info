@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-10",
+  "lastUpdated": "2026-07-11",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -321,6 +321,19 @@
       "link": "https://www.yicf.or.kr",
       "emoji": "🎵",
       "tag": "문화"
+    },
+    {
+      "id": 2026071102,
+      "name": "2026 경기도 다채움 여름 음악 페스티벌",
+      "category": "행사",
+      "startDate": "2026-07-24",
+      "endDate": "2026-07-26",
+      "location": "용인 조정경기장 잔디광장",
+      "target": "경기도민 및 방문객 누구나",
+      "summary": "한여름 밤의 더위를 식혀줄 라이브 버스킹, 미디어아트 쇼, 푸드트럭존이 결합된 경기도 대표 여름 축제",
+      "link": "https://www.gg.go.kr",
+      "emoji": "🎵",
+      "tag": "축제"
     }
   ],
   "benefits": [
@@ -1325,6 +1338,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "💻",
       "tag": "청년"
+    },
+    {
+      "id": 2026071103,
+      "name": "용인시 스마트시티 AI 실무 인재 양성 과정",
+      "category": "교육",
+      "startDate": "2026-07-20",
+      "endDate": "2026-09-18",
+      "location": "용인시 디지털산업진흥원 및 온라인 병행",
+      "target": "IT 및 인공지능 분야 취업을 희망하는 용인시 거주 미취업 청년 (만 18세~39세)",
+      "summary": "실무 맞춤형 AI 모델링 학습과 포트폴리오 제작을 전액 무료로 지원하는 취업 연계형 교육 프로그램",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "💻",
+      "tag": "무료교육"
     }
   ]
 }
