@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-11",
+  "lastUpdated": "2026-07-12",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -334,6 +334,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "🎵",
       "tag": "축제"
+    },
+    {
+      "id": 2048,
+      "name": "2026 용인시 도서관 북캉스 축제",
+      "category": "행사",
+      "startDate": "2026-07-20",
+      "endDate": "2026-08-15",
+      "location": "용인시 관내 공공도서관",
+      "target": "용인시민 누구나",
+      "summary": "무더운 여름, 도서관에서 즐기는 야간 독서 캠프 및 명사 초청 북콘서트에 초대합니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "📚",
+      "tag": "문화"
     }
   ],
   "benefits": [
@@ -746,6 +759,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "❄️",
       "tag": "소상공인"
+    },
+    {
+      "id": 1024,
+      "name": "2026년 경기도 청년면접수당 2차 신청",
+      "category": "혜택",
+      "startDate": "2026-07-01",
+      "endDate": "2026-08-14",
+      "location": "경기도 일자리재단",
+      "target": "만 18세 이상 ~ 39세 이하 경기도 청년 중 구직 활동자",
+      "summary": "취업 면접에 참여한 경기도 청년에게 면접 1회당 5만 원(최대 30만 원)의 지역화폐를 지원합니다.",
+      "link": "https://www.jobaba.net",
+      "emoji": "💼",
+      "tag": "청년"
     }
   ],
   "restaurants": [
@@ -1351,6 +1377,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "💻",
       "tag": "무료교육"
+    },
+    {
+      "id": 3072,
+      "name": "용인시 반도체 소부장 전문인력 양성 교육 수강생 모집",
+      "category": "교육",
+      "startDate": "2026-07-15",
+      "endDate": "2026-08-05",
+      "location": "용인시 일자리센터",
+      "target": "반도체 분야 취업을 희망하는 용인시 거주 미취업 청년 (만 19세~34세)",
+      "summary": "반도체 소부장 맞춤형 실무 교육 및 우수 기업 취업 연계를 전액 무료로 지원합니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🔬",
+      "tag": "교육"
     }
   ]
 }
