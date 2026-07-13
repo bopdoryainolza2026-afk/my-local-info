@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-12",
+  "lastUpdated": "2026-07-13",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -347,6 +347,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "📚",
       "tag": "문화"
+    },
+    {
+      "id": 2026071302,
+      "name": "2026 용인 미르스타디움 ‘한여름 밤의 쿨(Cool) 페스티벌’",
+      "category": "행사",
+      "startDate": "2026-07-24",
+      "endDate": "2026-07-26",
+      "location": "용인 미르스타디움 주경기장",
+      "target": "용인시민 및 인근 지역 주민 누구나 (입장료 무료)",
+      "summary": "물놀이 에어바운스, 푸드트럭, 한여름 밤의 버스킹 공연이 어우러진 도심 속 피서 축제",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "💦",
+      "tag": "축제"
     }
   ],
   "benefits": [
@@ -771,6 +784,19 @@
       "summary": "취업 면접에 참여한 경기도 청년에게 면접 1회당 5만 원(최대 30만 원)의 지역화폐를 지원합니다.",
       "link": "https://www.jobaba.net",
       "emoji": "💼",
+      "tag": "청년"
+    },
+    {
+      "id": 2026071301,
+      "name": "2026 경기도 청년 냉방비 지원금 (취약가구 및 미취업 청년)",
+      "category": "혜택",
+      "startDate": "2026-07-15",
+      "endDate": "2026-08-14",
+      "location": "경기도일자리재단 잡아바 및 주민센터",
+      "target": "경기도 거주 만 19세~39세 미취업 청년 중 기준중위소득 120% 이하",
+      "summary": "여름철 지속되는 무더위에 대응하여 냉방비 및 에너지 비용 10만 원을 지역화폐로 지원",
+      "link": "https://www.gg.go.kr",
+      "emoji": "❄️",
       "tag": "청년"
     }
   ],
