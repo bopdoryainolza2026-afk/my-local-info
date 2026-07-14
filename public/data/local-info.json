@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-13",
+  "lastUpdated": "2026-07-14",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -360,6 +360,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "💦",
       "tag": "축제"
+    },
+    {
+      "id": 20953,
+      "name": "2026 용인 미르스타디움 한여름 밤의 잔디밭 야외 영화제",
+      "category": "행사",
+      "startDate": "2026-07-24",
+      "endDate": "2026-07-26",
+      "location": "용인미르스타디움 주경기장 천연잔디광장",
+      "target": "용인시민 누구나 (선착순 사전 예약자)",
+      "summary": "무더운 여름밤 잔디밭에 돗자리를 깔고 가족들과 대형 스크린으로 최신 흥행 영화와 푸드트럭 축제를 함께 즐겨보세요.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🎬",
+      "tag": "문화"
     }
   ],
   "benefits": [
@@ -798,6 +811,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "❄️",
       "tag": "청년"
+    },
+    {
+      "id": 10842,
+      "name": "2026년 경기도 폭염대비 저소득층 취약가구 냉방비 지원",
+      "category": "혜택",
+      "startDate": "2026-07-15",
+      "endDate": "2026-08-14",
+      "location": "경기도 관내 31개 시·군 읍면동 행정복지센터",
+      "target": "기초생활수급자, 차상위계층, 한부모가족 중 냉방 장치가 필요한 가구",
+      "summary": "연일 지속되는 무더위를 극복할 수 있도록 저소득 취약계층 가구당 10만 원의 냉방비 및 에너지바우처를 긴급 지원합니다.",
+      "link": "https://www.gg.go.kr",
+      "emoji": "☀️",
+      "tag": "복지"
     }
   ],
   "restaurants": [
@@ -1416,6 +1442,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🔬",
       "tag": "교육"
+    },
+    {
+      "id": 30142,
+      "name": "2026 경기 청년 IT/생성형 AI 실무 인재 양성 과정 2기",
+      "category": "교육",
+      "startDate": "2026-07-20",
+      "endDate": "2026-08-10",
+      "location": "경기도일자리재단 동부IT캠퍼스 및 온라인 병행",
+      "target": "경기도에 주소를 둔 만 19세 이상 39세 이하의 미취업 청년",
+      "summary": "생성형 AI 툴과 코딩 실무력을 기르고 1:1 취업 컨설팅 혜택까지 전액 무료로 받을 수 있는 청년 역량 강화 프로그램입니다.",
+      "link": "https://www.gjf.or.kr",
+      "emoji": "💻",
+      "tag": "청년"
     }
   ]
 }
