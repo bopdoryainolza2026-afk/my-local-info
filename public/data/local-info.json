@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-14",
+  "lastUpdated": "2026-07-15",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -373,6 +373,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🎬",
       "tag": "문화"
+    },
+    {
+      "id": 10246,
+      "name": "용인시 어린이 야외 물놀이장 '쿨썸머 용인' 개장",
+      "category": "행사",
+      "startDate": "2026-07-20",
+      "endDate": "2026-08-16",
+      "location": "용인시청 하늘광장 및 구청별 야외광장",
+      "target": "용인시 거주 초등학생 이하 어린이 및 가족",
+      "summary": "무더운 여름을 도심에서 안전하고 시원하게 즐길 수 있도록 무료 야외 풀장 및 에어바운스 슬라이드를 운영합니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🏊",
+      "tag": "축제"
     }
   ],
   "benefits": [
@@ -824,6 +837,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "☀️",
       "tag": "복지"
+    },
+    {
+      "id": 10245,
+      "name": "2026년 3분기 경기도 청년기본소득 신청",
+      "category": "혜택",
+      "startDate": "2026-07-15",
+      "endDate": "2026-08-15",
+      "location": "경기도청 (잡아바 어플라이)",
+      "target": "경기도 내 3년 이상 계속 거주 또는 합산 10년 이상 거주 중인 만 24세 청년",
+      "summary": "조건을 만족하는 경기도 청년에게 분기별 25만 원(연 최대 100만 원)을 모바일 지역화폐로 지급합니다.",
+      "link": "https://apply.jobaba.net",
+      "emoji": "💰",
+      "tag": "청년"
     }
   ],
   "restaurants": [
@@ -1454,6 +1480,19 @@
       "summary": "생성형 AI 툴과 코딩 실무력을 기르고 1:1 취업 컨설팅 혜택까지 전액 무료로 받을 수 있는 청년 역량 강화 프로그램입니다.",
       "link": "https://www.gjf.or.kr",
       "emoji": "💻",
+      "tag": "청년"
+    },
+    {
+      "id": 10247,
+      "name": "반도체 전문 인력 양성 '용인 반도체 아카데미' 수강생 모집",
+      "category": "교육",
+      "startDate": "2026-07-15",
+      "endDate": "2026-08-07",
+      "location": "용인시 일자리센터 및 관내 대학 협력 교육장",
+      "target": "용인시 거주 만 19세 이상 39세 이하 미취업 청년",
+      "summary": "용인 반도체 클러스터 맞춤형 소자 제작 및 공정 실무 교육을 전액 무료로 지원하고 취업 연계를 도웁니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🎓",
       "tag": "청년"
     }
   ]
