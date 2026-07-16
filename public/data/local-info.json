@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-15",
+  "lastUpdated": "2026-07-16",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -386,6 +386,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🏊",
       "tag": "축제"
+    },
+    {
+      "id": 2026071602,
+      "name": "2026 용인 포은아트홀 한여름 밤의 힐링 클래식 콘서트",
+      "category": "행사",
+      "startDate": "2026-07-25",
+      "endDate": "2026-07-26",
+      "location": "용인포은아트홀 대공연장",
+      "target": "문화예술에 관심 있는 용인시민 누구나 (만 7세 이상 관람가)",
+      "summary": "무더위를 식혀줄 오케스트라의 영화 음악 연주와 미디어아트를 함께 즐기는 무료 콘서트입니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🎵",
+      "tag": "문화예술"
     }
   ],
   "benefits": [
