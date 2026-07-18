@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-17",
+  "lastUpdated": "2026-07-18",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -876,6 +876,19 @@
       "link": "https://apply.jobaba.net",
       "emoji": "💰",
       "tag": "청년"
+    },
+    {
+      "id": 2026071801,
+      "name": "2026 경기도 청년 에너지 생활비 지원",
+      "category": "혜택",
+      "startDate": "2026-07-20",
+      "endDate": "2026-08-14",
+      "location": "경기도청 (잡아바 어플라이)",
+      "target": "경기도 내 만 19세~39세 이하 무주택 청년 1인 가구",
+      "summary": "여름철 폭염 대비 냉방비 부담 완화를 위해 가구당 10만 원의 에너지 생활비 지원",
+      "link": "https://www.gg.go.kr",
+      "emoji": "☀️",
+      "tag": "청년"
     }
   ],
   "restaurants": [
@@ -1530,6 +1543,19 @@
       "location": "용인시 기흥청년랩",
       "target": "용인시 거주 만 19세~39세 미취업 청년",
       "summary": "용인 반도체 클러스터 특화 산업에 맞춘 실무 기술 교육 및 취업 연계 컨설팅 제공",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "💻",
+      "tag": "청년"
+    },
+    {
+      "id": 2026071803,
+      "name": "용인 청년 AI·소프트웨어 실무 인재 양성 교육",
+      "category": "교육",
+      "startDate": "2026-07-22",
+      "endDate": "2026-08-10",
+      "location": "용인 청년LAB 기흥",
+      "target": "용인시 거주 만 19세 이상 39세 이하 취업 준비생",
+      "summary": "기업 수요 맞춤형 AI 및 웹 개발 실무 교육 및 1:1 취업 컨설팅 무료 제공",
       "link": "https://www.yongin.go.kr",
       "emoji": "💻",
       "tag": "청년"
