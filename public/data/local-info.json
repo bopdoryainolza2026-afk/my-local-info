@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-18",
+  "lastUpdated": "2026-07-19",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -412,6 +412,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🎵",
       "tag": "문화예술"
+    },
+    {
+      "id": 202607192,
+      "name": "2026 용인 포은아트홀 서머 클래식 판타지",
+      "category": "행사",
+      "startDate": "2026-07-20",
+      "endDate": "2026-08-05",
+      "location": "용인포은아트홀",
+      "target": "용인시민 및 문화예술을 즐기고 싶은 누구나",
+      "summary": "여름 휴가철을 맞아 무더위를 날려줄 고품격 클래식과 크로스오버 무료 특별 음악회 예매가 시작됩니다.",
+      "link": "https://www.yicf.or.kr",
+      "emoji": "🎵",
+      "tag": "문화"
     }
   ],
   "benefits": [
@@ -1556,6 +1569,19 @@
       "location": "용인 청년LAB 기흥",
       "target": "용인시 거주 만 19세 이상 39세 이하 취업 준비생",
       "summary": "기업 수요 맞춤형 AI 및 웹 개발 실무 교육 및 1:1 취업 컨설팅 무료 제공",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "💻",
+      "tag": "청년"
+    },
+    {
+      "id": 202607193,
+      "name": "용인시 AI·빅데이터 실무 인재 양성 과정",
+      "category": "교육",
+      "startDate": "2026-07-10",
+      "endDate": "2026-07-31",
+      "location": "용인시 청년랩 및 온라인",
+      "target": "용인시 거주 만 19세 이상 39세 이하 미취업 청년",
+      "summary": "취업 역량 강화를 위해 전액 무료로 진행되는 인공지능 및 빅데이터 분석 실무 프로젝트 교육생을 모집합니다.",
       "link": "https://www.yongin.go.kr",
       "emoji": "💻",
       "tag": "청년"
