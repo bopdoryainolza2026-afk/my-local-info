@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-19",
+  "lastUpdated": "2026-07-20",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -1585,6 +1585,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "💻",
       "tag": "청년"
+    },
+    {
+      "id": 30912,
+      "name": "용인 반도체 특화단지 실무형 인재 양성 과정",
+      "category": "교육",
+      "startDate": "2026-07-25",
+      "endDate": "2026-08-20",
+      "location": "용인시 일자리센터 및 관내 협력 대학",
+      "target": "반도체 기업 취업을 희망하는 만 19세~39세 미취업 용인시민",
+      "summary": "반도체 핵심 공정 교육, 장비 실무 실습 및 맞춤형 취업 컨설팅을 통한 지역 유망 기업 취업 연계",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "💻",
+      "tag": "교육"
     }
   ]
 }
