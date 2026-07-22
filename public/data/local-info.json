@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-21",
+  "lastUpdated": "2026-07-22",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -425,6 +425,19 @@
       "link": "https://www.yicf.or.kr",
       "emoji": "🎵",
       "tag": "문화"
+    },
+    {
+      "id": 202607222,
+      "name": "2026 용인 미르스타디움 여름 물놀이장 및 야간 문화축제",
+      "category": "행사",
+      "startDate": "2026-07-25",
+      "endDate": "2026-08-16",
+      "location": "용인미르스타디움 야외광장",
+      "target": "용인시민 및 어린이를 동반한 가족 누구나",
+      "summary": "여름철 무료 어린이 물놀이시설 운영 및 주말 야간 버스킹 공연 개최",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🌊",
+      "tag": "여름축제"
     }
   ],
   "benefits": [
@@ -1598,6 +1611,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "💻",
       "tag": "교육"
+    },
+    {
+      "id": 202607223,
+      "name": "용인 반도체·AI 맞춤형 디지털 실무 인재 양성과정",
+      "category": "교육",
+      "startDate": "2026-07-22",
+      "endDate": "2026-08-10",
+      "location": "용인시 디지털산업진흥원 및 온라인 교육장",
+      "target": "용인시 거주 미취업 청년 (만 19세 ~ 39세)",
+      "summary": "반도체 소프트웨어 실무 교육비 전액 지원 및 지역 기업 취업 연계 혜택 제공",
+      "link": "https://www.gg.go.kr",
+      "emoji": "💻",
+      "tag": "반도체교육"
     }
   ]
 }
