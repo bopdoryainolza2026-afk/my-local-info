@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-31",
+  "lastUpdated": "2026-08-01",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -438,6 +438,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🌊",
       "tag": "여름축제"
+    },
+    {
+      "id": 2026080102,
+      "name": "2026 용인시 여름밤 힐링 버스킹 & 미디어아트 페스티벌",
+      "category": "행사",
+      "startDate": "2026-08-07",
+      "endDate": "2026-08-09",
+      "location": "용인미르스타디움 야외광장",
+      "target": "용인시민 및 방문객 누구나",
+      "summary": "한여름 밤을 수놓는 야외 버스킹 공연과 초대형 미디어아트 레이저쇼",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🎆",
+      "tag": "문화축제"
     }
   ],
   "benefits": [
@@ -915,6 +928,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "☀️",
       "tag": "청년"
+    },
+    {
+      "id": 2026080101,
+      "name": "2026년 3분기 경기도 청년기본소득 지급 신청",
+      "category": "혜택",
+      "startDate": "2026-08-01",
+      "endDate": "2026-08-31",
+      "location": "경기도 (용인시 포함)",
+      "target": "경기도 내 3년 이상 연속 거주 또는 합산 10년 이상 거주 중인 만 24세 청년",
+      "summary": "분기별 25만 원(연 최대 100만 원)을 지역화폐(용인 와이페이)로 지급",
+      "link": "https://apply.jobaba.net",
+      "emoji": "💰",
+      "tag": "청년지원"
     }
   ],
   "restaurants": [
@@ -1624,6 +1650,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "💻",
       "tag": "반도체교육"
+    },
+    {
+      "id": 2026080103,
+      "name": "용인시 신중년 AI 활용 및 디지털 역량 강화 교육",
+      "category": "교육",
+      "startDate": "2026-08-10",
+      "endDate": "2026-08-28",
+      "location": "용인시 평생학습관 컴퓨터실",
+      "target": "용인시 거주 만 50세~64세 신중년",
+      "summary": "생성형 AI 기초 실습 및 스마트 기기 활용법 무료 교육 과정",
+      "link": "https://lli.yongin.go.kr",
+      "emoji": "💻",
+      "tag": "무료교육"
     }
   ]
 }
