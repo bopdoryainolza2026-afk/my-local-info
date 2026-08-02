@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-01",
+  "lastUpdated": "2026-08-02",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -451,6 +451,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🎆",
       "tag": "문화축제"
+    },
+    {
+      "id": 20260802,
+      "name": "2026 경기도 여름밤 숲속 힐링 음악회",
+      "category": "행사",
+      "startDate": "2026-08-14",
+      "endDate": "2026-08-15",
+      "location": "용인 농촌테마파크 잔디광장",
+      "target": "경기도민 및 용인시민 누구나",
+      "summary": "여름휴가철을 맞아 펼쳐지는 야외 클래식 및 팝스 오케스트라 무료 공연",
+      "link": "https://www.gg.go.kr",
+      "emoji": "🎼",
+      "tag": "문화공연"
     }
   ],
   "benefits": [
@@ -940,6 +953,19 @@
       "summary": "분기별 25만 원(연 최대 100만 원)을 지역화폐(용인 와이페이)로 지급",
       "link": "https://apply.jobaba.net",
       "emoji": "💰",
+      "tag": "청년지원"
+    },
+    {
+      "id": 20260801,
+      "name": "2026년 하반기 용인 청년 자격증 취득 지원금",
+      "category": "혜택",
+      "startDate": "2026-08-03",
+      "endDate": "2026-08-31",
+      "location": "용인시청 청년담당관 (온라인 접수)",
+      "target": "용인시 거주 만 19세~39세 미취업 청년",
+      "summary": "어학 및 국가공인자격증 시험 응시료를 1인당 연 최대 30만 원까지 실비 지원",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "💳",
       "tag": "청년지원"
     }
   ],
@@ -1663,6 +1689,19 @@
       "link": "https://lli.yongin.go.kr",
       "emoji": "💻",
       "tag": "무료교육"
+    },
+    {
+      "id": 20260803,
+      "name": "AI·빅데이터 활용 소상공인 디지털 마케팅 교육",
+      "category": "교육",
+      "startDate": "2026-08-10",
+      "endDate": "2026-08-21",
+      "location": "용인시 디지털산업진흥원 교육장",
+      "target": "관내 소상공인 및 예비 창업자 30명",
+      "summary": "생성형 AI를 활용한 온라인 홍보물 제작 및 SNS 마케팅 실무 무료 교육",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "💻",
+      "tag": "소상공인"
     }
   ]
 }
