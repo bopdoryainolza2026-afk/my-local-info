@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-15",
+  "lastUpdated": "2026-08-16",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -464,6 +464,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "🎼",
       "tag": "문화공연"
+    },
+    {
+      "id": 2026081602,
+      "name": "2026 용인미르스타디움 늦여름 힐링 야간 페스타",
+      "category": "행사",
+      "startDate": "2026-08-21",
+      "endDate": "2026-08-23",
+      "location": "용인미르스타디움 야외광장",
+      "target": "용인시민 및 경기도민 누구나",
+      "summary": "열대야를 식혀줄 야외 무료 시네마 상영과 청년 아티스트 버스킹 콘서트",
+      "link": "https://www.yongin.go.kr/culture",
+      "emoji": "🎬",
+      "tag": "문화행사"
     }
   ],
   "benefits": [
@@ -967,6 +980,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "💳",
       "tag": "청년지원"
+    },
+    {
+      "id": 2026081601,
+      "name": "2026년 하반기 용인 청년 국가자격증 응시료 지원사업",
+      "category": "혜택",
+      "startDate": "2026-08-16",
+      "endDate": "2026-11-30",
+      "location": "용인시청 일자리정책과 / 경기청년포털(잡아바)",
+      "target": "용인시 거주 만 19세~39세 미취업 청년",
+      "summary": "어학 및 국가공인자격증 응시료를 1인당 연 최대 30만 원까지 실비 지원",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "💳",
+      "tag": "청년"
     }
   ],
   "restaurants": [
@@ -1700,6 +1726,19 @@
       "target": "관내 소상공인 및 예비 창업자 30명",
       "summary": "생성형 AI를 활용한 온라인 홍보물 제작 및 SNS 마케팅 실무 무료 교육",
       "link": "https://www.yongin.go.kr",
+      "emoji": "💻",
+      "tag": "소상공인"
+    },
+    {
+      "id": 2026081603,
+      "name": "2026 경기도 소상공인 AI·디지털 마케팅 실무 교육과정",
+      "category": "교육",
+      "startDate": "2026-08-16",
+      "endDate": "2026-09-10",
+      "location": "경기스타트업캠퍼스 및 온라인 라이브",
+      "target": "경기도 내 소상공인 및 예비 창업자",
+      "summary": "생성형 AI를 활용한 상품 콘텐츠 제작 및 SNS 온라인 판로 개척 100% 무료 교육",
+      "link": "https://www.gg.go.kr",
       "emoji": "💻",
       "tag": "소상공인"
     }
