@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-14",
+  "lastUpdated": "2026-09-15",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -477,6 +477,19 @@
       "link": "https://www.yongin.go.kr/culture",
       "emoji": "🎬",
       "tag": "문화행사"
+    },
+    {
+      "id": 20260902,
+      "name": "2026 제31회 용인시민의 날 가을 문화축제",
+      "category": "행사",
+      "startDate": "2026-09-25",
+      "endDate": "2026-09-27",
+      "location": "용인미르스타디움 주경기장 및 시청광장",
+      "target": "용인시민 및 경기도민 누구나",
+      "summary": "가을 맞이 축하공연, 시민참여 문화체험 부스, 특산물 직거래 장터 및 야간 드론라이트쇼 운영",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🎉",
+      "tag": "시민축제"
     }
   ],
   "benefits": [
