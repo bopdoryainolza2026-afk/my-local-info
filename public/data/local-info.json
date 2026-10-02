@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-01",
+  "lastUpdated": "2026-10-02",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -490,6 +490,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🎉",
       "tag": "시민축제"
+    },
+    {
+      "id": 20261002,
+      "name": "2026 용인농촌테마파크 가을 국화 & 힐링 페스티벌",
+      "category": "행사",
+      "startDate": "2026-10-09",
+      "endDate": "2026-10-18",
+      "location": "용인농촌테마파크 (처인구 원삼면)",
+      "target": "용인시민 및 방문객 누구나",
+      "summary": "가을 국화 조형물 전시, 도농 상생 직거래 장터 및 주말 숲속 힐링 버스킹 공연 개최",
+      "link": "https://www.yongin.go.kr/tour/index.do",
+      "emoji": "🌼",
+      "tag": "문화축제"
     }
   ],
   "benefits": [
@@ -1791,6 +1804,19 @@
       "target": "용인시 및 경기도 거주 청년 구직자 (만 19세~34세)",
       "summary": "반도체 클러스터 맞춤 스마트공정 실무 무료 직무교육 및 협력기업 취업 연계",
       "link": "https://www.gg.go.kr",
+      "emoji": "💻",
+      "tag": "교육"
+    },
+    {
+      "id": 20261003,
+      "name": "2026 하반기 경기도 5060 신중년 AI·디지털 실무 재취업 과정",
+      "category": "교육",
+      "startDate": "2026-10-05",
+      "endDate": "2026-10-23",
+      "location": "경기도일자리재단 및 온라인(Zoom)",
+      "target": "경기도 내 거주 만 50세~64세 미취업 구직자",
+      "summary": "생성형 AI 및 디지털 업무 툴 활용 능력을 배양하여 은퇴 후 재취업을 돕는 전액 무료 실무 교육",
+      "link": "https://www.gg.go.kr/bbs/boardView.do?bsIdx=464",
       "emoji": "💻",
       "tag": "교육"
     }
