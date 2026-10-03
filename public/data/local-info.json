@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-02",
+  "lastUpdated": "2026-10-03",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -1031,6 +1031,19 @@
       "summary": "분기별 25만원 상당의 용인와이페이 및 어학·자격증 시험 응시료 실비 지원",
       "link": "https://www.yongin.go.kr/user/bbs/BD_selectBbsList.do?bbsCd=1001",
       "emoji": "💰",
+      "tag": "청년"
+    },
+    {
+      "id": 20261001,
+      "name": "2026년 하반기 용인 청년 자격증 응시료 지원사업(2차)",
+      "category": "혜택",
+      "startDate": "2026-10-01",
+      "endDate": "2026-11-30",
+      "location": "온라인 접수 (경기도 일자리플랫폼 잡아바)",
+      "target": "용인시 거주 만 19세~39세 미취업 청년",
+      "summary": "토익·오픽 등 어학시험 및 국가기술·전문자격증 응시료를 1인당 연 최대 30만 원 실비 지원",
+      "link": "https://www.yongin.go.kr/user/bbs/BD_selectBbs.do?q_bbsCode=1020",
+      "emoji": "💳",
       "tag": "청년"
     }
   ],
