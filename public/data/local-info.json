@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-15",
+  "lastUpdated": "2026-10-16",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -514,6 +514,19 @@
       "target": "경기도민 및 용인시민 누구나",
       "summary": "가을 단풍 시즌을 맞아 숲속 힐링 음악회, 산림치유 체험 부스 및 친환경 플리마켓을 운영합니다.",
       "link": "https://www.gg.go.kr",
+      "emoji": "🍁",
+      "tag": "축제"
+    },
+    {
+      "id": 2026101602,
+      "name": "2026 용인 가을 국화·농산물 힐링 페스타",
+      "category": "행사",
+      "startDate": "2026-10-23",
+      "endDate": "2026-10-25",
+      "location": "용인농촌테마파크 잔디광장",
+      "target": "용인시민 및 경기도민 누구나",
+      "summary": "도심 속 국화 전시와 버스킹 공연, 지역 농특산물 직거래 장터가 어우러진 가을 힐링 축제",
+      "link": "https://www.yongin.go.kr/tour",
       "emoji": "🍁",
       "tag": "축제"
     }
@@ -1068,6 +1081,32 @@
       "location": "용인시청 일자리정책과 / 일자리지원사업 통합접수시스템",
       "target": "용인시 거주 만 19세~39세 미취업 청년",
       "summary": "어학 및 국가공인자격증 시험 응시료를 1인당 연 최대 30만 원까지 실비 지원합니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "💳",
+      "tag": "청년"
+    },
+    {
+      "id": 137100000035,
+      "name": "장애 체육인 장학금 지원",
+      "category": "혜택",
+      "startDate": "2026-10-16",
+      "endDate": "상시",
+      "location": "국민체육진흥공단 체육인복지팀",
+      "target": "전국규모대회에서 입상한 장애 학생 선수",
+      "summary": "우수한 장애 학생 선수에게 1인당 최대 200만원의 장학금 지원",
+      "link": "https://www.gov.kr/portal/rcvfvrSvc/dtlEx/137100000035",
+      "emoji": "🏅",
+      "tag": "복지"
+    },
+    {
+      "id": 2026101601,
+      "name": "2026년 하반기 용인 청년 국가자격증 응시료 지원",
+      "category": "혜택",
+      "startDate": "2026-10-15",
+      "endDate": "2026-11-30",
+      "location": "온라인 신청(용인시청 일자리포털)",
+      "target": "용인시 거주 만 19세~39세 미취업 청년",
+      "summary": "어학, 국가기술·전문자격증 등 시험 응시료를 1인당 연 최대 30만 원까지 실비 지원",
       "link": "https://www.yongin.go.kr",
       "emoji": "💳",
       "tag": "청년"
@@ -1858,6 +1897,19 @@
       "link": "https://www.gg.go.kr/bbs/boardView.do?bsIdx=464",
       "emoji": "💻",
       "tag": "교육"
+    },
+    {
+      "id": 2026101603,
+      "name": "용인 반도체 클러스터 연계 청년 실무인재 양성과정",
+      "category": "교육",
+      "startDate": "2026-10-16",
+      "endDate": "2026-11-08",
+      "location": "경기도 미래기술학교 용인캠퍼스",
+      "target": "경기도 내 거주 만 19세~34세 미취업 이공계 구직자",
+      "summary": "반도체 공정 실습 및 기업 멘토링 전액 무료 교육과 협력사 취업 연계 혜택 제공",
+      "link": "https://www.gg.go.kr",
+      "emoji": "💻",
+      "tag": "취업교육"
     }
   ]
 }
