@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-19",
+  "lastUpdated": "2026-10-20",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -542,6 +542,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🍁",
       "tag": "축제"
+    },
+    {
+      "id": 261003,
+      "name": "2026 용인 가을 숲속 국화전시회 및 힐링 버스킹 페스티벌",
+      "category": "행사",
+      "startDate": "2026-10-24",
+      "endDate": "2026-11-08",
+      "location": "용인농촌테마파크 잔디광장 일원",
+      "target": "용인시민 및 방문객 누구나 (무료 관람)",
+      "summary": "수만 송이 가을 국화 조형물 전시와 주말 숲속 문화공연 및 로컬푸드 플리마켓 운영",
+      "link": "https://www.yongin.go.kr/tour",
+      "emoji": "🌼",
+      "tag": "가을축제"
     }
   ],
   "benefits": [
@@ -1134,6 +1147,19 @@
       "target": "용인시 거주 만 19세~39세 미취업 청년",
       "summary": "구직활동 및 자기개발 비용을 돕기 위해 1인당 50만 원 상당의 용인와이페이 바우처 지급",
       "link": "https://www.yongin.go.kr",
+      "emoji": "💳",
+      "tag": "청년"
+    },
+    {
+      "id": 261001,
+      "name": "2026년 4분기 경기도 청년 역량강화 기회 지원(응시료·수강료 지원)",
+      "category": "혜택",
+      "startDate": "2026-10-20",
+      "endDate": "2026-11-27",
+      "location": "경기도일자리재단 통합접수시스템(잡아바)",
+      "target": "경기도 내 거주 만 19~39세 미취업 청년",
+      "summary": "어학시험 및 국가공인 자격증 응시료와 전문 수강료를 1인당 연 최대 30만 원 실비 지원",
+      "link": "https://www.gg.go.kr",
       "emoji": "💳",
       "tag": "청년"
     }
@@ -1949,6 +1975,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "💻",
       "tag": "취업교육"
+    },
+    {
+      "id": 261002,
+      "name": "2026 용인 반도체 메가클러스터 차세대 전문인력 실무과정 교육생 모집",
+      "category": "교육",
+      "startDate": "2026-10-21",
+      "endDate": "2026-11-10",
+      "location": "용인 청년LAB 및 협약 산학협력관",
+      "target": "용인시 거주 만 19~39세 이공계열 미취업 청년",
+      "summary": "반도체 공정 및 장비 실무 교육비 전액 국비 무료 지원 및 관내 협력기업 채용 연계",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🔬",
+      "tag": "청년"
     }
   ]
 }
