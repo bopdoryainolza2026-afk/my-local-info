@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-22",
+  "lastUpdated": "2026-10-23",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -566,6 +566,19 @@
       "target": "용인시민 및 경기도민 누구나 (사전/현장 접수)",
       "summary": "단풍 시즌을 맞아 숲속 버스킹 공연, 힐링 걷기 코스, 목공예 체험 부스를 운영하는 가을 축제",
       "link": "https://www.yongin.go.kr/tour",
+      "emoji": "🍁",
+      "tag": "문화축제"
+    },
+    {
+      "id": 2026102301,
+      "name": "2026 용인 가을 숲길 힐링 걷기대회 및 친환경 플리마켓",
+      "category": "행사",
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-01",
+      "location": "용인자연휴양림 잔디광장",
+      "target": "용인시민 및 경기도민 누구나",
+      "summary": "가을 단풍철을 맞아 휴양림 둘레길 걷기 및 친환경 농특산물 마켓과 숲속 버스킹 공연 진행",
+      "link": "https://www.yongin.go.kr/user/bbs/BD_selectBbs.do?q_bbsCode=1001",
       "emoji": "🍁",
       "tag": "문화축제"
     }
@@ -2027,6 +2040,19 @@
       "link": "https://www.gg.go.kr",
       "emoji": "💻",
       "tag": "취업교육"
+    },
+    {
+      "id": 2026102303,
+      "name": "용인 반도체 메가클러스터 전문 실무인재 양성과정 4기 모집",
+      "category": "교육",
+      "startDate": "2026-10-23",
+      "endDate": "2026-11-13",
+      "location": "용인시 평생학습관 및 명지대학교 산학협력관",
+      "target": "반도체 공정 및 설계 분야 취업을 희망하는 용인 관내 미취업 청년(만 19~39세)",
+      "summary": "국비 전액 지원으로 실무 공정 실습부터 협력기업 연계 면접 기회까지 원스톱 제공",
+      "link": "https://www.yongin.go.kr/youth/index.do",
+      "emoji": "🔬",
+      "tag": "청년"
     }
   ]
 }
