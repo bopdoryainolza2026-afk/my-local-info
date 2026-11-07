@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-06",
+  "lastUpdated": "2026-11-07",
   "source": "공공데이터포털 (data.go.kr)",
   "educationNews": [
     {
@@ -1240,6 +1240,19 @@
       "link": "https://www.yongin.go.kr",
       "emoji": "🔥",
       "tag": "복지"
+    },
+    {
+      "id": 20261101,
+      "name": "2026년 동절기 용인 청년 1인가구 난방비 긴급 지원사업",
+      "category": "혜택",
+      "startDate": "2026-11-10",
+      "endDate": "2026-11-30",
+      "location": "용인시청 청년담당관 (온라인 경기민원24 접수)",
+      "target": "용인시 거주 기준중위소득 120% 이하 만 19~39세 무주택 청년 1인 가구",
+      "summary": "겨울철 에너지 비용 부담 완화를 위해 가구당 20만 원 상당의 지역화폐 난방 바우처를 지원합니다.",
+      "link": "https://www.yongin.go.kr",
+      "emoji": "🔥",
+      "tag": "청년"
     }
   ],
   "restaurants": [
